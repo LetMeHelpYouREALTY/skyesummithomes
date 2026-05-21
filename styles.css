@@ -2909,3 +2909,53 @@ realscout-office-listings::part(listing-card) {
     color: #0A2540;
     font-weight: 600;
 }
+
+/* AEO quick-answer (guides + core pages) */
+.aeo-quick-answer {
+    padding: 1.75rem 0;
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.aeo-quick-answer__title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #3A8DDE;
+    margin-bottom: 0.5rem;
+}
+
+.aeo-quick-answer__text {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: #0A2540;
+    max-width: 52rem;
+    margin-bottom: 0.75rem;
+}
+
+.aeo-quick-answer__meta {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.aeo-quick-answer__meta a {
+    color: #3A8DDE;
+}
+
+.service-hero--compact {
+    padding-top: 0;
+    padding-bottom: 1.5rem;
+}
+
+.service-hero--compact .container {
+    padding-top: 0;
+}
+
+.cta-note--guides {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+}
