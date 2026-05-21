@@ -125,7 +125,7 @@ function fullBlock() {
                         <iframe title="Dr. Jan Duffy office — ${C.STREET}, ${C.CITY}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="600" height="280" src="${C.MAP_EMBED}"></iframe>
                     </div>
                 </div>
-                <p class="hyperlocal-areas"><strong>Primary service area:</strong> ${C.SERVICE_AREA_GBP} · ${C.SERVICE_AREAS.slice(0, 4).join(' · ')} · <a href="/skye-summit-realtor">REALTOR® profile</a> · <a href="/skye-summit-faq">FAQ</a></p>
+                <p class="hyperlocal-areas"><strong>Primary service area:</strong> ${C.SERVICE_AREA_GBP} · <a href="${C.MAP_PAGE_PATH}">Office map &amp; GPS</a> · <a href="/skye-summit-realtor">REALTOR® profile</a> · <a href="/skye-summit-faq">FAQ</a></p>
             </div>
         </section>`;
 }
@@ -186,6 +186,12 @@ function schemaBlock() {
           postalCode: C.POSTAL,
           addressCountry: 'US',
         },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: C.GEO_LAT,
+          longitude: C.GEO_LNG,
+        },
+        hasMap: `https://maps.google.com/?q=${C.GEO_LAT},${C.GEO_LNG}`,
         openingHoursSpecification,
         aggregateRating: {
           '@type': 'AggregateRating',

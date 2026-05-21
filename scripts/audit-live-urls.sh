@@ -11,6 +11,7 @@ PATHS=(
   /skye-summit-faq
   /las-vegas-zip-code-map
   /search
+  /office-location
 )
 
 echo "Auditing $BASE"

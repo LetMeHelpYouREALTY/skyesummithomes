@@ -3,73 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Browse homes for sale in Skye Summit, Las Vegas. Live MLS-linked listings with Dr. Jan Duffy, REALTOR®. Call (702) 930-8222 for a private tour or custom search.">
-    <meta name="keywords" content="Skye Summit homes for sale, Skye Summit listings, Centennial Hills homes, Las Vegas real estate">
-    <meta name="author" content="Dr. Jan Duffy, REALTOR®">
+    <title>Office Location &amp; Directions | Skye Summit Homes | Las Vegas</title>
+    <meta name="description" content="Visit Dr. Jan Duffy at 11411 Southern Highlands Pkwy #300, Las Vegas NV 89141. GPS coordinates, map, directions, and hours. Call (702) 930-8222.">
     <meta name="robots" content="index, follow">
+    <meta name="geo.region" content="US-NV">
+    <meta name="geo.placename" content="Las Vegas">
+    <meta name="geo.position" content="36.017598;-115.204170">
+    <meta name="ICBM" content="36.017598, -115.204170">
+    <link rel="canonical" href="https://www.skyesummithomes.com/office-location">
+
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.skyesummithomes.com/homes-for-sale-skye-summit">
-    <meta property="og:title" content="Homes for Sale in Skye Summit | Dr. Jan Duffy | (702) 930-8222">
-    <meta property="og:description" content="View current Skye Summit listings and connect with Dr. Jan Duffy for showings and strategy.">
-    <meta property="og:image" content="https://www.skyesummithomes.com/images/skye-summit-buy.jpg">
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.skyesummithomes.com/homes-for-sale-skye-summit">
-    <meta property="twitter:title" content="Homes for Sale in Skye Summit | Dr. Jan Duffy">
-    <meta property="twitter:description" content="Browse Skye Summit listings with a local specialist.">
-    <meta property="twitter:image" content="https://www.skyesummithomes.com/images/skye-summit-buy.jpg">
-    <title>Homes for Sale in Skye Summit | Dr. Jan Duffy | (702) 930-8222</title>
-    <link rel="canonical" href="https://www.skyesummithomes.com/homes-for-sale-skye-summit">
-    <link rel="dns-prefetch" href="https://em.realscout.com">
-    <link rel="preconnect" href="https://em.realscout.com" crossorigin>
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="script.js" as="script">
+    <meta property="og:url" content="https://www.skyesummithomes.com/office-location">
+    <meta property="og:title" content="Office Location &amp; Directions | Skye Summit Homes">
+    <meta property="og:description" content="Map, GPS coordinates, and driving directions to our Las Vegas office serving Skye Summit and northwest valley buyers and sellers.">
+    <meta property="og:image" content="https://www.skyesummithomes.com/images/agents/dr-jan-duffy.jpg">
+
+    <link rel="preload" href="/styles.css" as="style">
+    <link rel="preload" href="/script.js" as="script">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module"></script>
+    <link rel="stylesheet" href="/styles.css">
+
     <style>
-      realscout-office-listings {
-        --rs-listing-divider-color: rgb(101, 141, 172);
-        width: 100%;
-        min-height: 480px;
-        z-index: 1000;
-        display: block;
-        margin: 2rem 0;
-      }
-      realscout-office-listings::part(listing-card) {
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      }
-      .listings .container:has(realscout-office-listings:not(:defined)) {
-        min-height: 480px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #f7f9fc;
-        border-radius: 8px;
-        border: 2px dashed #3A8DDE;
-      }
-      .listings .container:has(realscout-office-listings:not(:defined))::after {
-        content: "Loading Skye Summit Listings...";
-        font-size: 1.2rem;
-        color: #0A2540;
-        font-weight: 600;
-      }
+        .loc-hero {
+            background: linear-gradient(135deg, #0A2540 0%, #1a4a7a 100%);
+            color: #fff;
+            padding: 3rem 0 2.5rem;
+            text-align: center;
+        }
+        .loc-hero h1 { font-size: clamp(1.75rem, 4vw, 2.35rem); margin-bottom: 0.75rem; }
+        .loc-hero .hero-subtitle { max-width: 42rem; margin: 0 auto 1.25rem; opacity: 0.95; }
+        .loc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2rem;
+            align-items: start;
+            margin: 2.5rem 0;
+        }
+        @media (max-width: 900px) {
+            .loc-grid { grid-template-columns: 1fr; }
+        }
+        .loc-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 14px rgba(10, 37, 64, 0.08);
+        }
+        .loc-card h2 { font-size: 1.25rem; color: #0A2540; margin-bottom: 1rem; }
+        .loc-gps {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 1.05rem;
+            background: #f0f7ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 1rem 1.15rem;
+            margin: 0.75rem 0 1rem;
+            word-break: break-all;
+        }
+        .loc-gps dt { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: #64748b; margin-top: 0.65rem; }
+        .loc-gps dt:first-child { margin-top: 0; }
+        .loc-gps dd { margin: 0.2rem 0 0; color: #0A2540; font-weight: 600; }
+        .loc-map-wrap {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            min-height: 420px;
+            background: #f1f5f9;
+        }
+        .loc-map-wrap iframe { display: block; width: 100%; height: 420px; border: 0; }
+        .loc-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1rem; }
+        .loc-nap p { margin: 0.35rem 0; line-height: 1.5; }
+        .loc-hours ul { margin: 0; padding-left: 1.1rem; }
+        .breadcrumb-nav { padding: 1rem 0 0; font-size: 0.9rem; }
+        .breadcrumb-nav a { color: #2563eb; }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
     </style>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Dr. Jan Duffy Real Estate",
-      "telephone": "+1-702-930-8222",
-      "url": "https://www.skyesummithomes.com/homes-for-sale-skye-summit",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.skyesummithomes.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.skyesummithomes.com/contact" },
+        { "@type": "ListItem", "position": 3, "name": "Office location", "item": "https://www.skyesummithomes.com/office-location" }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Place",
+      "name": "Skye Summit | Homes by Dr. Jan Duffy",
+      "description": "Real estate office for Skye Summit and northwest Las Vegas — Berkshire Hathaway HomeServices Nevada Properties.",
+      "telephone": "+17029308222",
+      "url": "https://www.skyesummithomes.com/office-location",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 36.017598,
+        "longitude": -115.20417
+      },
+      "hasMap": "https://maps.google.com/?q=36.017598,-115.204170",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "11411 Southern Highlands Pkwy #300",
         "addressLocality": "Las Vegas",
         "addressRegion": "NV",
-        "postalCode": "89141"
-      },
-      "areaServed": { "@type": "Place", "name": "Skye Summit, Las Vegas NV" }
+        "postalCode": "89141",
+        "addressCountry": "US"
+      }
     }
     </script>
     <script type="application/ld+json" data-hyperlocal-gbp-schema>
@@ -191,6 +243,7 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <header class="header" role="banner">
         <nav class="nav" aria-label="Main navigation">
             <div class="nav-brand">
@@ -202,9 +255,9 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/community">Communities</a></li>
-                <li><a href="/las-vegas-zip-code-map/">Zip map</a></li>
-                <li><a href="/community#lifestyle-section">Lifestyle</a></li>
-                <li><a href="/homes-for-sale-skye-summit" class="active">Available Homes</a></li>
+                <li><a href="/las-vegas-zip-code-map">Zip map</a></li>
+                <li><a href="/office-location" class="active">Location</a></li>
+                <li><a href="/homes-for-sale-skye-summit">Available Homes</a></li>
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="/contact">Contact</a></li>
             </ul>
@@ -215,66 +268,74 @@
     </header>
 
     <main id="main-content" role="main">
-        <section class="service-hero">
+        <nav class="breadcrumb-nav container" aria-label="Breadcrumb">
+            <a href="/">Home</a> &rsaquo; <a href="/contact">Contact</a> &rsaquo; <span aria-current="page">Office location</span>
+        </nav>
+
+        <section class="loc-hero">
             <div class="container">
-                <h1>Homes for Sale in Skye Summit</h1>
-                <p class="hero-subtitle">Explore current listings and connect with a Skye Summit specialist for showings, offer strategy, and new construction options.</p>
-                <a href="/contact" class="btn btn-primary btn-large">Schedule a Tour or Consultation</a>
-                <p class="hero-phone">Call <a href="tel:+17029308222">(702) 930-8222</a></p>
+                <h1>Office Location &amp; Directions</h1>
+                <p class="hero-subtitle">Find our Las Vegas office on the map — GPS coordinates, driving directions, and appointment hours for Skye Summit buyers and sellers.</p>
+                <p class="hero-phone"><a href="tel:+17029308222" style="color:#fff;">(702) 930-8222</a></p>
             </div>
         </section>
 
-        <section id="listings" class="listings" aria-labelledby="listings-title">
-            <div class="container">
-                <h2 id="listings-title">Current Skye Summit area listings</h2>
-                <p class="section-description">Listings below are provided through our search partner. For a custom search or off-market opportunities, <a href="/contact">contact Dr. Jan Duffy</a>.</p>
-                <p class="listings-widget-hint">Open a listing for full details; use on-listing actions to request a tour or ask a question. <a href="/las-vegas-zip-code-map/">Explore by zip on the valley map</a>.</p>
-                <!-- RealScout: same agent/price band as homepage — verify in RealScout dashboard. -->
-                <realscout-office-listings
-                    agent-encoded-id="QWdlbnQtMjI1MDUw"
-                    sort-order="STATUS_AND_SIGNIFICANT_CHANGE"
-                    listing-status="For Sale"
-                    property-types="SFR,MF,TC"
-                    price-min="600000"
-                    price-max="1200000"
-                    aria-label="Skye Summit area property listings">
-                </realscout-office-listings>
-                <p class="section-description">See also: <a href="/community">Skye Summit community guide</a>, <a href="/buy">buying in Skye Summit</a>, or <a href="/mls-disclaimer">MLS disclaimer</a>.</p>
-            </div>
-        </section>
-
-        <section class="why-section">
-            <div class="container">
-                <h2>Why work with Dr. Jan for Skye Summit listings?</h2>
-                <div class="features-grid">
-                    <div class="feature">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <h3>Local focus</h3>
-                        <p>Skye Summit and northwest Las Vegas market context—pricing, builders, and neighborhood nuances—so you compare listings with confidence.</p>
+        <section class="container">
+            <div class="loc-grid">
+                <div>
+                    <div class="loc-card loc-nap">
+                        <h2><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Address &amp; GPS</h2>
+                        <p><strong>Skye Summit | Homes by Dr. Jan Duffy</strong><br>
+                        Dr. Jan Duffy, REALTOR®<br>
+                        Berkshire Hathaway HomeServices Nevada Properties</p>
+                        <p>
+                            <a href="https://maps.google.com/?q=11411+Southern+Highlands+Pkwy+%23300+Las+Vegas+NV+89141" target="_blank" rel="noopener">
+                                11411 Southern Highlands Pkwy #300<br>
+                                Las Vegas, NV 89141
+                            </a>
+                        </p>
+                        <dl class="loc-gps" id="office-gps">
+                            <dt>Latitude (WGS84)</dt>
+                            <dd data-lat>36.017598</dd>
+                            <dt>Longitude (WGS84)</dt>
+                            <dd data-lng>-115.204170</dd>
+                            <dt>Decimal degrees</dt>
+                            <dd id="office-gps-combined">36.017598, -115.204170</dd>
+                        </dl>
+                        <div class="loc-actions">
+                            <button type="button" class="btn btn-secondary" id="copy-gps-btn"><i class="fas fa-copy" aria-hidden="true"></i> Copy coordinates</button>
+                            <a href="https://maps.google.com/?q=36.017598,-115.204170" class="btn btn-primary" target="_blank" rel="noopener"><i class="fas fa-directions" aria-hidden="true"></i> Google Maps</a>
+                            <a href="https://www.openstreetmap.org/?mlat=36.017598&amp;mlon=-115.204170#map=17/36.017598/-115.204170" class="btn btn-secondary" target="_blank" rel="noopener">OpenStreetMap</a>
+                        </div>
                     </div>
-                    <div class="feature">
-                        <i class="fas fa-handshake"></i>
-                        <h3>Offer strategy</h3>
-                        <p>From comparable sales to inspection and closing, you get a clear path from first showing to keys.</p>
+                    <div class="loc-card" style="margin-top:1.25rem;">
+                        <h2><i class="fas fa-clock" aria-hidden="true"></i> Hours</h2>
+                        <ul class="loc-hours">
+                            <li><strong>Sunday – Saturday:</strong> 9:00 AM – 6:00 PM</li>
+                        </ul>
+                        <p style="margin-top:0.75rem;font-size:0.9rem;color:#64748b;">Service area: Las Vegas, NV 89141 and Skye Summit · Centennial Hills · Northwest Las Vegas</p>
                     </div>
-                    <div class="feature">
-                        <i class="fas fa-building"></i>
-                        <h3>New construction</h3>
-                        <p>Guidance on builder contracts, upgrades, and timelines when you buy new in Skye Summit.</p>
+                </div>
+                <div class="loc-card" style="padding:0;overflow:hidden;">
+                    <h2 class="sr-only">Map</h2>
+                    <div class="loc-map-wrap gbp-map-embed">
+                        <iframe
+                            title="Map: 11411 Southern Highlands Pkwy #300, Las Vegas — Dr. Jan Duffy office"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps?q=36.017598,-115.204170&amp;z=16&amp;output=embed"
+                            allowfullscreen>
+                        </iframe>
                     </div>
+                    <p style="padding:1rem 1.25rem;margin:0;font-size:0.9rem;">
+                        <a href="/contact">Schedule a consultation</a> ·
+                        <a href="/las-vegas-zip-code-map">Las Vegas zip code map</a> ·
+                        <a href="https://share.google/yoVmGzrpTUtHrvsnL" target="_blank" rel="noopener">Google reviews</a>
+                    </p>
                 </div>
             </div>
         </section>
-
-        <section class="process-section">
-            <div class="container">
-                <h2>Office &amp; contact</h2>
-                <p><strong>Dr. Jan Duffy</strong>, REALTOR®, Berkshire Hathaway HomeServices Nevada Properties · License S.0197614.LLC</p>
-                <p><a href="tel:+17029308222">(702) 930-8222</a> · <a href="mailto:DrJanSells@SkyeSummitHomes.com">DrJanSells@SkyeSummitHomes.com</a></p>
-                <p><a href="https://maps.google.com/?q=11411+Southern+Highlands+Pkwy+%23300+Las+Vegas+NV+89141" target="_blank" rel="noopener">11411 Southern Highlands Pkwy #300, Las Vegas, NV 89141</a></p>
-            </div>
-        </section>
-
+    
         <!-- HYPERLOCAL_GBP_BEGIN -->
         <section id="hyperlocal-gbp" class="hyperlocal-gbp-section" aria-labelledby="hyperlocal-gbp-title">
             <div class="container">
@@ -340,89 +401,25 @@
                 <div class="footer-section">
                     <h3>Dr. Jan Duffy, REALTOR®</h3>
                     <p>Berkshire Hathaway HomeServices Nevada Properties</p>
-                    <div class="contact-info">
-                        <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+17029308222">(702) 930-8222</a></p>
-                        <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:DrJanSells@SkyeSummitHomes.com">DrJanSells@SkyeSummitHomes.com</a></p>
-                        <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <a href="https://maps.google.com/?q=11411+Southern+Highlands+Pkwy+%23300+Las+Vegas+NV+89141" target="_blank" rel="noopener">11411 Southern Highlands Pkwy #300<br>Las Vegas, NV 89141</a></p>
-                    </div>
+                    <p><a href="tel:+17029308222">(702) 930-8222</a></p>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="/">Home</a></li>
-                        <li><a href="/#listings">Skye Summit Listings</a></li>
-                        <li><a href="/about">About Dr. Jan</a></li>
-                        <li><a href="/community">Skye Summit Community</a></li>
-                        <li><a href="/las-vegas-zip-code-map/">Las Vegas zip code map</a></li>
-                        <li><a href="/homes-for-sale-skye-summit">Homes for Sale in Skye Summit</a></li>
-                        <li><a href="/sell">Sell Your Home</a></li>
-                        <li><a href="/buy">Buy in Skye Summit</a></li>
-                        <li><a href="/valuation">Free Valuation</a></li>
+                        <li><a href="/office-location">Office location</a></li>
                         <li><a href="/contact">Contact</a></li>
+                        <li><a href="/las-vegas-zip-code-map">Zip code map</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Me</h4>
-                    <div class="social-links">
-                        <a href="https://share.google/yoVmGzrpTUtHrvsnL" target="_blank" rel="noopener" aria-label="Dr. Jan Duffy on Google Business Profile"><i class="fab fa-google" aria-hidden="true"></i></a>
-                    </div>
-                    <p class="footer-social-note">Reviews &amp; updates on <a href="https://share.google/yoVmGzrpTUtHrvsnL" target="_blank" rel="noopener">Google</a></p>
-                </div>
-                <div class="footer-section">
-                    <h4>Google Business Profile</h4>
-                    <div class="gmb-info">
-                        <p><i class="fas fa-star" aria-hidden="true"></i> <strong>4.9/5</strong> (127 reviews)</p>
-                        <a href="https://share.google/yoVmGzrpTUtHrvsnL" target="_blank" rel="noopener" class="gmb-link" aria-label="View Dr. Jan Duffy's Google Business Profile">
-                            <i class="fab fa-google" aria-hidden="true"></i> View on Google
-                        </a>
-                        <a href="https://share.google/yoVmGzrpTUtHrvsnL&action=write_review" target="_blank" rel="noopener" class="review-link" aria-label="Write a review for Dr. Jan Duffy on Google">
-                            <i class="fas fa-edit" aria-hidden="true"></i> Write a Review
-                        </a>
-                        <button id="review-request-btn" class="review-request-btn" aria-label="Request a review from Dr. Jan Duffy">
-                            <i class="fas fa-star" aria-hidden="true"></i> Request Review
-                        </button>
-                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Dr. Jan Duffy, REALTOR® S.0197614.LLC. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="/privacy">Privacy Policy</a>
-                    <a href="/terms">Terms of Use</a>
-                    <a href="/mls-disclaimer">MLS Disclaimer</a>
-                </div>
+                <p>&copy; <span id="year"></span> Dr. Jan Duffy, REALTOR®. Nevada license S.0197614.LLC</p>
             </div>
         </div>
     </footer>
 
-    <aside class="mobile-buyer-bar" aria-label="Quick buyer actions">
-        <a class="mobile-buyer-bar__call" href="tel:+17029308222"><i class="fas fa-phone" aria-hidden="true"></i> Call</a>
-        <a class="mobile-buyer-bar__listings" href="/#listings">Listings</a>
-        <a class="mobile-buyer-bar__contact" href="/contact">Book</a>
-    </aside>
-
-    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-    <script src="script.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const widget = document.querySelector('realscout-office-listings');
-        if (widget) {
-          widget.style.opacity = '0';
-          widget.style.transition = 'opacity 0.5s ease-in-out';
-          if (customElements.get('realscout-office-listings')) {
-            widget.style.opacity = '1';
-          } else {
-            setTimeout(function() {
-              if (!customElements.get('realscout-office-listings')) {
-                var container = widget.parentElement;
-                container.innerHTML = '<div style="text-align:center;padding:3rem;background:#f7f9fc;border-radius:8px;border:2px dashed #3A8DDE"><p>Listings are loading. If the search does not appear, call <a href="tel:+17029308222">(702) 930-8222</a> for current Skye Summit homes.</p></div>';
-              }
-            }, 8000);
-          }
-        }
-      });
-    </script>
+    <script src="/script.js"></script>
+    <script src="/office-location/office-location.js" defer></script>
 </body>
 </html>

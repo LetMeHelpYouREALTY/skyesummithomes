@@ -32,6 +32,7 @@ const SLUGS = [
   'new-construction-skye-summit',
   'skye-summit-hoa',
   'centennial-hills-real-estate',
+  'office-location',
 ];
 
 let created = 0;

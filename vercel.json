@@ -145,6 +145,10 @@
     {
       "source": "/centennial-hills-real-estate",
       "destination": "/centennial-hills-real-estate/index.html"
+    },
+    {
+      "source": "/office-location",
+      "destination": "/office-location/index.html"
     }
   ],
   "headers": [
