@@ -25,6 +25,12 @@ const SLUGS = [
   'terms',
   'mls-disclaimer',
   'homes-for-sale-skye-summit',
+  'skye-summit-faq',
+  'skye-summit-schools',
+  'living-in-skye-summit',
+  'new-construction-skye-summit',
+  'skye-summit-hoa',
+  'centennial-hills-real-estate',
 ];
 
 let created = 0;

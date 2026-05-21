@@ -123,6 +123,30 @@
     {
       "source": "/las-vegas-zip-code-map",
       "destination": "/las-vegas-zip-code-map/index.html"
+    },
+    {
+      "source": "/skye-summit-faq",
+      "destination": "/skye-summit-faq.html"
+    },
+    {
+      "source": "/skye-summit-schools",
+      "destination": "/skye-summit-schools.html"
+    },
+    {
+      "source": "/living-in-skye-summit",
+      "destination": "/living-in-skye-summit.html"
+    },
+    {
+      "source": "/new-construction-skye-summit",
+      "destination": "/new-construction-skye-summit.html"
+    },
+    {
+      "source": "/skye-summit-hoa",
+      "destination": "/skye-summit-hoa.html"
+    },
+    {
+      "source": "/centennial-hills-real-estate",
+      "destination": "/centennial-hills-real-estate.html"
     }
   ],
   "headers": [
