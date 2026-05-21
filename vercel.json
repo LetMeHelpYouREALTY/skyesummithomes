@@ -147,6 +147,22 @@
       "destination": "/centennial-hills-real-estate/index.html"
     },
     {
+      "source": "/skye-summit-home-prices",
+      "destination": "/skye-summit-home-prices/index.html"
+    },
+    {
+      "source": "/skye-summit-first-time-buyer",
+      "destination": "/skye-summit-first-time-buyer/index.html"
+    },
+    {
+      "source": "/skye-summit-vs-summerlin",
+      "destination": "/skye-summit-vs-summerlin/index.html"
+    },
+    {
+      "source": "/northwest-las-vegas-real-estate",
+      "destination": "/northwest-las-vegas-real-estate/index.html"
+    },
+    {
       "source": "/office-location",
       "destination": "/office-location/index.html"
     }

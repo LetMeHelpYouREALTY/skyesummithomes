@@ -1,0 +1,318 @@
+#!/usr/bin/env node
+/**
+ * Adds AEO quick-answer blocks and page-specific FAQs to core marketing pages.
+ */
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const C = require('../lib/gbp-constants');
+
+const root = path.join(__dirname, '..');
+const MARKER = 'AEO_CORE_BEGIN';
+
+const CORE_PAGES = {
+  'about.html': {
+    quickAnswer:
+      'Dr. Jan Duffy is a Las Vegas REALTOR® (license S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties, specializing in Skye Summit and northwest Las Vegas since 2009. Call (702) 930-8222 or visit the office at 11411 Southern Highlands Pkwy #300, Las Vegas.',
+    faqs: [
+      {
+        q: 'Who is Dr. Jan Duffy?',
+        a: 'Dr. Jan Duffy is a Nevada REALTOR® focused on Skye Summit, Centennial Hills, and northwest Las Vegas buyer and seller representation.',
+      },
+      {
+        q: 'What brokerage is Dr. Jan Duffy with?',
+        a: 'Berkshire Hathaway HomeServices Nevada Properties. License S.0197614.LLC.',
+      },
+      {
+        q: 'How do I verify the office address?',
+        a: `NAP matches Google Business Profile: ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL}. See <a href="${C.MAP_PAGE_PATH}">office map</a>.`,
+      },
+    ],
+  },
+  'buy.html': {
+    quickAnswer:
+      'To buy in Skye Summit: get pre-approved, define must-haves (phase, view, new vs resale), tour listings, then submit offers with buyer representation on inspections and HOA documents. Dr. Jan Duffy handles Skye Summit and northwest Las Vegas—(702) 930-8222.',
+    faqs: [
+      {
+        q: 'How do I start buying a home in Skye Summit?',
+        a: 'Begin with lender pre-approval, then a buyer consult to set search criteria. Browse <a href="/homes-for-sale-skye-summit">current listings</a> or call for a custom MLS search.',
+      },
+      {
+        q: 'Do I need my own agent for new construction?',
+        a: 'Yes—the builder’s sales team represents the builder. See <a href="/new-construction-skye-summit">new construction guide</a>.',
+      },
+      {
+        q: 'What should I budget beyond the purchase price?',
+        a: 'Plan for closing costs, prepaid items, moving, and reserves. Your lender provides a Loan Estimate; your agent helps negotiate seller credits when available.',
+      },
+    ],
+  },
+  'sell.html': {
+    quickAnswer:
+      'To sell in Skye Summit: price using phase, view, and upgrade comps—not generic online estimates—then market to qualified northwest buyers. Dr. Jan Duffy provides valuation, staging guidance, and negotiation through closing. Call (702) 930-8222.',
+    faqs: [
+      {
+        q: 'How is my Skye Summit home priced?',
+        a: 'Pricing uses recent closed sales in your phase, lot premiums, and condition. Request a <a href="/valuation">free valuation</a>.',
+      },
+      {
+        q: 'How long does it take to sell in Skye Summit?',
+        a: 'Days on market depend on price, condition, and season. A targeted marketing plan and correct list price are the main levers.',
+      },
+      {
+        q: 'What documents do sellers need in Nevada?',
+        a: 'Seller disclosures, HOA documents, and title items are coordinated through escrow; your listing agent outlines the timeline at listing.',
+      },
+    ],
+  },
+  'valuation.html': {
+    quickAnswer:
+      'A Skye Summit home valuation from Dr. Jan Duffy uses local closed sales, phase and view adjustments, and upgrade value—not automated portals alone. Request a no-obligation pricing review at (702) 930-8222.',
+    faqs: [
+      {
+        q: 'Is an online home value estimate accurate for Skye Summit?',
+        a: 'Automated values often miss elevation, phase, and view premiums. Use them as a starting point only.',
+      },
+      {
+        q: 'What is included in a seller valuation consult?',
+        a: 'Comparable sales, suggested list range, prep recommendations, and marketing overview for your submarket.',
+      },
+      {
+        q: 'How fast can I get a valuation?',
+        a: 'Schedule via <a href="/contact">contact</a> or call <a href="tel:+17029308222">(702) 930-8222</a>.',
+      },
+    ],
+  },
+  'invest.html': {
+    quickAnswer:
+      'Skye Summit and northwest Las Vegas attract investors for newer housing stock, rental demand, and long-term appreciation potential. Dr. Jan Duffy helps analyze rents, HOA rules, and acquisition metrics—(702) 930-8222.',
+    faqs: [
+      {
+        q: 'Can I rent out a Skye Summit property?',
+        a: 'Rental rules depend on HOA and phase governing documents. Verify before you buy—see <a href="/skye-summit-hoa">HOA guide</a>.',
+      },
+      {
+        q: 'What metrics should investors review?',
+        a: 'Gross rent, vacancy assumptions, HOA fees, insurance, taxes, and capex for turnovers.',
+      },
+      {
+        q: 'Does Dr. Jan Duffy work with out-of-state investors?',
+        a: 'Yes. Pair with <a href="/relocate">relocation</a> resources and local property management referrals as needed.',
+      },
+    ],
+  },
+  'relocate.html': {
+    quickAnswer:
+      'Relocating to Skye Summit or northwest Las Vegas? Dr. Jan Duffy offers virtual consults, curated tours, school and commute planning, and offer coordination for out-of-state buyers. Office hours Sun–Sat 9 AM–6 PM—(702) 930-8222.',
+    faqs: [
+      {
+        q: 'Can I buy in Skye Summit before moving to Las Vegas?',
+        a: 'Yes, with video tours, local inspections, and remote closing support where programs allow.',
+      },
+      {
+        q: 'What should relocators compare besides price?',
+        a: 'Commute, elevation climate, HOA structure, and school assignments—see <a href="/living-in-skye-summit">living guide</a>.',
+      },
+      {
+        q: 'Where is the real estate office?',
+        a: `<a href="${C.MAP_PAGE_PATH}">${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL}</a>.`,
+      },
+    ],
+  },
+  'community.html': {
+    quickAnswer:
+      'Skye Summit is a master-planned northwest Las Vegas community at ~3,200 ft elevation with trails, amenities, and proximity to Centennial Hills. Explore lifestyle details here; for listings see <a href="/homes-for-sale-skye-summit">homes for sale</a> or call (702) 930-8222.',
+    faqs: [
+      {
+        q: 'What amenities does Skye Summit offer?',
+        a: 'Trails, parks, and community features vary by phase—tour to see pools, fitness, and club access for your target subdivision.',
+      },
+      {
+        q: 'How far is Skye Summit from Red Rock Canyon?',
+        a: 'Red Rock is a short drive west—popular for hiking and recreation among northwest residents.',
+      },
+      {
+        q: 'Where can I read more FAQs?',
+        a: 'See <a href="/skye-summit-faq">Skye Summit FAQ</a> and <a href="/living-in-skye-summit">living in Skye Summit</a>.',
+      },
+    ],
+  },
+  'homes-for-sale-skye-summit.html': {
+    quickAnswer:
+      'Browse Skye Summit homes for sale with Dr. Jan Duffy: resale and new construction across northwest Las Vegas phases. Schedule showings and offer strategy at (702) 930-8222.',
+    faqs: [
+      {
+        q: 'How often are Skye Summit listings updated?',
+        a: 'MLS inventory changes daily. Contact us for off-market or coming-soon opportunities in your criteria.',
+      },
+      {
+        q: 'Can I filter by zip code?',
+        a: 'Yes—use the <a href="/las-vegas-zip-code-map">Las Vegas zip code map</a> or ask for a search by 89149, 89144, and nearby codes.',
+      },
+      {
+        q: 'Do you represent buyers on these listings?',
+        a: 'Dr. Jan Duffy provides buyer representation on MLS and builder inventory in Skye Summit.',
+      },
+    ],
+  },
+  'contact.html': {
+    quickAnswer:
+      `Contact Dr. Jan Duffy at ${C.PHONE_DISPLAY}, ${C.EMAIL}, or ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL}. Business hours Sun–Sat 9 AM–6 PM (per Google Business Profile).`,
+    faqs: [
+      {
+        q: 'What is the fastest way to reach Dr. Jan Duffy?',
+        a: `Call or text <a href="tel:${C.PHONE_TEL}">${C.PHONE_DISPLAY}</a> for showings and valuation requests.`,
+      },
+      {
+        q: 'Where is the office?',
+        a: `<a href="${C.MAP_PAGE_PATH}">Office location &amp; GPS</a> — same address as Google Business Profile.`,
+      },
+    ],
+  },
+  'index.html': {
+    quickAnswer:
+      'Skye Summit homes for sale in northwest Las Vegas are listed and toured with Dr. Jan Duffy, REALTOR® (Berkshire Hathaway HomeServices Nevada Properties). Browse listings, guides, and new construction—or call (702) 930-8222.',
+    faqs: [
+      {
+        q: 'Who lists Skye Summit homes on this site?',
+        a: 'Dr. Jan Duffy, Nevada license S.0197614.LLC, specializing in Skye Summit buyer and seller services since 2009.',
+      },
+      {
+        q: 'Where is Skye Summit located?',
+        a: 'Northwest Las Vegas (Centennial Hills area), approximately 3,200 feet elevation. See <a href="/skye-summit-faq">FAQ</a>.',
+      },
+      {
+        q: 'How do I schedule a tour?',
+        a: '<a href="/contact">Contact</a> or call <a href="tel:+17029308222">(702) 930-8222</a>.',
+      },
+    ],
+  },
+};
+
+function faqHtml(faqs) {
+  return faqs
+    .map(
+      (f) => `
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>${f.q}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>${f.a}</p>
+                        </div>
+                    </div>`
+    )
+    .join('');
+}
+
+function faqJsonLd(faqs, pageUrl) {
+  return JSON.stringify(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q.replace(/<[^>]+>/g, ''),
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: f.a.replace(/<[^>]+>/g, ''),
+        },
+      })),
+      url: pageUrl,
+    },
+    null,
+    2
+  );
+}
+
+function quickAnswerBlock(pageKey, config) {
+  const id = pageKey.replace('.html', '');
+  return `
+        <!-- ${MARKER} -->
+        <section class="aeo-quick-answer" aria-labelledby="aeo-core-${id}">
+            <div class="container">
+                <h2 id="aeo-core-${id}" class="aeo-quick-answer__title">Quick answer</h2>
+                <p class="aeo-quick-answer__text">${config.quickAnswer}</p>
+                <p class="aeo-quick-answer__meta">${C.AGENT_NAME}, ${C.AGENT_TITLE} · <a href="tel:${C.PHONE_TEL}">${C.PHONE_DISPLAY}</a> · <a href="${C.MAP_PAGE_PATH}">Office</a> · <a href="/skye-summit-faq">Guides</a></p>
+            </div>
+        </section>`;
+}
+
+function faqSectionBlock(config) {
+  return `
+        <section class="faq-section aeo-core-faq" aria-labelledby="aeo-faq-title">
+            <div class="container">
+                <h2 id="aeo-faq-title">Questions about this page</h2>
+                <div class="faq-container">${faqHtml(config.faqs)}
+                </div>
+            </div>
+        </section>`;
+}
+
+function stripAeo(html) {
+  return html
+    .replace(/\s*<!-- AEO_CORE_BEGIN -->[\s\S]*?<\/section>\s*/gi, '\n')
+    .replace(
+      /\s*<script type="application\/ld\+json" data-aeo-core-faq>[\s\S]*?<\/script>\s*/gi,
+      '\n'
+    );
+}
+
+function pageUrl(fileName) {
+  if (fileName === 'index.html') return `${C.SITE}/`;
+  const slug = fileName.replace(/\.html$/, '');
+  return `${C.SITE}/${slug}`;
+}
+
+let updated = 0;
+
+for (const [fileName, config] of Object.entries(CORE_PAGES)) {
+  const filePath = path.join(root, fileName);
+  if (!fs.existsSync(filePath)) {
+    console.warn(`enhance-core-pages-aeo: skip missing ${fileName}`);
+    continue;
+  }
+
+  let html = fs.readFileSync(filePath, 'utf8');
+  html = stripAeo(html);
+
+  const qa = quickAnswerBlock(fileName, config);
+  const faqBlock = faqSectionBlock(config);
+  const schema = `<script type="application/ld+json" data-aeo-core-faq>\n${faqJsonLd(config.faqs, pageUrl(fileName))}\n    </script>`;
+
+  if (/<section class="service-hero"/i.test(html)) {
+    html = html.replace(
+      /(<section class="service-hero"[\s\S]*?<\/section>)/i,
+      `$1\n${qa}`
+    );
+  } else if (/<section id="home" class="hero hero--home"/i.test(html)) {
+    html = html.replace(
+      /(<section id="home" class="hero hero--home"[\s\S]*?<\/section>)/i,
+      `$1\n${qa}`
+    );
+  } else if (/<main[^>]*>/i.test(html)) {
+    html = html.replace(/<main[^>]*>/i, (m) => `${m}\n${qa}`);
+  }
+
+  if (/<section class="faq-section aeo-core-faq"/i.test(html) === false) {
+    if (/<section id="hyperlocal-gbp"/i.test(html)) {
+      html = html.replace(
+        /<section id="hyperlocal-gbp"/i,
+        `${faqBlock}\n        <section id="hyperlocal-gbp"`
+      );
+    } else if (/<\/main>/i.test(html)) {
+      html = html.replace(/<\/main>/i, `${faqBlock}\n    </main>`);
+    }
+  }
+
+  if (!/data-aeo-core-faq/i.test(html) && /<\/head>/i.test(html)) {
+    html = html.replace(/<\/head>/i, `    ${schema}\n</head>`);
+  }
+
+  fs.writeFileSync(filePath, html);
+  updated += 1;
+}
+
+console.log(`enhance-core-pages-aeo: updated ${updated} core page(s)`);

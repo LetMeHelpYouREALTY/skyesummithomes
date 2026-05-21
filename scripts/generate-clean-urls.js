@@ -7,6 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { GUIDE_SLUGS } = require('../lib/guide-nav');
 
 const root = path.join(__dirname, '..');
 
@@ -25,13 +26,7 @@ const SLUGS = [
   'terms',
   'mls-disclaimer',
   'homes-for-sale-skye-summit',
-  'skye-summit-realtor',
-  'skye-summit-faq',
-  'skye-summit-schools',
-  'living-in-skye-summit',
-  'new-construction-skye-summit',
-  'skye-summit-hoa',
-  'centennial-hills-real-estate',
+  ...GUIDE_SLUGS,
   'office-location',
 ];
 

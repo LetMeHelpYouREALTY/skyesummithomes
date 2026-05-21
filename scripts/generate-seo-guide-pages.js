@@ -7,9 +7,11 @@
 
 const fs = require('fs');
 const path = require('path');
+const C = require('../lib/gbp-constants');
+const { guideFooterListHtml, guideCtaLinksHtml } = require('../lib/guide-nav');
 
 const root = path.join(__dirname, '..');
-const SITE = 'https://www.skyesummithomes.com';
+const SITE = C.SITE;
 const GSC_TOKEN = 'wKOftY7ctL98xgE1EW2r-2pYqOXyN109r4ZLLiRwQsI';
 
 const GUIDES = [
@@ -150,6 +152,16 @@ const GUIDES = [
                         <i class="fas fa-home"></i>
                         <h3><a href="/homes-for-sale-skye-summit">Homes for sale</a></h3>
                         <p>Live listings with tour and offer support.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-chart-line"></i>
+                        <h3><a href="/skye-summit-home-prices">Home prices</a></h3>
+                        <p>Market trends and value drivers.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-location-dot"></i>
+                        <h3><a href="/northwest-las-vegas-real-estate">Northwest Las Vegas</a></h3>
+                        <p>Regional hub and zip codes.</p>
                     </div>
                 </div>
             </div>
@@ -369,6 +381,173 @@ const GUIDES = [
             </div>
         </section>`,
   },
+  {
+    slug: 'skye-summit-home-prices',
+    title: 'Skye Summit Home Prices & Market Trends | Dr. Jan Duffy',
+    description:
+      'Skye Summit Las Vegas home prices, market trends, and what drives value by phase, view, and new vs resale. Updated guidance from Dr. Jan Duffy, REALTOR®.',
+    h1: 'Skye Summit Home Prices & Market Overview',
+    heroSubtitle:
+      'How pricing works in northwest Las Vegas—phase premiums, elevation, and weekly listing changes.',
+    quickAnswer:
+      'Skye Summit home prices vary by phase, square footage, view, and new-build vs resale inventory. Listings change weekly; for a current range tied to your budget, browse live homes or call Dr. Jan Duffy at (702) 930-8222.',
+    breadcrumbName: 'Home Prices',
+    faqs: [
+      {
+        q: 'What affects Skye Summit home prices?',
+        a: 'Lot orientation, mountain or valley views, builder phase, finished square footage, upgrade packages, and whether the home is new construction or resale in the same subdivision.',
+      },
+      {
+        q: 'Are Skye Summit prices higher than other northwest Las Vegas areas?',
+        a: 'Skye Summit often commands premiums for elevation (~3,200 ft), newer stock, and master-planned amenities compared with older Centennial Hills pockets—compare on tours, not averages alone.',
+      },
+      {
+        q: 'How do I see current Skye Summit listing prices?',
+        a: 'Browse <a href="/homes-for-sale-skye-summit">homes for sale in Skye Summit</a> or request a custom MLS search filtered to your price range and must-haves.',
+      },
+      {
+        q: 'Should I use online estimates for Skye Summit?',
+        a: 'Automated estimates miss phase and view premiums. Use them as a starting point; confirm with a <a href="/valuation">Skye Summit valuation</a> or comparable sales review before pricing or offering.',
+      },
+    ],
+    extraSections: `
+        <section class="why-section">
+            <div class="container">
+                <h2>Market resources</h2>
+                <div class="features-grid">
+                    <div class="feature"><i class="fas fa-home"></i><h3><a href="/homes-for-sale-skye-summit">Live listings</a></h3><p>Current ask prices and tour scheduling.</p></div>
+                    <div class="feature"><i class="fas fa-chart-line"></i><h3><a href="/valuation">Seller valuation</a></h3><p>Pricing for your phase and upgrades.</p></div>
+                    <div class="feature"><i class="fas fa-map"></i><h3><a href="/centennial-hills-real-estate">Centennial Hills</a></h3><p>Wider northwest market context.</p></div>
+                </div>
+            </div>
+        </section>`,
+  },
+  {
+    slug: 'skye-summit-first-time-buyer',
+    title: 'First-Time Home Buyer Skye Summit Las Vegas | Dr. Jan Duffy',
+    description:
+      'First-time home buyer guide for Skye Summit: financing, incentives, inspections, HOA review, and step-by-step buying with Dr. Jan Duffy in northwest Las Vegas.',
+    h1: 'First-Time Home Buyers in Skye Summit',
+    heroSubtitle:
+      'Financing, timelines, and neighborhood fit—without guessing on northwest Las Vegas contracts.',
+    quickAnswer:
+      'First-time buyers in Skye Summit should get loan pre-approval, define budget with payment comfort (not just max approval), tour resale and new construction, then use buyer representation on offers and inspections. Dr. Jan Duffy guides the full process—call (702) 930-8222.',
+    breadcrumbName: 'First-Time Buyers',
+    faqs: [
+      {
+        q: 'What credit score do I need to buy in Skye Summit?',
+        a: 'Requirements vary by loan program (FHA, VA, conventional). Many buyers start with 620+ for FHA and higher for conventional; a lender pre-approval clarifies your options.',
+      },
+      {
+        q: 'How much down payment is typical?',
+        a: 'Down payments range from 0% (eligible VA) to 3–5% on some conventional/FHA programs and 20% to avoid PMI on conventional loans. Your lender defines what you qualify for.',
+      },
+      {
+        q: 'Do first-time buyers need a REALTOR in Skye Summit?',
+        a: 'Yes. Listing agents represent sellers. Dr. Jan Duffy represents <em>you</em>—negotiation, inspections, HOA document review, and closing coordination. See <a href="/buy">buying in Skye Summit</a>.',
+      },
+      {
+        q: 'Is new construction good for first-time buyers?',
+        a: 'It can be, with longer timelines and builder contracts to review. Compare with resale in <a href="/new-construction-skye-summit">new construction guide</a> and <a href="/skye-summit-faq">FAQ</a>.',
+      },
+    ],
+    extraSections: `
+        <section class="process-section">
+            <div class="container">
+                <h2>First-time buyer checklist</h2>
+                <ol class="process-steps">
+                    <li>Pre-approval and monthly payment comfort</li>
+                    <li>Must-haves: beds, garage, HOA tolerance, commute</li>
+                    <li>Tour Skye Summit phases and comparables</li>
+                    <li>Offer, inspection, appraisal, and HOA docs</li>
+                    <li>Closing and move-in utilities</li>
+                </ol>
+                <p style="text-align:center;margin-top:1.5rem;"><a href="/contact" class="btn btn-primary">Schedule buyer consult</a></p>
+            </div>
+        </section>`,
+  },
+  {
+    slug: 'skye-summit-vs-summerlin',
+    title: 'Skye Summit vs Summerlin Las Vegas | Compare Communities',
+    description:
+      'Compare Skye Summit vs Summerlin: elevation, home age, price positioning, commutes, and amenities. Decide which northwest/west Las Vegas fit is right for you.',
+    h1: 'Skye Summit vs Summerlin: Which Fits You?',
+    heroSubtitle:
+      'Two master-planned destinations—different elevation, inventory age, and daily lifestyle tradeoffs.',
+    quickAnswer:
+      'Skye Summit emphasizes newer northwest inventory near Centennial Hills at ~3,200 ft elevation; Summerlin is a larger, established west-side master plan with more mature neighborhoods and retail. Many buyers tour both before choosing—Dr. Jan Duffy covers Skye Summit and northwest Las Vegas in depth.',
+    breadcrumbName: 'Skye Summit vs Summerlin',
+    faqs: [
+      {
+        q: 'Is Skye Summit part of Summerlin?',
+        a: 'No. Skye Summit is in northwest Las Vegas (Centennial Hills corridor). Summerlin is a separate master-planned area on the west side of the valley.',
+      },
+      {
+        q: 'Which has newer homes?',
+        a: 'Skye Summit skews newer-build and recent resale phases. Summerlin includes decades of housing stock—from established villages to newer enclaves.',
+      },
+      {
+        q: 'How do commutes compare?',
+        a: 'Both depend on your workplace. Skye Summit is northwest-oriented; Summerlin is west-oriented. Test drive times at your typical hours before deciding.',
+      },
+      {
+        q: 'Who helps me compare tours?',
+        a: 'Dr. Jan Duffy specializes in Skye Summit and northwest Las Vegas and can coordinate tours and comparables. <a href="tel:+17029308222">(702) 930-8222</a> · <a href="/contact">contact</a>.',
+      },
+    ],
+    extraSections: `
+        <section class="community-overview">
+            <div class="container">
+                <h2>Side-by-side considerations</h2>
+                <div class="community-stats">
+                    <div class="stat-box"><h3>Skye Summit</h3><p>Elevation, newer phases, Centennial Hills access</p></div>
+                    <div class="stat-box"><h3>Summerlin</h3><p>Established west-side amenities &amp; villages</p></div>
+                </div>
+                <p style="margin-top:1.5rem;"><a href="/living-in-skye-summit">Living in Skye Summit</a> · <a href="/skye-summit-home-prices">Home prices</a> · <a href="/buy">Buy</a></p>
+            </div>
+        </section>`,
+  },
+  {
+    slug: 'northwest-las-vegas-real-estate',
+    title: 'Northwest Las Vegas Real Estate | Skye Summit & Centennial Hills',
+    description:
+      'Northwest Las Vegas real estate hub: Skye Summit, Centennial Hills, zip codes, schools, and buyer/seller resources with Dr. Jan Duffy, REALTOR®.',
+    h1: 'Northwest Las Vegas Real Estate Guide',
+    heroSubtitle:
+      'Skye Summit, Centennial Hills, and the northwest growth corridor—one place to start your research.',
+    quickAnswer:
+      'Northwest Las Vegas real estate includes Skye Summit, Centennial Hills, and surrounding zip codes (e.g. 89149, 89144). Dr. Jan Duffy provides buyer and seller representation, valuations, and hyperlocal guides—office at 11411 Southern Highlands Pkwy #300, Las Vegas (702) 930-8222.',
+    breadcrumbName: 'Northwest Las Vegas',
+    faqs: [
+      {
+        q: 'What neighborhoods are in northwest Las Vegas?',
+        a: 'Key areas include Skye Summit, Centennial Hills, parts of the northwest valley near US-95 and Ann Road, with access to Red Rock and Summerlin-adjacent services.',
+      },
+      {
+        q: 'What zip codes cover northwest Las Vegas?',
+        a: 'Common searches include 89149, 89144, and nearby codes. Use the <a href="/las-vegas-zip-code-map">Las Vegas zip code map</a> to explore by region.',
+      },
+      {
+        q: 'Why invest in northwest Las Vegas housing?',
+        a: 'Newer inventory, family demand, and proximity to employment and recreation drive interest. See <a href="/invest">investment overview</a> for rental and appreciation context.',
+      },
+      {
+        q: 'Where is Dr. Jan Duffy’s office?',
+        a: `<a href="/office-location">Office location map</a> — ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL}. Hours Sun–Sat 9 AM–6 PM per Google Business Profile.`,
+      },
+    ],
+    extraSections: `
+        <section class="why-section">
+            <div class="container">
+                <h2>Start your northwest search</h2>
+                <div class="features-grid">
+                    <div class="feature"><i class="fas fa-map-marked-alt"></i><h3><a href="/las-vegas-zip-code-map">Zip code map</a></h3><p>Search by zip and area.</p></div>
+                    <div class="feature"><i class="fas fa-plane-arrival"></i><h3><a href="/relocate">Relocation</a></h3><p>Out-of-state buyer support.</p></div>
+                    <div class="feature"><i class="fas fa-location-dot"></i><h3><a href="/office-location">Office &amp; directions</a></h3><p>GPS and Google Map.</p></div>
+                </div>
+            </div>
+        </section>`,
+  },
 ];
 
 function escapeHtml(s) {
@@ -482,16 +661,24 @@ ${faqJsonLd(guide.faqs)}
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "name": "Dr. Jan Duffy Real Estate",
-      "telephone": "+1-702-930-8222",
-      "url": ${JSON.stringify(canonical)},
+      "@id": "${SITE}/#localbusiness",
+      "name": ${JSON.stringify(C.GBP_BUSINESS_NAME)},
+      "telephone": ${JSON.stringify(C.PHONE_TEL)},
+      "email": ${JSON.stringify(C.EMAIL)},
+      "url": ${JSON.stringify(C.SITE)},
+      "image": ${JSON.stringify(`${SITE}/images/agents/dr-jan-duffy.jpg`)},
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "11411 Southern Highlands Pkwy #300",
-        "addressLocality": "Las Vegas",
-        "addressRegion": "NV",
-        "postalCode": "89141",
+        "streetAddress": ${JSON.stringify(C.STREET)},
+        "addressLocality": ${JSON.stringify(C.CITY)},
+        "addressRegion": ${JSON.stringify(C.REGION)},
+        "postalCode": ${JSON.stringify(C.POSTAL)},
         "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": ${C.GEO_LAT},
+        "longitude": ${C.GEO_LNG}
       },
       "areaServed": { "@type": "Place", "name": "Skye Summit and Centennial Hills, Las Vegas NV" }
     }
@@ -528,6 +715,19 @@ ${faqJsonLd(guide.faqs)}
             <div class="container">
                 <h1>${escapeHtml(guide.h1)}</h1>
                 <p class="hero-subtitle">${escapeHtml(guide.heroSubtitle)}</p>
+            </div>
+        </section>
+
+        <section class="aeo-quick-answer" aria-labelledby="aeo-answer-${guide.slug}">
+            <div class="container">
+                <h2 id="aeo-answer-${guide.slug}" class="aeo-quick-answer__title">Quick answer</h2>
+                <p class="aeo-quick-answer__text">${escapeHtml(guide.quickAnswer || guide.heroSubtitle)}</p>
+                <p class="aeo-quick-answer__meta">${escapeHtml(C.AGENT_NAME)}, ${escapeHtml(C.AGENT_TITLE)} · <a href="tel:${C.PHONE_TEL}">${escapeHtml(C.PHONE_DISPLAY)}</a> · <a href="${C.MAP_PAGE_PATH}">Office &amp; directions</a></p>
+            </div>
+        </section>
+
+        <section class="service-hero service-hero--compact">
+            <div class="container">
                 <div class="hero-cta hero-cta-primary">
                     <a href="/homes-for-sale-skye-summit" class="btn btn-secondary btn-large">View listings</a>
                     <a href="/contact" class="btn btn-primary btn-large">Ask Dr. Jan</a>
@@ -554,14 +754,8 @@ ${guide.extraSections}
                     <a href="tel:+17029308222" class="btn btn-secondary btn-large">Call (702) 930-8222</a>
                 </div>
                 <p class="cta-note">Dr. Jan Duffy, REALTOR® · License S.0197614.LLC · Berkshire Hathaway HomeServices Nevada Properties</p>
-                <p class="cta-note" style="margin-top:0.75rem;">
-                    <a href="/skye-summit-realtor">REALTOR® profile</a> ·
-                    <a href="/skye-summit-faq">FAQ</a> ·
-                    <a href="/skye-summit-schools">Schools</a> ·
-                    <a href="/living-in-skye-summit">Living here</a> ·
-                    <a href="/new-construction-skye-summit">New construction</a> ·
-                    <a href="/skye-summit-hoa">HOA</a> ·
-                    <a href="/centennial-hills-real-estate">Centennial Hills</a>
+                <p class="cta-note cta-note--guides" style="margin-top:0.75rem;">
+                    ${guideCtaLinksHtml()}
                 </p>
             </div>
         </section>
@@ -582,13 +776,8 @@ ${guide.extraSections}
                 <div class="footer-section">
                     <h4>Guides</h4>
                     <ul>
-                        <li><a href="/skye-summit-realtor">Skye Summit REALTOR®</a></li>
-                        <li><a href="/skye-summit-faq">Skye Summit FAQ</a></li>
-                        <li><a href="/skye-summit-schools">Schools</a></li>
-                        <li><a href="/living-in-skye-summit">Living in Skye Summit</a></li>
-                        <li><a href="/new-construction-skye-summit">New construction</a></li>
-                        <li><a href="/skye-summit-hoa">HOA guide</a></li>
-                        <li><a href="/centennial-hills-real-estate">Centennial Hills</a></li>
+${guideFooterListHtml()}
+                        <li><a href="/office-location">Office location</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">

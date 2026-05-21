@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Professional Las Vegas Real Estate Website",
   "scripts": {
-    "build": "node scripts/generate-seo-guide-pages.js && node scripts/generate-clean-urls.js && node scripts/inject-hyperlocal-gbp.js && node scripts/inject-google-maps-key.js",
+    "build": "node scripts/generate-seo-guide-pages.js && node scripts/enhance-core-pages-aeo.js && node scripts/update-sitemap.js && node scripts/generate-clean-urls.js && node scripts/inject-hyperlocal-gbp.js && node scripts/inject-google-maps-key.js",
     "dev": "python -m http.server 3000",
     "start": "python -m http.server 8080"
   },
