@@ -1,0 +1,23 @@
+name: Deploy skyesummithomes apex redirect worker
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'cloudflare/skyesummithomes-apex-redirect/**'
+      - '.github/workflows/cloudflare-apex-redirect.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Deploy apex → www redirect worker
+        working-directory: cloudflare/skyesummithomes-apex-redirect
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx wrangler@4 deploy

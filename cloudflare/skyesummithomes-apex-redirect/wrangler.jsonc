@@ -1,0 +1,13 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "skyesummithomes-apex-redirect",
+  "main": "src/index.js",
+  "compatibility_date": "2026-05-01",
+  "account_id": "2cc579c1ec9e426ed585e933ebf4753b",
+  "routes": [
+    {
+      "pattern": "skyesummithomes.com/*",
+      "zone_name": "skyesummithomes.com"
+    }
+  ]
+}
