@@ -32,11 +32,11 @@ const CORE_PAGES = {
   },
   'buy.html': {
     quickAnswer:
-      'To buy in Skye Summit: get pre-approved, define must-haves (phase, view, new vs resale), tour listings, then submit offers with buyer representation on inspections and HOA documents. Dr. Jan Duffy handles Skye Summit and northwest Las Vegas—(702) 930-8222.',
+      'To buy in Skye Summit: get mortgage pre-approval from your lender, decide what you need (neighborhood phase, view, new vs resale), tour homes, then make an offer with help on inspections and HOA paperwork. Dr. Jan Duffy serves Skye Summit and northwest Las Vegas—(702) 930-8222.',
     faqs: [
       {
         q: 'How do I start buying a home in Skye Summit?',
-        a: 'Begin with lender pre-approval, then a buyer consult to set search criteria. Browse <a href="/homes-for-sale-skye-summit">current listings</a> or call for a custom MLS search.',
+        a: 'Start with mortgage pre-approval, then a buyer consult to set your search. Browse <a href="/homes-for-sale-skye-summit">homes for sale</a> or call for a custom search.',
       },
       {
         q: 'Do I need my own agent for new construction?',
@@ -50,7 +50,7 @@ const CORE_PAGES = {
   },
   'sell.html': {
     quickAnswer:
-      'To sell in Skye Summit: price using phase, view, and upgrade comps—not generic online estimates—then market to qualified northwest buyers. Dr. Jan Duffy provides valuation, staging guidance, and negotiation through closing. Call (702) 930-8222.',
+      'To sell in Skye Summit: price using phase, view, and similar recent sales—not generic online estimates—then market to qualified northwest buyers. Dr. Jan Duffy provides valuation, staging guidance, and negotiation through closing. Call (702) 930-8222.',
     faqs: [
       {
         q: 'How is my Skye Summit home priced?',
@@ -140,11 +140,11 @@ const CORE_PAGES = {
   },
   'homes-for-sale-skye-summit.html': {
     quickAnswer:
-      'Browse Skye Summit homes for sale with Dr. Jan Duffy: resale and new construction across northwest Las Vegas phases. Schedule showings and offer strategy at (702) 930-8222.',
+      'Browse Skye Summit homes for sale with Dr. Jan Duffy: resale and new construction across northwest Las Vegas. Schedule showings and offer help at (702) 930-8222.',
     faqs: [
       {
         q: 'How often are Skye Summit listings updated?',
-        a: 'MLS inventory changes daily. Contact us for off-market or coming-soon opportunities in your criteria.',
+        a: 'Available homes change daily. Contact us for homes not yet public or coming soon that match what you want.',
       },
       {
         q: 'Can I filter by zip code?',
@@ -152,7 +152,7 @@ const CORE_PAGES = {
       },
       {
         q: 'Do you represent buyers on these listings?',
-        a: 'Dr. Jan Duffy provides buyer representation on MLS and builder inventory in Skye Summit.',
+        a: 'Dr. Jan Duffy represents buyers on active listings and builder homes in Skye Summit.',
       },
     ],
   },
@@ -233,7 +233,7 @@ function quickAnswerBlock(pageKey, config) {
         <!-- ${MARKER} -->
         <section class="aeo-quick-answer" aria-labelledby="aeo-core-${id}">
             <div class="container">
-                <h2 id="aeo-core-${id}" class="aeo-quick-answer__title">Quick answer</h2>
+                <h2 id="aeo-core-${id}" class="aeo-quick-answer__title">In plain terms</h2>
                 <p class="aeo-quick-answer__text">${config.quickAnswer}</p>
                 <p class="aeo-quick-answer__meta">${C.AGENT_NAME}, ${C.AGENT_TITLE} · <a href="tel:${C.PHONE_TEL}">${C.PHONE_DISPLAY}</a> · <a href="${C.MAP_PAGE_PATH}">Office</a> · <a href="/skye-summit-faq">Guides</a></p>
             </div>

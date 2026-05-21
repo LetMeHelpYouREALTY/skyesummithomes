@@ -82,12 +82,12 @@ function fullBlock() {
         <!-- ${MARKER} -->
         <section id="hyperlocal-gbp" class="hyperlocal-gbp-section" aria-labelledby="hyperlocal-gbp-title">
             <div class="container">
-                <p class="hyperlocal-kicker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Hyperlocal Skye Summit real estate</p>
+                <p class="hyperlocal-kicker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Skye Summit · Northwest Las Vegas</p>
                 <h2 id="hyperlocal-gbp-title">${C.GBP_BUSINESS_NAME}</h2>
-                <p class="hyperlocal-lead">${C.AGENT_NAME}, ${C.AGENT_TITLE} — concierge guidance for <strong>homebuyers</strong> and <strong>homesellers</strong> in Skye Summit and northwest Las Vegas.</p>
+                <p class="hyperlocal-lead">${C.AGENT_NAME}, ${C.AGENT_TITLE} — personal help for <strong>home buyers</strong> and <strong>home sellers</strong> in Skye Summit and northwest Las Vegas.</p>
                 <div class="hyperlocal-grid">
                     <div class="hyperlocal-card">
-                        <h3><i class="fas fa-key" aria-hidden="true"></i> Buyer concierge</h3>
+                        <h3><i class="fas fa-key" aria-hidden="true"></i> Help for buyers</h3>
                         <ul>
                             <li>Custom Skye Summit search &amp; showings</li>
                             <li>New construction &amp; resale offer strategy</li>
@@ -95,7 +95,7 @@ function fullBlock() {
                         </ul>
                     </div>
                     <div class="hyperlocal-card">
-                        <h3><i class="fas fa-tag" aria-hidden="true"></i> Seller concierge</h3>
+                        <h3><i class="fas fa-tag" aria-hidden="true"></i> Help for sellers</h3>
                         <ul>
                             <li>Skye Summit-specific valuation &amp; pricing</li>
                             <li>Marketing to qualified local buyers</li>
@@ -125,7 +125,7 @@ function fullBlock() {
                         <iframe title="Dr. Jan Duffy office — ${C.STREET}, ${C.CITY}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="600" height="280" src="${C.MAP_EMBED}"></iframe>
                     </div>
                 </div>
-                <p class="hyperlocal-areas"><strong>Primary service area:</strong> ${C.SERVICE_AREA_GBP} · <a href="${C.MAP_PAGE_PATH}">Office map &amp; GPS</a> · <a href="/skye-summit-realtor">REALTOR® profile</a> · <a href="/skye-summit-faq">FAQ</a></p>
+                <p class="hyperlocal-areas"><strong>Primary service area:</strong> ${C.SERVICE_AREA_GBP} · <a href="${C.MAP_PAGE_PATH}">Office map &amp; directions</a> · <a href="/skye-summit-realtor">About Dr. Jan</a> · <a href="/skye-summit-faq">FAQ</a></p>
             </div>
         </section>`;
 }
@@ -207,12 +207,16 @@ function schemaBlock() {
 }
 
 function stripHyperlocal(html) {
-  return html
+  let out = html
     .replace(/\s*<!-- HYPERLOCAL_GBP_BEGIN -->[\s\S]*?<\/section>\s*/gi, '\n')
     .replace(
       /\s*<script type="application\/ld\+json" data-hyperlocal-gbp-schema>[\s\S]*?<\/script>\s*/gi,
       '\n'
     );
+  while (/<section id="hyperlocal-gbp"/i.test(out)) {
+    out = out.replace(/\s*<section id="hyperlocal-gbp"[\s\S]*?<\/section>\s*/i, '\n');
+  }
+  return out;
 }
 
 function usesCompact(html) {
@@ -257,10 +261,7 @@ for (const filePath of files) {
   const base = path.basename(filePath);
   if (SKIP_FILES.has(base)) continue;
 
-  let html = fs.readFileSync(filePath, 'utf8');
-  if (html.includes(MARKER)) {
-    html = stripHyperlocal(html);
-  }
+  let html = stripHyperlocal(fs.readFileSync(filePath, 'utf8'));
 
   const next = injectSchema(injectSection(html, base));
   if (next !== html) {

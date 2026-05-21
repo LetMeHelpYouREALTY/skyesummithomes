@@ -32,11 +32,11 @@ const GUIDES = [
         a: 'Dr. Jan Duffy, REALTOR® (License S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties, focuses on Skye Summit and northwest Las Vegas for both buyers and sellers.',
       },
       {
-        q: 'What does buyer concierge include in Skye Summit?',
-        a: 'Listing alerts, private showings, comparable market analysis, offer strategy, inspection coordination, and builder contract review for new construction.',
+        q: 'What help do buyers get in Skye Summit?',
+        a: 'Listing alerts, private showings, pricing based on similar sold homes, offer strategy, inspection coordination, and builder contract review for new construction.',
       },
       {
-        q: 'What does seller concierge include?',
+        q: 'What help do sellers get?',
         a: 'Professional valuation, staging guidance, marketing plan, offer review, and negotiation through closing—priced for Skye Summit phase, view, and lot premiums.',
       },
       {
@@ -86,7 +86,7 @@ const GUIDES = [
       'Clear answers about living, buying, and selling in Skye Summit—northwest Las Vegas at 3,200 feet elevation.',
     breadcrumbName: 'Skye Summit FAQ',
     quickAnswer:
-      'Skye Summit is a master-planned northwest Las Vegas community at ~3,200 ft elevation in the Centennial Hills area, with resale and new construction homes, HOA amenities, and CCSD schools. For buying or selling, contact Dr. Jan Duffy at (702) 930-8222.',
+      'Skye Summit is a master-planned northwest Las Vegas community at ~3,200 ft elevation in the Centennial Hills area, with resale and new construction homes, HOA amenities, and Clark County schools. For buying or selling, contact Dr. Jan Duffy at (702) 930-8222.',
     faqs: [
       {
         q: 'Where is Skye Summit in Las Vegas?',
@@ -173,7 +173,7 @@ const GUIDES = [
   },
   {
     slug: 'skye-summit-schools',
-    title: 'Schools Near Skye Summit Las Vegas | CCSD & Options | Dr. Jan Duffy',
+    title: 'Schools Near Skye Summit Las Vegas | Schools & Options | Dr. Jan Duffy',
     description:
       'Schools serving Skye Summit and northwest Las Vegas: Clark County School District overview, charter and private options, and how to verify assignments by address.',
     h1: 'Schools Near Skye Summit, Las Vegas',
@@ -181,15 +181,15 @@ const GUIDES = [
       'Planning for families relocating to northwest Las Vegas—district basics, verification steps, and local resources.',
     breadcrumbName: 'Skye Summit Schools',
     quickAnswer:
-      'Skye Summit addresses are typically zoned in Clark County School District (CCSD); exact elementary, middle, and high schools depend on street address—verify with CCSD before you write an offer. Dr. Jan Duffy helps relocating families confirm assignments.',
+      'Skye Summit addresses are typically zoned in Clark County public schools; exact elementary, middle, and high schools depend on street address—verify with the school district before you write an offer. Dr. Jan Duffy helps relocating families confirm assignments.',
     faqs: [
       {
         q: 'What school district is Skye Summit in?',
-        a: 'Skye Summit homes are typically assigned to schools in the <strong>Clark County School District (CCSD)</strong>. Exact school assignments depend on your street address and current district boundaries.',
+        a: 'Skye Summit homes are typically assigned to <strong>Clark County public schools</strong>. Exact school assignments depend on your street address and current district boundaries.',
       },
       {
         q: 'How do I verify which school my Skye Summit address is zoned for?',
-        a: 'Use the CCSD zoning lookup with the property address, and confirm with the seller or builder on new construction. Dr. Jan Duffy can help you verify assignments before you write an offer.',
+        a: 'Use the Clark County school zone lookup with the property address, and confirm with the seller or builder on new construction. Dr. Jan Duffy can help you verify assignments before you write an offer.',
       },
       {
         q: 'Are there charter or private schools near Skye Summit?',
@@ -203,14 +203,14 @@ const GUIDES = [
     extraSections: `
         <section class="why-section">
             <div class="container">
-                <h2>CCSD planning checklist</h2>
+                <h2>School planning checklist</h2>
                 <ul class="process-steps" style="max-width:720px;margin:0 auto;">
                     <li>Confirm elementary, middle, and high school assignments for the exact listing address.</li>
                     <li>Ask about capacity, magnet programs, and bus routes if relevant to your family.</li>
                     <li>Visit campuses when possible—especially for relocations from out of state.</li>
                     <li>Factor commute from Skye Summit to school drop-off into your daily routine.</li>
                 </ul>
-                <p class="section-description" style="margin-top:1.5rem;">Official ratings and boundaries change. Always verify with CCSD and the listing agent before closing.</p>
+                <p class="section-description" style="margin-top:1.5rem;">Official ratings and boundaries change. Always verify with Clark County schools and the listing agent before closing.</p>
             </div>
         </section>
         <section class="demographics-section">
@@ -334,7 +334,7 @@ const GUIDES = [
       },
       {
         q: 'What documents should I review before buying?',
-        a: 'Request recent financials, reserve study summary, CC&Rs, rules and regulations, and any pending special assessments during due diligence.',
+        a: 'Request recent financials, reserve study summary, community rules (CC&Rs), and any pending extra one-time HOA fees during your review period before closing.',
       },
       {
         q: 'Can HOA rules affect rentals or short-term stays?',
@@ -445,7 +445,7 @@ const GUIDES = [
     heroSubtitle:
       'Financing, timelines, and neighborhood fit—without guessing on northwest Las Vegas contracts.',
     quickAnswer:
-      'First-time buyers in Skye Summit should get loan pre-approval, define budget with payment comfort (not just max approval), tour resale and new construction, then use buyer representation on offers and inspections. Dr. Jan Duffy guides the full process—call (702) 930-8222.',
+      'First-time buyers in Skye Summit should get mortgage pre-approval, define budget with payment comfort (not just max approval), tour resale and new construction, then use buyer representation on offers and inspections. Dr. Jan Duffy guides the full process—call (702) 930-8222.',
     breadcrumbName: 'First-Time Buyers',
     faqs: [
       {
@@ -739,7 +739,7 @@ ${faqJsonLd(guide.faqs)}
 
         <section class="aeo-quick-answer" aria-labelledby="aeo-answer-${guide.slug}">
             <div class="container">
-                <h2 id="aeo-answer-${guide.slug}" class="aeo-quick-answer__title">Quick answer</h2>
+                <h2 id="aeo-answer-${guide.slug}" class="aeo-quick-answer__title">In plain terms</h2>
                 <p class="aeo-quick-answer__text">${escapeHtml(guide.quickAnswer)}</p>
                 <p class="aeo-quick-answer__meta">${escapeHtml(C.AGENT_NAME)}, ${escapeHtml(C.AGENT_TITLE)} · <a href="tel:${C.PHONE_TEL}">${escapeHtml(C.PHONE_DISPLAY)}</a> · <a href="${C.MAP_PAGE_PATH}">Office &amp; directions</a></p>
             </div>
