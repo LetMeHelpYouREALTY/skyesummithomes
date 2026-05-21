@@ -1,0 +1,80 @@
+# Vercel Dashboard — Align Project Settings with Production
+
+## What you are seeing
+
+| Layer | Framework | Build command | Output | Install |
+|-------|-----------|---------------|--------|---------|
+| **Production Overrides** (live deploy `8p8fb3j8m…`) | **Other** | `npm run build` | `.` | `npm ci` |
+| **Project Settings** (dashboard) | **Next.js** | `next build` (default) | `next` | `npm install` (default) |
+
+Production is **correct** (static HTML site). Project Settings are **stale** from when the project was created or mis-detected as Next.js.
+
+The warning *"Configuration Settings in the current Production deployment differ from your current Project Settings"* is expected until you update the dashboard.
+
+This repo also sets the same values in **`vercel.json`** (`framework: null`, `buildCommand`, `outputDirectory`, `installCommand`). GitHub Actions uses **`vercel build` + `deploy --prebuilt`** so production matches `vercel.json`, not the Next.js preset.
+
+---
+
+## Set these in Vercel (one-time)
+
+**Vercel** → [skyesummithomes](https://vercel.com/janet-duffys-projects/skyesummithomes) → **Settings** → **General** → **Build and Deployment**
+
+### Framework Settings
+
+| Field | Set to |
+|-------|--------|
+| **Framework Preset** | **Other** |
+| **Build Command** | `npm run build` |
+| **Output Directory** | `.` |
+| **Install Command** | `npm ci` |
+
+Leave **Root Directory** as `./` (empty or dot).
+
+Do **not** use Next.js defaults (`next build`, output `next`).
+
+Click **Save**. Optionally trigger **Redeploy** once so Project Settings and Production Overrides match.
+
+### Node.js
+
+| Field | Value |
+|-------|--------|
+| **Node.js Version** | **22.x** (already correct) |
+
+### Ignored Build Step (optional)
+
+Your custom command is fine for skipping doc-only commits:
+
+```bash
+git diff --quiet HEAD^ HEAD -- . ':(exclude)README.md' ':(exclude)**/*.md' ':(exclude)**/*.mdx' || exit 1
+```
+
+If Git is reconnected to **LetMeHelpYouREALTY**, this applies to those pushes. The **GitHub Actions** workflow on `main` always deploys regardless of this setting.
+
+---
+
+## Git integration (recommended)
+
+**Settings** → **Git**
+
+| Field | Value |
+|-------|--------|
+| Repository | **LetMeHelpYouREALTY/skyesummithomes** |
+| Production Branch | **main** |
+
+Until Git is reconnected, rely on [`.github/workflows/vercel-production.yml`](./.github/workflows/vercel-production.yml) (requires `VERCEL_TOKEN`).
+
+---
+
+## After saving
+
+1. Warning about Production vs Project Settings should disappear on the next production deploy.
+2. Remote `vercel build` (if used) should no longer error with *No Next.js version detected*.
+3. Verify: `bash scripts/audit-live-urls.sh` — all paths should return **200**.
+
+---
+
+## Source of truth (priority)
+
+1. **`vercel.json`** in this repo (committed)
+2. **GitHub Actions** prebuilt deploy (when `VERCEL_TOKEN` is set)
+3. **Vercel dashboard** Project Settings (should match table above)
