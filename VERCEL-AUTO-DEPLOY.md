@@ -41,13 +41,24 @@ After reconnecting, push `main` again:
 git push origin main
 ```
 
-## Third check: `vercel.json`
+## Third check: Framework preset (Next.js vs static)
 
-Legacy `builds` + `buildCommand` together can block or confuse Git deployments. This repo now uses:
+Vercel **Project Settings** may still show **Next.js**, which makes remote `vercel build` fail with:
 
+`Error: No Next.js version detected`
+
+This repo sets **`"framework": null`** in `vercel.json` (static / Other). The GitHub workflow uses **`vercel build` + `deploy --prebuilt`** so that config is used instead of the dashboard preset.
+
+**Optional dashboard fix:** Vercel → skyesummithomes → Settings → General → Framework Preset → **Other**.
+
+## Fourth check: `vercel.json`
+
+This repo uses:
+
+- `framework`: `null` (Other — not Next.js)
 - `buildCommand`: `npm run build`
 - `outputDirectory`: `.`
-- No `builds` array (API routes under `/api` are auto-detected)
+- API route: `api/followupboss.ts` only (no duplicate `.js`)
 
 ## What to do
 

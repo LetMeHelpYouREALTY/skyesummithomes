@@ -1,6 +1,6 @@
 # Deploy LetMeHelpYouREALTY/skyesummithomes to Vercel production.
-# Vercel Git is still linked to DrJanDuffy/skyesummithomes — this workflow
-# deploys from the canonical org repo when VERCEL_TOKEN is set in GitHub secrets.
+# Uses local `vercel build` + `deploy --prebuilt` so vercel.json "framework": null
+# applies (dashboard is still preset to Next.js, which breaks remote-only builds).
 
 name: Deploy to Vercel (production)
 
@@ -16,6 +16,9 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: team_EIbjFXaDDtGMTweb5Hvo3CG3
+      VERCEL_PROJECT_ID: prj_x5YkBzbd8OFKPbnKslImQEbaYuUT
     steps:
       - uses: actions/checkout@v4
 
@@ -30,15 +33,17 @@ jobs:
       - name: Build static site
         run: npm run build
 
-      - name: Deploy to Vercel production
+      - name: Build Vercel output (respects vercel.json framework null)
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: team_EIbjFXaDDtGMTweb5Hvo3CG3
-          VERCEL_PROJECT_ID: prj_x5YkBzbd8OFKPbnKslImQEbaYuUT
         run: |
           if [ -z "$VERCEL_TOKEN" ]; then
             echo "::error::Add VERCEL_TOKEN to GitHub repo secrets (LetMeHelpYouREALTY/skyesummithomes)."
-            echo "Create at https://vercel.com/account/tokens — scope: deploy for skyesummithomes."
             exit 1
           fi
-          npx vercel@54 deploy --prod --yes --token="$VERCEL_TOKEN"
+          npx vercel@54 build --prod --yes --token="$VERCEL_TOKEN"
+
+      - name: Deploy prebuilt to production
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel@54 deploy --prebuilt --prod --yes --token="$VERCEL_TOKEN"

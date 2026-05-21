@@ -30,7 +30,13 @@ https://skyesummithomes.com/contact           → 308 → www/contact
 
 ## Workflow note (2026-05-21)
 
-First run failed on **`npm ci`** (incomplete `package-lock.json`). Regenerated lockfile and committed; re-run after adding **`VERCEL_TOKEN`**.
+| Run | Failure | Fix |
+|-----|---------|-----|
+| 1 | `npm ci` lockfile incomplete | Regenerated `package-lock.json` |
+| 2 | `followupboss.js` + `.ts` conflict | Removed `.js`, kept `.ts` |
+| 3 | Next.js detected (dashboard preset) | `"framework": null` + CI `vercel build` / `deploy --prebuilt` |
+
+`VERCEL_TOKEN` is configured on GitHub; deploy should succeed after run 3.
 
 ## Fixes applied in this repo
 
