@@ -24,6 +24,8 @@ const GUIDES = [
     heroSubtitle:
       'Concierge real estate for Skye Summit communities—one trusted advisor for your entire buy or sell journey in northwest Las Vegas.',
     breadcrumbName: 'Skye Summit REALTOR®',
+    quickAnswer:
+      'Dr. Jan Duffy is the Skye Summit concierge REALTOR® (Nevada license S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties—one contact for buyer representation, seller marketing, and new construction in northwest Las Vegas. Call (702) 930-8222.',
     faqs: [
       {
         q: 'Who is the Skye Summit concierge REALTOR®?',
@@ -83,6 +85,8 @@ const GUIDES = [
     heroSubtitle:
       'Clear answers about living, buying, and selling in Skye Summit—northwest Las Vegas at 3,200 feet elevation.',
     breadcrumbName: 'Skye Summit FAQ',
+    quickAnswer:
+      'Skye Summit is a master-planned northwest Las Vegas community at ~3,200 ft elevation in the Centennial Hills area, with resale and new construction homes, HOA amenities, and CCSD schools. For buying or selling, contact Dr. Jan Duffy at (702) 930-8222.',
     faqs: [
       {
         q: 'Where is Skye Summit in Las Vegas?',
@@ -176,6 +180,8 @@ const GUIDES = [
     heroSubtitle:
       'Planning for families relocating to northwest Las Vegas—district basics, verification steps, and local resources.',
     breadcrumbName: 'Skye Summit Schools',
+    quickAnswer:
+      'Skye Summit addresses are typically zoned in Clark County School District (CCSD); exact elementary, middle, and high schools depend on street address—verify with CCSD before you write an offer. Dr. Jan Duffy helps relocating families confirm assignments.',
     faqs: [
       {
         q: 'What school district is Skye Summit in?',
@@ -224,6 +230,8 @@ const GUIDES = [
     heroSubtitle:
       'Elevation, outdoor living, Centennial Hills convenience, and what to expect day to day in northwest Las Vegas.',
     breadcrumbName: 'Living in Skye Summit',
+    quickAnswer:
+      'Living in Skye Summit means elevated northwest Las Vegas lifestyle: cooler evenings near 3,200 ft, trails and parks, Centennial Hills shopping nearby, and commutes that vary by route and time of day. Tour phases to match your daily routine.',
     faqs: [
       {
         q: 'What is the weather like at Skye Summit elevation?',
@@ -268,6 +276,8 @@ const GUIDES = [
     heroSubtitle:
       'Navigate builder contracts, upgrades, and closing timelines with a Skye Summit specialist.',
     breadcrumbName: 'New Construction',
+    quickAnswer:
+      'New construction in Skye Summit requires builder contract review, design center choices, and inspections at key milestones—buyer representation protects your deposit, timeline, and punch-list before closing.',
     faqs: [
       {
         q: 'Can a REALTOR represent me on new construction in Skye Summit?',
@@ -311,6 +321,8 @@ const GUIDES = [
     heroSubtitle:
       'HOA costs vary by phase—here is how to evaluate assessments before you buy.',
     breadcrumbName: 'Skye Summit HOA',
+    quickAnswer:
+      'Skye Summit HOA fees and rules vary by phase and builder; assessments usually fund landscaping, amenities, and reserves. Review CC&Rs and recent financials during due diligence—ask Dr. Jan Duffy for HOA details on a specific address.',
     faqs: [
       {
         q: 'Why do HOA fees differ between Skye Summit homes?',
@@ -351,6 +363,8 @@ const GUIDES = [
     heroSubtitle:
       'Northwest Las Vegas growth, amenities, and how Skye Summit fits the Centennial Hills market.',
     breadcrumbName: 'Centennial Hills',
+    quickAnswer:
+      'Centennial Hills is the northwest Las Vegas corridor that includes Skye Summit—buyers often compare newer elevated inventory in Skye Summit with established Centennial Hills neighborhoods for price, commute, and amenities.',
     faqs: [
       {
         q: 'Is Skye Summit in Centennial Hills?',
@@ -715,24 +729,19 @@ ${faqJsonLd(guide.faqs)}
             <div class="container">
                 <h1>${escapeHtml(guide.h1)}</h1>
                 <p class="hero-subtitle">${escapeHtml(guide.heroSubtitle)}</p>
+                <div class="hero-cta hero-cta-primary">
+                    <a href="/homes-for-sale-skye-summit" class="btn btn-secondary btn-large">View listings</a>
+                    <a href="/contact" class="btn btn-primary btn-large">Ask Dr. Jan</a>
+                    <p class="hero-phone">Call <a href="tel:${C.PHONE_TEL}">${escapeHtml(C.PHONE_DISPLAY)}</a></p>
+                </div>
             </div>
         </section>
 
         <section class="aeo-quick-answer" aria-labelledby="aeo-answer-${guide.slug}">
             <div class="container">
                 <h2 id="aeo-answer-${guide.slug}" class="aeo-quick-answer__title">Quick answer</h2>
-                <p class="aeo-quick-answer__text">${escapeHtml(guide.quickAnswer || guide.heroSubtitle)}</p>
+                <p class="aeo-quick-answer__text">${escapeHtml(guide.quickAnswer)}</p>
                 <p class="aeo-quick-answer__meta">${escapeHtml(C.AGENT_NAME)}, ${escapeHtml(C.AGENT_TITLE)} · <a href="tel:${C.PHONE_TEL}">${escapeHtml(C.PHONE_DISPLAY)}</a> · <a href="${C.MAP_PAGE_PATH}">Office &amp; directions</a></p>
-            </div>
-        </section>
-
-        <section class="service-hero service-hero--compact">
-            <div class="container">
-                <div class="hero-cta hero-cta-primary">
-                    <a href="/homes-for-sale-skye-summit" class="btn btn-secondary btn-large">View listings</a>
-                    <a href="/contact" class="btn btn-primary btn-large">Ask Dr. Jan</a>
-                    <p class="hero-phone">Call <a href="tel:+17029308222">(702) 930-8222</a></p>
-                </div>
             </div>
         </section>
 

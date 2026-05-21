@@ -251,9 +251,29 @@ function faqSectionBlock(config) {
         </section>`;
 }
 
+/** Parse visible FAQ accordion markup for schema that matches on-page content. */
+function extractFaqsFromHtml(html) {
+  const faqs = [];
+  const re =
+    /<button class="faq-question"[^>]*>\s*<span>([^<]*)<\/span>[\s\S]*?<div class="faq-answer">\s*<p>([\s\S]*?)<\/p>/gi;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    faqs.push({ q: m[1].trim(), a: m[2].trim() });
+  }
+  return faqs;
+}
+
+function hasFaqSection(html) {
+  return /<section class="faq-section"/i.test(html);
+}
+
 function stripAeo(html) {
   return html
     .replace(/\s*<!-- AEO_CORE_BEGIN -->[\s\S]*?<\/section>\s*/gi, '\n')
+    .replace(
+      /\s*<section class="faq-section aeo-core-faq"[\s\S]*?<\/section>\s*/gi,
+      '\n'
+    )
     .replace(
       /\s*<script type="application\/ld\+json" data-aeo-core-faq>[\s\S]*?<\/script>\s*/gi,
       '\n'
@@ -280,7 +300,6 @@ for (const [fileName, config] of Object.entries(CORE_PAGES)) {
 
   const qa = quickAnswerBlock(fileName, config);
   const faqBlock = faqSectionBlock(config);
-  const schema = `<script type="application/ld+json" data-aeo-core-faq>\n${faqJsonLd(config.faqs, pageUrl(fileName))}\n    </script>`;
 
   if (/<section class="service-hero"/i.test(html)) {
     html = html.replace(
@@ -296,7 +315,11 @@ for (const [fileName, config] of Object.entries(CORE_PAGES)) {
     html = html.replace(/<main[^>]*>/i, (m) => `${m}\n${qa}`);
   }
 
-  if (/<section class="faq-section aeo-core-faq"/i.test(html) === false) {
+  const visibleFaqs = extractFaqsFromHtml(html);
+  const faqsForSchema =
+    visibleFaqs.length > 0 ? visibleFaqs : config.faqs;
+
+  if (!hasFaqSection(html)) {
     if (/<section id="hyperlocal-gbp"/i.test(html)) {
       html = html.replace(
         /<section id="hyperlocal-gbp"/i,
@@ -307,8 +330,21 @@ for (const [fileName, config] of Object.entries(CORE_PAGES)) {
     }
   }
 
-  if (!/data-aeo-core-faq/i.test(html) && /<\/head>/i.test(html)) {
-    html = html.replace(/<\/head>/i, `    ${schema}\n</head>`);
+  if (faqsForSchema.length > 0 && /<\/head>/i.test(html)) {
+    const schemaMarkup = `<script type="application/ld+json" data-aeo-core-faq>\n${faqJsonLd(faqsForSchema, pageUrl(fileName))}\n    </script>`;
+    html = html.replace(/<\/head>/i, `    ${schemaMarkup}\n</head>`);
+  }
+
+  if (fileName === 'index.html') {
+    html = html
+      .replace(
+        /content="36\.1699;-115\.1398"/g,
+        `content="${C.GEO_POSITION}"`
+      )
+      .replace(
+        /content="36\.1699, -115\.1398"/g,
+        `content="${C.GEO_ICBM}"`
+      );
   }
 
   fs.writeFileSync(filePath, html);
