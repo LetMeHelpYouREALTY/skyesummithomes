@@ -10,7 +10,7 @@ The website is now integrated with Follow Up Boss CRM for automatic lead capture
 
 **Endpoint**: `/api/followupboss`  
 **Method**: POST  
-**Location**: `api/followupboss.js` (Vercel serverless function)
+**Location**: `api/followupboss.ts` (Vercel serverless function)
 
 ---
 
@@ -169,7 +169,7 @@ The API includes comprehensive error handling:
 
 ### Add More Fields
 
-Edit `api/followupboss.js` to add additional fields:
+Edit `api/followupboss.ts` to add additional fields:
 
 ```javascript
 // Add to leadData object
@@ -181,7 +181,7 @@ leadData.customFields = {
 
 ### Change Tags
 
-Modify the tags array in `api/followupboss.js`:
+Modify the tags array in `api/followupboss.ts`:
 
 ```javascript
 leadData.tags = ['Website Lead', 'Custom Tag', 'Another Tag'];
