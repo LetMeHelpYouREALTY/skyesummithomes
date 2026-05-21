@@ -3,6 +3,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>
+      if (location.hostname === 'skyesummithomes.com') {
+        location.replace('https://www.skyesummithomes.com' + location.pathname + location.search + location.hash);
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Homes for sale in Skye Summit Las Vegas with Dr. Jan Duffy. Browse listings, new construction, and tours. 15+ years local expertise. (702) 930-8222">
     <meta name="keywords" content="Skye Summit, Skye Summit Las Vegas, Skye Summit homes, Skye Summit real estate, Skye Summit listings, Skye Summit community, Las Vegas real estate, new construction, elevated community, Dr. Jan Duffy, REALTOR, Berkshire Hathaway">
@@ -276,7 +281,7 @@
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://skyesummithomes.com/?s={search_term_string}"
+          "urlTemplate": "https://www.skyesummithomes.com/?s={search_term_string}"
         },
         "query-input": "required name=search_term_string"
       }

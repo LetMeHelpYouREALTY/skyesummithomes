@@ -1,3 +1,15 @@
+// Consolidate apex host to www (backup when Cloudflare 301 is not yet live)
+(function () {
+    if (window.location.hostname === 'skyesummithomes.com') {
+        window.location.replace(
+            'https://www.skyesummithomes.com' +
+                window.location.pathname +
+                window.location.search +
+                window.location.hash
+        );
+    }
+})();
+
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu functionality

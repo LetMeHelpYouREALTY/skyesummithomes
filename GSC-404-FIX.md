@@ -75,3 +75,19 @@ Should include **Skye Summit** / **Investment Strategy**, not a generic “Las V
 4. Optionally **URL Inspection** → request indexing for each www URL.
 
 Validation often takes **1–2 weeks** after redirects are live.
+
+## Google Search Console: Alternate page with proper canonical tag
+
+**Affected URLs (examples):**
+
+- `https://skyesummithomes.com/`
+- `https://skyesummithomes.com/?s={search_term_string}`
+
+**Why:** Google crawled the **non-www** homepage. The page correctly declares `canonical` → `https://www.skyesummithomes.com/`, so Google treats apex as an **alternate** and indexes **www** instead. That is expected until apex **301-redirects** to www.
+
+**Repo fixes:**
+
+1. `WebSite` `SearchAction` `urlTemplate` now uses **www** (was non-www, which created the `?s=` alternate URL).
+2. Early **hostname redirect** in `index.html` and `script.js` when the real site HTML is served on apex (backup until Cloudflare 301 is live).
+
+**Permanent fix:** Same Cloudflare **Redirect Rule** or apex worker as in the 404 section above. After a **301**, GSC should reclassify apex URLs as redirects, not alternates.
