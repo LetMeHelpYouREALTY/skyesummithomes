@@ -52,16 +52,32 @@ If Git is reconnected to **LetMeHelpYouREALTY**, this applies to those pushes. T
 
 ---
 
-## Git integration (recommended)
+## Git integration
 
-**Settings** → **Git**
+**Settings** → **Git** — should show:
 
 | Field | Value |
 |-------|--------|
-| Repository | **LetMeHelpYouREALTY/skyesummithomes** |
+| Repository | **LetMeHelpYouREALTY/skyesummithomes** (connected) |
 | Production Branch | **main** |
 
-Until Git is reconnected, rely on [`.github/workflows/vercel-production.yml`](./.github/workflows/vercel-production.yml) (requires `VERCEL_TOKEN`).
+### Optional toggles (defaults are fine)
+
+| Toggle | Suggestion |
+|--------|------------|
+| Pull Request Comments | On — Vercel preview links on PRs |
+| Commit Comments | Off unless you want inline deploy notes on every commit |
+| deployment_status Events | On — GitHub shows deploy success/failure |
+| repository_dispatch Events | Off unless you use external automation |
+| Commit Status | On — GitHub checks for Vercel |
+| Require Verified Commits | Off (unless team policy requires it) |
+| Git LFS | Off — not used in this repo |
+
+### Deploy Hooks
+
+Not required when Git is connected. Use only for external triggers (Zapier, manual curl) without a git push.
+
+Keep **GitHub Actions** as a backup if dashboard framework is still Next.js and Git-triggered builds fail — see [VERCEL-AUTO-DEPLOY.md](./VERCEL-AUTO-DEPLOY.md).
 
 ---
 

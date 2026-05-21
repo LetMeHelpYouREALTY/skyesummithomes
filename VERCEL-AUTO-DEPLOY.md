@@ -14,32 +14,15 @@ All deployment docs in this repo now reference **LetMeHelpYouREALTY/skyesummitho
 
 Your SEO/GBP work was on `cursor/seo-geo-aeo-pages-6031`. Until that is merged into `main`, production stays on the last `main` deploy (live site `last-modified` was still April 2026).
 
-## Second check: Git repository link (likely your issue)
+## Second check: Git repository link
 
-| Where you push | Where Vercel listens (today) |
-|----------------|------------------------------|
-| `LetMeHelpYouREALTY/skyesummithomes` | **`DrJanDuffy/skyesummithomes`** |
+**Connected (correct):** **`LetMeHelpYouREALTY/skyesummithomes`** — production branch **`main`**.
 
-Cloud agent pushes go to **LetMeHelpYouREALTY**. The Vercel project `skyesummithomes` is still wired to **DrJanDuffy/skyesummithomes**, so those pushes **do not start a deployment**.
+Pushes to `main` on that repo should create Vercel deployments automatically.
 
-**Fix (pick one):**
+**If Git deploys fail with “No Next.js version detected”:** set Framework Preset to **Other** in the dashboard — see [VERCEL-DASHBOARD-SETTINGS.md](./VERCEL-DASHBOARD-SETTINGS.md). Until then, [`.github/workflows/vercel-production.yml`](./.github/workflows/vercel-production.yml) still deploys via **`vercel build` + `--prebuilt`** when **`VERCEL_TOKEN`** is set.
 
-1. **GitHub Actions deploy (automated in this repo)**  
-   Add secret **`VERCEL_TOKEN`** on **LetMeHelpYouREALTY/skyesummithomes** (Settings → Secrets → Actions).  
-   Pushes to `main` run [`.github/workflows/vercel-production.yml`](./.github/workflows/vercel-production.yml).  
-   See [AUDIT-AND-FIX.md](./AUDIT-AND-FIX.md) for live 404 findings.
-
-2. **Reconnect Vercel Git**  
-   Vercel → [skyesummithomes](https://vercel.com/janet-duffys-projects/skyesummithomes) → Settings → Git → disconnect → connect **`LetMeHelpYouREALTY/skyesummithomes`** → Production branch **`main`**.
-
-3. **Push to the repo Vercel already uses**  
-   Merge your work into `DrJanDuffy/skyesummithomes` `main` (mirror, PR, or change `origin` if you own that repo).
-
-After reconnecting, push `main` again:
-
-```bash
-git push origin main
-```
+**Historical note:** Vercel was previously linked to `DrJanDuffy/skyesummithomes`; that caused pushes to LetMeHelpYouREALTY not to update production.
 
 ## Third check: Framework preset (Next.js vs static)
 
