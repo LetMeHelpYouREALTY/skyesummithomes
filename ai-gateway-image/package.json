@@ -1,0 +1,21 @@
+{
+  "name": "ai-gateway-image",
+  "version": "1.0.0",
+  "description": "Generate images via Vercel AI Gateway and Gemini 3.1 Flash Image Preview",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "generate": "tsx index.ts",
+    "start": "tsx index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^25.9.1",
+    "ai": "^6.0.188",
+    "dotenv": "^17.4.2",
+    "tsx": "^4.22.3",
+    "typescript": "^6.0.3"
+  }
+}
