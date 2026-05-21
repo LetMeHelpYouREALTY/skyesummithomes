@@ -28,6 +28,10 @@ https://skyesummithomes.com/contact           → 308 → www/contact
 - **Team:** `janet-duffys-projects` — `team_EIbjFXaDDtGMTweb5Hvo3CG3`
 - **Production deployment source:** `DrJanDuffy/skyesummithomes` @ `800ce1d` (not LetMeHelpYouREALTY `main`)
 
+## Workflow note (2026-05-21)
+
+First run failed on **`npm ci`** (incomplete `package-lock.json`). Regenerated lockfile and committed; re-run after adding **`VERCEL_TOKEN`**.
+
 ## Fixes applied in this repo
 
 1. **`.github/workflows/vercel-production.yml`** — On push to `main`, runs `npm run build` and `vercel deploy --prod` using `VERCEL_TOKEN`.
