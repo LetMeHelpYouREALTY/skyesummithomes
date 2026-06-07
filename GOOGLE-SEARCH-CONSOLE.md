@@ -121,6 +121,7 @@ After adding pages, **resubmit** `https://www.skyesummithomes.com/sitemap.xml` i
 | **“Page with redirect”** (http/apex homepage URLs) | See below |
 | **Not found (404)** on apex paths (`/invest`, etc.) | `GSC-404-FIX.md` — validate after apex → www redirect |
 | **Alternate page with proper canonical** (apex `/?s=`) | `GSC-404-FIX.md` — fixed SearchAction + apex redirect |
+| **Product snippets** — missing offers/review/rating | See below |
 | Cloudflare / DNS | `CLOUDFLARE-DNS-SETUP.md`, `CLOUDFLARE-QUICK-ACTION.md` |
 
 After apex redirects are live, open each affected issue in Search Console and use **Validate fix**.
@@ -168,6 +169,24 @@ Google found URLs (usually from your **sitemap**) but has **not crawled or index
 
 3. Skip low-priority legal pages (`/privacy`, `/terms`, `/mls-disclaimer`) unless you need them in search
 4. **Page indexing → Discovered – currently not indexed** → monitor; count should fall as Google crawls after requests
+
+### “Product snippets” — missing offers / review / rating
+
+Search Console may report:
+
+> Either "offers", "review", or "aggregateRating" should be specified
+
+**Cause:** Legacy standalone `Service` JSON-LD on `/buy` and `/valuation` (and duplicate `LocalBusiness` on `/homes-for-sale-skye-summit`) without those fields. Google treats them as invalid Product-like snippets.
+
+**Fix (this repo):** `scripts/consolidate-legacy-schema.js` removes duplicate standalone `Service` and `LocalBusiness` blocks. Canonical entity markup lives in the hyperlocal `@graph` (`LocalBusiness` + `RealEstateAgent` with `aggregateRating`).
+
+After deploy:
+
+1. **Enhancements → Product snippets** → open the issue → **Validate fix**
+2. Re-test affected URLs in [Rich Results Test](https://search.google.com/test/rich-results):
+   - `https://www.skyesummithomes.com/buy`
+   - `https://www.skyesummithomes.com/valuation`
+   - `https://www.skyesummithomes.com/homes-for-sale-skye-summit`
 
 Re-run after deploy:
 
