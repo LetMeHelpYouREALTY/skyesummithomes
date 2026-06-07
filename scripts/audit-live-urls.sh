@@ -35,6 +35,7 @@ REDIRECT_URLS=(
   "http://www.skyesummithomes.com/"
   "http://skyesummithomes.com/"
   "https://skyesummithomes.com/"
+  "https://skyesummithomes.com/?s=test"
 )
 
 for url in "${REDIRECT_URLS[@]}"; do

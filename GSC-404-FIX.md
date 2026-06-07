@@ -96,11 +96,16 @@ Validation often takes **1–2 weeks** after redirects are live. The apex URL ma
 - `https://skyesummithomes.com/`
 - `https://skyesummithomes.com/?s={search_term_string}`
 
-**Why:** Google crawled the **non-www** homepage. The page correctly declares `canonical` → `https://www.skyesummithomes.com/`, so Google treats apex as an **alternate** and indexes **www** instead. That is expected until apex **301-redirects** to www.
+**Why:** Google crawled the **non-www** homepage (sometimes with `?s=` from old `SearchAction` schema). The page declares `canonical` → `https://www.skyesummithomes.com/`, so Google treats apex as an **alternate** and indexes **www** instead.
 
-**Repo fixes:**
+**Status (June 2026):**
 
-1. `WebSite` `SearchAction` `urlTemplate` now uses **www** (was non-www, which created the `?s=` alternate URL).
-2. Early **hostname redirect** in `index.html` and `script.js` when the real site HTML is served on apex (backup until Cloudflare 301 is live).
+1. Apex homepage and paths **308-redirect** to www (query strings preserved).
+2. `SearchAction` `urlTemplate` now points to **`/search?zip=`** (real zip search hub), not `/?s=` (which does not exist on the site).
 
-**Permanent fix:** Same Cloudflare **Redirect Rule** or apex worker as in the 404 section above. After a **301**, GSC should reclassify apex URLs as redirects, not alternates.
+**Search Console:**
+
+1. **Page indexing → Alternate page with proper canonical tag** → **Done fixing?** → **Validate fix**
+2. Allow **1–2 weeks** for recrawl. Apex URLs may move to **Page with redirect** — both mean Google is not indexing apex (correct).
+
+**Permanent fix:** Apex **301/308 to www** (live via Vercel). Optional Cloudflare worker backup: `cloudflare/skyesummithomes-apex-redirect/`.
