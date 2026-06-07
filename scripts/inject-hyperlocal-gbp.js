@@ -48,7 +48,7 @@ function listHtmlFiles(dir, out = []) {
 }
 
 function hyperlocalAreasLine() {
-  return `<strong>Office:</strong> ${C.CITY}, ${C.REGION} ${C.POSTAL} · <strong>Service area:</strong> ${C.SERVICE_AREA_GBP} · ${C.SERVICE_AREA_NEARBY_VISIBLE} · <a href="${C.MAP_PAGE_PATH}">Office map &amp; directions</a> · <a href="/skye-summit-realtor">About Dr. Jan</a> · <a href="/skye-summit-faq">FAQ</a>`;
+  return `<strong>Office:</strong> ${C.CITY}, ${C.REGION} ${C.POSTAL} · <strong>Service area:</strong> ${C.SERVICE_AREA_GBP} · <a href="${C.MAP_PAGE_PATH}">Office map &amp; directions</a> · <a href="/skye-summit-realtor">About Dr. Jan</a> · <a href="/skye-summit-faq">FAQ</a>`;
 }
 
 function compactAreasLine() {
@@ -71,7 +71,7 @@ function compactBlock() {
         <!-- ${MARKER} -->
         <section id="hyperlocal-gbp" class="hyperlocal-gbp-section hyperlocal-gbp-section--compact" aria-labelledby="hyperlocal-gbp-title">
             <div class="container">
-                <p class="hyperlocal-kicker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Skye Summit · Northwest Las Vegas</p>
+                <p class="hyperlocal-kicker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> ${C.HYPERLOCAL_KICKER}</p>
                 <h2 id="hyperlocal-gbp-title">${C.GBP_BUSINESS_NAME}</h2>
                 <p class="hyperlocal-lead">${C.HYPERLOCAL_LEAD}</p>
                 ${actionButtons(false)}
@@ -93,24 +93,24 @@ function fullBlock() {
         <!-- ${MARKER} -->
         <section id="hyperlocal-gbp" class="hyperlocal-gbp-section" aria-labelledby="hyperlocal-gbp-title">
             <div class="container">
-                <p class="hyperlocal-kicker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Skye Summit · Northwest Las Vegas</p>
+                <p class="hyperlocal-kicker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> ${C.HYPERLOCAL_KICKER}</p>
                 <h2 id="hyperlocal-gbp-title">${C.GBP_BUSINESS_NAME}</h2>
                 <p class="hyperlocal-lead">${C.HYPERLOCAL_LEAD}</p>
                 <div class="hyperlocal-grid">
                     <div class="hyperlocal-card">
                         <h3><i class="fas fa-key" aria-hidden="true"></i> Help for buyers</h3>
                         <ul>
-                            <li>Custom Skye Summit search &amp; showings</li>
-                            <li>New construction &amp; resale offer strategy</li>
-                            <li><a href="/buy">Buying in Skye Summit</a> · <a href="/homes-for-sale-skye-summit">Listings</a></li>
+                            <li>Skye Summit Master Plan early-access updates</li>
+                            <li>New construction buyer representation</li>
+                            <li><a href="/buy">Buying in Skye Summit</a> · <a href="/new-construction-skye-summit">New construction</a></li>
                         </ul>
                     </div>
                     <div class="hyperlocal-card">
                         <h3><i class="fas fa-tag" aria-hidden="true"></i> Help for sellers</h3>
                         <ul>
-                            <li>Skye Summit-specific valuation &amp; pricing</li>
-                            <li>Marketing to qualified local buyers</li>
-                            <li><a href="/sell">Sell your home</a> · <a href="/valuation">Free valuation</a></li>
+                            <li>Skye Summit Master Plan interest-list coordination</li>
+                            <li>Builder and phase update briefings</li>
+                            <li><a href="/contact">Join the interest list</a> · <a href="/valuation">Consultation</a></li>
                         </ul>
                     </div>
                     <div class="hyperlocal-card hyperlocal-nap">
@@ -162,7 +162,7 @@ function schemaBlock() {
         '@id': `${C.SITE}/#agent`,
         name: C.AGENT_NAME,
         jobTitle: `${C.AGENT_TITLE} · ${C.AGENT_ROLE}`,
-        description: C.GBP_DESCRIPTION,
+        description: C.AGENT_SITE_DESCRIPTION,
         telephone: C.PHONE_TEL,
         email: C.EMAIL,
         url: C.SITE,
@@ -174,19 +174,14 @@ function schemaBlock() {
           name: C.BROKERAGE,
         },
         areaServed: schemaAreaServed(),
-        knowsAbout: [
-          'Skye Summit homes for sale',
-          'Skye Summit home selling',
-          'New construction Skye Summit',
-          'Centennial Hills real estate',
-        ],
+        knowsAbout: C.SCHEMA_KNOWS_ABOUT,
         sameAs: C.SAME_AS,
       },
       {
         '@type': ['LocalBusiness', 'RealEstateAgent'],
         '@id': `${C.SITE}/#localbusiness`,
         name: C.GBP_BUSINESS_NAME,
-        description: C.GBP_DESCRIPTION,
+        description: C.AGENT_SITE_DESCRIPTION,
         areaServed: schemaAreaServed(),
         amenityFeature: C.ACCESSIBILITY.map((name) => ({
           '@type': 'LocationFeatureSpecification',

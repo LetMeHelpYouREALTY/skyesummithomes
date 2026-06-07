@@ -39,19 +39,19 @@ function applyGuideEnrichment(guide) {
 const GUIDES = [
   {
     slug: 'skye-summit-realtor',
-    title: 'Skye Summit REALTOR® | Dr. Jan Duffy | Buyer & Seller Concierge',
+    title: 'Skye Summit REALTOR® | Dr. Jan Duffy | Master Plan Buyer Rep',
     description:
-      'Dr. Jan Duffy is the Skye Summit concierge REALTOR® for homebuyers and homesellers. Local buyer representation, seller marketing, new construction, and Berkshire Hathaway HomeServices Nevada Properties. (702) 930-8222.',
+      'Dr. Jan Duffy is the buyer\'s representative for the Skye Summit Master Plan—early-access updates, builder coordination, and new-construction buyer representation. Berkshire Hathaway HomeServices Nevada Properties. (702) 930-8222.',
     h1: 'Skye Summit REALTOR®: Dr. Jan Duffy',
     heroSubtitle:
-      'Concierge real estate for Skye Summit communities—one trusted advisor for your entire buy or sell journey in northwest Las Vegas.',
+      'Buyer\'s representative for the Skye Summit Master Plan—505 acres coming Fall 2027.',
     breadcrumbName: 'Skye Summit REALTOR®',
     quickAnswer:
-      'Dr. Jan Duffy is the Skye Summit concierge REALTOR® (Nevada license S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties—one contact for buyer representation, seller marketing, and new construction in northwest Las Vegas. Call (702) 930-8222.',
+      'Dr. Jan Duffy is the Skye Summit Master Plan buyer\'s representative (Nevada license S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties—early-access updates, builder coordination, and new-construction buyer representation. Call (702) 930-8222.',
     faqs: [
       {
-        q: 'Who is the Skye Summit concierge REALTOR®?',
-        a: 'Dr. Jan Duffy, REALTOR® (License S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties, focuses on Skye Summit and northwest Las Vegas for both buyers and sellers.',
+        q: 'Who is the Skye Summit REALTOR®?',
+        a: 'Dr. Jan Duffy, REALTOR® (License S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties, is the buyer\'s representative for the Skye Summit Master Plan.',
       },
       {
         q: 'What help do buyers get in Skye Summit?',
@@ -528,7 +528,7 @@ const GUIDES = [
       },
       {
         q: 'Who helps me compare tours?',
-        a: 'Dr. Jan Duffy specializes in Skye Summit and northwest Las Vegas and can coordinate tours and comparables. <a href="tel:+17029308222">(702) 930-8222</a> · <a href="/contact">contact</a>.',
+        a: 'Dr. Jan Duffy is the buyer\'s representative for the Skye Summit Master Plan and can coordinate master-plan updates and early-access briefings. <a href="tel:+17029308222">(702) 930-8222</a> · <a href="/contact">contact</a>.',
       },
     ],
     extraSections: `
@@ -547,12 +547,12 @@ const GUIDES = [
     slug: 'northwest-las-vegas-real-estate',
     title: 'Northwest Las Vegas Real Estate | Skye Summit & Centennial Hills',
     description:
-      'Northwest Las Vegas real estate hub: Skye Summit, Centennial Hills, zip codes, schools, and buyer/seller resources with Dr. Jan Duffy, REALTOR®.',
+      'Northwest Las Vegas real estate hub focused on the Skye Summit Master Plan—505 acres coming Fall 2027—with buyer resources from Dr. Jan Duffy, REALTOR®.',
     h1: 'Northwest Las Vegas Real Estate Guide',
     heroSubtitle:
-      'Skye Summit, Centennial Hills, and the northwest growth corridor—one place to start your research.',
+      'The Skye Summit Master Plan and buyer representation from Dr. Jan Duffy—one place to start your research.',
     quickAnswer:
-      'Northwest Las Vegas real estate includes Skye Summit, Centennial Hills, and surrounding zip codes (e.g. 89149, 89144). Dr. Jan Duffy provides buyer and seller representation, valuations, and hyperlocal guides—office at 11411 Southern Highlands Pkwy #300, Las Vegas (702) 930-8222.',
+      'Dr. Jan Duffy is the buyer\'s representative for the Skye Summit Master Plan—a 505-acre Olympia Companies community coming Fall 2027. Office at 11411 Southern Highlands Pkwy #300, Las Vegas (702) 930-8222.',
     breadcrumbName: 'Northwest Las Vegas',
     faqs: [
       {

@@ -40,11 +40,11 @@ function mergeParallelEnrichment(pages) {
 const CORE_PAGES = mergeParallelEnrichment({
   'about.html': {
     quickAnswer:
-      'Dr. Jan Duffy is a Las Vegas REALTOR® (license S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties, specializing in Skye Summit and northwest Las Vegas since 2009. Call (702) 930-8222 or visit the office at 11411 Southern Highlands Pkwy #300, Las Vegas.',
+      'Dr. Jan Duffy is a Las Vegas REALTOR® (license S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties—the buyer\'s representative for the Skye Summit Master Plan (505 acres, coming Fall 2027). Call (702) 930-8222 or visit the office at 11411 Southern Highlands Pkwy #300, Las Vegas.',
     faqs: [
       {
         q: 'Who is Dr. Jan Duffy?',
-        a: 'Dr. Jan Duffy is a Nevada REALTOR® focused on Skye Summit, Centennial Hills, and northwest Las Vegas buyer and seller representation.',
+        a: 'Dr. Jan Duffy is a Nevada REALTOR® and buyer\'s representative for the Skye Summit Master Plan—early-access updates, builder coordination, and new-construction buyer representation.',
       },
       {
         q: 'What brokerage is Dr. Jan Duffy with?',
@@ -58,7 +58,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'buy.html': {
     quickAnswer:
-      'To buy in Skye Summit: get mortgage pre-approval from your lender, decide what you need (neighborhood phase, view, new vs resale), tour homes, then make an offer with help on inspections and HOA paperwork. Dr. Jan Duffy serves Skye Summit and northwest Las Vegas—(702) 930-8222.',
+      'To buy in the Skye Summit Master Plan: join the early-interest list, get mortgage pre-approval, review builder phases and floor plans, then coordinate offers with buyer representation. Dr. Jan Duffy serves Skye Summit Master Plan buyers—(702) 930-8222.',
     faqs: [
       {
         q: 'How do I start buying a home in Skye Summit?',
@@ -76,7 +76,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'sell.html': {
     quickAnswer:
-      'To sell in Skye Summit: price using phase, view, and similar recent sales—not generic online estimates—then market to qualified northwest buyers. Dr. Jan Duffy provides valuation, staging guidance, and negotiation through closing. Call (702) 930-8222.',
+      'Selling within the Skye Summit Master Plan corridor? Dr. Jan Duffy helps with builder-phase timing, interest-list coordination, and consultation on new-construction positioning. Call (702) 930-8222.',
     faqs: [
       {
         q: 'How is my Skye Summit home priced?',
@@ -94,7 +94,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'valuation.html': {
     quickAnswer:
-      'A Skye Summit home valuation from Dr. Jan Duffy uses local closed sales, phase and view adjustments, and upgrade value—not automated portals alone. Request a no-obligation pricing review at (702) 930-8222.',
+      'Consult Dr. Jan Duffy about Skye Summit Master Plan phases, builder pricing, and early-access updates—not automated portal estimates alone. Request a no-obligation consult at (702) 930-8222.',
     faqs: [
       {
         q: 'Is an online home value estimate accurate for Skye Summit?',
@@ -112,7 +112,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'invest.html': {
     quickAnswer:
-      'Skye Summit and northwest Las Vegas attract investors for newer housing stock, rental demand, and long-term appreciation potential. Dr. Jan Duffy helps analyze rents, HOA rules, and acquisition metrics—(702) 930-8222.',
+      'The Skye Summit Master Plan (505 acres, Fall 2027) attracts investors tracking new-build phases, rental potential, and long-term appreciation. Dr. Jan Duffy helps analyze master-plan timelines and acquisition strategy—(702) 930-8222.',
     faqs: [
       {
         q: 'Can I rent out a Skye Summit property?',
@@ -130,7 +130,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'relocate.html': {
     quickAnswer:
-      'Relocating to Skye Summit or northwest Las Vegas? Dr. Jan Duffy offers virtual consults, curated tours, school and commute planning, and offer coordination for out-of-state buyers. Office hours Sun–Sat 9 AM–6 PM—(702) 930-8222.',
+      'Relocating for the Skye Summit Master Plan? Dr. Jan Duffy offers virtual consults, early-access updates, builder briefings, and buyer representation for out-of-state purchasers. Office hours Sun–Sat 9 AM–6 PM—(702) 930-8222.',
     faqs: [
       {
         q: 'Can I buy in Skye Summit before moving to Las Vegas?',
@@ -148,7 +148,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'community.html': {
     quickAnswer:
-      'Skye Summit is a master-planned northwest Las Vegas community at ~3,200 ft elevation with trails, amenities, and proximity to Centennial Hills. Explore lifestyle details here; for listings see <a href="/homes-for-sale-skye-summit">homes for sale</a> or call (702) 930-8222.',
+      'The Skye Summit Master Plan is a 505-acre Olympia Companies community coming Fall 2027—desert-conscious design, integrated parks, and trail systems just beyond the 215 Beltway. <a href="/new-construction-skye-summit">New construction guide</a> · <a href="/contact">Join the interest list</a> · (702) 930-8222.',
     faqs: [
       {
         q: 'What amenities does Skye Summit offer?',
@@ -166,19 +166,19 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'homes-for-sale-skye-summit.html': {
     quickAnswer:
-      'Skye Summit is a 505-acre Olympia Companies master plan beyond the 215 Beltway, coming Fall 2027. KB Home Vertice sales may open early 2027. Join the interest list with Dr. Jan Duffy, or browse nearby Skye Canyon, Skye Hills, and Centennial Hills resales (89166)—(702) 930-8222.',
+      'The Skye Summit Master Plan is a 505-acre Olympia Companies community beyond the 215 Beltway, coming Fall 2027. KB Home Vertice sales may open early 2027. Join the interest list with Dr. Jan Duffy—(702) 930-8222.',
     faqs: [
       {
         q: 'When will new Skye Summit builder homes be available?',
         a: 'Olympia Companies lists Skye Summit as coming Fall 2027. KB Home&rsquo;s Vertice at Skye Summit (299 homesites) may begin sales early 2027 while homesite work is underway. <a href="/contact">Join the interest list</a> for updates.',
       },
       {
-        q: 'Are there resale homes near Skye Summit?',
-        a: 'Yes—existing homes on Skye Summit Avenue and in Skye Canyon and Skye Hills (89166), often built 2019–2022, are actively listed and sold. Those differ from the new 505-acre Skye Summit master-planned community.',
+        q: 'What is the Skye Summit Master Plan?',
+        a: 'A 505-acre Olympia Companies master-planned community with about 3,500 planned homes, integrated parks, and trail systems—coming Fall 2027. See <a href="/new-construction-skye-summit">new construction guide</a>.',
       },
       {
-        q: 'Do you represent buyers on nearby listings?',
-        a: 'Dr. Jan Duffy represents buyers on active Skye Canyon, Skye Hills, and Centennial Hills listings, and helps with Skye Summit new-construction interest.',
+        q: 'How do I get early access?',
+        a: 'Dr. Jan Duffy maintains an interest list for Skye Summit Master Plan updates—floor plans, builder news, and pricing. <a href="/contact">Contact</a> or call <a href="tel:+17029308222">(702) 930-8222</a>.',
       },
     ],
   },
@@ -198,29 +198,29 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'index.html': {
     quickAnswer:
-      'Dr. Jan Duffy is a Berkshire Hathaway HomeServices REALTOR® specializing in Skye Summit and northwest Las Vegas. The new 505-acre Skye Summit master plan is coming Fall 2027—join the interest list for updates, or browse nearby Skye Canyon and Centennial Hills resales—(702) 930-8222.',
+      'Dr. Jan Duffy is a Berkshire Hathaway HomeServices REALTOR® and buyer\'s representative for the Skye Summit Master Plan—a 505-acre Olympia Companies community coming Fall 2027. Join the interest list for early-access updates—(702) 930-8222.',
     faqs: [
       {
         q: 'Who lists Skye Summit homes on this site?',
-        a: 'Dr. Jan Duffy, Nevada license S.0197614.LLC, specializing in Skye Summit buyer and seller services since 2009.',
+        a: 'Dr. Jan Duffy, Nevada license S.0197614.LLC, is the buyer\'s representative for the Skye Summit Master Plan since 2009.',
       },
       {
-        q: 'Where is Skye Summit located?',
-        a: 'Northwest Las Vegas, bordering Centennial Hills just beyond the 215 Beltway. The new master plan is separate from existing Skye Summit Avenue resales in Skye Canyon (89166). See <a href="/skye-summit-faq">FAQ</a>.',
+        q: 'Where is the Skye Summit Master Plan?',
+        a: 'Northwest Las Vegas, just beyond the 215 Beltway—a 505-acre Olympia Companies master plan coming Fall 2027. See <a href="/skye-summit-faq">FAQ</a>.',
       },
       {
-        q: 'Are there resale homes near Skye Summit?',
-        a: 'Yes—Skye Summit Avenue and nearby Skye Canyon and Skye Hills (89166) have active resale listings, often from 2019–2022 builds. The new 505-acre Skye Summit master-planned community is pre-construction and coming Fall 2027.',
+        q: 'When will Skye Summit Master Plan homes be available?',
+        a: 'Olympia Companies targets Fall 2027 for the community launch. KB Home Vertice sales may open early 2027. <a href="/contact">Join the interest list</a> for updates.',
       },
     ],
   },
   'blog.html': {
     quickAnswer:
-      'Insider notes on Skye Summit and northwest Las Vegas real estate from Dr. Jan Duffy—market updates, community tips, and buyer/seller guides. Call (702) 930-8222.',
+      'Insider notes on the Skye Summit Master Plan from Dr. Jan Duffy—builder updates, community planning, and buyer guides. Call (702) 930-8222.',
     faqs: [
       {
         q: 'What topics does the blog cover?',
-        a: 'Skye Summit lifestyle, market trends, buyer tips, and seller prep for northwest Las Vegas.',
+        a: 'Skye Summit Master Plan updates, new construction timelines, buyer tips, and community planning.',
       },
     ],
   },

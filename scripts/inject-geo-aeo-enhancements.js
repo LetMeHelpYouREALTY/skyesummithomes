@@ -6,6 +6,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const C = require('../lib/gbp-constants');
 
 const root = path.join(__dirname, '..');
 const enrichmentPath = path.join(root, 'lib/parallel-seo-enrichment.json');
@@ -19,14 +20,6 @@ const SKIP_DIRS = new Set([
   'cloudflare',
   'attached_assets',
 ]);
-
-const DEFAULT_ENTITIES = [
-  'Skye Summit',
-  'Centennial Hills',
-  'Red Rock Canyon',
-  'Northwest Las Vegas',
-  '215 Beltway',
-];
 
 function listHtmlFiles(dir, out = []) {
   for (const name of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -45,24 +38,26 @@ function listHtmlFiles(dir, out = []) {
 }
 
 function loadEntities() {
-  if (!fs.existsSync(enrichmentPath)) return DEFAULT_ENTITIES;
+  if (!fs.existsSync(enrichmentPath)) return C.GEO_CONTEXT_ENTITIES;
   try {
     const data = JSON.parse(fs.readFileSync(enrichmentPath, 'utf8'));
     const list = [...(data.localEntities || []), ...(data.geoKeywords || [])];
-    const uniq = [...new Set(list.map((s) => String(s).trim()).filter(Boolean))];
-    return uniq.slice(0, 8);
+    const filtered = list
+      .map((s) => String(s).trim())
+      .filter((s) => /skye summit master plan|olympia|vertice|215 beltway/i.test(s));
+    if (filtered.length >= 2) return filtered.slice(0, 4);
   } catch {
-    return DEFAULT_ENTITIES;
+    /* fall through */
   }
+  return C.GEO_CONTEXT_ENTITIES;
 }
 
-function geoBlock(entities) {
-  const list = entities.slice(0, 6).join(', ');
+function geoBlock() {
   return `
-        <section class="geo-context" aria-label="Northwest Las Vegas service area">
+        <section class="geo-context" aria-label="Skye Summit Master Plan service area">
             <div class="container">
-                <h2 class="geo-context__title">Northwest Las Vegas &amp; Skye Summit area</h2>
-                <p class="geo-context__text">Dr. Jan Duffy serves buyers and sellers across ${list}, and nearby northwest Las Vegas communities. <a href="/las-vegas-zip-code-map">Search by zip code</a> or <a href="/contact">schedule a consult</a>.</p>
+                <h2 class="geo-context__title">${C.GEO_CONTEXT_TITLE}</h2>
+                <p class="geo-context__text">${C.GEO_CONTEXT_TEXT}</p>
             </div>
         </section>`;
 }
@@ -80,32 +75,38 @@ function speakableSchema() {
     </script>`;
 }
 
-const MARKER = 'GEO_CONTEXT_BEGIN';
-const entities = loadEntities();
-const block = geoBlock(entities);
+function stripGeo(html) {
+  return html
+    .replace(/\s*<!-- GEO_CONTEXT_BEGIN -->[\s\S]*?<\/section>\s*/gi, '\n')
+    .replace(/\s*<section class="geo-context"[\s\S]*?<\/section>\s*/gi, '\n')
+    .replace(
+      /\s*<script type="application\/ld\+json" data-geo-speakable>[\s\S]*?<\/script>\s*/gi,
+      '\n'
+    );
+}
+
 let updated = 0;
 
 for (const filePath of listHtmlFiles(root)) {
-  let html = fs.readFileSync(filePath, 'utf8');
-  if (!html.includes('aeo-quick-answer')) continue;
+  let html = stripGeo(fs.readFileSync(filePath, 'utf8'));
+  const block = geoBlock();
 
-  let changed = false;
-
-  if (!html.includes(MARKER)) {
-    html = html.replace(
+  let next = html;
+  if (/<section class="aeo-quick-answer"/i.test(html)) {
+    next = html.replace(
       /(<section class="aeo-quick-answer"[\s\S]*?<\/section>)/i,
-      `$1\n        <!-- ${MARKER} -->${block}`
+      `$1\n<!-- GEO_CONTEXT_BEGIN -->${block}`
     );
-    changed = true;
+  } else if (/<main[^>]*>/i.test(html)) {
+    next = html.replace(/<main[^>]*>/i, (m) => `${m}\n<!-- GEO_CONTEXT_BEGIN -->${block}`);
   }
 
-  if (!html.includes('data-geo-speakable')) {
-    html = html.replace(/<\/head>/i, `    ${speakableSchema()}\n</head>`);
-    changed = true;
+  if (!/data-geo-speakable/i.test(next) && /<\/head>/i.test(next)) {
+    next = next.replace(/<\/head>/i, `    ${speakableSchema()}\n</head>`);
   }
 
-  if (changed) {
-    fs.writeFileSync(filePath, html);
+  if (next !== html) {
+    fs.writeFileSync(filePath, next);
     updated += 1;
   }
 }
