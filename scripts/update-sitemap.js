@@ -18,7 +18,14 @@ const ROUTES = [
   { loc: '/community', priority: '0.9', changefreq: 'monthly' },
   ...GUIDE_SLUGS.map((slug) => ({
     loc: `/${slug}`,
-    priority: slug.includes('faq') || slug.includes('realtor') ? '0.9' : '0.82',
+    priority:
+      slug === 'skye-summit-master-plan'
+        ? '0.95'
+        : slug.includes('interest-list') || slug.includes('kb-home')
+          ? '0.9'
+          : slug.includes('faq') || slug.includes('realtor')
+            ? '0.9'
+            : '0.82',
     changefreq: 'monthly',
   })),
   { loc: '/las-vegas-zip-code-map', priority: '0.85', changefreq: 'monthly' },
