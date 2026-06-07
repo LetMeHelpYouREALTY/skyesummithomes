@@ -74,6 +74,11 @@ if (fs.existsSync(indexPath)) {
   } else {
     ok('index.html has www canonical');
   }
+  if (!/name=["']google-site-verification["']/i.test(index)) {
+    fail('index.html missing google-site-verification meta tag');
+  } else {
+    ok('index.html has google-site-verification meta');
+  }
   if (!/rel=["']sitemap["']/i.test(index)) {
     fail('index.html missing sitemap link rel');
   } else {

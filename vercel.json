@@ -9,7 +9,7 @@
   "installCommand": "npm ci",
   "redirects": [
     {
-      "source": "/:path(.+).html",
+      "source": "/:path((?!google)[^/]+).html",
       "destination": "/:path",
       "permanent": true
     },
