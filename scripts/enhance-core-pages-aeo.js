@@ -166,19 +166,19 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'homes-for-sale-skye-summit.html': {
     quickAnswer:
-      'Browse Skye Summit homes for sale with Dr. Jan Duffy: resale and new construction across northwest Las Vegas. Schedule showings and offer help at (702) 930-8222.',
+      'Skye Summit is a pre-construction Olympia Companies community with first homes expected Fall 2027. Join the early-interest list with Dr. Jan Duffy, and browse nearby Centennial Hills listings below—(702) 930-8222.',
     faqs: [
       {
-        q: 'How often are Skye Summit listings updated?',
-        a: 'Available homes change daily. Contact us for homes not yet public or coming soon that match what you want.',
+        q: 'When will Skye Summit homes be available?',
+        a: 'The first Skye Summit homes are expected Fall 2027. <a href="/contact">Join the interest list</a> for builder, floor plan, and pricing updates.',
       },
       {
-        q: 'Can I filter by zip code?',
-        a: 'Yes—use the <a href="/las-vegas-zip-code-map">Las Vegas zip code map</a> or ask for a search by 89149, 89144, and nearby codes.',
+        q: 'Can I filter nearby listings by zip code?',
+        a: 'Yes—use the <a href="/las-vegas-zip-code-map">Las Vegas zip code map</a> or ask for a search in Centennial Hills and nearby northwest valley codes.',
       },
       {
-        q: 'Do you represent buyers on these listings?',
-        a: 'Dr. Jan Duffy represents buyers on active listings and builder homes in Skye Summit.',
+        q: 'Do you represent buyers on nearby listings?',
+        a: 'Dr. Jan Duffy represents buyers on active listings in Centennial Hills and northwest Las Vegas, and helps with Skye Summit pre-construction interest.',
       },
     ],
   },
@@ -198,7 +198,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'index.html': {
     quickAnswer:
-      'Skye Summit homes for sale in northwest Las Vegas are listed and toured with Dr. Jan Duffy, REALTOR® (Berkshire Hathaway HomeServices Nevada Properties). Browse listings, guides, and new construction—or call (702) 930-8222.',
+      'Dr. Jan Duffy is a Berkshire Hathaway HomeServices REALTOR® specializing in Skye Summit and northwest Las Vegas. Skye Summit is pre-construction with first homes expected Fall 2027—join the interest list for updates and browse nearby Centennial Hills listings—(702) 930-8222.',
     faqs: [
       {
         q: 'Who lists Skye Summit homes on this site?',
@@ -209,8 +209,8 @@ const CORE_PAGES = mergeParallelEnrichment({
         a: 'Northwest Las Vegas (Centennial Hills area), approximately 3,200 feet elevation. See <a href="/skye-summit-faq">FAQ</a>.',
       },
       {
-        q: 'How do I schedule a tour?',
-        a: '<a href="/contact">Contact</a> or call <a href="tel:+17029308222">(702) 930-8222</a>.',
+        q: 'How do I get first-access Skye Summit updates?',
+        a: '<a href="/contact">Join the Skye Summit interest list</a> or call <a href="tel:+17029308222">(702) 930-8222</a>.',
       },
     ],
   },
