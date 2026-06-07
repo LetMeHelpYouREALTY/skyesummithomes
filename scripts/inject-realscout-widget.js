@@ -61,14 +61,13 @@ function widgetBodyHtml() {
                     listing-status="${R.LISTING_STATUS}"
                     property-types="${R.PROPERTY_TYPES}"
                     price-min="${R.PRICE_MIN}"
-                    price-max="${R.PRICE_MAX}"
-                    aria-label="Las Vegas area homes for sale from Dr. Jan Duffy"></realscout-office-listings>`;
+                    price-max="${R.PRICE_MAX}"></realscout-office-listings>`;
 }
 
 function widgetSectionHtml() {
   return `
         <!-- ${R.MARKER} -->
-        <section id="${R.SECTION_ID}" class="realscout-listings-section listings" aria-labelledby="realscout-listings-title">
+        <section id="${R.SECTION_ID}" class="realscout-listings-section" aria-labelledby="realscout-listings-title">
             <div class="container">
                 <h2 id="realscout-listings-title">Search homes available today</h2>
                 <p class="section-description">Need a home now? Browse active Las Vegas listings from Dr. Jan Duffy&rsquo;s office while you follow Skye Summit Master Plan updates.</p>
@@ -84,7 +83,7 @@ function headEmbedHtml() {
     <link rel="dns-prefetch" href="${R.API_ORIGIN}">
     <link rel="preconnect" href="${R.EMBED_ORIGIN}" crossorigin>
     <link rel="preconnect" href="${R.API_ORIGIN}" crossorigin>
-    <script src="${R.SCRIPT_URL}" type="module" data-realscout-loader></script>
+    <script src="${R.SCRIPT_URL}" type="module"></script>
     <style data-realscout-styles>
       realscout-office-listings {
         --rs-listing-divider-color: rgb(101, 141, 172);
@@ -93,32 +92,26 @@ function headEmbedHtml() {
         display: block;
         margin: 1.5rem 0 1rem;
       }
-      .realscout-listings-section .container:has(realscout-office-listings:not(:defined)) {
-        min-height: 480px;
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: center;
-      }
-      .realscout-listings-section .container:has(realscout-office-listings:not(:defined)) realscout-office-listings {
-        background: #f7f9fc;
-        border-radius: 8px;
-        border: 2px dashed #3a8dde;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .realscout-listings-section .container:has(realscout-office-listings:not(:defined)) realscout-office-listings::before {
-        content: "Loading home search…";
-        font-size: 1.1rem;
-        color: #0a2540;
-        font-weight: 600;
-      }
       .realscout-mls-note {
         font-size: 0.85rem;
         color: #64748b;
         margin-top: 0.75rem;
         text-align: center;
+      }
+      .realscout-fallback {
+        display: none;
+        text-align: center;
+        padding: 2rem 1rem;
+        background: #f7f9fc;
+        border-radius: 8px;
+        border: 2px dashed #3a8dde;
+        color: #0a2540;
+      }
+      .realscout-listings-section.realscout-error .realscout-fallback {
+        display: block;
+      }
+      .realscout-listings-section.realscout-error realscout-office-listings {
+        display: none;
       }
     </style>`;
 }
@@ -169,7 +162,10 @@ function stripRealscout(html) {
 }
 
 function injectHeadEmbed(html) {
-  if (/data-realscout-loader/i.test(html) && /data-realscout-styles/i.test(html)) {
+  if (
+    /<script[^>]*realscout-web-components\.umd\.js[^>]*><\/script>/i.test(html) &&
+    /data-realscout-styles/i.test(html)
+  ) {
     return html;
   }
   if (/<\/head>/i.test(html)) {
@@ -180,10 +176,15 @@ function injectHeadEmbed(html) {
 
 function injectAfterHero(html) {
   if (html.includes(R.MARKER)) {
-    return html.replace(
-      /<realscout-office-listings[\s\S]*?<\/realscout-office-listings>/i,
-      widgetBodyHtml()
-    );
+    return html
+      .replace(
+        /<section id="realscout-listings" class="realscout-listings-section listings"[^>]*>/i,
+        `<section id="${R.SECTION_ID}" class="realscout-listings-section" aria-labelledby="realscout-listings-title">`
+      )
+      .replace(
+        /<realscout-office-listings[\s\S]*?<\/realscout-office-listings>/i,
+        widgetBodyHtml()
+      );
   }
 
   const block = widgetSectionHtml();

@@ -115,7 +115,7 @@
     <link rel="dns-prefetch" href="https://www.realscout.com">
     <link rel="preconnect" href="https://em.realscout.com" crossorigin>
     <link rel="preconnect" href="https://www.realscout.com" crossorigin>
-    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module" data-realscout-loader></script>
+    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module"></script>
     <style data-realscout-styles>
       realscout-office-listings {
         --rs-listing-divider-color: rgb(101, 141, 172);
@@ -124,32 +124,26 @@
         display: block;
         margin: 1.5rem 0 1rem;
       }
-      .realscout-listings-section .container:has(realscout-office-listings:not(:defined)) {
-        min-height: 480px;
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: center;
-      }
-      .realscout-listings-section .container:has(realscout-office-listings:not(:defined)) realscout-office-listings {
-        background: #f7f9fc;
-        border-radius: 8px;
-        border: 2px dashed #3a8dde;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .realscout-listings-section .container:has(realscout-office-listings:not(:defined)) realscout-office-listings::before {
-        content: "Loading home search…";
-        font-size: 1.1rem;
-        color: #0a2540;
-        font-weight: 600;
-      }
       .realscout-mls-note {
         font-size: 0.85rem;
         color: #64748b;
         margin-top: 0.75rem;
         text-align: center;
+      }
+      .realscout-fallback {
+        display: none;
+        text-align: center;
+        padding: 2rem 1rem;
+        background: #f7f9fc;
+        border-radius: 8px;
+        border: 2px dashed #3a8dde;
+        color: #0a2540;
+      }
+      .realscout-listings-section.realscout-error .realscout-fallback {
+        display: block;
+      }
+      .realscout-listings-section.realscout-error realscout-office-listings {
+        display: none;
       }
     </style>
 </head>
@@ -208,7 +202,7 @@
             </div>
         </section>
         <!-- REALSCOUT_WIDGET_BEGIN -->
-        <section id="realscout-listings" class="realscout-listings-section listings" aria-labelledby="realscout-listings-title">
+        <section id="realscout-listings" class="realscout-listings-section" aria-labelledby="realscout-listings-title">
             <div class="container">
                 <h2 id="realscout-listings-title">Search homes available today</h2>
                 <p class="section-description">Need a home now? Browse active Las Vegas listings from Dr. Jan Duffy&rsquo;s office while you follow Skye Summit Master Plan updates.</p>
@@ -218,8 +212,7 @@
                     listing-status="For Sale"
                     property-types="SFR,MF,TC"
                     price-min="500000"
-                    price-max="1200000"
-                    aria-label="Las Vegas area homes for sale from Dr. Jan Duffy"></realscout-office-listings>
+                    price-max="1200000"></realscout-office-listings>
                 <p class="realscout-mls-note">Listing data courtesy of MLS. <a href="/mls-disclaimer">MLS listing data notice</a> · <a href="/contact">Questions? Contact Dr. Jan Duffy</a> · <a href="tel:+17029308222">(702) 930-8222</a></p>
             </div>
         </section>
@@ -425,7 +418,6 @@
       }
     }
     </script>
-
 
 <script type="application/ld+json" data-aeo-core-faq>
 {
