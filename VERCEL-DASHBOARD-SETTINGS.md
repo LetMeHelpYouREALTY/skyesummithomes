@@ -52,7 +52,86 @@ If Git is reconnected to **LetMeHelpYouREALTY**, this applies to those pushes. T
 
 ---
 
-## Git integration
+## Git integration (Settings → Git)
+
+**Path:** Vercel → [skyesummithomes](https://vercel.com/janet-duffys-projects/skyesummithomes) → **Settings** → **Git**
+
+### Connected repository
+
+| Field | Expected value |
+|-------|----------------|
+| **Connected Git Repository** | `LetMeHelpYouREALTY/skyesummithomes` |
+| **Production Branch** | **`main`** (confirm on this screen or under Git → Production Branch) |
+
+If the repo shows **`DrJanDuffy/skyesummithomes`**, reconnect Git to **LetMeHelpYouREALTY** — pushes to the wrong remote will not update production. See [VERCEL-AUTO-DEPLOY.md](./VERCEL-AUTO-DEPLOY.md).
+
+### Connected Git Repository toggles
+
+These appear under **Connected Git Repository** on the Git settings page:
+
+| Toggle | Recommended | Why |
+|--------|-------------|-----|
+| **Pull Request Comments** | **On** | Posts Vercel preview URLs on PRs — useful before merging to `main` |
+| **Commit Comments** | **Off** | Avoids a deploy comment on every commit |
+| **deployment_status Events** | **On** | Shows deploy success/failure in GitHub Checks |
+| **repository_dispatch Events** | **Off** | Not used unless you trigger deploys from external automation |
+
+### Git Commits section
+
+| Setting | Recommended | Why |
+|---------|-------------|-----|
+| **Commit Status** | **On** | GitHub shows pass/fail for Vercel builds |
+| **Consolidated Commit Status** | **On** (Soft Failures OK) | One combined status instead of many checks |
+| **Require Verified Commits** | **Off** | Unless your org requires signed commits |
+
+### Git Large File Storage (LFS)
+
+| Setting | Recommended |
+|---------|-------------|
+| **Git LFS** | **Off** — this repo does not use LFS (images are normal Git blobs) |
+
+### Deploy Hooks
+
+| Setting | Recommended |
+|---------|-------------|
+| **Deploy Hooks** | **None needed** when Git is connected |
+
+Deploy hooks are for triggering a deploy **without** a git push (Zapier, cron curl, etc.). This project deploys from **`main`** pushes and [`.github/workflows/vercel-production.yml`](./.github/workflows/vercel-production.yml).
+
+To add one later: **Name** = descriptive label, **Branch** = `main`.
+
+---
+
+## Dual deploy on `main` (Git + GitHub Actions)
+
+Two systems can deploy production when you push to **`main`**:
+
+| Trigger | What runs |
+|---------|-----------|
+| **Vercel Git integration** | Remote build from dashboard settings (must be **Other**, not Next.js) |
+| **GitHub Actions** | `npm run build` → `npm run validate:gsc` → `vercel build --prebuilt` → `vercel deploy --prebuilt --prod` |
+
+**Keep GitHub Actions** — it runs [GSC www checks](./GOOGLE-SEARCH-CONSOLE.md) before deploy.
+
+**Fix dashboard Framework → Other** (above) so Vercel Git deploys succeed instead of failing with *No Next.js version detected*.
+
+If both succeed on the same push, you may see two production deployments; the latest wins. That is harmless.
+
+---
+
+## Google Search Console + www
+
+Production must serve **https://www.skyesummithomes.com** as canonical:
+
+- Apex `https://skyesummithomes.com/*` → **308/301** → www (see `vercel.json`)
+- Sitemap in GSC: **`https://www.skyesummithomes.com/sitemap.xml`** only
+- URL Inspection: always use **www** URLs
+
+Full checklist: [GOOGLE-SEARCH-CONSOLE.md](./GOOGLE-SEARCH-CONSOLE.md).
+
+---
+
+## Git integration (quick reference)
 
 **Settings** → **Git** — should show:
 
@@ -60,22 +139,6 @@ If Git is reconnected to **LetMeHelpYouREALTY**, this applies to those pushes. T
 |-------|--------|
 | Repository | **LetMeHelpYouREALTY/skyesummithomes** (connected) |
 | Production Branch | **main** |
-
-### Optional toggles (defaults are fine)
-
-| Toggle | Suggestion |
-|--------|------------|
-| Pull Request Comments | On — Vercel preview links on PRs |
-| Commit Comments | Off unless you want inline deploy notes on every commit |
-| deployment_status Events | On — GitHub shows deploy success/failure |
-| repository_dispatch Events | Off unless you use external automation |
-| Commit Status | On — GitHub checks for Vercel |
-| Require Verified Commits | Off (unless team policy requires it) |
-| Git LFS | Off — not used in this repo |
-
-### Deploy Hooks
-
-Not required when Git is connected. Use only for external triggers (Zapier, manual curl) without a git push.
 
 Keep **GitHub Actions** as a backup if dashboard framework is still Next.js and Git-triggered builds fail — see [VERCEL-AUTO-DEPLOY.md](./VERCEL-AUTO-DEPLOY.md).
 
