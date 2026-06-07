@@ -24,3 +24,18 @@ for path in "${PATHS[@]}"; do
   lm=$(echo "$headers" | awk -F': ' 'tolower($1)=="last-modified"{print $2; exit}')
   printf "%s | %s | %s\n" "$path" "${status:-?}" "${lm:-—}"
 done
+
+echo
+echo "GSC redirect checks (non-canonical hosts should 301/308 to www HTTPS)"
+REDIRECT_URLS=(
+  "http://www.skyesummithomes.com/"
+  "http://skyesummithomes.com/"
+  "https://skyesummithomes.com/"
+)
+
+for url in "${REDIRECT_URLS[@]}"; do
+  headers=$(curl -sI "$url")
+  status=$(echo "$headers" | awk '/^HTTP/{print $2; exit}')
+  location=$(echo "$headers" | awk -F': ' 'tolower($1)=="location"{print $2; exit}' | tr -d '\r')
+  printf "%s | %s | %s\n" "$url" "${status:-?}" "${location:-—}"
+done

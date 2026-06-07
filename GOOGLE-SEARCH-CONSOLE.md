@@ -76,9 +76,33 @@ Start with:
 |-------|-----|
 | Apex 404s (`/invest`, `/buy`, etc.) | `GSC-404-FIX.md` |
 | “Alternate page with proper canonical” on non-www | `GSC-404-FIX.md` — fix apex 301 |
+| **“Page with redirect”** (http/apex homepage URLs) | See below |
 | Cloudflare / DNS | `CLOUDFLARE-DNS-SETUP.md`, `CLOUDFLARE-QUICK-ACTION.md` |
 
 After apex redirects are live, open each affected issue in Search Console and use **Validate fix**.
+
+### “Page with redirect” (expected after fix)
+
+Search Console may list these **non-canonical** URLs:
+
+| URL | Expected behavior |
+|-----|-------------------|
+| `http://www.skyesummithomes.com/` | 301/308 → `https://www.skyesummithomes.com/` |
+| `http://skyesummithomes.com/` | 301/308 → `https://www.skyesummithomes.com/` (not apex HTTPS) |
+| `https://skyesummithomes.com/` | **301** → `https://www.skyesummithomes.com/` |
+
+Google **should not** index those URLs — only **https://www.skyesummithomes.com/** is canonical. This report is normal once redirects are correct.
+
+1. Confirm apex homepage redirect (must not return 200 on apex):
+
+   ```bash
+   curl -sI https://skyesummithomes.com/ | grep -iE 'HTTP|location'
+   ```
+
+   Expected: `301` or `308` and `location: https://www.skyesummithomes.com/`
+
+2. In Search Console → **Page indexing** → **Page with redirect** → **Done fixing?** → **Validate fix**
+3. Allow **1–2 weeks** for recrawl; the count should drop to zero.
 
 ## 7. Ongoing maintenance
 

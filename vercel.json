@@ -9,6 +9,17 @@
   "installCommand": "npm ci",
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "skyesummithomes.com"
+        }
+      ],
+      "destination": "https://www.skyesummithomes.com/",
+      "permanent": true
+    },
+    {
       "source": "/:path((?!google)[^/]+).html",
       "destination": "/:path",
       "permanent": true
