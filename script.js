@@ -12,6 +12,10 @@
 
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.footer-bottom p').forEach(function (el) {
+        el.innerHTML = el.innerHTML.replace(/&copy;\s*\d{4}|©\s*\d{4}/, '© ' + new Date().getFullYear());
+    });
+
     // Mobile menu functionality
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');

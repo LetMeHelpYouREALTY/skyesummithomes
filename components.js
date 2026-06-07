@@ -66,8 +66,8 @@ function generateFooter() {
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-section">
-                        <h3>Dr. Jan Duffy, REALTOR®</h3>
-                        <p>Berkshire Hathaway HomeServices Nevada Properties</p>
+                        <h3>Skye Summit | Homes by Dr. Jan Duffy</h3>
+                        <p>Dr. Jan Duffy, REALTOR® · Buyer's Representative<br>Berkshire Hathaway HomeServices Nevada Properties</p>
                         <div class="contact-info">
                             <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+17029308222">(702) 930-8222</a></p>
                             <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:DrJanSells@SkyeSummitHomes.com">DrJanSells@SkyeSummitHomes.com</a></p>
@@ -107,7 +107,7 @@ function generateFooter() {
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; 2025 Dr. Jan Duffy, REALTOR® S.0197614.LLC. All rights reserved.</p>
+                    <p>&copy; ${new Date().getFullYear()} Dr. Jan Duffy, REALTOR® S.0197614.LLC. All rights reserved.</p>
                     <div class="footer-legal">
                         <a href="/privacy">Privacy Policy</a>
                         <a href="/terms">Terms of Use</a>

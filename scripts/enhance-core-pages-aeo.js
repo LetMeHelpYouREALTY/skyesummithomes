@@ -166,19 +166,19 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'homes-for-sale-skye-summit.html': {
     quickAnswer:
-      'Browse Skye Summit homes for sale with Dr. Jan Duffy: resale and new construction across northwest Las Vegas. Schedule showings and offer help at (702) 930-8222.',
+      'Skye Summit is a 505-acre Olympia Companies master plan beyond the 215 Beltway, coming Fall 2027. KB Home Vertice sales may open early 2027. Join the interest list with Dr. Jan Duffy, or browse nearby Skye Canyon, Skye Hills, and Centennial Hills resales (89166)—(702) 930-8222.',
     faqs: [
       {
-        q: 'How often are Skye Summit listings updated?',
-        a: 'Available homes change daily. Contact us for homes not yet public or coming soon that match what you want.',
+        q: 'When will new Skye Summit builder homes be available?',
+        a: 'Olympia Companies lists Skye Summit as coming Fall 2027. KB Home&rsquo;s Vertice at Skye Summit (299 homesites) may begin sales early 2027 while homesite work is underway. <a href="/contact">Join the interest list</a> for updates.',
       },
       {
-        q: 'Can I filter by zip code?',
-        a: 'Yes—use the <a href="/las-vegas-zip-code-map">Las Vegas zip code map</a> or ask for a search by 89149, 89144, and nearby codes.',
+        q: 'Are there resale homes near Skye Summit?',
+        a: 'Yes—existing homes on Skye Summit Avenue and in Skye Canyon and Skye Hills (89166), often built 2019–2022, are actively listed and sold. Those differ from the new 505-acre Skye Summit master-planned community.',
       },
       {
-        q: 'Do you represent buyers on these listings?',
-        a: 'Dr. Jan Duffy represents buyers on active listings and builder homes in Skye Summit.',
+        q: 'Do you represent buyers on nearby listings?',
+        a: 'Dr. Jan Duffy represents buyers on active Skye Canyon, Skye Hills, and Centennial Hills listings, and helps with Skye Summit new-construction interest.',
       },
     ],
   },
@@ -198,7 +198,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'index.html': {
     quickAnswer:
-      'Skye Summit homes for sale in northwest Las Vegas are listed and toured with Dr. Jan Duffy, REALTOR® (Berkshire Hathaway HomeServices Nevada Properties). Browse listings, guides, and new construction—or call (702) 930-8222.',
+      'Dr. Jan Duffy is a Berkshire Hathaway HomeServices REALTOR® specializing in Skye Summit and northwest Las Vegas. The new 505-acre Skye Summit master plan is coming Fall 2027—join the interest list for updates, or browse nearby Skye Canyon and Centennial Hills resales—(702) 930-8222.',
     faqs: [
       {
         q: 'Who lists Skye Summit homes on this site?',
@@ -206,11 +206,11 @@ const CORE_PAGES = mergeParallelEnrichment({
       },
       {
         q: 'Where is Skye Summit located?',
-        a: 'Northwest Las Vegas (Centennial Hills area), approximately 3,200 feet elevation. See <a href="/skye-summit-faq">FAQ</a>.',
+        a: 'Northwest Las Vegas, bordering Centennial Hills just beyond the 215 Beltway. The new master plan is separate from existing Skye Summit Avenue resales in Skye Canyon (89166). See <a href="/skye-summit-faq">FAQ</a>.',
       },
       {
-        q: 'How do I schedule a tour?',
-        a: '<a href="/contact">Contact</a> or call <a href="tel:+17029308222">(702) 930-8222</a>.',
+        q: 'Are there resale homes near Skye Summit?',
+        a: 'Yes—Skye Summit Avenue and nearby Skye Canyon and Skye Hills (89166) have active resale listings, often from 2019–2022 builds. The new 505-acre Skye Summit master-planned community is pre-construction and coming Fall 2027.',
       },
     ],
   },

@@ -47,6 +47,14 @@ function listHtmlFiles(dir, out = []) {
   return out;
 }
 
+function hyperlocalAreasLine() {
+  return `<strong>Office:</strong> ${C.CITY}, ${C.REGION} ${C.POSTAL} · <strong>Markets served:</strong> ${C.SERVICE_AREA_MARKETS_VISIBLE} · <a href="${C.MAP_PAGE_PATH}">Office map &amp; directions</a> · <a href="/skye-summit-realtor">About Dr. Jan</a> · <a href="/skye-summit-faq">FAQ</a>`;
+}
+
+function compactAreasLine() {
+  return `<strong>Office:</strong> ${C.POSTAL} · <strong>Serves:</strong> ${C.SERVICE_AREA_MARKETS_VISIBLE}`;
+}
+
 function actionButtons(large = false) {
   const size = large ? ' btn-large' : '';
   return `
@@ -65,9 +73,9 @@ function compactBlock() {
             <div class="container">
                 <p class="hyperlocal-kicker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Skye Summit · Northwest Las Vegas</p>
                 <h2 id="hyperlocal-gbp-title">${C.GBP_BUSINESS_NAME}</h2>
-                <p class="hyperlocal-lead">${C.AGENT_NAME}, ${C.AGENT_TITLE} · License ${C.LICENSE} · ${C.BROKERAGE}</p>
+                <p class="hyperlocal-lead">${C.HYPERLOCAL_LEAD}</p>
                 ${actionButtons(false)}
-                <p class="hyperlocal-areas"><strong>Service area:</strong> ${C.SERVICE_AREA_GBP}</p>
+                <p class="hyperlocal-areas">${compactAreasLine()}</p>
             </div>
         </section>`;
 }
@@ -77,6 +85,9 @@ function fullBlock() {
     (h) => `<li><strong>${h.days}:</strong> ${h.time}</li>`
   ).join('\n                        ');
   const holidayHtml = C.HOLIDAY_NOTES.map((n) => `<li>${n}</li>`).join('\n                        ');
+  const accessibilityHtml = C.ACCESSIBILITY.map(
+    (item) => `<li><i class="fas fa-universal-access" aria-hidden="true"></i> ${item}</li>`
+  ).join('\n                            ');
 
   return `
         <!-- ${MARKER} -->
@@ -84,7 +95,7 @@ function fullBlock() {
             <div class="container">
                 <p class="hyperlocal-kicker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Skye Summit · Northwest Las Vegas</p>
                 <h2 id="hyperlocal-gbp-title">${C.GBP_BUSINESS_NAME}</h2>
-                <p class="hyperlocal-lead">${C.AGENT_NAME}, ${C.AGENT_TITLE} — personal help for <strong>home buyers</strong> and <strong>home sellers</strong> in Skye Summit and northwest Las Vegas.</p>
+                <p class="hyperlocal-lead">${C.HYPERLOCAL_LEAD}</p>
                 <div class="hyperlocal-grid">
                     <div class="hyperlocal-card">
                         <h3><i class="fas fa-key" aria-hidden="true"></i> Help for buyers</h3>
@@ -104,11 +115,12 @@ function fullBlock() {
                     </div>
                     <div class="hyperlocal-card hyperlocal-nap">
                         <h3><i class="fas fa-building" aria-hidden="true"></i> ${C.LABEL_CONTACT_CARD}</h3>
-                        <p class="hyperlocal-name"><strong>${C.GBP_BUSINESS_NAME}</strong><br>${C.AGENT_NAME}, ${C.AGENT_TITLE}<br>${C.BROKERAGE}</p>
+                        <p class="hyperlocal-name"><strong>${C.GBP_BUSINESS_NAME}</strong><br>${C.AGENT_NAME}, ${C.AGENT_TITLE} · ${C.AGENT_ROLE}<br>${C.BROKERAGE}</p>
                         <p><a href="tel:${C.PHONE_TEL}">${C.PHONE_DISPLAY}</a> · <a href="${C.SMS_URL}">Text</a><br><a href="mailto:${C.EMAIL}">${C.EMAIL}</a></p>
                         <p><a href="${C.MAPS_DIRECTIONS}" target="_blank" rel="noopener">${C.STREET}<br>${C.CITY}, ${C.REGION} ${C.POSTAL}</a></p>
-                        <p class="hyperlocal-license">Nevada license ${C.LICENSE} · Serving clients since 2009</p>
+                        <p class="hyperlocal-license">Nevada license ${C.LICENSE} · Licensed since ${C.OPENING_DATE_DISPLAY}</p>
                         <p><a href="${C.SOCIAL_FACEBOOK}" target="_blank" rel="noopener">Facebook</a> · <a href="${C.SOCIAL_LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a></p>
+                        <ul class="hyperlocal-accessibility">${accessibilityHtml}</ul>
                     </div>
                 </div>
                 ${actionButtons(true)}
@@ -125,9 +137,19 @@ function fullBlock() {
                         <iframe title="Dr. Jan Duffy office — ${C.STREET}, ${C.CITY}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="600" height="280" src="${C.MAP_EMBED}"></iframe>
                     </div>
                 </div>
-                <p class="hyperlocal-areas"><strong>Primary service area:</strong> ${C.SERVICE_AREA_GBP} · <a href="${C.MAP_PAGE_PATH}">Office map &amp; directions</a> · <a href="/skye-summit-realtor">About Dr. Jan</a> · <a href="/skye-summit-faq">FAQ</a></p>
+                <p class="hyperlocal-areas">${hyperlocalAreasLine()}</p>
             </div>
         </section>`;
+}
+
+function schemaAreaServed() {
+  return [
+    { '@type': 'Place', name: C.SERVICE_AREA_GBP },
+    ...C.SERVICE_AREAS.map((name) => ({
+      '@type': 'Place',
+      name: `${name}, Las Vegas NV`,
+    })),
+  ];
 }
 
 function schemaBlock() {
@@ -145,7 +167,8 @@ function schemaBlock() {
         '@type': 'RealEstateAgent',
         '@id': `${C.SITE}/#agent`,
         name: C.AGENT_NAME,
-        jobTitle: C.AGENT_TITLE,
+        jobTitle: `${C.AGENT_TITLE} · ${C.AGENT_ROLE}`,
+        description: C.GBP_DESCRIPTION,
         telephone: C.PHONE_TEL,
         email: C.EMAIL,
         url: C.SITE,
@@ -169,10 +192,16 @@ function schemaBlock() {
         sameAs: C.SAME_AS,
       },
       {
-        '@type': 'LocalBusiness',
+        '@type': ['LocalBusiness', 'RealEstateAgent'],
         '@id': `${C.SITE}/#localbusiness`,
         name: C.GBP_BUSINESS_NAME,
         description: C.GBP_DESCRIPTION,
+        areaServed: schemaAreaServed(),
+        amenityFeature: C.ACCESSIBILITY.map((name) => ({
+          '@type': 'LocationFeatureSpecification',
+          name,
+          value: true,
+        })),
         telephone: C.PHONE_TEL,
         email: C.EMAIL,
         url: C.SITE,
