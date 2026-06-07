@@ -347,44 +347,79 @@ if (document.readyState === 'loading') {
     lazyLoadImages();
 }
 
-// Loading state for RealScout widget
-function showLoadingState() {
-    const widget = document.querySelector('realscout-office-listings');
-    if (widget && !customElements.get('realscout-office-listings')) {
-        widget.style.opacity = '0.5';
-        widget.style.pointerEvents = 'none';
+// RealScout: lazy-load web component script when listings section enters viewport
+(function initRealScoutLazyLoad() {
+    const REALSCOUT_SCRIPT = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
+    let scriptRequested = false;
+
+    function loadRealScoutScript() {
+        if (scriptRequested) return;
+        scriptRequested = true;
+        if (document.querySelector('script[src="' + REALSCOUT_SCRIPT + '"]')) return;
+        const script = document.createElement('script');
+        script.src = REALSCOUT_SCRIPT;
+        script.type = 'module';
+        script.async = true;
+        document.head.appendChild(script);
     }
-}
 
-// Hide loading state when widget is ready
-function hideLoadingState() {
-    const widget = document.querySelector('realscout-office-listings');
-    if (widget) {
-        widget.style.opacity = '1';
-        widget.style.pointerEvents = 'auto';
+    function showLoadingState() {
+        const widget = document.querySelector('realscout-office-listings');
+        if (widget && !customElements.get('realscout-office-listings')) {
+            widget.style.opacity = '0.5';
+            widget.style.pointerEvents = 'none';
+        }
     }
-}
 
-// Monitor widget loading
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', showLoadingState);
-} else {
-    showLoadingState();
-}
-
-// Check if widget is loaded
-const checkWidgetLoaded = setInterval(() => {
-    if (customElements.get('realscout-office-listings')) {
-        hideLoadingState();
-        clearInterval(checkWidgetLoaded);
+    function hideLoadingState() {
+        const widget = document.querySelector('realscout-office-listings');
+        if (widget) {
+            widget.style.opacity = '1';
+            widget.style.pointerEvents = 'auto';
+        }
     }
-}, 500);
 
-// Timeout after 10 seconds
-setTimeout(() => {
-    clearInterval(checkWidgetLoaded);
-    hideLoadingState();
-}, 10000);
+    function watchWidgetReady() {
+        showLoadingState();
+        const checkWidgetLoaded = setInterval(function() {
+            if (customElements.get('realscout-office-listings')) {
+                hideLoadingState();
+                clearInterval(checkWidgetLoaded);
+            }
+        }, 500);
+        setTimeout(function() {
+            clearInterval(checkWidgetLoaded);
+            hideLoadingState();
+        }, 10000);
+    }
+
+    function setup() {
+        const section = document.getElementById('realscout-listings');
+        if (!section) return;
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        loadRealScoutScript();
+                        watchWidgetReady();
+                        observer.disconnect();
+                    }
+                });
+            }, { rootMargin: '240px 0px', threshold: 0.01 });
+            observer.observe(section);
+        } else {
+            loadRealScoutScript();
+            watchWidgetReady();
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setup);
+    } else {
+        setup();
+    }
+})();
 
 // Review request functionality
 const reviewRequestBtn = document.getElementById('review-request-btn');
