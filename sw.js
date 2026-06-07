@@ -1,7 +1,7 @@
 // Service Worker for Skye Summit Real Estate Website
 // Bump CACHE_* when shipping HTML/CSS changes users must see immediately.
-const CACHE_NAME = 'skye-summit-v3';
-const RUNTIME_CACHE = 'skye-summit-runtime-v3';
+const CACHE_NAME = 'skye-summit-v4';
+const RUNTIME_CACHE = 'skye-summit-runtime-v4';
 
 // Assets to cache immediately
 const STATIC_ASSETS = [
@@ -17,13 +17,10 @@ const STATIC_ASSETS = [
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then((cache) => {
-                console.log('Caching static assets');
-                return cache.addAll(STATIC_ASSETS.map(url => new Request(url, { cache: 'reload' })));
-            })
-            .catch((err) => {
-                console.log('Cache install failed:', err);
-            })
+            .then((cache) =>
+                cache.addAll(STATIC_ASSETS.map((url) => new Request(url, { cache: 'reload' })))
+            )
+            .catch(() => {})
     );
     self.skipWaiting();
 });
@@ -35,7 +32,6 @@ self.addEventListener('activate', (event) => {
             return Promise.all(
                 cacheNames.map((cacheName) => {
                     if (cacheName !== CACHE_NAME && cacheName !== RUNTIME_CACHE) {
-                        console.log('Deleting old cache:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })

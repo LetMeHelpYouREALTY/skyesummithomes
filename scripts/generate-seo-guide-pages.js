@@ -10,6 +10,7 @@ const path = require('path');
 const C = require('../lib/gbp-constants');
 const { IDS } = require('../lib/schema-graph');
 const { guideFooterListHtml, guideCtaLinksHtml } = require('../lib/guide-nav');
+const { PATHS } = require('../lib/site-images');
 
 const root = path.join(__dirname, '..');
 const SITE = C.SITE;
@@ -911,7 +912,7 @@ function faqHtml(faqs) {
 
 function renderPage(guide) {
   const canonical = `${SITE}/${guide.slug}`;
-  const ogImage = `${SITE}/images/skye-summit-community.jpg`;
+  const ogImage = `${SITE}${PATHS.COMMUNITY}`;
 
   return `<!DOCTYPE html>
 <html lang="en">
