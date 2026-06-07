@@ -1,5 +1,15 @@
 # Google Search Console: Not Found (404) — Fix Guide
 
+## Status (June 2026)
+
+**Fixed in production.** Apex paths now **308-redirect** to www (verified live). GSC may still show the Jan 2026 crawl until you **Validate fix** and Google recrawls.
+
+```bash
+bash scripts/audit-live-urls.sh
+```
+
+Expected for `https://skyesummithomes.com/invest`: status **308**, location `https://www.skyesummithomes.com/invest`.
+
 ## What Google reported
 
 These URLs returned **404** (or were not served) when crawled on the **non-www** host:
@@ -16,20 +26,19 @@ These URLs returned **404** (or were not served) when crawled on the **non-www**
 ## Root cause
 
 - **Correct site** lives on **https://www.skyesummithomes.com** (Vercel).
-- **https://skyesummithomes.com** (apex, no `www`) is handled by Cloudflare Workers **before** Vercel:
-  - `kelly-landing` returns **404** for unknown hosts (including apex `/invest`, `/buy`, etc.).
-  - `palms-place-listing-injector` may serve a **generic Las Vegas landing page** when the origin errors.
-- `vercel.json` already has non-www → www **301** redirects, but they only run when traffic reaches **Vercel**. Apex must **301 to www at Cloudflare** first.
+- **Historically**, apex (`https://skyesummithomes.com`) hit Cloudflare Workers that returned **404** for paths like `/invest`.
+- **Current:** Apex DNS points to Vercel; `vercel.json` redirects all apex paths (including `/`) to **www** HTTPS.
 
 ## Code changes in this repo
 
 1. **`scripts/generate-clean-urls.js`** — At build time, creates `/{slug}/index.html` from `/{slug}.html` so paths like `/about` work on static hosts without rewrites alone.
-2. **`vercel.json`** — `cleanUrls: true`, `.html` → extensionless **301** redirects, existing non-www → www redirects kept.
-3. **`npm run build`** — Runs clean-url generation before the maps key inject step.
+2. **`vercel.json`** — Apex host redirects to www (explicit `/` rule plus `/:path*`), `.html` → extensionless redirects, www canonical.
+3. **`npm run build`** — Runs clean-url generation and GSC verification inject.
+4. **`cloudflare/skyesummithomes-apex-redirect/`** — Optional Worker backup (301 apex → www) if apex traffic hits Cloudflare again.
 
-## Required: Cloudflare (fixes GSC 404s)
+## Cloudflare (only if apex 404s return)
 
-Do this in the Cloudflare dashboard for **skyesummithomes.com**:
+If `curl -sI https://skyesummithomes.com/invest` ever shows **404** again, re-apply one of:
 
 ### Option A — Page rule (fastest)
 
@@ -69,12 +78,16 @@ Should include **Skye Summit** / **Investment Strategy**, not a generic “Las V
 
 ## Google Search Console
 
-1. Use property **https://www.skyesummithomes.com** as primary (or domain property with www preferred).
+1. Use property **https://www.skyesummithomes.com** (or **Domain** `skyesummithomes.com`).
 2. **Sitemaps** → submit: `https://www.skyesummithomes.com/sitemap.xml`
-3. On the **Not found (404)** issue → **Validate fix** after apex returns **301** to www for all six URLs.
-4. Optionally **URL Inspection** → request indexing for each www URL.
+3. **Page indexing → Not found (404)** → **Done fixing?** → **Validate fix**
+4. **URL Inspection** → request indexing for www URLs (start with `/invest`):
 
-Validation often takes **1–2 weeks** after redirects are live.
+   - `https://www.skyesummithomes.com/invest`
+   - `https://www.skyesummithomes.com/sell`
+   - `https://www.skyesummithomes.com/buy`
+
+Validation often takes **1–2 weeks** after redirects are live. The apex URL may move from **404** to **Page with redirect** — that is correct; only **www** URLs should be indexed.
 
 ## Google Search Console: Alternate page with proper canonical tag
 

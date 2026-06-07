@@ -5,6 +5,7 @@
   "scripts": {
     "build": "node scripts/generate-seo-guide-pages.js && node scripts/enhance-core-pages-aeo.js && node scripts/update-sitemap.js && node scripts/generate-clean-urls.js && node scripts/inject-hyperlocal-gbp.js && node scripts/plain-language-site-copy.js && node scripts/inject-google-maps-key.js && node scripts/inject-gsc-verification.js",
     "validate:gsc": "node scripts/validate-gsc-ready.js",
+    "audit:urls": "bash scripts/audit-live-urls.sh",
     "dev": "python -m http.server 3000",
     "start": "python -m http.server 8080"
   },

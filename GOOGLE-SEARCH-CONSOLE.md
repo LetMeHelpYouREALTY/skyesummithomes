@@ -77,6 +77,7 @@ Start with:
 | Apex 404s (`/invest`, `/buy`, etc.) | `GSC-404-FIX.md` |
 | “Alternate page with proper canonical” on non-www | `GSC-404-FIX.md` — fix apex 301 |
 | **“Page with redirect”** (http/apex homepage URLs) | See below |
+| **Not found (404)** on apex paths (`/invest`, etc.) | `GSC-404-FIX.md` — validate after apex → www redirect |
 | Cloudflare / DNS | `CLOUDFLARE-DNS-SETUP.md`, `CLOUDFLARE-QUICK-ACTION.md` |
 
 After apex redirects are live, open each affected issue in Search Console and use **Validate fix**.

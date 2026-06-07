@@ -7,6 +7,10 @@ PATHS=(
   /
   /about
   /contact
+  /invest
+  /sell
+  /buy
+  /valuation
   /skye-summit-realtor
   /skye-summit-faq
   /las-vegas-zip-code-map
@@ -34,6 +38,18 @@ REDIRECT_URLS=(
 )
 
 for url in "${REDIRECT_URLS[@]}"; do
+  headers=$(curl -sI "$url")
+  status=$(echo "$headers" | awk '/^HTTP/{print $2; exit}')
+  location=$(echo "$headers" | awk -F': ' 'tolower($1)=="location"{print $2; exit}' | tr -d '\r')
+  printf "%s | %s | %s\n" "$url" "${status:-?}" "${location:-—}"
+done
+
+echo
+echo "GSC apex 404 checks (must NOT be 404; should redirect to www)"
+APEX_PATHS=(/invest /sell /valuation /buy /contact /about)
+
+for path in "${APEX_PATHS[@]}"; do
+  url="https://skyesummithomes.com${path}"
   headers=$(curl -sI "$url")
   status=$(echo "$headers" | awk '/^HTTP/{print $2; exit}')
   location=$(echo "$headers" | awk -F': ' 'tolower($1)=="location"{print $2; exit}' | tr -d '\r')
