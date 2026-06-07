@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Removes duplicate legacy JSON-LD (standalone RealEstateAgent, LocalBusiness with
- * fake reviews, Person, old FAQPage) so inject-hyperlocal-gbp can own entity @graph.
+ * Removes duplicate legacy JSON-LD (standalone RealEstateAgent, LocalBusiness,
+ * Service, Person, old FAQPage) so inject-hyperlocal-gbp can own entity @graph.
  */
 'use strict';
 
@@ -87,19 +87,16 @@ function shouldRemoveLegacy(data) {
     if (Array.isArray(data.review) && data.review.length > 0) {
       return true;
     }
+    // Duplicate of hyperlocal @graph LocalBusiness (#localbusiness)
     if (!data['@id']) {
-      const served = data.areaServed;
-      const places = Array.isArray(served) ? served : served ? [served] : [];
-      const names = places
-        .map((p) => (p && p.name ? String(p.name) : ''))
-        .filter(Boolean);
-      const multiArea =
-        names.length > 1 ||
-        names.some((n) => /Skye Canyon|Centennial Hills|Northwest Las Vegas/i.test(n));
-      if (multiArea || (places.length === 0 && !data['@graph'])) {
-        return true;
-      }
+      return true;
     }
+  }
+
+  // Standalone Service blocks without offers/review/rating trigger GSC Product snippet errors.
+  // Entity coverage comes from the hyperlocal RealEstateAgent + LocalBusiness @graph.
+  if (types.includes('Service') && !data['@id']) {
+    return true;
   }
 
   if (data['@graph']) {

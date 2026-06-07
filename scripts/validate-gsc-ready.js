@@ -72,6 +72,12 @@ function listHtmlFiles(dir, out = []) {
   return out;
 }
 
+function hasKeepAttr(openTag) {
+  return /data-(?:aeo-core-faq|guide-faq|geo-speakable|hyperlocal-gbp-schema)/i.test(
+    openTag
+  );
+}
+
 const trailingSlashCanonicalRe =
   /rel=["']canonical["']\s+href=["']https:\/\/www\.skyesummithomes\.com\/[^/"']+\/["']/i;
 let trailingSlashCanonicals = 0;
@@ -191,6 +197,50 @@ for (const rel of SAMPLE_SITEMAP_LINK) {
 }
 if (missingSitemapLink === 0) {
   ok('sample indexable pages link to sitemap');
+}
+
+let invalidProductLikeSchema = 0;
+for (const filePath of listHtmlFiles(root)) {
+  const rel = path.relative(root, filePath);
+  if (SKIP_HTML.has(rel)) continue;
+
+  const html = fs.readFileSync(filePath, 'utf8');
+  const scriptRe =
+    /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+  let match;
+  while ((match = scriptRe.exec(html)) !== null) {
+    const openTag = match[0].slice(0, match[0].indexOf('>') + 1);
+    if (hasKeepAttr(openTag)) continue;
+
+    let data;
+    try {
+      data = JSON.parse(match[1].trim());
+    } catch {
+      continue;
+    }
+
+    const type = data['@type'];
+    const types = Array.isArray(type) ? type : type ? [type] : [];
+
+    if (types.includes('Service') && !data['@id']) {
+      const hasOffer = Boolean(data.offers);
+      const hasReview = Boolean(data.review);
+      const hasRating = Boolean(data.aggregateRating);
+      if (!hasOffer && !hasReview && !hasRating) {
+        fail(`Service schema missing offers/review/aggregateRating (GSC Product snippets): ${rel}`);
+        invalidProductLikeSchema += 1;
+      }
+    }
+
+    if (types.includes('LocalBusiness') && !data['@id']) {
+      fail(`duplicate LocalBusiness without @id (use hyperlocal @graph): ${rel}`);
+      invalidProductLikeSchema += 1;
+    }
+  }
+}
+
+if (invalidProductLikeSchema === 0) {
+  ok('no invalid standalone Service/LocalBusiness JSON-LD');
 }
 
 process.exit(failed > 0 ? 1 : 0);
