@@ -8,11 +8,17 @@
 const fs = require('fs');
 const path = require('path');
 const C = require('../lib/gbp-constants');
+const { IDS } = require('../lib/schema-graph');
 const { guideFooterListHtml, guideCtaLinksHtml } = require('../lib/guide-nav');
 
 const root = path.join(__dirname, '..');
 const SITE = C.SITE;
 const GSC_TOKEN = 'wKOftY7ctL98xgE1EW2r-2pYqOXyN109r4ZLLiRwQsI';
+const GUIDE_LAST_UPDATED = new Date().toISOString().slice(0, 10);
+const GUIDE_LAST_UPDATED_DISPLAY = new Date(GUIDE_LAST_UPDATED).toLocaleDateString(
+  'en-US',
+  { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }
+);
 
 const enrichmentPath = path.join(root, 'lib/parallel-seo-enrichment.json');
 let guideEnrichment = {};
@@ -842,102 +848,43 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
-function masterPlanPlaceSchema() {
+function faqJsonLd(faqs) {
   return JSON.stringify(
     {
       '@context': 'https://schema.org',
-      '@type': 'Place',
-      '@id': `${SITE}/#skye-summit-master-plan`,
-      name: C.SERVICE_AREA_GBP,
-      description: `${C.MASTER_PLAN_SIZE} Olympia Companies master-planned community coming ${C.MASTER_PLAN_LAUNCH}, northwest Las Vegas.`,
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude: C.SKYE_SUMMIT_AREA_LAT,
-        longitude: C.SKYE_SUMMIT_AREA_LNG,
-      },
-      containedInPlace: {
-        '@type': 'City',
-        name: C.CITY,
-        addressRegion: C.REGION,
-        addressCountry: 'US',
-      },
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q.replace(/<[^>]+>/g, ''),
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: f.a.replace(/<[^>]+>/g, '').replace(/&mdash;/g, '—'),
+        },
+      })),
     },
     null,
     2
   );
 }
 
-function speakableHeadSchema() {
+function webPageSchema(guide, canonical) {
   return JSON.stringify(
     {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      name: guide.h1,
+      description: guide.description,
+      url: canonical,
+      inLanguage: 'en-US',
+      dateModified: GUIDE_LAST_UPDATED,
+      datePublished: GUIDE_LAST_UPDATED,
+      about: { '@id': IDS.masterPlan },
+      author: { '@id': IDS.agent },
+      publisher: { '@id': IDS.localBusiness },
       speakable: {
         '@type': 'SpeakableSpecification',
         cssSelector: ['.aeo-quick-answer__text', 'h1'],
-      },
-    },
-    null,
-    2
-  );
-}
-
-function agentSchema() {
-  return JSON.stringify(
-    {
-      '@context': 'https://schema.org',
-      '@type': 'RealEstateAgent',
-      '@id': `${SITE}/#agent`,
-      name: C.AGENT_NAME,
-      jobTitle: `${C.AGENT_TITLE} · ${C.AGENT_ROLE}`,
-      description: C.AGENT_SITE_DESCRIPTION,
-      telephone: C.PHONE_TEL,
-      email: C.EMAIL,
-      url: C.SITE,
-      identifier: C.LICENSE,
-      areaServed: { '@type': 'Place', name: C.SERVICE_AREA_GBP },
-      knowsAbout: C.SCHEMA_KNOWS_ABOUT,
-      worksFor: {
-        '@type': 'Organization',
-        name: C.BROKERAGE,
-      },
-    },
-    null,
-    2
-  );
-}
-
-function localBusinessGuideSchema() {
-  return JSON.stringify(
-    {
-      '@context': 'https://schema.org',
-      '@type': ['LocalBusiness', 'RealEstateAgent'],
-      '@id': `${SITE}/#localbusiness`,
-      name: C.GBP_BUSINESS_NAME,
-      description: C.AGENT_SITE_DESCRIPTION,
-      telephone: C.PHONE_TEL,
-      email: C.EMAIL,
-      url: C.SITE,
-      image: `${SITE}/images/agents/dr-jan-duffy.jpg`,
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: C.STREET,
-        addressLocality: C.CITY,
-        addressRegion: C.REGION,
-        postalCode: C.POSTAL,
-        addressCountry: 'US',
-      },
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude: C.GEO_LAT,
-        longitude: C.GEO_LNG,
-      },
-      areaServed: [{ '@type': 'Place', name: C.SERVICE_AREA_GBP }],
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: C.RATING,
-        reviewCount: C.REVIEW_COUNT,
-        bestRating: '5',
       },
     },
     null,
@@ -960,25 +907,6 @@ function faqHtml(faqs) {
                     </div>`
     )
     .join('');
-}
-
-function faqJsonLd(faqs) {
-  return JSON.stringify(
-    {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: faqs.map((f) => ({
-        '@type': 'Question',
-        name: f.q.replace(/<[^>]+>/g, ''),
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: f.a.replace(/<[^>]+>/g, '').replace(/&mdash;/g, '—'),
-        },
-      })),
-    },
-    null,
-    2
-  );
 }
 
 function renderPage(guide) {
@@ -1014,37 +942,7 @@ function renderPage(guide) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": ${JSON.stringify(guide.h1)},
-      "description": ${JSON.stringify(guide.description)},
-      "url": ${JSON.stringify(canonical)},
-      "inLanguage": "en-US",
-      "about": { "@type": "Place", "name": ${JSON.stringify(C.SERVICE_AREA_GBP)} },
-      "author": {
-        "@type": "RealEstateAgent",
-        "name": "Dr. Jan Duffy",
-        "telephone": "+1-702-930-8222",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Berkshire Hathaway HomeServices Nevada Properties"
-        }
-      },
-      "speakable": {
-        "@type": "SpeakableSpecification",
-        "cssSelector": [".aeo-quick-answer__text"]
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-${masterPlanPlaceSchema()}
-    </script>
-    <script type="application/ld+json">
-${agentSchema()}
-    </script>
-    <script type="application/ld+json">
-${speakableHeadSchema()}
+${webPageSchema(guide, canonical)}
     </script>
     <script type="application/ld+json">
     {
@@ -1057,11 +955,8 @@ ${speakableHeadSchema()}
       ]
     }
     </script>
-    <script type="application/ld+json">
+    <script type="application/ld+json" data-guide-faq>
 ${faqJsonLd(guide.faqs)}
-    </script>
-    <script type="application/ld+json">
-${localBusinessGuideSchema()}
     </script>
 </head>
 <body>
@@ -1108,6 +1003,7 @@ ${localBusinessGuideSchema()}
                 <h2 id="aeo-answer-${guide.slug}" class="aeo-quick-answer__title">In plain terms</h2>
                 <p class="aeo-quick-answer__text">${escapeHtml(guide.quickAnswer)}</p>
                 <p class="aeo-quick-answer__meta">${escapeHtml(C.AGENT_NAME)}, ${escapeHtml(C.AGENT_TITLE)} · <a href="tel:${C.PHONE_TEL}">${escapeHtml(C.PHONE_DISPLAY)}</a> · <a href="${C.MAP_PAGE_PATH}">Office &amp; directions</a></p>
+                <p class="guide-last-updated"><time datetime="${GUIDE_LAST_UPDATED}">Last updated: ${GUIDE_LAST_UPDATED_DISPLAY}</time></p>
             </div>
         </section>
 

@@ -96,6 +96,17 @@ Start with:
 - `https://www.skyesummithomes.com/homes-for-sale-skye-summit`
 - `https://www.skyesummithomes.com/las-vegas-zip-code-map`
 
+**Master plan guide pages (request after deploy):**
+
+- `https://www.skyesummithomes.com/skye-summit-master-plan`
+- `https://www.skyesummithomes.com/skye-summit-interest-list`
+- `https://www.skyesummithomes.com/kb-home-vertice-skye-summit`
+- `https://www.skyesummithomes.com/olympia-companies-skye-summit`
+- `https://www.skyesummithomes.com/skye-summit-timeline`
+- `https://www.skyesummithomes.com/woodside-homes-skye-summit`
+
+After adding pages, **resubmit** `https://www.skyesummithomes.com/sitemap.xml` in Search Console (34 URLs as of June 2026).
+
 ## 5. Link Analytics (optional)
 
 1. Search Console → **Settings** → **Associations**
