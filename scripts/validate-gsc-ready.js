@@ -56,6 +56,35 @@ if (!fs.existsSync(sitemapPath)) {
   }
 }
 
+function listHtmlFiles(dir, out = []) {
+  for (const name of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (name.name.startsWith('.') || name.name === 'node_modules') continue;
+    const full = path.join(dir, name.name);
+    if (name.isDirectory()) {
+      listHtmlFiles(full, out);
+      continue;
+    }
+    if (name.isFile() && name.name.endsWith('.html')) {
+      out.push(full);
+    }
+  }
+  return out;
+}
+
+const trailingSlashCanonicalRe =
+  /rel=["']canonical["']\s+href=["']https:\/\/www\.skyesummithomes\.com\/[^/"']+\/["']/i;
+let trailingSlashCanonicals = 0;
+for (const filePath of listHtmlFiles(root)) {
+  const html = fs.readFileSync(filePath, 'utf8');
+  if (trailingSlashCanonicalRe.test(html)) {
+    fail(`trailing slash in canonical: ${path.relative(root, filePath)}`);
+    trailingSlashCanonicals += 1;
+  }
+}
+if (trailingSlashCanonicals === 0) {
+  ok('no trailing-slash canonicals on inner pages');
+}
+
 const verificationFile = path.join(
   root,
   'googlewKOftY7ctL98xgE1EW2r-2pYqOXyN109r4ZLLiRwQsI.html'

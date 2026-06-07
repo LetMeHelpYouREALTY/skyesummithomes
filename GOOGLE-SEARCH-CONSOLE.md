@@ -106,6 +106,33 @@ Google **should not** index those URLs — only **https://www.skyesummithomes.co
 2. In Search Console → **Page indexing** → **Page with redirect** → **Done fixing?** → **Validate fix**
 3. Allow **1–2 weeks** for recrawl; the count should drop to zero.
 
+### “Discovered – currently not indexed”
+
+Google found URLs (usually from your **sitemap**) but has **not crawled or indexed** them yet (`Last crawled: N/A`). This is common on newer or lower-authority sites — not a robots block if pages return **200** and `index, follow`.
+
+**Site fixes (this repo):**
+
+- Homepage footer links to all core service pages (internal linking)
+- `scripts/normalize-trailing-slash-urls.js` keeps canonicals aligned with `trailingSlash: false`
+- Sitemap uses www URLs without trailing slashes
+
+**Your steps in Search Console:**
+
+1. Confirm sitemap submitted: `https://www.skyesummithomes.com/sitemap.xml`
+2. **URL Inspection** → paste each priority URL → **Request indexing** (batch over a few days; Google limits daily requests):
+
+   - `/about`, `/buy`, `/sell`, `/contact`, `/community`, `/invest`
+   - `/homes-for-sale-skye-summit`, `/las-vegas-zip-code-map`
+
+3. Skip low-priority legal pages (`/privacy`, `/terms`, `/mls-disclaimer`) unless you need them in search
+4. **Page indexing → Discovered – currently not indexed** → monitor; count should fall as Google crawls after requests
+
+Re-run after deploy:
+
+```bash
+npm run build && npm run validate:gsc && npm run audit:urls
+```
+
 ## 7. Ongoing maintenance
 
 When you add a new public page:

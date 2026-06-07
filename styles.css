@@ -1189,6 +1189,30 @@ realscout-office-listings {
     gap: 1rem;
 }
 
+.footer-site-map {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.75rem;
+    max-width: 100%;
+}
+
+.footer-site-map__label {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #aaa;
+}
+
+.footer-site-map a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.8125rem;
+}
+
+.footer-site-map a:hover {
+    color: #FFD700;
+}
+
 .footer-legal {
     display: flex;
     gap: 1rem;
