@@ -2855,6 +2855,17 @@ realscout-office-listings {
     margin-top: 0.5rem;
 }
 
+.hyperlocal-accessibility {
+    margin: 0.75rem 0 0;
+    padding-left: 1.1rem;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+.hyperlocal-accessibility li {
+    margin: 0.25rem 0;
+}
+
 .gbp-action-buttons {
     display: flex;
     flex-wrap: wrap;

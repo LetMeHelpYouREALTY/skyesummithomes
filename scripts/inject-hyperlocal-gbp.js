@@ -77,6 +77,9 @@ function fullBlock() {
     (h) => `<li><strong>${h.days}:</strong> ${h.time}</li>`
   ).join('\n                        ');
   const holidayHtml = C.HOLIDAY_NOTES.map((n) => `<li>${n}</li>`).join('\n                        ');
+  const accessibilityHtml = C.ACCESSIBILITY.map(
+    (item) => `<li><i class="fas fa-universal-access" aria-hidden="true"></i> ${item}</li>`
+  ).join('\n                            ');
 
   return `
         <!-- ${MARKER} -->
@@ -107,8 +110,9 @@ function fullBlock() {
                         <p class="hyperlocal-name"><strong>${C.GBP_BUSINESS_NAME}</strong><br>${C.AGENT_NAME}, ${C.AGENT_TITLE} · ${C.AGENT_ROLE}<br>${C.BROKERAGE}</p>
                         <p><a href="tel:${C.PHONE_TEL}">${C.PHONE_DISPLAY}</a> · <a href="${C.SMS_URL}">Text</a><br><a href="mailto:${C.EMAIL}">${C.EMAIL}</a></p>
                         <p><a href="${C.MAPS_DIRECTIONS}" target="_blank" rel="noopener">${C.STREET}<br>${C.CITY}, ${C.REGION} ${C.POSTAL}</a></p>
-                        <p class="hyperlocal-license">Nevada license ${C.LICENSE} · Serving clients since 2009</p>
+                        <p class="hyperlocal-license">Nevada license ${C.LICENSE} · Licensed since ${C.OPENING_DATE_DISPLAY}</p>
                         <p><a href="${C.SOCIAL_FACEBOOK}" target="_blank" rel="noopener">Facebook</a> · <a href="${C.SOCIAL_LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a></p>
+                        <ul class="hyperlocal-accessibility">${accessibilityHtml}</ul>
                     </div>
                 </div>
                 ${actionButtons(true)}
@@ -146,6 +150,7 @@ function schemaBlock() {
         '@id': `${C.SITE}/#agent`,
         name: C.AGENT_NAME,
         jobTitle: `${C.AGENT_TITLE} · ${C.AGENT_ROLE}`,
+        description: C.GBP_DESCRIPTION,
         telephone: C.PHONE_TEL,
         email: C.EMAIL,
         url: C.SITE,
@@ -169,10 +174,19 @@ function schemaBlock() {
         sameAs: C.SAME_AS,
       },
       {
-        '@type': 'LocalBusiness',
+        '@type': ['LocalBusiness', 'RealEstateAgent'],
         '@id': `${C.SITE}/#localbusiness`,
         name: C.GBP_BUSINESS_NAME,
         description: C.GBP_DESCRIPTION,
+        areaServed: {
+          '@type': 'Place',
+          name: C.SERVICE_AREA_GBP,
+        },
+        amenityFeature: C.ACCESSIBILITY.map((name) => ({
+          '@type': 'LocationFeatureSpecification',
+          name,
+          value: true,
+        })),
         telephone: C.PHONE_TEL,
         email: C.EMAIL,
         url: C.SITE,
