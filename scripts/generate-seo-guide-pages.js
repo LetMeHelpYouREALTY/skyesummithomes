@@ -38,6 +38,254 @@ function applyGuideEnrichment(guide) {
 
 const GUIDES = [
   {
+    slug: 'skye-summit-master-plan',
+    title: 'Skye Summit Master Plan Las Vegas | 505 Acres Fall 2027 | Dr. Jan Duffy',
+    description:
+      'Skye Summit Master Plan: 505-acre Olympia Companies community coming Fall 2027 beyond the 215 Beltway. Dr. Jan Duffy is your buyer\'s representative for early-access updates. (702) 930-8222.',
+    h1: 'Skye Summit Master Plan Las Vegas',
+    heroSubtitle:
+      '505 acres · ~3,500 planned homes · Olympia Companies · coming Fall 2027 — just beyond the 215 Beltway.',
+    breadcrumbName: 'Skye Summit Master Plan',
+    quickAnswer:
+      'The Skye Summit Master Plan is a 505-acre Olympia Companies community in northwest Las Vegas, planned for about 3,500 homes with integrated parks and trail systems, coming Fall 2027. Dr. Jan Duffy is the buyer\'s representative for early-access updates—call (702) 930-8222.',
+    faqs: [
+      {
+        q: 'What is the Skye Summit Master Plan?',
+        a: 'A 505-acre master-planned community developed by Olympia Companies, with desert-conscious design, parks, trails, and about 3,500 planned homes—coming Fall 2027.',
+      },
+      {
+        q: 'Where is the Skye Summit Master Plan located?',
+        a: 'Northwest Las Vegas, just beyond the 215 Beltway. Meetings with Dr. Jan Duffy happen at the Berkshire Hathaway Southern Highlands office (89141).',
+      },
+      {
+        q: 'When will Skye Summit Master Plan homes be available?',
+        a: 'Olympia Companies targets Fall 2027 for the community launch. KB Home Vertice sales may open early 2027. See <a href="/skye-summit-timeline">Fall 2027 timeline</a>.',
+      },
+      {
+        q: 'Who is the buyer\'s representative for Skye Summit Master Plan?',
+        a: 'Dr. Jan Duffy, REALTOR® (License S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties. <a href="/contact">Join the interest list</a>.',
+      },
+    ],
+    extraSections: `
+        <section class="why-section">
+            <div class="container">
+                <h2>Master plan at a glance</h2>
+                <div class="features-grid">
+                    <div class="feature"><i class="fas fa-map"></i><h3>505 acres</h3><p>Olympia Companies master-planned community beyond the 215 Beltway.</p></div>
+                    <div class="feature"><i class="fas fa-home"></i><h3>~3,500 homes</h3><p>Desert-conscious design with integrated parks and trail systems.</p></div>
+                    <div class="feature"><i class="fas fa-calendar"></i><h3>Fall 2027</h3><p>Community launch target; KB Home Vertice may open early 2027.</p></div>
+                </div>
+                <p style="text-align:center;margin-top:1.5rem;">
+                    <a href="/contact" class="btn btn-primary">Join the interest list</a>
+                    <a href="/new-construction-skye-summit" class="btn btn-secondary">New construction guide</a>
+                </p>
+            </div>
+        </section>`,
+  },
+  {
+    slug: 'skye-summit-interest-list',
+    title: 'Skye Summit Master Plan Interest List | Early Access | Dr. Jan Duffy',
+    description:
+      'Join the Skye Summit Master Plan interest list with Dr. Jan Duffy—early-access updates on KB Home Vertice, Woodside Homes, floor plans, and Fall 2027 launch. (702) 930-8222.',
+    h1: 'Skye Summit Master Plan Interest List',
+    heroSubtitle:
+      'Get first-access updates on builders, phases, floor plans, and pricing for the 505-acre master plan coming Fall 2027.',
+    breadcrumbName: 'Interest list',
+    quickAnswer:
+      'Join Dr. Jan Duffy\'s Skye Summit Master Plan interest list for early-access updates on KB Home Vertice (sales may open early 2027), Woodside Homes, floor plans, and the Fall 2027 community launch. Call (702) 930-8222 or use the contact form.',
+    faqs: [
+      {
+        q: 'What does the Skye Summit Master Plan interest list include?',
+        a: 'Builder phase updates, floor plan releases, pricing guidance, and timeline alerts as Olympia Companies moves toward the Fall 2027 launch.',
+      },
+      {
+        q: 'Is there a cost to join the interest list?',
+        a: 'No. Joining the interest list is free. Dr. Jan Duffy provides buyer representation when you are ready to move forward.',
+      },
+      {
+        q: 'How do I join the interest list?',
+        a: '<a href="/contact">Contact form</a>, call <a href="tel:+17029308222">(702) 930-8222</a>, or text <a href="sms:+17029308222">(702) 930-8222</a>.',
+      },
+      {
+        q: 'When will I receive updates?',
+        a: 'Updates go out as builders and Olympia Companies release new information—especially around KB Home Vertice early 2027 and the Fall 2027 launch.',
+      },
+    ],
+    extraSections: `
+        <section class="why-section">
+            <div class="container">
+                <h2>Why join before launch?</h2>
+                <div class="features-grid">
+                    <div class="feature"><i class="fas fa-bell"></i><h3>Early builder news</h3><p>KB Home Vertice and Woodside Homes phase updates.</p></div>
+                    <div class="feature"><i class="fas fa-file-alt"></i><h3>Floor plans first</h3><p>See layouts and options before public release.</p></div>
+                    <div class="feature"><i class="fas fa-user-shield"></i><h3>Buyer representation</h3><p>Dr. Jan Duffy represents you—not the builder.</p></div>
+                </div>
+            </div>
+        </section>`,
+  },
+  {
+    slug: 'kb-home-vertice-skye-summit',
+    title: 'KB Home Vertice at Skye Summit | Early 2027 Sales | Dr. Jan Duffy',
+    description:
+      'KB Home Vertice at Skye Summit Master Plan: 299 homesites, sales may open early 2027. Dr. Jan Duffy provides buyer representation for the Olympia Companies community coming Fall 2027. (702) 930-8222.',
+    h1: 'KB Home Vertice at Skye Summit Master Plan',
+    heroSubtitle:
+      '299 homesites within the 505-acre Skye Summit Master Plan—sales may open early 2027 while the broader community targets Fall 2027.',
+    breadcrumbName: 'KB Home Vertice',
+    quickAnswer:
+      'KB Home Vertice at Skye Summit includes 299 homesites within the Olympia Companies master plan. Sales may open early 2027 while homesite work is underway. Dr. Jan Duffy is your buyer\'s representative—join the interest list at (702) 930-8222.',
+    faqs: [
+      {
+        q: 'When will KB Home Vertice sales open?',
+        a: 'Sales may begin early 2027 while homesite work is underway. Join the <a href="/skye-summit-interest-list">interest list</a> for alerts.',
+      },
+      {
+        q: 'How many homesites are in Vertice at Skye Summit?',
+        a: 'KB Home Vertice includes 299 homesites within the 505-acre Skye Summit Master Plan.',
+      },
+      {
+        q: 'Do I need my own agent for KB Home Vertice?',
+        a: 'Yes. The builder sales team represents the builder. Dr. Jan Duffy represents you on contracts, upgrades, and timelines.',
+      },
+      {
+        q: 'How is Vertice related to the Skye Summit Master Plan?',
+        a: 'Vertice is among the first builder phases within the Olympia Companies Skye Summit Master Plan coming Fall 2027.',
+      },
+    ],
+    extraSections: `
+        <section class="why-section">
+            <div class="container">
+                <h2>Vertice buyer checklist</h2>
+                <ul class="lead-text" style="max-width:40rem;margin:0 auto;">
+                    <li>Join the Skye Summit Master Plan interest list</li>
+                    <li>Get mortgage pre-approval from your lender</li>
+                    <li>Review floor plans and lot premiums with buyer representation</li>
+                    <li>Understand deposit, timeline, and design center options</li>
+                </ul>
+                <p style="text-align:center;margin-top:1.5rem;"><a href="/new-construction-skye-summit" class="btn btn-primary">New construction guide</a></p>
+            </div>
+        </section>`,
+  },
+  {
+    slug: 'olympia-companies-skye-summit',
+    title: 'Olympia Companies Skye Summit Master Plan | Developer Guide',
+    description:
+      'Olympia Companies is developing the 505-acre Skye Summit Master Plan in northwest Las Vegas, coming Fall 2027. Dr. Jan Duffy is your buyer\'s representative for early-access updates. (702) 930-8222.',
+    h1: 'Olympia Companies & the Skye Summit Master Plan',
+    heroSubtitle:
+      'Developer of the 505-acre Skye Summit Master Plan—integrated parks, trail systems, and about 3,500 planned homes coming Fall 2027.',
+    breadcrumbName: 'Olympia Companies',
+    quickAnswer:
+      'Olympia Companies is developing the Skye Summit Master Plan—a 505-acre community in northwest Las Vegas with desert-conscious design, parks, trails, and about 3,500 planned homes, targeting Fall 2027. Dr. Jan Duffy helps buyers track builder releases and early-access updates.',
+    faqs: [
+      {
+        q: 'Who is developing the Skye Summit Master Plan?',
+        a: 'Olympia Companies is the master developer of the 505-acre Skye Summit Master Plan beyond the 215 Beltway.',
+      },
+      {
+        q: 'Which builders are planned in Skye Summit?',
+        a: 'KB Home Vertice (299 homesites, sales may open early 2027) and Woodside Homes are among the first builders announced.',
+      },
+      {
+        q: 'When is the Skye Summit Master Plan opening?',
+        a: 'Olympia Companies lists the community as coming Fall 2027. Individual builder phases may release on staggered timelines.',
+      },
+      {
+        q: 'How do I stay updated on Olympia Companies releases?',
+        a: '<a href="/contact">Join the interest list</a> with Dr. Jan Duffy or call <a href="tel:+17029308222">(702) 930-8222</a>.',
+      },
+    ],
+    extraSections: `
+        <section class="why-section">
+            <div class="container">
+                <h2>Planned community features</h2>
+                <div class="features-grid">
+                    <div class="feature"><i class="fas fa-tree"></i><h3>Parks &amp; trails</h3><p>Integrated open space and trail systems.</p></div>
+                    <div class="feature"><i class="fas fa-leaf"></i><h3>Desert-conscious design</h3><p>Master-planned for the northwest valley environment.</p></div>
+                    <div class="feature"><i class="fas fa-users"></i><h3>~3,500 homes</h3><p>Phased builder releases across the 505-acre plan.</p></div>
+                </div>
+            </div>
+        </section>`,
+  },
+  {
+    slug: 'skye-summit-timeline',
+    title: 'Skye Summit Master Plan Timeline | Fall 2027 Launch | Dr. Jan Duffy',
+    description:
+      'Skye Summit Master Plan timeline: KB Home Vertice sales may open early 2027; Olympia Companies community launch Fall 2027. Dr. Jan Duffy tracks updates for buyers. (702) 930-8222.',
+    h1: 'Skye Summit Master Plan Timeline',
+    heroSubtitle:
+      'Key dates for the 505-acre Olympia Companies community—early 2027 builder sales and Fall 2027 master plan launch.',
+    breadcrumbName: 'Fall 2027 timeline',
+    quickAnswer:
+      'The Skye Summit Master Plan targets Fall 2027 for the Olympia Companies community launch. KB Home Vertice sales may open early 2027 while homesite work is underway. Dr. Jan Duffy maintains an interest list for timeline updates—(702) 930-8222.',
+    faqs: [
+      {
+        q: 'When is the Skye Summit Master Plan coming?',
+        a: 'Olympia Companies lists the 505-acre community as coming Fall 2027.',
+      },
+      {
+        q: 'What happens in early 2027?',
+        a: 'KB Home Vertice at Skye Summit (299 homesites) may begin sales early 2027 while homesite preparation continues.',
+      },
+      {
+        q: 'Will Woodside Homes release on the same timeline?',
+        a: 'Woodside Homes is planned among the first builders; phase timing may differ from KB Home Vertice. Join the interest list for alerts.',
+      },
+      {
+        q: 'How do I get notified of timeline changes?',
+        a: 'Dr. Jan Duffy sends interest-list updates as builders and Olympia Companies release new information. <a href="/contact">Contact</a> to join.',
+      },
+    ],
+    extraSections: `
+        <section class="why-section">
+            <div class="container">
+                <h2>Timeline overview</h2>
+                <div class="features-grid">
+                    <div class="stat-box"><h3>Early 2027</h3><p>KB Home Vertice sales may open (299 homesites)</p></div>
+                    <div class="stat-box"><h3>Fall 2027</h3><p>Olympia Companies Skye Summit Master Plan launch</p></div>
+                    <div class="stat-box"><h3>Now</h3><p>Join the interest list for first-access updates</p></div>
+                </div>
+            </div>
+        </section>`,
+  },
+  {
+    slug: 'woodside-homes-skye-summit',
+    title: 'Woodside Homes at Skye Summit Master Plan | Dr. Jan Duffy',
+    description:
+      'Woodside Homes is planned among the first builders in the Skye Summit Master Plan (505 acres, Fall 2027). Dr. Jan Duffy provides buyer representation—(702) 930-8222.',
+    h1: 'Woodside Homes at Skye Summit Master Plan',
+    heroSubtitle:
+      'Woodside Homes is planned within the Olympia Companies Skye Summit Master Plan—505 acres coming Fall 2027.',
+    breadcrumbName: 'Woodside Homes',
+    quickAnswer:
+      'Woodside Homes is planned among the first builders in the Skye Summit Master Plan—a 505-acre Olympia Companies community coming Fall 2027. Dr. Jan Duffy is your buyer\'s representative for early-access updates on Woodside phases—call (702) 930-8222.',
+    faqs: [
+      {
+        q: 'Is Woodside Homes building in Skye Summit?',
+        a: 'Woodside Homes is planned among the first builders in the Skye Summit Master Plan. Release timing will be announced by the developer and builder.',
+      },
+      {
+        q: 'How is Woodside different from KB Home Vertice?',
+        a: 'Each builder offers different floor plans, pricing, and design options within the master plan. Compare phases with buyer representation before you commit.',
+      },
+      {
+        q: 'When will Woodside Homes sales begin?',
+        a: 'Sales timing has not been publicly finalized. Join the <a href="/skye-summit-interest-list">interest list</a> for Woodside and Olympia Companies updates.',
+      },
+      {
+        q: 'Why use a buyer\'s representative for Woodside Homes?',
+        a: 'Builder sales teams represent the builder. Dr. Jan Duffy represents you on contract terms, upgrades, deposits, and walk-through items.',
+      },
+    ],
+    extraSections: `
+        <section class="why-section">
+            <div class="container">
+                <h2>Compare builders in the master plan</h2>
+                <p class="lead-text" style="text-align:center;">KB Home Vertice and Woodside Homes are among the first announced builders in the Skye Summit Master Plan. <a href="/kb-home-vertice-skye-summit">KB Home Vertice guide</a> · <a href="/olympia-companies-skye-summit">Olympia Companies guide</a></p>
+            </div>
+        </section>`,
+  },
+  {
     slug: 'skye-summit-realtor',
     title: 'Skye Summit REALTOR® | Dr. Jan Duffy | Master Plan Buyer Rep',
     description:
@@ -594,6 +842,109 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
+function masterPlanPlaceSchema() {
+  return JSON.stringify(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Place',
+      '@id': `${SITE}/#skye-summit-master-plan`,
+      name: C.SERVICE_AREA_GBP,
+      description: `${C.MASTER_PLAN_SIZE} Olympia Companies master-planned community coming ${C.MASTER_PLAN_LAUNCH}, northwest Las Vegas.`,
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: C.SKYE_SUMMIT_AREA_LAT,
+        longitude: C.SKYE_SUMMIT_AREA_LNG,
+      },
+      containedInPlace: {
+        '@type': 'City',
+        name: C.CITY,
+        addressRegion: C.REGION,
+        addressCountry: 'US',
+      },
+    },
+    null,
+    2
+  );
+}
+
+function speakableHeadSchema() {
+  return JSON.stringify(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['.aeo-quick-answer__text', 'h1'],
+      },
+    },
+    null,
+    2
+  );
+}
+
+function agentSchema() {
+  return JSON.stringify(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'RealEstateAgent',
+      '@id': `${SITE}/#agent`,
+      name: C.AGENT_NAME,
+      jobTitle: `${C.AGENT_TITLE} · ${C.AGENT_ROLE}`,
+      description: C.AGENT_SITE_DESCRIPTION,
+      telephone: C.PHONE_TEL,
+      email: C.EMAIL,
+      url: C.SITE,
+      identifier: C.LICENSE,
+      areaServed: { '@type': 'Place', name: C.SERVICE_AREA_GBP },
+      knowsAbout: C.SCHEMA_KNOWS_ABOUT,
+      worksFor: {
+        '@type': 'Organization',
+        name: C.BROKERAGE,
+      },
+    },
+    null,
+    2
+  );
+}
+
+function localBusinessGuideSchema() {
+  return JSON.stringify(
+    {
+      '@context': 'https://schema.org',
+      '@type': ['LocalBusiness', 'RealEstateAgent'],
+      '@id': `${SITE}/#localbusiness`,
+      name: C.GBP_BUSINESS_NAME,
+      description: C.AGENT_SITE_DESCRIPTION,
+      telephone: C.PHONE_TEL,
+      email: C.EMAIL,
+      url: C.SITE,
+      image: `${SITE}/images/agents/dr-jan-duffy.jpg`,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: C.STREET,
+        addressLocality: C.CITY,
+        addressRegion: C.REGION,
+        postalCode: C.POSTAL,
+        addressCountry: 'US',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: C.GEO_LAT,
+        longitude: C.GEO_LNG,
+      },
+      areaServed: [{ '@type': 'Place', name: C.SERVICE_AREA_GBP }],
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: C.RATING,
+        reviewCount: C.REVIEW_COUNT,
+        bestRating: '5',
+      },
+    },
+    null,
+    2
+  );
+}
+
 function faqHtml(faqs) {
   return faqs
     .map(
@@ -641,10 +992,13 @@ function renderPage(guide) {
     <meta name="google-site-verification" content="${GSC_TOKEN}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="${escapeHtml(guide.description)}">
-    <meta name="keywords" content="Skye Summit, Las Vegas real estate, Centennial Hills, Dr. Jan Duffy, ${escapeHtml(guide.slug.replace(/-/g, ' '))}">
+    <meta name="keywords" content="Skye Summit Master Plan, Olympia Companies, Las Vegas new construction, Dr. Jan Duffy, ${escapeHtml(guide.slug.replace(/-/g, ' '))}">
     <meta name="author" content="Dr. Jan Duffy, REALTOR®">
     <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="geo.region" content="US-NV">
+    <meta name="geo.placename" content="Skye Summit Master Plan, Las Vegas">
     <meta property="og:type" content="article">
+    <meta property="og:site_name" content="${escapeHtml(C.GBP_BUSINESS_NAME)}">
     <meta property="og:url" content="${canonical}">
     <meta property="og:title" content="${escapeHtml(guide.title)}">
     <meta property="og:description" content="${escapeHtml(guide.description)}">
@@ -667,7 +1021,7 @@ function renderPage(guide) {
       "description": ${JSON.stringify(guide.description)},
       "url": ${JSON.stringify(canonical)},
       "inLanguage": "en-US",
-      "about": { "@type": "Place", "name": "Skye Summit, Las Vegas NV" },
+      "about": { "@type": "Place", "name": ${JSON.stringify(C.SERVICE_AREA_GBP)} },
       "author": {
         "@type": "RealEstateAgent",
         "name": "Dr. Jan Duffy",
@@ -676,8 +1030,21 @@ function renderPage(guide) {
           "@type": "Organization",
           "name": "Berkshire Hathaway HomeServices Nevada Properties"
         }
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".aeo-quick-answer__text"]
       }
     }
+    </script>
+    <script type="application/ld+json">
+${masterPlanPlaceSchema()}
+    </script>
+    <script type="application/ld+json">
+${agentSchema()}
+    </script>
+    <script type="application/ld+json">
+${speakableHeadSchema()}
     </script>
     <script type="application/ld+json">
     {
@@ -694,35 +1061,7 @@ function renderPage(guide) {
 ${faqJsonLd(guide.faqs)}
     </script>
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": "${SITE}/#localbusiness",
-      "name": ${JSON.stringify(C.GBP_BUSINESS_NAME)},
-      "telephone": ${JSON.stringify(C.PHONE_TEL)},
-      "email": ${JSON.stringify(C.EMAIL)},
-      "url": ${JSON.stringify(C.SITE)},
-      "image": ${JSON.stringify(`${SITE}/images/agents/dr-jan-duffy.jpg`)},
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": ${JSON.stringify(C.STREET)},
-        "addressLocality": ${JSON.stringify(C.CITY)},
-        "addressRegion": ${JSON.stringify(C.REGION)},
-        "postalCode": ${JSON.stringify(C.POSTAL)},
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": ${C.GEO_LAT},
-        "longitude": ${C.GEO_LNG}
-      },
-      "areaServed": [
-        { "@type": "Place", "name": "Skye Summit, Las Vegas NV" },
-        { "@type": "Place", "name": "Centennial Hills, Las Vegas NV" },
-        { "@type": "Place", "name": "Northwest Las Vegas, NV" },
-        { "@type": "Place", "name": "Red Rock Canyon area, NV" }
-      ]
-    }
+${localBusinessGuideSchema()}
     </script>
 </head>
 <body>
@@ -757,8 +1096,8 @@ ${faqJsonLd(guide.faqs)}
                 <h1>${escapeHtml(guide.h1)}</h1>
                 <p class="hero-subtitle">${escapeHtml(guide.heroSubtitle)}</p>
                 <div class="hero-cta hero-cta-primary">
-                    <a href="/homes-for-sale-skye-summit" class="btn btn-secondary btn-large">View listings</a>
-                    <a href="/contact" class="btn btn-primary btn-large">Ask Dr. Jan</a>
+                    <a href="/contact" class="btn btn-primary btn-large">Join interest list</a>
+                    <a href="/skye-summit-master-plan" class="btn btn-secondary btn-large">Master plan hub</a>
                     <p class="hero-phone">Call <a href="tel:${C.PHONE_TEL}">${escapeHtml(C.PHONE_DISPLAY)}</a></p>
                 </div>
             </div>
