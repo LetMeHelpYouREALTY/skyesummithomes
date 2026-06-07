@@ -2935,6 +2935,30 @@ realscout-office-listings::part(listing-card) {
 }
 
 /* AEO quick-answer (guides + core pages) */
+.geo-context {
+    background: #f0f6fc;
+    border-top: 1px solid #dbeafe;
+    border-bottom: 1px solid #dbeafe;
+    padding: 1.25rem 0;
+}
+
+.geo-context__title {
+    font-size: 1rem;
+    color: #0A2540;
+    margin-bottom: 0.5rem;
+}
+
+.geo-context__text {
+    margin: 0;
+    color: #374151;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.geo-context__text a {
+    color: #3A8DDE;
+}
+
 .aeo-quick-answer {
     padding: 1.75rem 0;
     background: #fff;

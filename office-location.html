@@ -125,7 +125,17 @@
       }
     }
     </script>
-    <script type="application/ld+json" data-hyperlocal-gbp-schema>
+<script type="application/ld+json" data-geo-speakable>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".aeo-quick-answer__text"]
+      }
+    }
+    </script>
+<script type="application/ld+json" data-hyperlocal-gbp-schema>
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -241,6 +251,23 @@
   ]
 }
     </script>
+    <script type="application/ld+json" data-aeo-core-faq>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I get directions to the office?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open the office map for GPS coordinates and Google Maps directions."
+      }
+    }
+  ],
+  "url": "https://www.skyesummithomes.com/office-location"
+}
+    </script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -269,6 +296,22 @@
     </header>
 
     <main id="main-content" role="main">
+
+        <!-- AEO_CORE_BEGIN -->
+        <section class="aeo-quick-answer" aria-labelledby="aeo-core-office-location">
+            <div class="container">
+                <h2 id="aeo-core-office-location" class="aeo-quick-answer__title">In plain terms</h2>
+                <p class="aeo-quick-answer__text">Dr. Jan Duffy's office is at 11411 Southern Highlands Pkwy #300, Las Vegas, NV 89141 (same address shown on Google Maps). Hours Sun–Sat 9 AM–6 PM—<a href="tel:+17029308222">(702) 930-8222</a>.</p>
+                <p class="aeo-quick-answer__meta">Dr. Jan Duffy, REALTOR® · <a href="tel:+17029308222">(702) 930-8222</a> · <a href="/office-location">Office</a> · <a href="/skye-summit-faq">Guides</a></p>
+            </div>
+        </section>
+<!-- GEO_CONTEXT_BEGIN -->
+        <section class="geo-context" aria-label="Northwest Las Vegas service area">
+            <div class="container">
+                <h2 class="geo-context__title">Northwest Las Vegas &amp; Skye Summit area</h2>
+                <p class="geo-context__text">Dr. Jan Duffy serves buyers and sellers across Red Rock Canyon, Gilcrease Nature Sanctuary, Tule Springs Fossil Beds, Holy Mountain, Humboldt-Toiyabe National Forest, Centennial Hills, and nearby northwest Las Vegas communities. <a href="/las-vegas-zip-code-map">Search by zip code</a> or <a href="/contact">schedule a consult</a>.</p>
+            </div>
+        </section>
         <nav class="breadcrumb-nav container" aria-label="Breadcrumb">
             <a href="/">Home</a> &rsaquo; <a href="/contact">Contact</a> &rsaquo; <span aria-current="page">Office location</span>
         </nav>
@@ -338,6 +381,23 @@
         </section>
 
         <!-- HYPERLOCAL_GBP_BEGIN -->
+        
+        <section class="faq-section aeo-core-faq" aria-labelledby="aeo-faq-title">
+            <div class="container">
+                <h2 id="aeo-faq-title">Questions about this page</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>How do I get directions to the office?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p><a href="/office-location">Open the office map</a> for GPS coordinates and Google Maps directions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="hyperlocal-gbp" class="hyperlocal-gbp-section" aria-labelledby="hyperlocal-gbp-title">
             <div class="container">
                 <p class="hyperlocal-kicker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Skye Summit · Northwest Las Vegas</p>

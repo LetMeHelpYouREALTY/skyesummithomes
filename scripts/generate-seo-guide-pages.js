@@ -14,6 +14,28 @@ const root = path.join(__dirname, '..');
 const SITE = C.SITE;
 const GSC_TOKEN = 'wKOftY7ctL98xgE1EW2r-2pYqOXyN109r4ZLLiRwQsI';
 
+const enrichmentPath = path.join(root, 'lib/parallel-seo-enrichment.json');
+let guideEnrichment = {};
+if (fs.existsSync(enrichmentPath)) {
+  try {
+    guideEnrichment = JSON.parse(fs.readFileSync(enrichmentPath, 'utf8')).guidePages || {};
+  } catch {
+    guideEnrichment = {};
+  }
+}
+
+function applyGuideEnrichment(guide) {
+  const overlay = guideEnrichment[guide.slug];
+  if (!overlay) return guide;
+  const next = { ...guide };
+  if (overlay.quickAnswer) next.quickAnswer = overlay.quickAnswer;
+  if (overlay.faqs?.length) {
+    next.faqs = [...(guide.faqs || []), ...overlay.faqs].slice(0, 6);
+  }
+  if (overlay.description) next.description = overlay.description;
+  return next;
+}
+
 const GUIDES = [
   {
     slug: 'skye-summit-realtor',
@@ -694,7 +716,12 @@ ${faqJsonLd(guide.faqs)}
         "latitude": ${C.GEO_LAT},
         "longitude": ${C.GEO_LNG}
       },
-      "areaServed": { "@type": "Place", "name": "Skye Summit and Centennial Hills, Las Vegas NV" }
+      "areaServed": [
+        { "@type": "Place", "name": "Skye Summit, Las Vegas NV" },
+        { "@type": "Place", "name": "Centennial Hills, Las Vegas NV" },
+        { "@type": "Place", "name": "Northwest Las Vegas, NV" },
+        { "@type": "Place", "name": "Red Rock Canyon area, NV" }
+      ]
     }
     </script>
 </head>
@@ -828,8 +855,9 @@ ${guideFooterListHtml()}
 
 let written = 0;
 for (const guide of GUIDES) {
-  const out = path.join(root, `${guide.slug}.html`);
-  fs.writeFileSync(out, renderPage(guide));
+  const enriched = applyGuideEnrichment(guide);
+  const out = path.join(root, `${enriched.slug}.html`);
+  fs.writeFileSync(out, renderPage(enriched));
   written += 1;
 }
 

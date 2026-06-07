@@ -1,0 +1,215 @@
+{
+  "generatedAt": "2026-06-07",
+  "sources": [
+    "parallel-task-api",
+    "parallel-search-api"
+  ],
+  "geoKeywords": [
+    "Skye Summit",
+    "Northwest Las Vegas",
+    "Red Rock Canyon",
+    "Centennial Hills",
+    "Skye Canyon",
+    "Tule Springs Fossil Beds",
+    "Gilcrease Nature Sanctuary",
+    "Holy Mountain",
+    "Humboldt-Toiyabe National Forest",
+    "Floyd Lamb State Park",
+    "Gilcrease Orchard",
+    "215 Beltway"
+  ],
+  "localEntities": [
+    "Red Rock Canyon",
+    "Gilcrease Nature Sanctuary",
+    "Tule Springs Fossil Beds",
+    "Holy Mountain",
+    "Humboldt-Toiyabe National Forest",
+    "Centennial Hills",
+    "Skye Canyon",
+    "Skye Summit master-plan infrastructure",
+    "Floyd Lamb State Park",
+    "Gilcrease Orchard",
+    "local Centennial Hills dining/coffee spots"
+  ],
+  "aeoRecommendations": [
+    "Focus on entities and authoritative answers for AI-driven search (Perplexity, Gemini, GPT-5).",
+    "Implement a 'Conversational Q&A Layout' throughout the site.",
+    "Ensure every page starts with a 2-3 sentence 'Quick Answer' summary (TL;DR).",
+    "Use explicit entity linking, e.g., 'Located just minutes from Red Rock Canyon', to help AI map geographical entities.",
+    "Implement JSON-LD schema markup for `RealEstateListing`, `Place`/`LocalBusiness`, `FAQPage`, `Person`, and `BreadcrumbList`."
+  ],
+  "corePages": {
+    "index.html": {
+      "quickAnswer": "Dr. Jan Duffy is a Berkshire Hathaway HomeServices REALTOR® specializing in Skye Summit and northwest Las Vegas, with local expertise since 2009. Browse new construction and resale homes near Red Rock Canyon and Centennial Hills—call (702) 930-8222.",
+      "faqs": [
+        {
+          "q": "Why choose Dr. Jan Duffy for Skye Summit?",
+          "a": "Dr. Jan Duffy focuses on Skye Summit and northwest Las Vegas buyer and seller representation, including new construction and resale, with 15+ years of local experience."
+        },
+        {
+          "q": "What makes Skye Summit different from other LV master-plans?",
+          "a": "Skye Summit distinguishes itself with its prime location beside Red Rock Canyon, offering cooler air, scenic trails, and ample space, setting it apart from other master-planned communities in Las Vegas."
+        },
+        {
+          "q": "How do I get a private tour of new construction?",
+          "a": "Contact Dr. Jan Duffy directly to arrange a private tour of new construction homes in Skye Summit, leveraging her expertise to secure your preferred lot and floor plan."
+        }
+      ],
+      "source": "parallel-task"
+    },
+    "buy.html": {
+      "quickAnswer": "Explore new construction homes in Skye Summit with Dr. Jan Duffy, your expert guide to base prices, build timelines, and securing pre-construction lots in this Las Vegas community.",
+      "faqs": [
+        {
+          "q": "What are the base prices for Skye Summit homes?",
+          "a": "Base prices for Skye Summit homes vary by builder and floor plan; contact Dr. Jan Duffy for the latest pricing information and available inventory."
+        },
+        {
+          "q": "What is the estimated build timeline for 2026?",
+          "a": "The estimated build timeline for new construction homes in Skye Summit in 2026 typically ranges from 6 to 12 months after lot securing and contract signing, subject to builder schedules and material availability."
+        },
+        {
+          "q": "How do I secure a pre-construction lot?",
+          "a": "Securing a pre-construction lot in Skye Summit involves working closely with Dr. Jan Duffy to navigate builder lotteries, deposit requirements, and contract negotiations."
+        }
+      ],
+      "source": "parallel-task"
+    },
+    "sell.html": {
+      "quickAnswer": "Maximize your equity and attract buyers for your Skye Summit home with Dr. Jan Duffy's expert marketing strategies, leveraging local demand and the community's unique lifestyle appeal.",
+      "faqs": [
+        {
+          "q": "What is the current demand for homes in Northwest Las Vegas?",
+          "a": "Demand for homes in Northwest Las Vegas, particularly in master-planned communities like Skye Summit, remains strong due to its desirable location and amenities."
+        },
+        {
+          "q": "How does the proximity to Red Rock Canyon affect property value?",
+          "a": "The proximity to Red Rock Canyon significantly enhances property values in Skye Summit by offering unique lifestyle benefits and natural beauty that are highly sought after by buyers."
+        },
+        {
+          "q": "How can I maximize equity in a new development?",
+          "a": "Maximizing equity in a new development like Skye Summit involves strategic upgrades, understanding market trends, and timing your sale effectively, all guided by Dr. Jan Duffy's expertise."
+        }
+      ],
+      "source": "parallel-task"
+    },
+    "community.html": {
+      "quickAnswer": "Discover the vibrant lifestyle and amenities surrounding Skye Summit, from hiking trails near Red Rock Canyon to schools and planned community features in Centennial Hills.",
+      "faqs": [
+        {
+          "q": "Where are the best hiking trails near Skye Summit?",
+          "a": "The best hiking trails near Skye Summit are found in the adjacent Red Rock Canyon National Conservation Area, offering diverse routes for all skill levels."
+        },
+        {
+          "q": "Which schools serve the Centennial Hills/Skye Summit area?",
+          "a": "The Centennial Hills and Skye Summit areas are served by a range of public and private schools, with specific school assignments depending on the exact address within the community."
+        },
+        {
+          "q": "What amenities are planned for the new master-plan?",
+          "a": "The Skye Summit master-plan includes a variety of amenities designed for residents, with details on parks, recreational facilities, and community spaces being released as development progresses."
+        }
+      ],
+      "source": "parallel-task"
+    },
+    "invest.html": {
+      "quickAnswer": "Explore investment opportunities in Skye Summit, Las Vegas, with Dr. Jan Duffy, focusing on projected ROI, appreciation potential, and the impact of regional growth on property values.",
+      "faqs": [
+        {
+          "q": "What is the projected ROI for new construction in Northwest LV?",
+          "a": "Projected ROI for new construction in Northwest Las Vegas, including Skye Summit, is influenced by market demand, builder incentives, and long-term economic growth trends."
+        },
+        {
+          "q": "How does the growth of the 215 Beltway impact property values here?",
+          "a": "The growth and accessibility improvements of the 215 Beltway significantly enhance property values in areas like Skye Summit by improving commute times and access to employment centers."
+        },
+        {
+          "q": "Which lots have the highest appreciation potential?",
+          "a": "Lots with the highest appreciation potential in Skye Summit are typically those offering premium views, desirable locations within the community, or proximity to planned amenities."
+        }
+      ],
+      "source": "parallel-task"
+    }
+  },
+  "guidePages": {
+    "skye-summit-hoa": {
+      "quickAnswer": "Skye Summit HOA rules and fees vary by phase and builder. Review governing documents before you buy, and ask about rentals, landscaping, and amenity access. Dr. Jan Duffy helps buyers compare HOA packages\u2014(702) 930-8222.",
+      "faqs": [
+        {
+          "q": "What do Skye Summit HOA fees typically cover?",
+          "a": "Coverage varies by phase\u2014often landscaping, common areas, and shared amenities. Request the current budget and reserve study for your specific subdivision."
+        },
+        {
+          "q": "Are short-term rentals allowed in Skye Summit?",
+          "a": "Rental rules are set by each HOA. Verify short-term rental restrictions in writing before closing."
+        }
+      ]
+    },
+    "skye-summit-schools": {
+      "quickAnswer": "Skye Summit and Centennial Hills are served by Clark County School District schools assigned by address. Confirm your zoned schools before you buy\u2014see our schools guide or call (702) 930-8222.",
+      "faqs": [
+        {
+          "q": "How do I find which schools serve a Skye Summit address?",
+          "a": "Use CCSD zoning tools with the exact street address, then tour schools in person when possible."
+        },
+        {
+          "q": "Are charter or private options nearby?",
+          "a": "Northwest Las Vegas has charter and private choices within a reasonable drive of Centennial Hills."
+        }
+      ]
+    },
+    "skye-summit-vs-summerlin": {
+      "quickAnswer": "Skye Summit offers northwest Las Vegas new construction and elevation near Red Rock Canyon; Summerlin is a larger established master plan with different price points and commute patterns. Compare lifestyle, HOA structure, and total cost with Dr. Jan Duffy.",
+      "faqs": [
+        {
+          "q": "Is Skye Summit less expensive than Summerlin?",
+          "a": "Pricing depends on phase, view, and product type. Compare similar square footage and HOA totals\u2014not list price alone."
+        }
+      ]
+    },
+    "skye-summit-home-prices": {
+      "quickAnswer": "Skye Summit home prices reflect builder base price, lot premium, elevation, and resale competition in northwest Las Vegas. For a current range on your target phase, request a market snapshot at (702) 930-8222.",
+      "faqs": [
+        {
+          "q": "What drives price differences within Skye Summit?",
+          "a": "Lot location, view, elevation, builder, and included upgrades are the main variables."
+        }
+      ]
+    },
+    "new-construction-skye-summit": {
+      "quickAnswer": "New construction in Skye Summit includes multiple builders and phases west of Centennial Hills. Bring buyer representation before you sign a builder contract\u2014call Dr. Jan Duffy at (702) 930-8222.",
+      "faqs": [
+        {
+          "q": "Do I need my own agent for builder sales?",
+          "a": "Yes. The on-site sales team represents the builder. Your agent protects your deposit, timeline, and upgrade credits."
+        }
+      ]
+    },
+    "living-in-skye-summit": {
+      "quickAnswer": "Living in Skye Summit means northwest Las Vegas elevation, trail access toward Red Rock Canyon, and a master-planned community feel in Centennial Hills. Explore lifestyle, commute, and amenities here or schedule a tour.",
+      "faqs": [
+        {
+          "q": "How is the climate compared to central Las Vegas?",
+          "a": "Higher elevation often feels slightly cooler than the Strip corridor\u2014visit at different times of day before you decide."
+        }
+      ]
+    },
+    "northwest-las-vegas-real-estate": {
+      "quickAnswer": "Northwest Las Vegas real estate includes Skye Summit, Centennial Hills, and communities along the 215 Beltway with access to Red Rock Canyon recreation. Dr. Jan Duffy focuses on this corridor\u2014(702) 930-8222.",
+      "faqs": []
+    },
+    "centennial-hills-real-estate": {
+      "quickAnswer": "Centennial Hills offers northwest Las Vegas shopping, medical, and recreation with proximity to Skye Summit and Skye Canyon. Dr. Jan Duffy helps buyers and sellers across the corridor.",
+      "faqs": []
+    }
+  },
+  "utilityPages": {
+    "blog.html": {
+      "quickAnswer": "Insider notes on Skye Summit and northwest Las Vegas real estate from Dr. Jan Duffy\u2014market updates, community tips, and buyer/seller guides.",
+      "faqs": []
+    },
+    "office-location.html": {
+      "quickAnswer": "Dr. Jan Duffy's office is at 11411 Southern Highlands Pkwy #300, Las Vegas, NV 89141 (same address shown on Google Maps). Hours Sun\u2013Sat 9 AM\u20136 PM\u2014(702) 930-8222.",
+      "faqs": []
+    }
+  }
+}

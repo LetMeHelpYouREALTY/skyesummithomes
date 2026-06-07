@@ -10,8 +10,34 @@ const C = require('../lib/gbp-constants');
 
 const root = path.join(__dirname, '..');
 const MARKER = 'AEO_CORE_BEGIN';
+const enrichmentPath = path.join(root, 'lib/parallel-seo-enrichment.json');
 
-const CORE_PAGES = {
+function mergeParallelEnrichment(pages) {
+  if (!fs.existsSync(enrichmentPath)) return pages;
+  try {
+    const data = JSON.parse(fs.readFileSync(enrichmentPath, 'utf8'));
+    const merged = { ...pages };
+    for (const [fileName, overlay] of Object.entries(data.corePages || {})) {
+      if (!merged[fileName]) continue;
+      merged[fileName] = {
+        ...merged[fileName],
+        quickAnswer: overlay.quickAnswer || merged[fileName].quickAnswer,
+        faqs: overlay.faqs?.length ? overlay.faqs : merged[fileName].faqs,
+      };
+    }
+    for (const [fileName, overlay] of Object.entries(data.utilityPages || {})) {
+      if (!merged[fileName]) {
+        merged[fileName] = overlay;
+      }
+    }
+    return merged;
+  } catch (e) {
+    console.warn('enhance-core-pages-aeo: parallel enrichment load failed', e.message);
+    return pages;
+  }
+}
+
+const CORE_PAGES = mergeParallelEnrichment({
   'about.html': {
     quickAnswer:
       'Dr. Jan Duffy is a Las Vegas REALTOR® (license S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties, specializing in Skye Summit and northwest Las Vegas since 2009. Call (702) 930-8222 or visit the office at 11411 Southern Highlands Pkwy #300, Las Vegas.',
@@ -188,7 +214,27 @@ const CORE_PAGES = {
       },
     ],
   },
-};
+  'blog.html': {
+    quickAnswer:
+      'Insider notes on Skye Summit and northwest Las Vegas real estate from Dr. Jan Duffy—market updates, community tips, and buyer/seller guides. Call (702) 930-8222.',
+    faqs: [
+      {
+        q: 'What topics does the blog cover?',
+        a: 'Skye Summit lifestyle, market trends, buyer tips, and seller prep for northwest Las Vegas.',
+      },
+    ],
+  },
+  'office-location.html': {
+    quickAnswer:
+      `Dr. Jan Duffy's office is at ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL} (${C.LABEL_OFFICE_SAME_AS_GOOGLE}). Hours Sun–Sat 9 AM–6 PM—<a href="tel:${C.PHONE_TEL}">${C.PHONE_DISPLAY}</a>.`,
+    faqs: [
+      {
+        q: 'How do I get directions to the office?',
+        a: `<a href="${C.MAP_PAGE_PATH}">Open the office map</a> for GPS coordinates and Google Maps directions.`,
+      },
+    ],
+  },
+});
 
 function faqHtml(faqs) {
   return faqs

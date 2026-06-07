@@ -30,7 +30,17 @@
     <link rel="preload" href="script.js" as="script">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script type="application/ld+json" data-hyperlocal-gbp-schema>
+<script type="application/ld+json" data-geo-speakable>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".aeo-quick-answer__text"]
+      }
+    }
+    </script>
+<script type="application/ld+json" data-hyperlocal-gbp-schema>
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -146,6 +156,23 @@
   ]
 }
     </script>
+    <script type="application/ld+json" data-aeo-core-faq>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What topics does the blog cover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Skye Summit lifestyle, market trends, buyer tips, and seller prep for northwest Las Vegas."
+      }
+    }
+  ],
+  "url": "https://www.skyesummithomes.com/blog"
+}
+    </script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -182,6 +209,22 @@
                     <a href="/buy" class="btn btn-primary btn-large">Buyer Services</a>
                     <p class="hero-phone"><a href="tel:+17029308222">(702) 930-8222</a></p>
                 </div>
+            </div>
+        </section>
+
+        <!-- AEO_CORE_BEGIN -->
+        <section class="aeo-quick-answer" aria-labelledby="aeo-core-blog">
+            <div class="container">
+                <h2 id="aeo-core-blog" class="aeo-quick-answer__title">In plain terms</h2>
+                <p class="aeo-quick-answer__text">Insider notes on Skye Summit and northwest Las Vegas real estate from Dr. Jan Duffy—market updates, community tips, and buyer/seller guides. Call (702) 930-8222.</p>
+                <p class="aeo-quick-answer__meta">Dr. Jan Duffy, REALTOR® · <a href="tel:+17029308222">(702) 930-8222</a> · <a href="/office-location">Office</a> · <a href="/skye-summit-faq">Guides</a></p>
+            </div>
+        </section>
+<!-- GEO_CONTEXT_BEGIN -->
+        <section class="geo-context" aria-label="Northwest Las Vegas service area">
+            <div class="container">
+                <h2 class="geo-context__title">Northwest Las Vegas &amp; Skye Summit area</h2>
+                <p class="geo-context__text">Dr. Jan Duffy serves buyers and sellers across Red Rock Canyon, Gilcrease Nature Sanctuary, Tule Springs Fossil Beds, Holy Mountain, Humboldt-Toiyabe National Forest, Centennial Hills, and nearby northwest Las Vegas communities. <a href="/las-vegas-zip-code-map">Search by zip code</a> or <a href="/contact">schedule a consult</a>.</p>
             </div>
         </section>
 
@@ -253,6 +296,23 @@
         </section>
 
         <!-- HYPERLOCAL_GBP_BEGIN -->
+        
+        <section class="faq-section aeo-core-faq" aria-labelledby="aeo-faq-title">
+            <div class="container">
+                <h2 id="aeo-faq-title">Questions about this page</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>What topics does the blog cover?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Skye Summit lifestyle, market trends, buyer tips, and seller prep for northwest Las Vegas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="hyperlocal-gbp" class="hyperlocal-gbp-section" aria-labelledby="hyperlocal-gbp-title">
             <div class="container">
                 <p class="hyperlocal-kicker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Skye Summit · Northwest Las Vegas</p>

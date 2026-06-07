@@ -98,6 +98,14 @@
         "@type": "Answer",
         "text": "Both are master-planned with strong amenities. Skye Summit emphasizes elevation and newer-build inventory in the Centennial Hills corridor; Summerlin offers a larger established west-side footprint. Tour both if you are new to Las Vegas."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the climate compared to central Las Vegas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Higher elevation often feels slightly cooler than the Strip corridor—visit at different times of day before you decide."
+      }
     }
   ]
 }
@@ -125,7 +133,22 @@
         "latitude": 36.017598,
         "longitude": -115.20417
       },
-      "areaServed": { "@type": "Place", "name": "Skye Summit and Centennial Hills, Las Vegas NV" }
+      "areaServed": [
+        { "@type": "Place", "name": "Skye Summit, Las Vegas NV" },
+        { "@type": "Place", "name": "Centennial Hills, Las Vegas NV" },
+        { "@type": "Place", "name": "Northwest Las Vegas, NV" },
+        { "@type": "Place", "name": "Red Rock Canyon area, NV" }
+      ]
+    }
+    </script>
+    <script type="application/ld+json" data-geo-speakable>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".aeo-quick-answer__text"]
+      }
     }
     </script>
     <script type="application/ld+json" data-hyperlocal-gbp-schema>
@@ -287,8 +310,15 @@
         <section class="aeo-quick-answer" aria-labelledby="aeo-answer-living-in-skye-summit">
             <div class="container">
                 <h2 id="aeo-answer-living-in-skye-summit" class="aeo-quick-answer__title">In plain terms</h2>
-                <p class="aeo-quick-answer__text">Living in Skye Summit means elevated northwest Las Vegas lifestyle: cooler evenings near 3,200 ft, trails and parks, Centennial Hills shopping nearby, and commutes that vary by route and time of day. Tour phases to match your daily routine.</p>
+                <p class="aeo-quick-answer__text">Living in Skye Summit means northwest Las Vegas elevation, trail access toward Red Rock Canyon, and a master-planned community feel in Centennial Hills. Explore lifestyle, commute, and amenities here or schedule a tour.</p>
                 <p class="aeo-quick-answer__meta">Dr. Jan Duffy, REALTOR® · <a href="tel:+17029308222">(702) 930-8222</a> · <a href="/office-location">Office &amp; directions</a></p>
+            </div>
+        </section>
+        <!-- GEO_CONTEXT_BEGIN -->
+        <section class="geo-context" aria-label="Northwest Las Vegas service area">
+            <div class="container">
+                <h2 class="geo-context__title">Northwest Las Vegas &amp; Skye Summit area</h2>
+                <p class="geo-context__text">Dr. Jan Duffy serves buyers and sellers across Red Rock Canyon, Gilcrease Nature Sanctuary, Tule Springs Fossil Beds, Holy Mountain, Humboldt-Toiyabe National Forest, Centennial Hills, and nearby northwest Las Vegas communities. <a href="/las-vegas-zip-code-map">Search by zip code</a> or <a href="/contact">schedule a consult</a>.</p>
             </div>
         </section>
 
@@ -339,6 +369,15 @@
                         </button>
                         <div class="faq-answer">
                             <p>Both are master-planned with strong amenities. Skye Summit emphasizes elevation and newer-build inventory in the Centennial Hills corridor; Summerlin offers a larger established west-side footprint. Tour both if you are new to Las Vegas.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>How is the climate compared to central Las Vegas?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Higher elevation often feels slightly cooler than the Strip corridor—visit at different times of day before you decide.</p>
                         </div>
                     </div>
                 </div>
