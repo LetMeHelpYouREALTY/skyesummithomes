@@ -1,17 +1,13 @@
 User-agent: *
 Allow: /
 
-Crawl-delay: 1
-
-# Sitemap location
+# Sitemap (submit this URL in Google Search Console)
 Sitemap: https://www.skyesummithomes.com/sitemap.xml
 
-# Site uses flat HTML at root; only list paths that exist as pages or assets.
-Allow: /styles.css
-Allow: /script.js
-Allow: /sw.js
+# API routes are not public pages
+Disallow: /api/
 
-# Disallow non-existent admin areas (if added later, tighten as needed)
+# Block non-existent admin areas if added later
 Disallow: /admin/
 Disallow: /private/
 Disallow: /temp/
