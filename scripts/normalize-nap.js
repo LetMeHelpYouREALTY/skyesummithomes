@@ -58,7 +58,23 @@ const REPLACEMENTS = [
   ['"name": "Dr. Jan Duffy Real Estate"', `"name": ${JSON.stringify(C.GBP_BUSINESS_NAME)}`],
   [
     'Service area: Las Vegas, NV 89141 and Skye Summit · Centennial Hills · Northwest Las Vegas',
+    `Office: ${C.POSTAL} · Markets served: ${C.SERVICE_AREA_MARKETS_VISIBLE}`,
+  ],
+  [
     'Office: Las Vegas, NV 89141 · Serves Skye Summit, Centennial Hills & northwest Las Vegas (89166 area)',
+    `Office: ${C.POSTAL} · Markets served: ${C.SERVICE_AREA_MARKETS_VISIBLE}`,
+  ],
+  [
+    'Primary service area: Las Vegas, NV 89141, USA · Office serves Skye Summit, Centennial Hills & northwest Las Vegas (89166 area)',
+    `Office: ${C.POSTAL} · Markets served: ${C.SERVICE_AREA_MARKETS_VISIBLE}`,
+  ],
+  [
+    '<strong>Primary service area:</strong> Las Vegas, NV 89141, USA ·',
+    `<strong>Office:</strong> ${C.CITY}, ${C.REGION} ${C.POSTAL} · <strong>Markets served:</strong> ${C.SERVICE_AREA_MARKETS_VISIBLE} ·`,
+  ],
+  [
+    '<strong>Service area:</strong> Las Vegas, NV 89141, USA',
+    `<strong>Office:</strong> ${C.POSTAL} · <strong>Serves:</strong> ${C.SERVICE_AREA_MARKETS_VISIBLE}`,
   ],
   [
     'Serving clients since 2009',

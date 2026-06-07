@@ -365,12 +365,24 @@ body {
 
 .hero-subtitle {
     font-size: clamp(1rem, 2.2vw, 1.2rem);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     color: #F0F4F8;
     max-width: 42rem;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.55;
+}
+
+.hero-office-line {
+    font-size: clamp(0.92rem, 1.8vw, 1.05rem);
+    margin: 0 auto 2rem;
+    max-width: 42rem;
+    line-height: 1.5;
+    color: rgba(240, 244, 248, 0.92);
+    padding: 0.65rem 1rem;
+    border-left: 3px solid rgba(212, 175, 55, 0.85);
+    background: rgba(10, 37, 64, 0.35);
+    text-align: left;
 }
 
 .hero-buttons {

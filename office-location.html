@@ -75,6 +75,22 @@
         .loc-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1rem; }
         .loc-nap p { margin: 0.35rem 0; line-height: 1.5; }
         .loc-hours ul { margin: 0; padding-left: 1.1rem; }
+        .loc-markets ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
+        .loc-gbp-tip {
+            margin-top: 1.25rem;
+            padding: 1rem 1.15rem;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #475569;
+        }
+        .loc-gbp-tip summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: #0A2540;
+        }
+        .loc-gbp-tip ul { margin: 0.75rem 0 0; padding-left: 1.1rem; }
         .breadcrumb-nav { padding: 1rem 0 0; font-size: 0.9rem; }
         .breadcrumb-nav a { color: #2563eb; }
         .sr-only {
@@ -179,6 +195,10 @@
         },
         {
           "@type": "Place",
+          "name": "Skye Canyon, Las Vegas NV"
+        },
+        {
+          "@type": "Place",
           "name": "Centennial Hills, Las Vegas NV"
         },
         {
@@ -222,10 +242,44 @@
       "@id": "https://www.skyesummithomes.com/#localbusiness",
       "name": "Skye Summit | Homes by Dr. Jan Duffy",
       "description": "Dr. Jan Duffy, licensed Nevada Realtor since 2009, specializes in northwest Las Vegas luxury real estate. Expert in Skye Summit homes, Summerlin properties, and Henderson communities. Comprehensive services include buyer representation, luxury home marketing, investment property consultation, and relocation assistance. Known for market expertise, skilled negotiation, and personalized client service. Free property valuations and market analysis available. Schedule your consultation today to discover why clients choose Dr. Duffy for their real estate needs",
-      "areaServed": {
-        "@type": "Place",
-        "name": "Las Vegas, NV 89141, USA"
-      },
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Las Vegas, NV 89141, USA"
+        },
+        {
+          "@type": "Place",
+          "name": "Skye Summit, Las Vegas NV"
+        },
+        {
+          "@type": "Place",
+          "name": "Skye Canyon, Las Vegas NV"
+        },
+        {
+          "@type": "Place",
+          "name": "Centennial Hills, Las Vegas NV"
+        },
+        {
+          "@type": "Place",
+          "name": "Northwest Las Vegas, Las Vegas NV"
+        },
+        {
+          "@type": "Place",
+          "name": "Southern Highlands, Las Vegas NV"
+        },
+        {
+          "@type": "Place",
+          "name": "The Summit at Skye, Las Vegas NV"
+        },
+        {
+          "@type": "Place",
+          "name": "Summerlin, Las Vegas NV"
+        },
+        {
+          "@type": "Place",
+          "name": "Henderson, Las Vegas NV"
+        }
+      ],
       "amenityFeature": [
         {
           "@type": "LocationFeatureSpecification",
@@ -388,7 +442,28 @@
                             <li>Wheelchair accessible entrance</li>
                             <li>Wheelchair accessible parking lot</li>
                         </ul>
-                        <p style="margin-top:0.75rem;font-size:0.9rem;color:#64748b;">Primary service area: Las Vegas, NV 89141, USA · Office serves Skye Summit, Centennial Hills &amp; northwest Las Vegas (89166 area)</p>
+                        <p style="margin-top:0.75rem;font-size:0.9rem;color:#64748b;"><strong>Office:</strong> Las Vegas, NV 89141 · <strong>Markets served:</strong> Skye Summit · Skye Canyon · Centennial Hills · Northwest Las Vegas (89166) · Summerlin · Henderson</p>
+                    </div>
+                    <div class="loc-card loc-markets" style="margin-top:1.25rem;">
+                        <h2><i class="fas fa-map" aria-hidden="true"></i> Markets we serve</h2>
+                        <p>Dr. Jan Duffy is your buyer's representative for northwest Las Vegas real estate—from the upcoming Skye Summit master plan to nearby Skye Canyon and Centennial Hills resales (89166)—while meetings and closings happen at the Berkshire Hathaway office above.</p>
+                        <ul>
+                            <li>Skye Summit &amp; Skye Canyon (89166)</li>
+                            <li>Centennial Hills &amp; northwest Las Vegas</li>
+                            <li>Summerlin &amp; Henderson (per your Google listing)</li>
+                        </ul>
+                        <details class="loc-gbp-tip">
+                            <summary>Google Business Profile: recommended service areas to add</summary>
+                            <p>Keep your office address at 11411 Southern Highlands Pkwy #300, Las Vegas, NV 89141. In Google Business Profile → Service areas, add:</p>
+                            <ul>
+                                <li>Northwest Las Vegas, NV</li>
+                                <li>Centennial Hills, Las Vegas, NV</li>
+                                <li>Skye Canyon, Las Vegas, NV</li>
+                                <li>89166</li>
+                                <li>Summerlin, NV</li>
+                                <li>Henderson, NV</li>
+                            </ul>
+                        </details>
                     </div>
                 </div>
                 <div class="loc-card" style="padding:0;overflow:hidden;">
@@ -467,7 +542,7 @@
                         <iframe title="Dr. Jan Duffy office — 11411 Southern Highlands Pkwy #300, Las Vegas" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="600" height="280" src="https://www.google.com/maps?q=11411+Southern+Highlands+Pkwy+%23300+Las+Vegas+NV+89141&output=embed"></iframe>
                     </div>
                 </div>
-                <p class="hyperlocal-areas"><strong>Primary service area:</strong> Las Vegas, NV 89141, USA · <a href="/office-location">Office map &amp; directions</a> · <a href="/skye-summit-realtor">About Dr. Jan</a> · <a href="/skye-summit-faq">FAQ</a></p>
+                <p class="hyperlocal-areas"><strong>Office:</strong> Las Vegas, NV 89141 · <strong>Markets served:</strong> Skye Summit · Skye Canyon · Centennial Hills · Northwest Las Vegas (89166) · Summerlin · Henderson · <a href="/office-location">Office map &amp; directions</a> · <a href="/skye-summit-realtor">About Dr. Jan</a> · <a href="/skye-summit-faq">FAQ</a></p>
             </div>
         </section>
     </main>

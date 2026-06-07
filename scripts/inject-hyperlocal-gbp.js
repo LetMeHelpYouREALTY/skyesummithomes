@@ -47,6 +47,14 @@ function listHtmlFiles(dir, out = []) {
   return out;
 }
 
+function hyperlocalAreasLine() {
+  return `<strong>Office:</strong> ${C.CITY}, ${C.REGION} ${C.POSTAL} · <strong>Markets served:</strong> ${C.SERVICE_AREA_MARKETS_VISIBLE} · <a href="${C.MAP_PAGE_PATH}">Office map &amp; directions</a> · <a href="/skye-summit-realtor">About Dr. Jan</a> · <a href="/skye-summit-faq">FAQ</a>`;
+}
+
+function compactAreasLine() {
+  return `<strong>Office:</strong> ${C.POSTAL} · <strong>Serves:</strong> ${C.SERVICE_AREA_MARKETS_VISIBLE}`;
+}
+
 function actionButtons(large = false) {
   const size = large ? ' btn-large' : '';
   return `
@@ -67,7 +75,7 @@ function compactBlock() {
                 <h2 id="hyperlocal-gbp-title">${C.GBP_BUSINESS_NAME}</h2>
                 <p class="hyperlocal-lead">${C.HYPERLOCAL_LEAD}</p>
                 ${actionButtons(false)}
-                <p class="hyperlocal-areas"><strong>Service area:</strong> ${C.SERVICE_AREA_GBP}</p>
+                <p class="hyperlocal-areas">${compactAreasLine()}</p>
             </div>
         </section>`;
 }
@@ -129,9 +137,19 @@ function fullBlock() {
                         <iframe title="Dr. Jan Duffy office — ${C.STREET}, ${C.CITY}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="600" height="280" src="${C.MAP_EMBED}"></iframe>
                     </div>
                 </div>
-                <p class="hyperlocal-areas"><strong>Primary service area:</strong> ${C.SERVICE_AREA_GBP} · <a href="${C.MAP_PAGE_PATH}">Office map &amp; directions</a> · <a href="/skye-summit-realtor">About Dr. Jan</a> · <a href="/skye-summit-faq">FAQ</a></p>
+                <p class="hyperlocal-areas">${hyperlocalAreasLine()}</p>
             </div>
         </section>`;
+}
+
+function schemaAreaServed() {
+  return [
+    { '@type': 'Place', name: C.SERVICE_AREA_GBP },
+    ...C.SERVICE_AREAS.map((name) => ({
+      '@type': 'Place',
+      name: `${name}, Las Vegas NV`,
+    })),
+  ];
 }
 
 function schemaBlock() {
@@ -178,10 +196,7 @@ function schemaBlock() {
         '@id': `${C.SITE}/#localbusiness`,
         name: C.GBP_BUSINESS_NAME,
         description: C.GBP_DESCRIPTION,
-        areaServed: {
-          '@type': 'Place',
-          name: C.SERVICE_AREA_GBP,
-        },
+        areaServed: schemaAreaServed(),
         amenityFeature: C.ACCESSIBILITY.map((name) => ({
           '@type': 'LocationFeatureSpecification',
           name,
