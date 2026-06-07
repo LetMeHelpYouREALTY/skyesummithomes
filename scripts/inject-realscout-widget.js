@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Injects RealScout office listings below the hero on marketing pages.
- * Script loads lazily via script.js when the section enters the viewport.
+ * Uses RealScout's official head embed (script once + styles) and body widget.
  */
 'use strict';
 
@@ -54,6 +54,17 @@ function listHtmlFiles(dir, out = []) {
   return out;
 }
 
+function widgetBodyHtml() {
+  return `<realscout-office-listings
+                    agent-encoded-id="${R.AGENT_ENCODED_ID}"
+                    sort-order="${R.SORT_ORDER}"
+                    listing-status="${R.LISTING_STATUS}"
+                    property-types="${R.PROPERTY_TYPES}"
+                    price-min="${R.PRICE_MIN}"
+                    price-max="${R.PRICE_MAX}"
+                    aria-label="Las Vegas area homes for sale from Dr. Jan Duffy"></realscout-office-listings>`;
+}
+
 function widgetSectionHtml() {
   return `
         <!-- ${R.MARKER} -->
@@ -61,26 +72,19 @@ function widgetSectionHtml() {
             <div class="container">
                 <h2 id="realscout-listings-title">Search homes available today</h2>
                 <p class="section-description">Need a home now? Browse active Las Vegas listings from Dr. Jan Duffy&rsquo;s office while you follow Skye Summit Master Plan updates.</p>
-                <realscout-office-listings
-                    agent-encoded-id="${R.AGENT_ENCODED_ID}"
-                    sort-order="${R.SORT_ORDER}"
-                    listing-status="${R.LISTING_STATUS}"
-                    property-types="${R.PROPERTY_TYPES}"
-                    price-min="${R.PRICE_MIN}"
-                    price-max="${R.PRICE_MAX}"
-                    aria-label="Las Vegas area homes for sale from Dr. Jan Duffy">
-                </realscout-office-listings>
+                ${widgetBodyHtml()}
                 <p class="realscout-mls-note">Listing data courtesy of MLS. <a href="/mls-disclaimer">MLS listing data notice</a> · <a href="/contact">Questions? Contact Dr. Jan Duffy</a> · <a href="tel:+17029308222">(702) 930-8222</a></p>
             </div>
         </section>`;
 }
 
-function headHintsHtml() {
+function headEmbedHtml() {
   return `
     <link rel="dns-prefetch" href="${R.EMBED_ORIGIN}">
     <link rel="dns-prefetch" href="${R.API_ORIGIN}">
     <link rel="preconnect" href="${R.EMBED_ORIGIN}" crossorigin>
     <link rel="preconnect" href="${R.API_ORIGIN}" crossorigin>
+    <script src="${R.SCRIPT_URL}" type="module" data-realscout-loader></script>
     <style data-realscout-styles>
       realscout-office-listings {
         --rs-listing-divider-color: rgb(101, 141, 172);
@@ -88,10 +92,6 @@ function headHintsHtml() {
         min-height: 480px;
         display: block;
         margin: 1.5rem 0 1rem;
-      }
-      realscout-office-listings::part(listing-card) {
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       }
       .realscout-listings-section .container:has(realscout-office-listings:not(:defined)) {
         min-height: 480px;
@@ -130,6 +130,10 @@ function stripRealscout(html) {
       '\n'
     )
     .replace(
+      /\s*<script[^>]*data-realscout-loader[^>]*><\/script>\s*/gi,
+      '\n'
+    )
+    .replace(
       /\s*<script[^>]*realscout-web-components\.umd\.js[^>]*><\/script>\s*/gi,
       '\n'
     )
@@ -139,7 +143,15 @@ function stripRealscout(html) {
       '\n'
     )
     .replace(
+      /\s*<link rel="dns-prefetch" href="https:\/\/www\.realscout\.com">\s*/gi,
+      '\n'
+    )
+    .replace(
       /\s*<link rel="preconnect" href="https:\/\/em\.realscout\.com"[^>]*>\s*/gi,
+      '\n'
+    )
+    .replace(
+      /\s*<link rel="preconnect" href="https:\/\/www\.realscout\.com"[^>]*>\s*/gi,
       '\n'
     )
     .replace(
@@ -156,16 +168,23 @@ function stripRealscout(html) {
     );
 }
 
-function injectHeadHints(html) {
-  if (/data-realscout-styles/i.test(html)) return html;
+function injectHeadEmbed(html) {
+  if (/data-realscout-loader/i.test(html) && /data-realscout-styles/i.test(html)) {
+    return html;
+  }
   if (/<\/head>/i.test(html)) {
-    return html.replace(/<\/head>/i, `${headHintsHtml()}\n</head>`);
+    return html.replace(/<\/head>/i, `${headEmbedHtml()}\n</head>`);
   }
   return html;
 }
 
 function injectAfterHero(html) {
-  if (html.includes(R.MARKER)) return html;
+  if (html.includes(R.MARKER)) {
+    return html.replace(
+      /<realscout-office-listings[\s\S]*?<\/realscout-office-listings>/i,
+      widgetBodyHtml()
+    );
+  }
 
   const block = widgetSectionHtml();
 
@@ -201,7 +220,7 @@ for (const filePath of listHtmlFiles(root)) {
   }
 
   let html = stripRealscout(fs.readFileSync(filePath, 'utf8'));
-  const next = injectHeadHints(injectAfterHero(html));
+  const next = injectHeadEmbed(injectAfterHero(html));
 
   if (next !== html) {
     fs.writeFileSync(filePath, next);

@@ -347,22 +347,8 @@ if (document.readyState === 'loading') {
     lazyLoadImages();
 }
 
-// RealScout: lazy-load web component script when listings section enters viewport
-(function initRealScoutLazyLoad() {
-    const REALSCOUT_SCRIPT = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
-    let scriptRequested = false;
-
-    function loadRealScoutScript() {
-        if (scriptRequested) return;
-        scriptRequested = true;
-        if (document.querySelector('script[src="' + REALSCOUT_SCRIPT + '"]')) return;
-        const script = document.createElement('script');
-        script.src = REALSCOUT_SCRIPT;
-        script.type = 'module';
-        script.async = true;
-        document.head.appendChild(script);
-    }
-
+// RealScout widget loading state (script loads once from head embed)
+(function initRealScoutLoadingState() {
     function showLoadingState() {
         const widget = document.querySelector('realscout-office-listings');
         if (widget && !customElements.get('realscout-office-listings')) {
@@ -380,6 +366,7 @@ if (document.readyState === 'loading') {
     }
 
     function watchWidgetReady() {
+        if (!document.querySelector('realscout-office-listings')) return;
         showLoadingState();
         const checkWidgetLoaded = setInterval(function() {
             if (customElements.get('realscout-office-listings')) {
@@ -393,31 +380,10 @@ if (document.readyState === 'loading') {
         }, 10000);
     }
 
-    function setup() {
-        const section = document.getElementById('realscout-listings');
-        if (!section) return;
-
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        loadRealScoutScript();
-                        watchWidgetReady();
-                        observer.disconnect();
-                    }
-                });
-            }, { rootMargin: '240px 0px', threshold: 0.01 });
-            observer.observe(section);
-        } else {
-            loadRealScoutScript();
-            watchWidgetReady();
-        }
-    }
-
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setup);
+        document.addEventListener('DOMContentLoaded', watchWidgetReady);
     } else {
-        setup();
+        watchWidgetReady();
     }
 })();
 
