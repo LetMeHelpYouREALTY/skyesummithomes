@@ -48,11 +48,11 @@ function listHtmlFiles(dir, out = []) {
 }
 
 function hyperlocalAreasLine() {
-  return `<strong>Office:</strong> ${C.CITY}, ${C.REGION} ${C.POSTAL} · <strong>Markets served:</strong> ${C.SERVICE_AREA_MARKETS_VISIBLE} · <a href="${C.MAP_PAGE_PATH}">Office map &amp; directions</a> · <a href="/skye-summit-realtor">About Dr. Jan</a> · <a href="/skye-summit-faq">FAQ</a>`;
+  return `<strong>Office:</strong> ${C.CITY}, ${C.REGION} ${C.POSTAL} · <strong>Service area:</strong> ${C.SERVICE_AREA_GBP} · ${C.SERVICE_AREA_NEARBY_VISIBLE} · <a href="${C.MAP_PAGE_PATH}">Office map &amp; directions</a> · <a href="/skye-summit-realtor">About Dr. Jan</a> · <a href="/skye-summit-faq">FAQ</a>`;
 }
 
 function compactAreasLine() {
-  return `<strong>Office:</strong> ${C.POSTAL} · <strong>Serves:</strong> ${C.SERVICE_AREA_MARKETS_VISIBLE}`;
+  return `<strong>Office:</strong> ${C.POSTAL} · <strong>Service area:</strong> ${C.SERVICE_AREA_GBP}`;
 }
 
 function actionButtons(large = false) {
@@ -143,13 +143,7 @@ function fullBlock() {
 }
 
 function schemaAreaServed() {
-  return [
-    { '@type': 'Place', name: C.SERVICE_AREA_GBP },
-    ...C.SERVICE_AREAS.map((name) => ({
-      '@type': 'Place',
-      name: `${name}, Las Vegas NV`,
-    })),
-  ];
+  return [{ '@type': 'Place', name: C.SERVICE_AREA_GBP }];
 }
 
 function schemaBlock() {
@@ -179,10 +173,7 @@ function schemaBlock() {
           '@type': 'Organization',
           name: C.BROKERAGE,
         },
-        areaServed: C.SERVICE_AREAS.map((name) => ({
-          '@type': 'Place',
-          name: `${name}, Las Vegas NV`,
-        })),
+        areaServed: schemaAreaServed(),
         knowsAbout: [
           'Skye Summit homes for sale',
           'Skye Summit home selling',
