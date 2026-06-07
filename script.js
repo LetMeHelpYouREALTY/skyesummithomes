@@ -347,71 +347,69 @@ if (document.readyState === 'loading') {
     lazyLoadImages();
 }
 
-// RealScout: lazy-load web component script when listings section enters viewport
-(function initRealScoutLazyLoad() {
+// RealScout: ensure head script runs and surface a fallback if the widget fails
+(function initRealScoutWidget() {
     const REALSCOUT_SCRIPT = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
-    let scriptRequested = false;
 
-    function loadRealScoutScript() {
-        if (scriptRequested) return;
-        scriptRequested = true;
-        if (document.querySelector('script[src="' + REALSCOUT_SCRIPT + '"]')) return;
+    function ensureRealScoutScript() {
+        if (document.querySelector('script[src="' + REALSCOUT_SCRIPT + '"]')) {
+            return;
+        }
         const script = document.createElement('script');
         script.src = REALSCOUT_SCRIPT;
         script.type = 'module';
-        script.async = true;
         document.head.appendChild(script);
     }
 
-    function showLoadingState() {
-        const widget = document.querySelector('realscout-office-listings');
-        if (widget && !customElements.get('realscout-office-listings')) {
-            widget.style.opacity = '0.5';
-            widget.style.pointerEvents = 'none';
+    function ensureFallbackMarkup(section) {
+        if (section.querySelector('.realscout-fallback')) {
+            return;
         }
+        const fallback = document.createElement('p');
+        fallback.className = 'realscout-fallback';
+        fallback.innerHTML =
+            'Home search is taking longer than expected. Call <a href="tel:+17029308222">(702) 930-8222</a> for current listings, or <a href="/contact">contact Dr. Jan Duffy</a>.';
+        section.querySelector('.container').appendChild(fallback);
     }
 
-    function hideLoadingState() {
-        const widget = document.querySelector('realscout-office-listings');
-        if (widget) {
-            widget.style.opacity = '1';
-            widget.style.pointerEvents = 'auto';
-        }
+    function markReady(section) {
+        section.classList.add('realscout-ready');
+        section.classList.remove('realscout-error');
     }
 
-    function watchWidgetReady() {
-        showLoadingState();
-        const checkWidgetLoaded = setInterval(function() {
-            if (customElements.get('realscout-office-listings')) {
-                hideLoadingState();
-                clearInterval(checkWidgetLoaded);
-            }
-        }, 500);
+    function markError(section) {
+        ensureFallbackMarkup(section);
+        section.classList.add('realscout-error');
+    }
+
+    function initSection(section) {
+        ensureRealScoutScript();
+
+        if (window.customElements && customElements.whenDefined) {
+            customElements.whenDefined('realscout-office-listings')
+                .then(function() {
+                    markReady(section);
+                })
+                .catch(function() {
+                    markError(section);
+                });
+        }
+
         setTimeout(function() {
-            clearInterval(checkWidgetLoaded);
-            hideLoadingState();
-        }, 10000);
+            if (customElements.get('realscout-office-listings')) {
+                markReady(section);
+            } else {
+                markError(section);
+            }
+        }, 15000);
     }
 
     function setup() {
-        const section = document.getElementById('realscout-listings');
-        if (!section) return;
-
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        loadRealScoutScript();
-                        watchWidgetReady();
-                        observer.disconnect();
-                    }
-                });
-            }, { rootMargin: '240px 0px', threshold: 0.01 });
-            observer.observe(section);
-        } else {
-            loadRealScoutScript();
-            watchWidgetReady();
+        const sections = document.querySelectorAll('.realscout-listings-section');
+        if (!sections.length) {
+            return;
         }
+        sections.forEach(initSection);
     }
 
     if (document.readyState === 'loading') {

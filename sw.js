@@ -1,7 +1,7 @@
 // Service Worker for Skye Summit Real Estate Website
 // Bump CACHE_* when shipping HTML/CSS changes users must see immediately.
-const CACHE_NAME = 'skye-summit-v4';
-const RUNTIME_CACHE = 'skye-summit-runtime-v4';
+const CACHE_NAME = 'skye-summit-v5';
+const RUNTIME_CACHE = 'skye-summit-runtime-v5';
 
 // Assets to cache immediately
 const STATIC_ASSETS = [
