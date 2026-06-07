@@ -61,23 +61,8 @@
       }
     }
     </script>
-    
-    <!-- LocalBusiness Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Skye Summit | Homes by Dr. Jan Duffy",
-      "telephone": "(702) 930-8222",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "11411 Southern Highlands Pkwy #300",
-        "addressLocality": "Las Vegas",
-        "addressRegion": "NV",
-        "postalCode": "89141"
-      }
-    }
-    </script>
+
+
 <script type="application/ld+json" data-aeo-core-faq>
 {
   "@context": "https://schema.org",
@@ -134,6 +119,61 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://www.skyesummithomes.com/#organization",
+      "name": "Berkshire Hathaway HomeServices Nevada Properties",
+      "url": "https://www.skyesummithomes.com",
+      "logo": "https://www.skyesummithomes.com/images/agents/dr-jan-duffy.jpg",
+      "sameAs": [
+        "https://share.google/yoVmGzrpTUtHrvsnL",
+        "https://www.linkedin.com/company/skye-summit-homes-by-dr-jan-duffy/",
+        "https://www.facebook.com/SkyeSummitHomes"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.skyesummithomes.com/#person",
+      "name": "Dr. Jan Duffy",
+      "jobTitle": "REALTOR® · Buyer's Representative",
+      "description": "Dr. Jan Duffy, licensed Nevada Realtor since 2009, is the buyer's representative for the Skye Summit Master Plan—a 505-acre Olympia Companies community coming Fall 2027. Early-access updates, builder coordination, and new-construction buyer representation.",
+      "telephone": "+17029308222",
+      "email": "DrJanSells@SkyeSummitHomes.com",
+      "url": "https://www.skyesummithomes.com",
+      "image": "https://www.skyesummithomes.com/images/agents/dr-jan-duffy.jpg",
+      "identifier": "S.0197614.LLC",
+      "knowsAbout": [
+        "Skye Summit Master Plan",
+        "Skye Summit new construction",
+        "KB Home Vertice at Skye Summit",
+        "Olympia Companies Skye Summit"
+      ],
+      "worksFor": {
+        "@id": "https://www.skyesummithomes.com/#organization"
+      },
+      "sameAs": [
+        "https://share.google/yoVmGzrpTUtHrvsnL",
+        "https://www.linkedin.com/company/skye-summit-homes-by-dr-jan-duffy/",
+        "https://www.facebook.com/SkyeSummitHomes"
+      ]
+    },
+    {
+      "@type": "Place",
+      "@id": "https://www.skyesummithomes.com/#skye-summit-master-plan",
+      "name": "Skye Summit Master Plan",
+      "description": "505-acre Olympia Companies master-planned community coming Fall 2027, northwest Las Vegas.",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 36.265,
+        "longitude": -115.315
+      },
+      "containedInPlace": {
+        "@type": "City",
+        "name": "Las Vegas",
+        "addressRegion": "NV",
+        "addressCountry": "US"
+      }
+    },
+    {
       "@type": "RealEstateAgent",
       "@id": "https://www.skyesummithomes.com/#agent",
       "name": "Dr. Jan Duffy",
@@ -146,12 +186,12 @@
       "identifier": "S.0197614.LLC",
       "foundingDate": "2009-09-20",
       "worksFor": {
-        "@type": "Organization",
-        "name": "Berkshire Hathaway HomeServices Nevada Properties"
+        "@id": "https://www.skyesummithomes.com/#organization"
       },
       "areaServed": [
         {
           "@type": "Place",
+          "@id": "https://www.skyesummithomes.com/#skye-summit-master-plan",
           "name": "Skye Summit Master Plan"
         }
       ],
@@ -178,6 +218,7 @@
       "areaServed": [
         {
           "@type": "Place",
+          "@id": "https://www.skyesummithomes.com/#skye-summit-master-plan",
           "name": "Skye Summit Master Plan"
         }
       ],

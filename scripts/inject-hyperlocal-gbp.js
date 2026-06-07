@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const C = require('../lib/gbp-constants');
+const { graphScriptHtml } = require('../lib/schema-graph');
 
 const root = path.join(__dirname, '..');
 const MARKER = 'HYPERLOCAL_GBP_BEGIN';
@@ -142,83 +143,8 @@ function fullBlock() {
         </section>`;
 }
 
-function schemaAreaServed() {
-  return [{ '@type': 'Place', name: C.SERVICE_AREA_GBP }];
-}
-
 function schemaBlock() {
-  const openingHoursSpecification = C.OPENING_HOURS_SPEC.map((spec) => ({
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: spec.dayOfWeek,
-    opens: spec.opens,
-    closes: spec.closes,
-  }));
-
-  const graph = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'RealEstateAgent',
-        '@id': `${C.SITE}/#agent`,
-        name: C.AGENT_NAME,
-        jobTitle: `${C.AGENT_TITLE} · ${C.AGENT_ROLE}`,
-        description: C.AGENT_SITE_DESCRIPTION,
-        telephone: C.PHONE_TEL,
-        email: C.EMAIL,
-        url: C.SITE,
-        image: `${C.SITE}/images/agents/dr-jan-duffy.jpg`,
-        identifier: C.LICENSE,
-        foundingDate: C.OPENING_DATE,
-        worksFor: {
-          '@type': 'Organization',
-          name: C.BROKERAGE,
-        },
-        areaServed: schemaAreaServed(),
-        knowsAbout: C.SCHEMA_KNOWS_ABOUT,
-        sameAs: C.SAME_AS,
-      },
-      {
-        '@type': ['LocalBusiness', 'RealEstateAgent'],
-        '@id': `${C.SITE}/#localbusiness`,
-        name: C.GBP_BUSINESS_NAME,
-        description: C.AGENT_SITE_DESCRIPTION,
-        areaServed: schemaAreaServed(),
-        amenityFeature: C.ACCESSIBILITY.map((name) => ({
-          '@type': 'LocationFeatureSpecification',
-          name,
-          value: true,
-        })),
-        telephone: C.PHONE_TEL,
-        email: C.EMAIL,
-        url: C.SITE,
-        image: `${C.SITE}/images/agents/dr-jan-duffy.jpg`,
-        foundingDate: C.OPENING_DATE,
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: C.STREET,
-          addressLocality: C.CITY,
-          addressRegion: C.REGION,
-          postalCode: C.POSTAL,
-          addressCountry: 'US',
-        },
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: C.GEO_LAT,
-          longitude: C.GEO_LNG,
-        },
-        hasMap: `https://maps.google.com/?q=${C.GEO_LAT},${C.GEO_LNG}`,
-        openingHoursSpecification,
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: C.RATING,
-          reviewCount: C.REVIEW_COUNT,
-          bestRating: '5',
-        },
-        sameAs: C.SAME_AS,
-      },
-    ],
-  };
-  return `<script type="application/ld+json" data-hyperlocal-gbp-schema>\n${JSON.stringify(graph, null, 2)}\n    </script>`;
+  return graphScriptHtml();
 }
 
 function stripHyperlocal(html) {

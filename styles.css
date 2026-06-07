@@ -3014,6 +3014,16 @@ realscout-office-listings::part(listing-card) {
     color: #3A8DDE;
 }
 
+.guide-last-updated {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.guide-last-updated time {
+    font-style: normal;
+}
+
 .service-hero--compact {
     padding-top: 0;
     padding-bottom: 1.5rem;
