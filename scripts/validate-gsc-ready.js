@@ -9,6 +9,7 @@ const path = require('path');
 
 const root = path.join(__dirname, '..');
 const SITE = 'https://www.skyesummithomes.com';
+const WWW_HOST = 'www.skyesummithomes.com';
 let failed = 0;
 
 function fail(msg) {
@@ -83,6 +84,59 @@ for (const filePath of listHtmlFiles(root)) {
 }
 if (trailingSlashCanonicals === 0) {
   ok('no trailing-slash canonicals on inner pages');
+}
+
+const SKIP_HTML = new Set([
+  'googlewKOftY7ctL98xgE1EW2r-2pYqOXyN109r4ZLLiRwQsI.html',
+]);
+
+let nonWwwCanonicals = 0;
+let missingApexRedirect = 0;
+let nonWwwOgUrl = 0;
+
+for (const filePath of listHtmlFiles(root)) {
+  const rel = path.relative(root, filePath);
+  if (SKIP_HTML.has(rel)) continue;
+
+  const html = fs.readFileSync(filePath, 'utf8');
+
+  const canonicalMatch = html.match(
+    /rel=["']canonical["']\s+href=["']([^"']+)["']/i
+  );
+  if (canonicalMatch) {
+    const href = canonicalMatch[1];
+    if (!href.startsWith(SITE)) {
+      fail(`canonical must use ${SITE}: ${rel} → ${href}`);
+      nonWwwCanonicals += 1;
+    }
+  }
+
+  const ogUrlMatch = html.match(
+    /property=["']og:url["']\s+content=["']([^"']+)["']/i
+  );
+  if (ogUrlMatch && !ogUrlMatch[1].startsWith(SITE)) {
+    fail(`og:url must use ${SITE}: ${rel} → ${ogUrlMatch[1]}`);
+    nonWwwOgUrl += 1;
+  }
+
+  if (/rel=["']canonical["']/i.test(html) && !/data-www-primary-redirect/i.test(html)) {
+    fail(`missing apex→www redirect script: ${rel}`);
+    missingApexRedirect += 1;
+  }
+
+  if (/href=["']https:\/\/skyesummithomes\.com/i.test(html)) {
+    fail(`absolute apex URL in HTML (use www or relative): ${rel}`);
+  }
+}
+
+if (nonWwwCanonicals === 0) {
+  ok('all canonicals use www host');
+}
+if (nonWwwOgUrl === 0) {
+  ok('all og:url values use www host');
+}
+if (missingApexRedirect === 0) {
+  ok('apex→www redirect script on canonical pages');
 }
 
 const verificationFile = path.join(

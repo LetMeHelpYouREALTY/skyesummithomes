@@ -2,6 +2,37 @@
 
 This site is prepared for [Google Search Console](https://search.google.com/search-console) with **www** as the canonical host.
 
+## WWW as primary (Search Console checklist)
+
+Google no longer has a “preferred domain” toggle. **www** becomes primary when redirects, canonicals, and sitemap all agree:
+
+| Signal | Status in this repo |
+|--------|---------------------|
+| Apex → www redirect | `vercel.json` (308) + `scripts/inject-www-primary.js` on every page |
+| Canonical tags | `https://www.skyesummithomes.com/...` on all indexable pages |
+| Sitemap | `https://www.skyesummithomes.com/sitemap.xml` only |
+| robots.txt | Points to www sitemap |
+| Internal / schema URLs | `lib/gbp-constants.js` → `SITE` uses www |
+
+### In Google Search Console
+
+1. **Add property** (pick one approach):
+   - **Domain** → `skyesummithomes.com` (recommended — covers apex + www + http/https), or
+   - **URL prefix** → `https://www.skyesummithomes.com` only
+2. **Sitemaps** → submit **`https://www.skyesummithomes.com/sitemap.xml`** (never the apex URL).
+3. **URL Inspection** → always test and request indexing with **www** URLs.
+4. Do **not** maintain a separate apex URL-prefix property unless debugging redirects.
+5. After deploy, validate apex redirect:
+
+   ```bash
+   curl -sI https://skyesummithomes.com/ | grep -iE 'HTTP|location'
+   curl -sI https://skyesummithomes.com/buy | grep -iE 'HTTP|location'
+   ```
+
+   Expected: `308` or `301` with `location: https://www.skyesummithomes.com/...`
+
+6. For **“Alternate page with proper canonical”** or **“Page with redirect”** on apex/http URLs → **Validate fix** after redirects are live (1–2 weeks recrawl).
+
 ## What is already in the repo
 
 | Item | Location / URL |
@@ -11,7 +42,7 @@ This site is prepared for [Google Search Console](https://search.google.com/sear
 | DNS verification (TXT) | `google-site-verification=wKOftY7ctL98xgE1EW2r-2pYqOXyN109r4ZLLiRwQsI` (Cloudflare — see `CLOUDFLARE-DNS-SETUP.md`) |
 | HTML file verification | `/googlewKOftY7ctL98xgE1EW2r-2pYqOXyN109r4ZLLiRwQsI.html` |
 | HTML meta verification | Injected on every page at build via `scripts/inject-gsc-verification.js` |
-| Apex → www redirects | `vercel.json` + client script on homepage |
+| Apex → www redirects | `vercel.json` + `scripts/inject-www-primary.js` |
 | Clean URLs | `vercel.json` rewrites + `scripts/generate-clean-urls.js` |
 
 Run local checks:
