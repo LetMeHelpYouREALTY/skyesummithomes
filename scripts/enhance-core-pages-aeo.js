@@ -166,11 +166,11 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'homes-for-sale-skye-summit.html': {
     quickAnswer:
-      'Skye Summit is a 505-acre master-planned community beyond the 215 Beltway with KB Home Vertice and Woodside Homes sales expected early 2027. Join the interest list with Dr. Jan Duffy, or browse nearby Skye Canyon, Skye Hills, and Centennial Hills resales (89166)—(702) 930-8222.',
+      'Skye Summit is a 505-acre Olympia Companies master plan beyond the 215 Beltway, coming Fall 2027. KB Home Vertice sales may open early 2027. Join the interest list with Dr. Jan Duffy, or browse nearby Skye Canyon, Skye Hills, and Centennial Hills resales (89166)—(702) 930-8222.',
     faqs: [
       {
         q: 'When will new Skye Summit builder homes be available?',
-        a: 'KB Home&rsquo;s Vertice at Skye Summit (299 homesites) and Woodside Homes are expected to begin sales early 2027 while homesite work is underway. <a href="/contact">Join the interest list</a> for updates.',
+        a: 'Olympia Companies lists Skye Summit as coming Fall 2027. KB Home&rsquo;s Vertice at Skye Summit (299 homesites) may begin sales early 2027 while homesite work is underway. <a href="/contact">Join the interest list</a> for updates.',
       },
       {
         q: 'Are there resale homes near Skye Summit?',
@@ -198,7 +198,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'index.html': {
     quickAnswer:
-      'Dr. Jan Duffy is a Berkshire Hathaway HomeServices REALTOR® specializing in Skye Summit and northwest Las Vegas. The new 505-acre Skye Summit master plan has builder sales expected early 2027—join the interest list for updates, or browse nearby Skye Canyon and Centennial Hills resales—(702) 930-8222.',
+      'Dr. Jan Duffy is a Berkshire Hathaway HomeServices REALTOR® specializing in Skye Summit and northwest Las Vegas. The new 505-acre Skye Summit master plan is coming Fall 2027—join the interest list for updates, or browse nearby Skye Canyon and Centennial Hills resales—(702) 930-8222.',
     faqs: [
       {
         q: 'Who lists Skye Summit homes on this site?',
@@ -210,7 +210,7 @@ const CORE_PAGES = mergeParallelEnrichment({
       },
       {
         q: 'Are there resale homes near Skye Summit?',
-        a: 'Yes—Skye Summit Avenue and nearby Skye Canyon and Skye Hills (89166) have active resale listings, often from 2019–2022 builds. The new 505-acre Skye Summit master-planned community is pre-construction with builder sales expected early 2027.',
+        a: 'Yes—Skye Summit Avenue and nearby Skye Canyon and Skye Hills (89166) have active resale listings, often from 2019–2022 builds. The new 505-acre Skye Summit master-planned community is pre-construction and coming Fall 2027.',
       },
     ],
   },
