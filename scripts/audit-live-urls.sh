@@ -16,6 +16,11 @@ PATHS=(
   /las-vegas-zip-code-map
   /search
   /office-location
+  /skye-summit-master-plan
+  /skye-summit-interest-list
+  /kb-home-vertice-skye-summit
+  /homes-for-sale-skye-summit
+  /new-construction-skye-summit
 )
 
 echo "Auditing $BASE"
@@ -55,4 +60,18 @@ for path in "${APEX_PATHS[@]}"; do
   status=$(echo "$headers" | awk '/^HTTP/{print $2; exit}')
   location=$(echo "$headers" | awk -F': ' 'tolower($1)=="location"{print $2; exit}' | tr -d '\r')
   printf "%s | %s | %s\n" "$url" "${status:-?}" "${location:-—}"
+done
+
+echo
+echo "GSC asset checks (must be 200 on www)"
+GSC_ASSETS=(
+  /sitemap.xml
+  /robots.txt
+  /googlewKOftY7ctL98xgE1EW2r-2pYqOXyN109r4ZLLiRwQsI.html
+)
+
+for path in "${GSC_ASSETS[@]}"; do
+  headers=$(curl -sI "${BASE}${path}")
+  status=$(echo "$headers" | awk '/^HTTP/{print $2; exit}')
+  printf "%s | %s\n" "$path" "${status:-?}"
 done
