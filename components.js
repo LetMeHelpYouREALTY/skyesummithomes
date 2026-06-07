@@ -71,7 +71,7 @@ function generateFooter() {
                         <div class="contact-info">
                             <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+17029308222">(702) 930-8222</a></p>
                             <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:DrJanSells@SkyeSummitHomes.com">DrJanSells@SkyeSummitHomes.com</a></p>
-                            <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <a href="https://maps.google.com/?q=11411+Southern+Highlands+Pkwy+%23300+Las+Vegas+NV+89141" target="_blank" rel="noopener">11411 Southern Highlands Pkwy #300<br>Las Vegas, NV 89141</a></p>
+                            <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <a href="https://maps.google.com/?q=7MG5%2BRWM+Las+Vegas,+Nevada" target="_blank" rel="noopener">7MG5+RWM<br>Las Vegas, Nevada</a></p>
                         </div>
                     </div>
                     <div class="footer-section">

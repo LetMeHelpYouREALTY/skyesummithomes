@@ -40,7 +40,7 @@ function mergeParallelEnrichment(pages) {
 const CORE_PAGES = mergeParallelEnrichment({
   'about.html': {
     quickAnswer:
-      'Dr. Jan Duffy is a Las Vegas REALTOR® (license S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties—the buyer\'s representative for the Skye Summit Master Plan (505 acres, coming Fall 2027). Call (702) 930-8222 or visit the office at 11411 Southern Highlands Pkwy #300, Las Vegas.',
+      `Dr. Jan Duffy is a Las Vegas REALTOR® (license ${C.LICENSE}) with Berkshire Hathaway HomeServices Nevada Properties—the buyer's representative for the Skye Summit Master Plan (505 acres, coming ${C.MASTER_PLAN_LAUNCH}). Call ${C.PHONE_DISPLAY} or visit the office at ${C.ADDRESS_DISPLAY}.`,
     faqs: [
       {
         q: 'Who is Dr. Jan Duffy?',

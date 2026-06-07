@@ -62,7 +62,7 @@ const GUIDES = [
       },
       {
         q: 'Where is the Skye Summit Master Plan located?',
-        a: 'Northwest Las Vegas, just beyond the 215 Beltway. Meetings with Dr. Jan Duffy happen at the Berkshire Hathaway Southern Highlands office (89141).',
+        a: `Northwest Las Vegas, just beyond the 215 Beltway. Meetings with Dr. Jan Duffy happen at our Skye Summit area office (${C.ADDRESS_DISPLAY}).`,
       },
       {
         q: 'When will Skye Summit Master Plan homes be available?',
@@ -322,7 +322,7 @@ const GUIDES = [
       },
       {
         q: 'How do I contact Dr. Jan Duffy?',
-        a: 'Call <a href="tel:+17029308222">(702) 930-8222</a>, email DrJanSells@SkyeSummitHomes.com, or <a href="/contact">schedule a consultation</a>. Office: 11411 Southern Highlands Pkwy #300, Las Vegas, NV 89141.',
+        a: `Call <a href="tel:${C.PHONE_TEL}">${C.PHONE_DISPLAY}</a>, email ${C.EMAIL}, or <a href="/contact">schedule a consultation</a>. Office: ${C.ADDRESS_DISPLAY}.`,
       },
     ],
     extraSections: `
@@ -807,7 +807,7 @@ const GUIDES = [
     heroSubtitle:
       'The Skye Summit Master Plan and buyer representation from Dr. Jan Duffy—one place to start your research.',
     quickAnswer:
-      'Dr. Jan Duffy is the buyer\'s representative for the Skye Summit Master Plan—a 505-acre Olympia Companies community coming Fall 2027. Office at 11411 Southern Highlands Pkwy #300, Las Vegas (702) 930-8222.',
+      `Dr. Jan Duffy is the buyer's representative for the Skye Summit Master Plan—a 505-acre Olympia Companies community coming Fall 2027. Office at ${C.ADDRESS_DISPLAY} ${C.PHONE_DISPLAY}.`,
     breadcrumbName: 'Northwest Las Vegas',
     faqs: [
       {
@@ -1042,7 +1042,7 @@ ${guide.extraSections}
                     <div class="contact-info">
                         <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+17029308222">(702) 930-8222</a></p>
                         <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:DrJanSells@SkyeSummitHomes.com">DrJanSells@SkyeSummitHomes.com</a></p>
-                        <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <a href="https://maps.google.com/?q=11411+Southern+Highlands+Pkwy+%23300+Las+Vegas+NV+89141" target="_blank" rel="noopener">11411 Southern Highlands Pkwy #300<br>Las Vegas, NV 89141</a></p>
+                        <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <a href="${C.MAPS_DIRECTIONS}" target="_blank" rel="noopener">${C.ADDRESS_HTML}</a></p>
                     </div>
                 </div>
                 <div class="footer-section">

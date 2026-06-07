@@ -52,6 +52,15 @@ const OLD_GBP_DESCRIPTIONS = [
   C.GBP_DESCRIPTION,
 ];
 
+const LEGACY_STREET = '11411 Southern Highlands Pkwy #300';
+const LEGACY_MAPS_Q =
+  '11411+Southern+Highlands+Pkwy+%23300+Las+Vegas+NV+89141';
+const LEGACY_ADDRESS_HTML = `${LEGACY_STREET}<br>Las Vegas, NV 89141`;
+const LEGACY_ADDRESS_HTML_LOOSE = `${LEGACY_STREET}<br>\n                                Las Vegas, NV 89141`;
+const LEGACY_GEO_LAT = '36.017598';
+const LEGACY_GEO_LNG = '-115.204170';
+const LEGACY_GEO_LNG_ALT = '-115.20417';
+
 const OLD_HYPERLOCAL_LEADS = [
   "Skye Summit | Homes by Dr. Jan Duffy shares the Berkshire Hathaway HomeServices office below. Dr. Jan Duffy, REALTOR®, is your buyer's representative for Skye Summit and northwest Las Vegas purchases.",
   'Dr. Jan Duffy, licensed Nevada Realtor since 2009, specializes in northwest Las Vegas luxury real estate. Expert in Skye Summit homes, Summerlin properties, and Henderson communities. Office: 11411 Southern Highlands Pkwy #300, Las Vegas, NV 89141.',
@@ -175,6 +184,98 @@ for (const oldLead of OLD_HYPERLOCAL_LEADS) {
   REPLACEMENTS.push([oldLead, C.HYPERLOCAL_LEAD]);
 }
 
+REPLACEMENTS.push(
+  [LEGACY_ADDRESS_HTML, C.ADDRESS_HTML],
+  [LEGACY_ADDRESS_HTML_LOOSE, C.ADDRESS_HTML],
+  [`${LEGACY_STREET}<br>\n                        Las Vegas, NV 89141`, C.ADDRESS_HTML],
+  [`7MG5+RWM<br>Las Vegas, NV 89141`, C.ADDRESS_HTML],
+  [`7MG5+RWM, Las Vegas, NV 89141`, C.ADDRESS_DISPLAY],
+  [`7MG5+RWM<br>\n                                Las Vegas, NV 89141`, C.ADDRESS_HTML],
+  [LEGACY_STREET, C.STREET],
+  [LEGACY_MAPS_Q, encodeURIComponent(C.ADDRESS_DISPLAY).replace(/%20/g, '+')],
+  [
+    `https://maps.google.com/?q=${LEGACY_MAPS_Q}`,
+    C.MAPS_DIRECTIONS,
+  ],
+  [
+    `https://www.google.com/maps?q=${LEGACY_MAPS_Q}&output=embed`,
+    C.MAP_EMBED,
+  ],
+  [
+    `https://www.google.com/maps?q=${LEGACY_GEO_LAT},${LEGACY_GEO_LNG}&output=embed`,
+    `${C.MAP_EMBED.replace('output=embed', `z=16&output=embed`)}`,
+  ],
+  [
+    `https://www.google.com/maps?q=${LEGACY_GEO_LAT},${LEGACY_GEO_LNG}&amp;z=16&amp;output=embed`,
+    `${C.MAP_EMBED.replace('output=embed', 'z=16&output=embed').replace(/&/g, '&amp;')}`,
+  ],
+  [
+    `https://maps.google.com/?q=${LEGACY_GEO_LAT},${LEGACY_GEO_LNG}`,
+    `https://maps.google.com/?q=${C.GEO_LAT},${C.GEO_LNG}`,
+  ],
+  [LEGACY_GEO_LAT, String(C.GEO_LAT)],
+  [LEGACY_GEO_LNG, String(C.GEO_LNG)],
+  [LEGACY_GEO_LNG_ALT, String(C.GEO_LNG)],
+  [`${LEGACY_GEO_LAT};${LEGACY_GEO_LNG}`, C.GEO_POSITION],
+  [`${LEGACY_GEO_LAT}, ${LEGACY_GEO_LNG}`, C.GEO_ICBM],
+  [
+    `Dr. Jan Duffy office — ${LEGACY_STREET}, Las Vegas`,
+    `Dr. Jan Duffy office — ${C.ADDRESS_DISPLAY}`,
+  ],
+  [
+    `Map: ${LEGACY_STREET}, Las Vegas — Dr. Jan Duffy office`,
+    `Map: ${C.ADDRESS_DISPLAY} — Dr. Jan Duffy office`,
+  ],
+  [
+    'Office at our Berkshire Hathaway Southern Highlands location (89141)—buyer\'s representative for the Skye Summit Master Plan (coming Fall 2027).',
+    C.HOMEPAGE_OFFICE_LINE,
+  ],
+  [
+    'Early-access updates, builder coordination, and new-construction buyer representation from the Berkshire Hathaway Southern Highlands office (89141).',
+    'Early-access updates, builder coordination, and new-construction buyer representation from our Skye Summit area office (7MG5+RWM Las Vegas, Nevada).',
+  ],
+  [
+    'early-access updates from Berkshire Hathaway Southern Highlands office (89141)',
+    `early-access updates from our office at ${C.ADDRESS_DISPLAY}`,
+  ],
+  [
+    'Meetings with Dr. Jan Duffy happen at the Berkshire Hathaway Southern Highlands office (89141).',
+    `Meetings with Dr. Jan Duffy happen at our Skye Summit area office (${C.ADDRESS_DISPLAY}).`,
+  ],
+  [
+    'while meetings happen at the Berkshire Hathaway office above.',
+    `while meetings happen at our office (${C.ADDRESS_DISPLAY}).`,
+  ],
+  [
+    'Office address stays 11411 Southern Highlands Pkwy #300, Las Vegas, NV 89141.',
+    `Office address on Google: ${C.ADDRESS_DISPLAY}.`,
+  ],
+  [
+    "Dr. Jan Duffy's office is at 11411 Southern Highlands Pkwy #300, Las Vegas, NV 89141 (same address shown on Google Maps).",
+    `Dr. Jan Duffy's office is at ${C.ADDRESS_DISPLAY} (${C.LABEL_OFFICE_SAME_AS_GOOGLE}).`,
+  ],
+  [
+    'Visit Dr. Jan Duffy at 11411 Southern Highlands Pkwy #300, Las Vegas NV 89141.',
+    `Visit Dr. Jan Duffy at ${C.ADDRESS_DISPLAY}.`,
+  ],
+  [
+    '<strong>Office:</strong> Las Vegas, NV 89141 · <strong>Service area:</strong> Skye Summit Master Plan',
+    `<strong>Office:</strong> ${C.ADDRESS_DISPLAY} · <strong>Service area:</strong> ${C.SERVICE_AREA_GBP}`,
+  ],
+  [
+    'https://www.openstreetmap.org/?mlat=36.017598&amp;mlon=-115.204170#map=17/36.017598/-115.204170',
+    C.OSM_MAP_URL.replace(/&/g, '&amp;'),
+  ],
+  [
+    'https://www.openstreetmap.org/?mlat=36.017598&mlon=-115.204170#map=17/36.017598/-115.204170',
+    C.OSM_MAP_URL,
+  ],
+  [
+    `"streetAddress": "${C.STREET}",\n        "addressLocality": "${C.CITY}",\n        "addressRegion": "${C.REGION}",\n        "postalCode": "89141"`,
+    `"streetAddress": "${C.STREET}",\n        "addressLocality": "${C.CITY}",\n        "addressRegion": "${C.REGION}",\n        "postalCode": "${C.POSTAL}"`,
+  ]
+);
+
 let updated = 0;
 
 for (const filePath of listHtmlFiles(root)) {
@@ -183,6 +284,10 @@ for (const filePath of listHtmlFiles(root)) {
   for (const [from, to] of REPLACEMENTS) {
     next = next.split(from).join(to);
   }
+  next = next.replace(
+    /("streetAddress": "7MG5\+RWM"[\s\S]*?"postalCode": ")(89141)(")/g,
+    `$1${C.POSTAL}$3`
+  );
   if (next !== html) {
     fs.writeFileSync(filePath, next);
     updated += 1;
