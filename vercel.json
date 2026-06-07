@@ -176,6 +176,30 @@
     {
       "source": "/office-location",
       "destination": "/office-location/index.html"
+    },
+    {
+      "source": "/skye-summit-master-plan",
+      "destination": "/skye-summit-master-plan/index.html"
+    },
+    {
+      "source": "/skye-summit-interest-list",
+      "destination": "/skye-summit-interest-list/index.html"
+    },
+    {
+      "source": "/kb-home-vertice-skye-summit",
+      "destination": "/kb-home-vertice-skye-summit/index.html"
+    },
+    {
+      "source": "/olympia-companies-skye-summit",
+      "destination": "/olympia-companies-skye-summit/index.html"
+    },
+    {
+      "source": "/skye-summit-timeline",
+      "destination": "/skye-summit-timeline/index.html"
+    },
+    {
+      "source": "/woodside-homes-skye-summit",
+      "destination": "/woodside-homes-skye-summit/index.html"
     }
   ],
   "headers": [

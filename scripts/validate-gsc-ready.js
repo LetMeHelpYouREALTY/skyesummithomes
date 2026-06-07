@@ -169,4 +169,28 @@ if (fs.existsSync(indexPath)) {
   }
 }
 
+const SAMPLE_SITEMAP_LINK = [
+  'about/index.html',
+  'buy/index.html',
+  'skye-summit-master-plan/index.html',
+  'homes-for-sale-skye-summit/index.html',
+];
+
+let missingSitemapLink = 0;
+for (const rel of SAMPLE_SITEMAP_LINK) {
+  const filePath = path.join(root, rel);
+  if (!fs.existsSync(filePath)) {
+    fail(`sample page missing for sitemap link check: ${rel}`);
+    continue;
+  }
+  const html = fs.readFileSync(filePath, 'utf8');
+  if (!/rel=["']sitemap["']/i.test(html)) {
+    fail(`missing sitemap link rel: ${rel}`);
+    missingSitemapLink += 1;
+  }
+}
+if (missingSitemapLink === 0) {
+  ok('sample indexable pages link to sitemap');
+}
+
 process.exit(failed > 0 ? 1 : 0);

@@ -12,6 +12,30 @@ const { GUIDE_SLUGS } = require('../lib/guide-nav');
 const root = path.join(__dirname, '..');
 const today = new Date().toISOString().slice(0, 10);
 
+function resolveHtmlPath(loc) {
+  if (loc === '/') {
+    return path.join(root, 'index.html');
+  }
+  const slug = loc.slice(1);
+  const nested = path.join(root, slug, 'index.html');
+  if (fs.existsSync(nested)) {
+    return nested;
+  }
+  const flat = path.join(root, `${slug}.html`);
+  if (fs.existsSync(flat)) {
+    return flat;
+  }
+  return null;
+}
+
+function lastmodForRoute(loc) {
+  const htmlPath = resolveHtmlPath(loc);
+  if (!htmlPath) {
+    return today;
+  }
+  return fs.statSync(htmlPath).mtime.toISOString().slice(0, 10);
+}
+
 const ROUTES = [
   { loc: '/', priority: '1.0', changefreq: 'weekly' },
   { loc: '/about', priority: '0.9', changefreq: 'monthly' },
@@ -47,7 +71,7 @@ const ROUTES = [
 const urls = ROUTES.map(
   (r) => `    <url>
         <loc>${C.SITE}${r.loc === '/' ? '/' : r.loc}</loc>
-        <lastmod>${today}</lastmod>
+        <lastmod>${lastmodForRoute(r.loc)}</lastmod>
         <changefreq>${r.changefreq}</changefreq>
         <priority>${r.priority}</priority>
     </url>`

@@ -180,9 +180,40 @@ npm run build && npm run validate:gsc && npm run audit:urls
 When you add a new public page:
 
 1. Add a `<url>` entry in `sitemap.xml` (www URL, no trailing slash except homepage `/`).
-2. Set `<lastmod>` to the publish date.
+2. Set `<lastmod>` to the publish date (build uses each HTML file’s modification date automatically).
 3. Redeploy; resubmit sitemap in Search Console if needed.
 4. Run `npm run validate:gsc` before merging.
+
+## 8. June 2026 refresh (post–RealScout deploy)
+
+After the RealScout widget fix (PR #25), run this checklist in Search Console:
+
+1. **Resubmit sitemap** → `https://www.skyesummithomes.com/sitemap.xml` (34 URLs; `lastmod` reflects page file dates).
+2. **Request indexing** (URL Inspection, www only) for pages updated in this release:
+   - `https://www.skyesummithomes.com/` (homepage + RealScout widget)
+   - `https://www.skyesummithomes.com/homes-for-sale-skye-summit`
+   - `https://www.skyesummithomes.com/buy`
+   - `https://www.skyesummithomes.com/skye-summit-master-plan`
+3. **Validate fix** on any open issues:
+   - Page with redirect (apex/http URLs)
+   - Not found (404) on apex paths
+   - Alternate page with proper canonical (apex `/?s=`)
+4. **Live audit** after deploy:
+
+   ```bash
+   npm run build && npm run validate:gsc && npm run audit:urls
+   ```
+
+5. **Hard refresh** your browser if the old service worker cached pre-fix HTML (`sw.js` → `skye-summit-v5`).
+
+**Repo changes in this refresh:**
+
+| Change | GSC benefit |
+|--------|-------------|
+| Sitemap `lastmod` from HTML file dates | Accurate recrawl signals (not blanket “today”) |
+| `<link rel="sitemap">` on all indexable pages | Easier sitemap discovery from every URL |
+| `vercel.json` rewrites for 6 master-plan guides | Consistent 200s for guide URLs |
+| Expanded `audit:urls` | CI/manual check of guides + sitemap/robots/verification file |
 
 ## Environment variable
 

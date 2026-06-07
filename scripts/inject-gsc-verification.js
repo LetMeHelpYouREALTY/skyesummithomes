@@ -99,6 +99,28 @@ function ensure404Noindex(html) {
   return html;
 }
 
+const SKIP_SITEMAP_LINK = /(?:^|\/)404(?:\/|$)|googlewKOftY7ctL98xgE1EW2r-2pYqOXyN109r4ZLLiRwQsI\.html$/i;
+
+function injectSitemapLink(html, relPath) {
+  if (SKIP_SITEMAP_LINK.test(relPath.replace(/\\/g, '/'))) {
+    return html;
+  }
+  if (/rel=["']sitemap["']/i.test(html)) {
+    return html;
+  }
+  const tag =
+    '<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">';
+  const canonicalRe = /(<link\s+rel=["']canonical["'][^>]*>)/i;
+  if (canonicalRe.test(html)) {
+    return html.replace(canonicalRe, `$1\n    ${tag}`);
+  }
+  const headRe = /(<\/head>)/i;
+  if (headRe.test(html)) {
+    return html.replace(headRe, `    ${tag}\n$1`);
+  }
+  return html;
+}
+
 loadDotEnv();
 
 const token = (process.env.GOOGLE_SITE_VERIFICATION || DEFAULT_TOKEN).trim();
@@ -112,7 +134,10 @@ let updated = 0;
 
 for (const filePath of files) {
   let html = fs.readFileSync(filePath, 'utf8');
-  const next = ensure404Noindex(injectVerification(html, token));
+  const rel = path.relative(root, filePath);
+  let next = injectVerification(html, token);
+  next = ensure404Noindex(next);
+  next = injectSitemapLink(next, rel);
   if (next !== html) {
     fs.writeFileSync(filePath, next);
     updated += 1;
