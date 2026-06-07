@@ -911,7 +911,7 @@ function faqHtml(faqs) {
 
 function renderPage(guide) {
   const canonical = `${SITE}/${guide.slug}`;
-  const ogImage = `${SITE}/images/skye-summit-community.jpg`;
+  const ogImage = `${SITE}${C.OG_IMAGE_PATH}`;
 
   return `<!DOCTYPE html>
 <html lang="en">
