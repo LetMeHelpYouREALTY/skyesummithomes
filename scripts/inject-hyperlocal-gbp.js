@@ -65,7 +65,7 @@ function compactBlock() {
             <div class="container">
                 <p class="hyperlocal-kicker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Skye Summit · Northwest Las Vegas</p>
                 <h2 id="hyperlocal-gbp-title">${C.GBP_BUSINESS_NAME}</h2>
-                <p class="hyperlocal-lead">${C.AGENT_NAME}, ${C.AGENT_TITLE} · License ${C.LICENSE} · ${C.BROKERAGE}</p>
+                <p class="hyperlocal-lead">${C.HYPERLOCAL_LEAD}</p>
                 ${actionButtons(false)}
                 <p class="hyperlocal-areas"><strong>Service area:</strong> ${C.SERVICE_AREA_GBP}</p>
             </div>
@@ -84,7 +84,7 @@ function fullBlock() {
             <div class="container">
                 <p class="hyperlocal-kicker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Skye Summit · Northwest Las Vegas</p>
                 <h2 id="hyperlocal-gbp-title">${C.GBP_BUSINESS_NAME}</h2>
-                <p class="hyperlocal-lead">${C.AGENT_NAME}, ${C.AGENT_TITLE} — personal help for <strong>home buyers</strong> and <strong>home sellers</strong> in Skye Summit and northwest Las Vegas.</p>
+                <p class="hyperlocal-lead">${C.HYPERLOCAL_LEAD}</p>
                 <div class="hyperlocal-grid">
                     <div class="hyperlocal-card">
                         <h3><i class="fas fa-key" aria-hidden="true"></i> Help for buyers</h3>
@@ -104,7 +104,7 @@ function fullBlock() {
                     </div>
                     <div class="hyperlocal-card hyperlocal-nap">
                         <h3><i class="fas fa-building" aria-hidden="true"></i> ${C.LABEL_CONTACT_CARD}</h3>
-                        <p class="hyperlocal-name"><strong>${C.GBP_BUSINESS_NAME}</strong><br>${C.AGENT_NAME}, ${C.AGENT_TITLE}<br>${C.BROKERAGE}</p>
+                        <p class="hyperlocal-name"><strong>${C.GBP_BUSINESS_NAME}</strong><br>${C.AGENT_NAME}, ${C.AGENT_TITLE} · ${C.AGENT_ROLE}<br>${C.BROKERAGE}</p>
                         <p><a href="tel:${C.PHONE_TEL}">${C.PHONE_DISPLAY}</a> · <a href="${C.SMS_URL}">Text</a><br><a href="mailto:${C.EMAIL}">${C.EMAIL}</a></p>
                         <p><a href="${C.MAPS_DIRECTIONS}" target="_blank" rel="noopener">${C.STREET}<br>${C.CITY}, ${C.REGION} ${C.POSTAL}</a></p>
                         <p class="hyperlocal-license">Nevada license ${C.LICENSE} · Serving clients since 2009</p>
@@ -145,7 +145,7 @@ function schemaBlock() {
         '@type': 'RealEstateAgent',
         '@id': `${C.SITE}/#agent`,
         name: C.AGENT_NAME,
-        jobTitle: C.AGENT_TITLE,
+        jobTitle: `${C.AGENT_TITLE} · ${C.AGENT_ROLE}`,
         telephone: C.PHONE_TEL,
         email: C.EMAIL,
         url: C.SITE,
