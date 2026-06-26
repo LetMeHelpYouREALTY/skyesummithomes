@@ -383,7 +383,7 @@ const GUIDES = [
       },
       {
         q: 'Are there new construction homes in Skye Summit?',
-        a: 'Yes. Skye Summit includes new-build opportunities from premier builders alongside resale homes. See our <a href="/new-construction-skye-summit">new construction guide</a> and <a href="/buy">buying in Skye Summit</a> page for the purchase process.',
+        a: 'KB Home Vertice and other builders are planned for the Skye Summit Master Plan; sales <strong>may</strong> open early 2027 with a broader Fall 2027 community launch (<em>Las Vegas Review-Journal</em>, Jan. 8, 2026). See our <a href="/new-construction-skye-summit">new construction guide</a> and <a href="/skye-summit-interest-list">interest list</a>.',
       },
       {
         q: 'What HOA fees should I expect in Skye Summit?',
@@ -395,15 +395,15 @@ const GUIDES = [
       },
       {
         q: 'What price range are Skye Summit homes?',
-        a: 'Listings change weekly. Browse <a href="/homes-for-sale-skye-summit">current Skye Summit homes for sale</a> or call <a href="tel:+17029308222">(702) 930-8222</a> for a custom search aligned to your budget.',
+        a: 'Future Skye Summit Master Plan pricing is not set yet. For homes you can tour today, browse <a href="/homes-for-sale-skye-summit">nearby homes available now</a> in Centennial Hills, Skye Hills, and 89166—or call <a href="tel:+17029308222">(702) 930-8222</a>.',
       },
       {
         q: 'How do I buy a home in Skye Summit?',
-        a: 'Start with financing pre-approval, define must-haves (phase, view, new vs resale), then tour comparables. Dr. Jan Duffy guides offers, inspections, and closing—see <a href="/buy">buy in Skye Summit</a>.',
+        a: 'Join the <a href="/skye-summit-interest-list">interest list</a> for master plan updates. To buy nearby while you wait, see <a href="/homes-for-sale-skye-summit">nearby homes available now</a> or <a href="/buy">buyer representation</a> with Dr. Jan Duffy.',
       },
       {
         q: 'How do I sell my Skye Summit home?',
-        a: 'Professional pricing accounts for phase, lot, views, and upgrades—not online estimates alone. Request a <a href="/valuation">free Skye Summit valuation</a> or read <a href="/sell">sell your Skye Summit home</a>.',
+        a: 'The Skye Summit Master Plan is not open for resale today. If you own nearby in Centennial Hills or Skye Hills, see <a href="/sell">sell nearby</a> or request a <a href="/valuation">valuation consult</a>.',
       },
       {
         q: 'Is Skye Summit good for relocations?',
@@ -681,7 +681,7 @@ const GUIDES = [
     heroSubtitle:
       'How pricing works in northwest Las Vegas—phase premiums, elevation, and weekly listing changes.',
     quickAnswer:
-      'Skye Summit home prices vary by phase, square footage, view, and new-build vs resale inventory. Listings change weekly; for a current range tied to your budget, browse live homes or call Dr. Jan Duffy at (702) 930-8222.',
+      'Nearby northwest Las Vegas home prices vary by neighborhood, square footage, and upgrades. The Skye Summit Master Plan is planned for Fall 2027—browse live MLS homes in Centennial Hills, Skye Hills, and 89166 or call Dr. Jan Duffy at (702) 930-8222.',
     breadcrumbName: 'Home Prices',
     faqs: [
       {
@@ -693,8 +693,8 @@ const GUIDES = [
         a: 'Skye Summit often commands premiums for elevation (~3,200 ft), newer stock, and master-planned amenities compared with older Centennial Hills pockets—compare on tours, not averages alone.',
       },
       {
-        q: 'How do I see current Skye Summit listing prices?',
-        a: 'Browse <a href="/homes-for-sale-skye-summit">homes for sale in Skye Summit</a> or request a custom MLS search filtered to your price range and must-haves.',
+        q: 'How do I see current listing prices nearby?',
+        a: 'Browse <a href="/homes-for-sale-skye-summit">nearby homes available now</a> in Centennial Hills, Skye Hills, and 89166—or request a custom MLS search filtered to your budget.',
       },
       {
         q: 'Should I use online estimates for Skye Summit?',
@@ -706,7 +706,7 @@ const GUIDES = [
             <div class="container">
                 <h2>Market resources</h2>
                 <div class="features-grid">
-                    <div class="feature"><i class="fas fa-home"></i><h3><a href="/homes-for-sale-skye-summit">Live listings</a></h3><p>Current ask prices and tour scheduling.</p></div>
+                    <div class="feature"><i class="fas fa-home"></i><h3><a href="/homes-for-sale-skye-summit">Nearby listings</a></h3><p>MLS homes available now in northwest Las Vegas.</p></div>
                     <div class="feature"><i class="fas fa-chart-line"></i><h3><a href="/valuation">Seller valuation</a></h3><p>Pricing for your phase and upgrades.</p></div>
                     <div class="feature"><i class="fas fa-map"></i><h3><a href="/centennial-hills-real-estate">Centennial Hills</a></h3><p>Wider northwest market context.</p></div>
                 </div>

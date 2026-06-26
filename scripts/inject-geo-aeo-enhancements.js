@@ -10,6 +10,7 @@ const C = require('../lib/gbp-constants');
 
 const root = path.join(__dirname, '..');
 const enrichmentPath = path.join(root, 'lib/parallel-seo-enrichment.json');
+const { isHomepageManaged } = require('../lib/build-skip');
 
 const SKIP_DIRS = new Set([
   'node_modules',
@@ -97,6 +98,7 @@ function stripGeo(html) {
 let updated = 0;
 
 for (const filePath of listHtmlFiles(root)) {
+  if (isHomepageManaged(root, filePath)) continue;
   let html = stripGeo(fs.readFileSync(filePath, 'utf8'));
   const block = geoBlock();
 

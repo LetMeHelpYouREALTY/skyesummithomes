@@ -12,6 +12,7 @@ const { graphScriptHtml } = require('../lib/schema-graph');
 
 const root = path.join(__dirname, '..');
 const MARKER = 'HYPERLOCAL_GBP_BEGIN';
+const { isHomepageManaged } = require('../lib/build-skip');
 
 const SKIP_FILES = new Set(['404.html']);
 
@@ -201,6 +202,7 @@ const files = listHtmlFiles(root);
 for (const filePath of files) {
   const base = path.basename(filePath);
   if (SKIP_FILES.has(base)) continue;
+  if (isHomepageManaged(root, filePath)) continue;
 
   let html = stripHyperlocal(fs.readFileSync(filePath, 'utf8'));
 
