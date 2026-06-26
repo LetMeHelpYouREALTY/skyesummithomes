@@ -11,6 +11,7 @@ const C = require('../lib/gbp-constants');
 const root = path.join(__dirname, '..');
 const MARKER = 'AEO_CORE_BEGIN';
 const enrichmentPath = path.join(root, 'lib/parallel-seo-enrichment.json');
+const { isHomepageManaged } = require('../lib/build-skip');
 
 function mergeParallelEnrichment(pages) {
   if (!fs.existsSync(enrichmentPath)) return pages;
@@ -336,6 +337,7 @@ let updated = 0;
 
 for (const [fileName, config] of Object.entries(CORE_PAGES)) {
   const filePath = path.join(root, fileName);
+  if (isHomepageManaged(root, filePath)) continue;
   if (!fs.existsSync(filePath)) {
     console.warn(`enhance-core-pages-aeo: skip missing ${fileName}`);
     continue;

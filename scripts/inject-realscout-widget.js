@@ -10,6 +10,7 @@ const path = require('path');
 const R = require('../lib/realscout-config');
 
 const root = path.join(__dirname, '..');
+const { isHomepageManaged } = require('../lib/build-skip');
 
 const SKIP_FILES = new Set([
   '404.html',
@@ -69,8 +70,8 @@ function widgetSectionHtml() {
         <!-- ${R.MARKER} -->
         <section id="${R.SECTION_ID}" class="realscout-listings-section" aria-labelledby="realscout-listings-title">
             <div class="container">
-                <h2 id="realscout-listings-title">Search homes available today</h2>
-                <p class="section-description">Need a home now? Browse active Las Vegas listings from Dr. Jan Duffy&rsquo;s office while you follow Skye Summit Master Plan updates.</p>
+                <h2 id="realscout-listings-title">Nearby homes available now</h2>
+                <p class="section-description">MLS listings in Northwest Las Vegas, Centennial Hills, Skye Hills, and the 89166 area—not future Skye Summit Master Plan inventory. Browse while you follow master plan updates.</p>
                 ${widgetBodyHtml()}
                 <p class="realscout-mls-note">Listing data courtesy of MLS. <a href="/mls-disclaimer">MLS listing data notice</a> · <a href="/contact">Questions? Contact Dr. Jan Duffy</a> · <a href="tel:+17029308222">(702) 930-8222</a></p>
             </div>
@@ -210,6 +211,7 @@ function injectAfterHero(html) {
 
 let updated = 0;
 for (const filePath of listHtmlFiles(root)) {
+  if (isHomepageManaged(root, filePath)) continue;
   if (shouldSkip(filePath)) {
     let html = fs.readFileSync(filePath, 'utf8');
     const stripped = stripRealscout(html);

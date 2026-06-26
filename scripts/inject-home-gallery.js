@@ -12,7 +12,6 @@ const root = path.join(__dirname, '..');
 const MARKER = 'HOME_GALLERY_BEGIN';
 
 const TARGETS = new Set([
-  'index.html',
   'community.html',
   'buy.html',
   'homes-for-sale-skye-summit.html',

@@ -77,8 +77,9 @@ function generateFooter() {
                     <div class="footer-section">
                         <h4>Services</h4>
                         <ul>
-                            <li><a href="/sell">Sell Your Skye Summit Home</a></li>
-                            <li><a href="/buy">Buy in Skye Summit</a></li>
+                            <li><a href="/sell">Sell nearby</a></li>
+                            <li><a href="/buy">Buyer representation</a></li>
+                            <li><a href="/skye-summit-interest-list">Join interest list</a></li>
                             <li><a href="/valuation">Free Home Valuation</a></li>
                             <li><a href="/invest">Investment Strategy</a></li>
                             <li><a href="/relocate">Relocation Services</a></li>

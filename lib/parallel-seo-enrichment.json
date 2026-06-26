@@ -1,15 +1,18 @@
 {
-  "generatedAt": "2026-06-07",
+  "generatedAt": "2026-06-26",
   "sources": [
-    "parallel-task-api",
-    "parallel-search-api"
+    "parallel-search-api",
+    "parallel-task-api"
   ],
   "geoKeywords": [
     "Skye Summit Master Plan",
     "Olympia Companies",
     "KB Home Vertice at Skye Summit",
+    "Century Communities Skye Summit",
     "215 Beltway corridor",
-    "Skye Summit new construction",
+    "Red Rock Canyon corridor",
+    "Centennial Hills",
+    "Northwest Las Vegas",
     "Fall 2027 launch"
   ],
   "localEntities": [
@@ -17,15 +20,17 @@
     "Olympia Companies",
     "KB Home Vertice at Skye Summit",
     "Woodside Homes Skye Summit",
+    "Century Communities Skye Summit",
     "215 Beltway corridor",
-    "Skye Summit master-plan infrastructure"
+    "Red Rock Canyon National Conservation Area",
+    "Centennial Hills"
   ],
   "aeoRecommendations": [
     "Focus on entities and authoritative answers for AI-driven search (Perplexity, Gemini, GPT-5).",
-    "Implement a 'Conversational Q&A Layout' throughout the site.",
-    "Ensure every page starts with a 2-3 sentence 'Quick Answer' summary (TL;DR).",
-    "Use explicit entity linking for the Skye Summit Master Plan, e.g., '505-acre Olympia Companies community coming Fall 2027'.",
-    "Implement JSON-LD schema markup for `RealEstateListing`, `Place`/`LocalBusiness`, `FAQPage`, `Person`, and `BreadcrumbList`."
+    "Ensure every page starts with a 2-3 sentence Quick Answer summary.",
+    "Use explicit entity linking for the Skye Summit Master Plan: 505-acre Olympia Companies community coming Fall 2027.",
+    "Implement JSON-LD for RealEstateAgent, Place, FAQPage, SpeakableSpecification, and BreadcrumbList.",
+    "Target buyer questions: builder timeline, interest list, KB Home Vertice early 2027 sales, and northwest Las Vegas growth beyond the 215 Beltway."
   ],
   "corePages": {
     "index.html": {
@@ -133,12 +138,24 @@
       "faqs": []
     },
     "olympia-companies-skye-summit": {
-      "quickAnswer": "Olympia Companies is developing the Skye Summit Master Plan—505 acres, integrated parks and trails, ~3,500 homes, Fall 2027. Dr. Jan Duffy tracks builder releases for buyers.",
-      "faqs": []
+      "quickAnswer": "Olympia Companies is developing the Skye Summit Master Plan—505 acres, ~3,500 homes, Fall 2027. KB Home was the first builder to close land; Century Communities and Woodside Homes are also acquiring parcels. Dr. Jan Duffy tracks builder releases for buyers.",
+      "faqs": [
+        {
+          "q": "Which builders have bought land in Skye Summit?",
+          "a": "KB Home was the first builder to close a land purchase (~38.6 acres). Century Communities acquired 17.6 acres in early 2026; Woodside Homes is also planned among early builders."
+        }
+      ],
+      "source": "parallel-task"
     },
     "skye-summit-timeline": {
-      "quickAnswer": "Skye Summit Master Plan timeline: KB Home Vertice sales may open early 2027; Olympia Companies community launch Fall 2027. Join the interest list with Dr. Jan Duffy.",
-      "faqs": []
+      "quickAnswer": "Skye Summit Master Plan timeline: KB Home Vertice sales may open early 2027; Olympia Companies community launch Fall 2027. Century Communities and additional builders are closing land as phases advance. Join the interest list with Dr. Jan Duffy.",
+      "faqs": [
+        {
+          "q": "What builder activity has happened so far?",
+          "a": "Olympia Companies has closed major land sales to national builders including KB Home and Century Communities as infrastructure and homesite work advance toward Fall 2027."
+        }
+      ],
+      "source": "parallel-task"
     },
     "woodside-homes-skye-summit": {
       "quickAnswer": "Woodside Homes is planned among the first builders in the Skye Summit Master Plan (Fall 2027). Dr. Jan Duffy provides buyer representation on Woodside contracts—(702) 930-8222.",
@@ -207,8 +224,15 @@
       ]
     },
     "northwest-las-vegas-real-estate": {
-      "quickAnswer": "Dr. Jan Duffy is the buyer's representative for the Skye Summit Master Plan—a 505-acre Olympia Companies community coming Fall 2027. (702) 930-8222.",
-      "faqs": []
+      "quickAnswer": "Northwest Las Vegas beyond the 215 Beltway is adding master-planned communities including the Skye Summit Master Plan (505 acres, Fall 2027). Dr. Jan Duffy is the buyer's representative for early-access updates—(702) 930-8222.",
+      "description": "Northwest Las Vegas real estate overview with focus on the Skye Summit Master Plan corridor beyond the 215 Beltway.",
+      "faqs": [
+        {
+          "q": "What makes northwest Las Vegas a growth corridor?",
+          "a": "The area beyond the 215 Beltway is seeing new master-planned communities, cooler foothill elevations, and improved beltway access—led by developments like the Skye Summit Master Plan coming Fall 2027."
+        }
+      ],
+      "source": "parallel-task"
     },
     "centennial-hills-real-estate": {
       "quickAnswer": "The Skye Summit Master Plan is a 505-acre Olympia Companies community coming Fall 2027. Dr. Jan Duffy is your buyer's representative for early-access updates.",
@@ -224,5 +248,55 @@
       "quickAnswer": "Dr. Jan Duffy's office is at 11411 Southern Highlands Pkwy #300, Las Vegas, NV 89141 (same address shown on Google Maps). Hours Sun–Sat 9 AM–6 PM—(702) 930-8222.",
       "faqs": []
     }
-  }
+  },
+  "searchSummaries": {
+    "seo": {
+      "search_id": "search_4786929114bb4aff97bd3e788f858d38",
+      "result_count": 10,
+      "titles": [
+        "2026 Real Estate Outlook and Opportunities - YouTube",
+        "Latest Google Search Documentation Updates | Google Search Central  |  What's new  |  Google for Developers",
+        "SEO vs AEO vs GEO: The 3 Visibility Strategies Real Estate Agents Need in 2026",
+        "Local SEO for Real Estate Agents: The Ultimate 2026 Guide",
+        "RealEstateListing - Schema.org Type"
+      ]
+    },
+    "masterPlan": {
+      "search_id": "search_c43e010557c64679a2c94bbf3542979d",
+      "result_count": 10,
+      "titles": [
+        "Skye Summit Las Vegas: Olympia Companies Sells $115M+ in Land ...",
+        "Developers sell land for new housing projects by Century Communities, D.R. Horton in new Las Vegas community | Building Las Vegas | Business | Vegas Business",
+        "Skye Summit Real Estate | Dr. Jan Duffy REALTOR® | (702) 930-8222",
+        "Land sold in Skye Summit community | Las Vegas, NV - Facebook",
+        "Skye Summit - Las Vegas, Nevada Community"
+      ]
+    },
+    "local": {
+      "search_id": "search_a75899b9d24a46788d37d874a59d4d1d",
+      "result_count": 10,
+      "titles": [
+        "Centennial Hills Las Vegas: 2026 Northwest Family Guide",
+        "Centennial Hills Homes for Sale in Las Vegas NV - Centennial Hills Real Estate",
+        "Living In Centennial Hills NV | Las Vegas NV Real Estate - YouTube",
+        "Centennial Hills - Transforming Las Vegas Neighborhoods One Home at a Time",
+        "Centennial Hills Town Center, Las Vegas Homes for Sale & Real Estate | Realtor.com®"
+      ]
+    },
+    "buyer": {
+      "search_id": "search_387071a7b5734fea93e2a55bd84eb0f6",
+      "result_count": 10,
+      "titles": [
+        "Skye Canyon Homes for Sale - Nevada Real Estate Group",
+        "Las Vegas Master-Planned Communities: 2026 Buyer’s Guide | Skye Canyon",
+        "Clark County School District (CCSD) - Las Vegas",
+        "Skye Summit Master Plan Timeline | Fall 2027 Launch | Dr. Jan Duffy",
+        "Skye Canyon: 2026 Northwest Las Vegas Master-Plan Guide"
+      ]
+    }
+  },
+  "rawSearchSeo": "search_4786929114bb4aff97bd3e788f858d38",
+  "rawSearchMasterPlan": "search_c43e010557c64679a2c94bbf3542979d",
+  "rawSearchLocal": "search_a75899b9d24a46788d37d874a59d4d1d",
+  "rawSearchBuyer": "search_387071a7b5734fea93e2a55bd84eb0f6"
 }

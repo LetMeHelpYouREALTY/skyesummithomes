@@ -10,6 +10,7 @@ const C = require('../lib/gbp-constants');
 
 const root = path.join(__dirname, '..');
 const enrichmentPath = path.join(root, 'lib/parallel-seo-enrichment.json');
+const { isHomepageManaged } = require('../lib/build-skip');
 
 const SKIP_DIRS = new Set([
   'node_modules',
@@ -37,27 +38,36 @@ function listHtmlFiles(dir, out = []) {
   return out;
 }
 
-function loadEntities() {
-  if (!fs.existsSync(enrichmentPath)) return C.GEO_CONTEXT_ENTITIES;
+function loadGeoContext() {
+  if (!fs.existsSync(enrichmentPath)) {
+    return { title: C.GEO_CONTEXT_TITLE, text: C.GEO_CONTEXT_TEXT };
+  }
   try {
     const data = JSON.parse(fs.readFileSync(enrichmentPath, 'utf8'));
-    const list = [...(data.localEntities || []), ...(data.geoKeywords || [])];
-    const filtered = list
+    const entities = [...(data.localEntities || []), ...(data.geoKeywords || [])]
       .map((s) => String(s).trim())
-      .filter((s) => /skye summit master plan|olympia|vertice|215 beltway/i.test(s));
-    if (filtered.length >= 2) return filtered.slice(0, 4);
+      .filter((s) => /skye summit master plan|olympia|vertice|century|woodside|215 beltway|red rock/i.test(s))
+      .slice(0, 4);
+    const entityPhrase =
+      entities.length >= 2
+        ? ` Near ${entities.slice(1, 3).join(' and ')}.`
+        : '';
+    return {
+      title: C.GEO_CONTEXT_TITLE,
+      text: `${C.GEO_CONTEXT_TEXT}${entityPhrase}`,
+    };
   } catch {
-    /* fall through */
+    return { title: C.GEO_CONTEXT_TITLE, text: C.GEO_CONTEXT_TEXT };
   }
-  return C.GEO_CONTEXT_ENTITIES;
 }
 
 function geoBlock() {
+  const ctx = loadGeoContext();
   return `
         <section class="geo-context" aria-label="Skye Summit Master Plan service area">
             <div class="container">
-                <h2 class="geo-context__title">${C.GEO_CONTEXT_TITLE}</h2>
-                <p class="geo-context__text">${C.GEO_CONTEXT_TEXT}</p>
+                <h2 class="geo-context__title">${ctx.title}</h2>
+                <p class="geo-context__text">${ctx.text}</p>
             </div>
         </section>`;
 }
@@ -88,6 +98,7 @@ function stripGeo(html) {
 let updated = 0;
 
 for (const filePath of listHtmlFiles(root)) {
+  if (isHomepageManaged(root, filePath)) continue;
   let html = stripGeo(fs.readFileSync(filePath, 'utf8'));
   const block = geoBlock();
 
