@@ -35,8 +35,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search by Zip Code | Las Vegas Valley | Dr. Jan Duffy</title>
     <meta name="description" content="Choose how to explore Las Vegas Valley real estate by zip code: Skye Summit listings, buyer resources, or contact Dr. Jan Duffy.">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://www.skyesummithomes.com/search">
+    <meta name="twitter:image" content="https://www.skyesummithomes.com/images/hero/sunset-home.jpg">
+    <meta property="og:image" content="https://www.skyesummithomes.com/images/hero/sunset-home.jpg">
+    <meta property="og:image:width" content="1600">
+    <meta property="og:image:height" content="900">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     <link rel="preload" href="/styles.css" as="style">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -245,6 +249,47 @@
         .appt-sticky__actions .btn { flex: 1 1 auto; text-align: center; }
       }
     </style>
+    <!-- PAGE_HERO_SCHEMA_BEGIN -->
+    <script type="application/ld+json" data-hero-imageobject>
+{
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "@id": "https://www.skyesummithomes.com/images/hero/community-aerial.jpg#hero",
+  "contentUrl": "https://www.skyesummithomes.com/images/hero/community-aerial.jpg",
+  "url": "https://www.skyesummithomes.com/images/hero/community-aerial.jpg",
+  "name": "Las Vegas Zip Search Hub",
+  "caption": "Search by zip code",
+  "description": "Community aerial for the Las Vegas Valley zip-code search hub.",
+  "width": "1600",
+  "height": "900",
+  "encodingFormat": "image/jpeg",
+  "creditText": "Dr. Jan Duffy / Skye Summit Homes",
+  "copyrightNotice": "© 2026 Dr. Jan Duffy, Berkshire Hathaway HomeServices Nevada Properties",
+  "creator": {
+    "@type": "RealEstateAgent",
+    "name": "Dr. Jan Duffy",
+    "url": "https://www.skyesummithomes.com"
+  },
+  "contentLocation": {
+    "@type": "Place",
+    "name": "Skye Summit Master Plan, Las Vegas, NV",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Las Vegas",
+      "addressRegion": "NV",
+      "postalCode": "89141",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 36.017598,
+      "longitude": -115.20417
+    }
+  },
+  "representativeOfPage": true
+}
+    </script>
+    <!-- PAGE_HERO_SCHEMA_END -->
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -273,8 +318,15 @@
     </header>
 
     <main id="main-content" role="main">
-<section class="search-hub-hero">
-            <div class="container">
+<section class="search-hub-hero hero--photo">
+            <!-- PAGE_HERO_MEDIA_BEGIN -->
+            <figure class="hero-media" data-geo-place="Skye Summit Master Plan, Las Vegas, NV">
+                <img class="hero-media__img" src="/images/hero/community-aerial.jpg" alt="Search Las Vegas Valley homes by zip code near Skye Summit" width="1600" height="900" decoding="async" loading="lazy">
+                <figcaption class="hero-media__caption visually-hidden">Search by zip code</figcaption>
+            </figure>
+            <div class="hero-media__shade" aria-hidden="true"></div>
+            <!-- PAGE_HERO_MEDIA_END -->
+<div class="container">
                 <h1 id="hub-title">Search by zip code</h1>
                 <p id="hub-sub">Pick a next step: listings focused on Skye Summit, buyer resources for the Las Vegas Valley, or a direct conversation with Dr. Jan Duffy.</p>
                 <p class="zip-pill" id="hub-zip-label" aria-live="polite"><span id="hub-zip">—</span></p>

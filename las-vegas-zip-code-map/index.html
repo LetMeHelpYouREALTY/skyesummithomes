@@ -35,8 +35,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Las Vegas Zip Code Map | Dr. Jan Duffy, REALTOR® | Search Homes by Zip Code</title>
     <meta name="description" content="Interactive Las Vegas zip code map covering the entire valley — Las Vegas, Henderson, North Las Vegas, Summerlin, Boulder City & more. Search homes by zip code with Dr. Jan Duffy, REALTOR®.">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://www.skyesummithomes.com/las-vegas-zip-code-map">
+    <meta name="twitter:image" content="https://www.skyesummithomes.com/images/hero/sunset-home.jpg">
+    <meta property="og:image" content="https://www.skyesummithomes.com/images/hero/sunset-home.jpg">
+    <meta property="og:image:width" content="1600">
+    <meta property="og:image:height" content="900">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     <!-- Maps key: leave empty in git. Vercel build injects GOOGLE_MAPS_API_KEY into this meta (see scripts/inject-google-maps-key.js). -->
     <meta name="google-maps-api-key" content="">
@@ -756,6 +760,47 @@
         .appt-sticky__actions .btn { flex: 1 1 auto; text-align: center; }
       }
     </style>
+    <!-- PAGE_HERO_SCHEMA_BEGIN -->
+    <script type="application/ld+json" data-hero-imageobject>
+{
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "@id": "https://www.skyesummithomes.com/images/hero/community-aerial.jpg#hero",
+  "contentUrl": "https://www.skyesummithomes.com/images/hero/community-aerial.jpg",
+  "url": "https://www.skyesummithomes.com/images/hero/community-aerial.jpg",
+  "name": "Las Vegas Zip Code Map",
+  "caption": "Las Vegas Valley zip code map",
+  "description": "Aerial context image for the interactive Las Vegas zip code map tool.",
+  "width": "1600",
+  "height": "900",
+  "encodingFormat": "image/jpeg",
+  "creditText": "Dr. Jan Duffy / Skye Summit Homes",
+  "copyrightNotice": "© 2026 Dr. Jan Duffy, Berkshire Hathaway HomeServices Nevada Properties",
+  "creator": {
+    "@type": "RealEstateAgent",
+    "name": "Dr. Jan Duffy",
+    "url": "https://www.skyesummithomes.com"
+  },
+  "contentLocation": {
+    "@type": "Place",
+    "name": "Skye Summit Master Plan, Las Vegas, NV",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Las Vegas",
+      "addressRegion": "NV",
+      "postalCode": "89141",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 36.017598,
+      "longitude": -115.20417
+    }
+  },
+  "representativeOfPage": true
+}
+    </script>
+    <!-- PAGE_HERO_SCHEMA_END -->
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -794,8 +839,15 @@
     </nav>
 
     <main id="main-content" role="main">
-<section class="zip-map-hero" aria-labelledby="page-title">
-            <div class="zip-map-hero-inner">
+<section class="zip-map-hero hero--photo" aria-labelledby="page-title">
+            <!-- PAGE_HERO_MEDIA_BEGIN -->
+            <figure class="hero-media" data-geo-place="Skye Summit Master Plan, Las Vegas, NV">
+                <img class="hero-media__img" src="/images/hero/community-aerial.jpg" alt="Interactive Las Vegas Valley zip code map for Skye Summit and northwest neighborhoods" width="1600" height="900" decoding="async" loading="lazy">
+                <figcaption class="hero-media__caption visually-hidden">Las Vegas Valley zip code map</figcaption>
+            </figure>
+            <div class="hero-media__shade" aria-hidden="true"></div>
+            <!-- PAGE_HERO_MEDIA_END -->
+<div class="zip-map-hero-inner">
                 <p class="zip-map-hero-kicker">
                     <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
                     Clark County, Nevada · Las Vegas Valley

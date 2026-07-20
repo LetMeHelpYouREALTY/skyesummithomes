@@ -195,24 +195,25 @@ Google **should not** index those URLs — only **https://www.skyesummithomes.co
 
 ### “Discovered – currently not indexed”
 
-Google found URLs (usually from your **sitemap**) but has **not crawled or indexed** them yet (`Last crawled: N/A`). This is common on newer or lower-authority sites — not a robots block if pages return **200** and `index, follow`.
+Google found URLs (usually from your **sitemap**) but has **not crawled or indexed** them yet (`Last crawled: N/A`). Per Google’s [Page indexing report](https://support.google.com/webmasters/answer/7440203) and the Jul 2026 *Search Off the Record* episode [How to read the Indexing Report](https://developers.google.com/search/podcasts/search-off-the-record), this is **not a site error** — Google deferred the crawl (often crawl-budget pacing). Do **not** click **Validate fix** / **Done fixing?** unless you actually fixed a technical blocker.
 
-**Site fixes (this repo):**
+**Site checks (this repo — already green if `npm run validate:gsc` passes):**
 
-- Homepage footer links to all core service pages (internal linking)
-- `scripts/normalize-trailing-slash-urls.js` keeps canonicals aligned with `trailingSlash: false`
-- Sitemap uses www URLs without trailing slashes
+- Pages return **200**, `index, follow`, www self-canonicals, sitemap listed
+- Static HTML (crawlable without JS) — matches Google’s 2026 [vibe-coded site](https://www.youtube.com/watch?v=1-PcVLHplwc) guidance: real content in HTML, full canonical URLs, Search Console connected
+- Homepage footer + `/site-map` style internal links; hero photos use real `<img>` + `ImageObject` (Discover-ready ≥1200px)
 
 **Your steps in Search Console:**
 
 1. Confirm sitemap submitted: `https://www.skyesummithomes.com/sitemap.xml`
-2. **URL Inspection** → paste each priority URL → **Request indexing** (batch over a few days; Google limits daily requests):
+2. **URL Inspection** → priority URLs → **Request indexing** (≈10–15/day):
 
-   - `/about`, `/buy`, `/sell`, `/contact`, `/community`, `/invest`
+   - `/`, `/buy`, `/sell`, `/contact`, `/community`, `/skye-summit-master-plan`
    - `/homes-for-sale-skye-summit`, `/las-vegas-zip-code-map`
 
-3. Skip low-priority legal pages (`/privacy`, `/terms`, `/mls-disclaimer`) unless you need them in search
-4. **Page indexing → Discovered – currently not indexed** → monitor; count should fall as Google crawls after requests
+3. Skip low-priority legal pages (`/privacy`, `/terms`) unless needed
+4. Monitor the count — it falls as Google crawls; no “fix” button required
+5. When available for your property: check **Performance → Generative AI** ([Gen AI reports, Jun 2026](https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports)) for AI Overviews / AI Mode impressions
 
 ### “Product snippets” — missing offers / review / rating
 
