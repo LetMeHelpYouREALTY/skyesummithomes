@@ -33,6 +33,19 @@ Google no longer has a “preferred domain” toggle. **www** becomes primary wh
 
 6. For **“Alternate page with proper canonical”** or **“Page with redirect”** on apex/http URLs → **Validate fix** after redirects are live (1–2 weeks recrawl).
 
+### “Page with redirect” examples (Jul 2026)
+
+These are **expected not to be indexed**. Canonical indexable URL is always `https://www.skyesummithomes.com/`.
+
+| GSC example | Why it redirects | Status |
+|-------------|------------------|--------|
+| `https://skyesummithomes.com/` | Apex → www (308) | Correct — mark **Validate fix** |
+| `http://skyesummithomes.com/` | HTTP → HTTPS → www | Correct — mark **Validate fix** |
+| `http://www.skyesummithomes.com/` | HTTP → HTTPS www | Correct — mark **Validate fix** |
+| `https://skyesummithomes.com/?s={search_term_string}` | Legacy SearchAction template crawl | Fixed: SearchAction removed; `?s=` now 308 → `/search` |
+
+Do **not** request indexing for apex/http URLs. After deploy, click **Validate fix** in GSC for this report.
+
 ## What is already in the repo
 
 | Item | Location / URL |

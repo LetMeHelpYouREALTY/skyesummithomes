@@ -2,6 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script data-www-primary-redirect>
+      (function () {
+        var host = location.hostname;
+        var path = location.pathname;
+        var params = new URLSearchParams(location.search);
+        // Legacy SearchAction crawl: /?s={search_term_string} → clean /search
+        if (params.has('s') && (path === '/' || path === '/search' || path === '/search/')) {
+          location.replace('https://www.skyesummithomes.com/search');
+          return;
+        }
+        if (host === 'skyesummithomes.com') {
+          location.replace('https://www.skyesummithomes.com' + path + location.search + location.hash);
+        }
+      })();
+    </script>
     <meta name="google-site-verification" content="wKOftY7ctL98xgE1EW2r-2pYqOXyN109r4ZLLiRwQsI">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Skye Summit HOA structure, fees, and amenities — what buyers should expect before signing a builder contract.">

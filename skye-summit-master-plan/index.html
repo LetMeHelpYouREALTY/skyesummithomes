@@ -2,6 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script data-www-primary-redirect>
+      (function () {
+        var host = location.hostname;
+        var path = location.pathname;
+        var params = new URLSearchParams(location.search);
+        // Legacy SearchAction crawl: /?s={search_term_string} → clean /search
+        if (params.has('s') && (path === '/' || path === '/search' || path === '/search/')) {
+          location.replace('https://www.skyesummithomes.com/search');
+          return;
+        }
+        if (host === 'skyesummithomes.com') {
+          location.replace('https://www.skyesummithomes.com' + path + location.search + location.hash);
+        }
+      })();
+    </script>
     <meta name="google-site-verification" content="wKOftY7ctL98xgE1EW2r-2pYqOXyN109r4ZLLiRwQsI">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Inside the Skye Summit master plan: 505 acres, ~3,500 homes, parks, trails, KB Home Vertice, Woodside. NW Las Vegas buyer guide.">
@@ -22,6 +37,7 @@
     <meta property="twitter:description" content="Skye Summit Master Plan: 505-acre Olympia Companies community coming Fall 2027 beyond the 215 Beltway. Dr. Jan Duffy is your buyer's representative for early-access updates. (702) 930-8222.">
     <title>Skye Summit Master Plan | Olympia Companies 505 Acres | NW Las Vegas</title>
     <link rel="canonical" href="https://www.skyesummithomes.com/skye-summit-master-plan">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     <link rel="preload" href="/styles.css" as="style">
     <link rel="preload" href="/script.js" as="script">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">

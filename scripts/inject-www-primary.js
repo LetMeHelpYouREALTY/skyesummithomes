@@ -22,9 +22,19 @@ const SKIP_DIRS = new Set([
 ]);
 
 const APEX_REDIRECT = `<script ${MARKER}>
-      if (location.hostname === 'skyesummithomes.com') {
-        location.replace('https://www.skyesummithomes.com' + location.pathname + location.search + location.hash);
-      }
+      (function () {
+        var host = location.hostname;
+        var path = location.pathname;
+        var params = new URLSearchParams(location.search);
+        // Legacy site-search query param → clean /search hub
+        if (params.has('s') && (path === '/' || path === '/search' || path === '/search/')) {
+          location.replace('https://www.skyesummithomes.com/search');
+          return;
+        }
+        if (host === 'skyesummithomes.com') {
+          location.replace('https://www.skyesummithomes.com' + path + location.search + location.hash);
+        }
+      })();
     </script>`;
 
 const LEGACY_APEX_RE =

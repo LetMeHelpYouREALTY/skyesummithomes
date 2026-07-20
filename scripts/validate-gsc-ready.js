@@ -243,4 +243,35 @@ if (invalidProductLikeSchema === 0) {
   ok('no invalid standalone Service/LocalBusiness JSON-LD');
 }
 
+// JSON-LD SearchAction templates historically caused GSC "Page with redirect"
+let searchActionHits = 0;
+for (const filePath of listHtmlFiles(root)) {
+  const rel = path.relative(root, filePath);
+  if (SKIP_HTML.has(rel)) continue;
+  const html = fs.readFileSync(filePath, 'utf8');
+  const scriptRe =
+    /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+  let match;
+  while ((match = scriptRe.exec(html)) !== null) {
+    if (/SearchAction/i.test(match[1]) || /\?s=\{search_term_string\}/i.test(match[1])) {
+      fail(`JSON-LD SearchAction / ?s= template must not appear: ${rel}`);
+      searchActionHits += 1;
+      break;
+    }
+  }
+}
+if (searchActionHits === 0) {
+  ok('no JSON-LD SearchAction / ?s= templates');
+}
+
+const vercelPath = path.join(root, 'vercel.json');
+if (fs.existsSync(vercelPath)) {
+  const vercel = fs.readFileSync(vercelPath, 'utf8');
+  if (!/"key":\s*"s"/i.test(vercel)) {
+    fail('vercel.json missing permanent redirect for legacy ?s= query');
+  } else {
+    ok('vercel.json redirects legacy ?s= query to /search');
+  }
+}
+
 process.exit(failed > 0 ? 1 : 0);
