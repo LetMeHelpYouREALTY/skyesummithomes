@@ -380,7 +380,13 @@ for (const [fileName, config] of Object.entries(CORE_PAGES)) {
   const qa = quickAnswerBlock(fileName, config);
   const faqBlock = faqSectionBlock(config);
 
-  if (/<section class="service-hero"/i.test(html)) {
+  // Keep RealScout office widget immediately under the hero — insert AEO after it.
+  if (/id="realscout-listings"/i.test(html)) {
+    html = html.replace(
+      /(<section[^>]*id="realscout-listings"[^>]*>[\s\S]*?<\/section>)/i,
+      `$1\n${qa}`
+    );
+  } else if (/<section class="service-hero"/i.test(html)) {
     html = html.replace(
       /(<section class="service-hero"[\s\S]*?<\/section>)/i,
       `$1\n${qa}`

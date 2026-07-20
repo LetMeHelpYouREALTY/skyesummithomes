@@ -992,9 +992,10 @@ ${faqJsonLd(guide.faqs)}
                 <h1>${escapeHtml(guide.h1)}</h1>
                 <p class="hero-subtitle">${escapeHtml(guide.heroSubtitle)}</p>
                 <div class="hero-cta hero-cta-primary">
-                    <a href="/contact" class="btn btn-primary btn-large">Join interest list</a>
-                    <a href="/skye-summit-master-plan" class="btn btn-secondary btn-large">Master plan hub</a>
-                    <p class="hero-phone">Call <a href="tel:${C.PHONE_TEL}">${escapeHtml(C.PHONE_DISPLAY)}</a></p>
+                    <a href="/contact" class="btn btn-primary btn-large">Book a free appointment</a>
+                    <a href="#realscout-listings" class="btn btn-secondary btn-large">Browse homes — click a photo</a>
+                    <a href="tel:${C.PHONE_TEL}" class="btn btn-secondary btn-large">Call ${escapeHtml(C.PHONE_DISPLAY)}</a>
+                    <p class="hero-phone">Text <a href="${C.SMS_URL}">${escapeHtml(C.PHONE_DISPLAY)}</a> to book a showing · <a href="/skye-summit-interest-list">Join interest list</a></p>
                 </div>
             </div>
         </section>
@@ -1022,8 +1023,9 @@ ${guide.extraSections}
                 <h2>Personalized Skye Summit guidance</h2>
                 <p>Get answers tied to your address, timeline, and budget—not generic web estimates.</p>
                 <div class="cta-buttons">
-                    <a href="/contact" class="btn btn-primary btn-large">Schedule consultation</a>
+                    <a href="/contact" class="btn btn-primary btn-large">Book a free appointment</a>
                     <a href="tel:+17029308222" class="btn btn-secondary btn-large">Call (702) 930-8222</a>
+                    <a href="#realscout-listings" class="btn btn-secondary btn-large">Click a home photo</a>
                 </div>
                 <p class="cta-note">Dr. Jan Duffy, REALTOR® · License S.0197614.LLC · Berkshire Hathaway HomeServices Nevada Properties</p>
                 <p class="cta-note cta-note--guides" style="margin-top:0.75rem;">

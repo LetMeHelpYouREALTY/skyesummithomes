@@ -102,6 +102,12 @@ for (const filePath of listHtmlFiles(root)) {
       /(<section class="aeo-quick-answer"[\s\S]*?<\/section>)/i,
       `$1\n<!-- GEO_CONTEXT_BEGIN -->${block}`
     );
+  } else if (/id="realscout-listings"/i.test(html)) {
+    // Prefer after RealScout so the office widget stays directly under the hero
+    next = html.replace(
+      /(<section[^>]*id="realscout-listings"[^>]*>[\s\S]*?<\/section>)/i,
+      `$1\n<!-- GEO_CONTEXT_BEGIN -->${block}`
+    );
   } else if (/<main[^>]*>/i.test(html)) {
     next = html.replace(/<main[^>]*>/i, (m) => `${m}\n<!-- GEO_CONTEXT_BEGIN -->${block}`);
   }

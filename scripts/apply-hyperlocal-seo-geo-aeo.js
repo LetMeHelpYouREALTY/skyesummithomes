@@ -226,6 +226,13 @@ function injectEntities(html) {
       `$1\n${block}`
     );
   }
+  // Keep RealScout directly under hero — place entity strip after the widget
+  if (/id="realscout-listings"/i.test(html)) {
+    return html.replace(
+      /(<section[^>]*id="realscout-listings"[^>]*>[\s\S]*?<\/section>)/i,
+      `$1\n${block}`
+    );
+  }
   if (/<\/main>/i.test(html)) {
     return html.replace(/<\/main>/i, `${block}\n    </main>`);
   }

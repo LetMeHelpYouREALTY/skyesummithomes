@@ -552,7 +552,18 @@
             .zip-map-legend { display: none; }
         }
     </style>
-<link rel="dns-prefetch" href="https://em.realscout.com">
+<script type="application/ld+json" data-geo-speakable>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".aeo-quick-answer__text"]
+      }
+    }
+    </script>
+
+    <link rel="dns-prefetch" href="https://em.realscout.com">
     <link rel="dns-prefetch" href="https://www.realscout.com">
     <link rel="preconnect" href="https://em.realscout.com" crossorigin>
     <link rel="preconnect" href="https://www.realscout.com" crossorigin>
@@ -561,10 +572,96 @@
       realscout-office-listings {
         --rs-listing-divider-color: rgb(101, 141, 172);
         width: 100%;
-        min-height: 480px;
+        min-height: 640px;
         display: block;
-        margin: 1.5rem 0 1rem;
+        margin: 0;
       }
+      .realscout-listings-section--interactive {
+        padding: 2.5rem 0 3rem;
+        background: linear-gradient(180deg, #f0f6fc 0%, #ffffff 42%);
+        border-top: 1px solid rgba(10, 37, 64, 0.08);
+        border-bottom: 1px solid rgba(10, 37, 64, 0.06);
+      }
+      .rs-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #1e5a8a;
+        margin: 0 0 0.65rem;
+      }
+      .realscout-listings-section--interactive h2 {
+        color: #0a2540;
+        font-size: clamp(1.6rem, 3vw, 2.15rem);
+        margin-bottom: 0.75rem;
+        text-align: center;
+      }
+      .rs-lead {
+        max-width: 44rem;
+        margin: 0 auto 1.25rem;
+        text-align: center;
+        color: #334155;
+        font-size: 1.05rem;
+      }
+      .rs-widget-shell {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 12px 40px rgba(10, 37, 64, 0.12);
+        border: 1px solid rgba(58, 141, 222, 0.25);
+        padding: 0.75rem;
+        margin: 1rem 0;
+        min-height: 640px;
+      }
+      .rs-widget-shell::after {
+        content: "Click a photo →";
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 2;
+        pointer-events: none;
+        background: #0a2540;
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 0.45rem 0.7rem;
+        border-radius: 999px;
+        opacity: 0.92;
+        animation: rsPulse 2.4s ease-in-out infinite;
+      }
+      @keyframes rsPulse {
+        0%, 100% { transform: translateY(0); opacity: 0.88; }
+        50% { transform: translateY(-3px); opacity: 1; }
+      }
+      .rs-appt-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+        margin: 1rem 0 1.25rem;
+      }
+      .rs-appt-cta .btn {
+        min-width: min(100%, 14rem);
+      }
+      .rs-appt-cta__primary {
+        box-shadow: 0 8px 24px rgba(58, 141, 222, 0.35);
+      }
+      .rs-click-prompt {
+        text-align: center;
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+        border-radius: 8px;
+        padding: 0.85rem 1rem;
+        margin: 0.5rem 0 1rem;
+        color: #9a3412;
+      }
+      .rs-click-prompt p { margin: 0; }
       .realscout-mls-note {
         font-size: 0.85rem;
         color: #64748b;
@@ -586,8 +683,55 @@
       .realscout-listings-section.realscout-error realscout-office-listings {
         display: none;
       }
+      .appt-sticky {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1200;
+        background: rgba(10, 37, 64, 0.96);
+        color: #fff;
+        box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.18);
+        padding: 0.75rem 1rem;
+      }
+      .appt-sticky__inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1rem;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .appt-sticky__copy {
+        margin: 0;
+        font-size: 0.95rem;
+        flex: 1 1 16rem;
+      }
+      .appt-sticky__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .appt-sticky .btn {
+        white-space: nowrap;
+      }
+      .appt-sticky__book {
+        background: #3a8dde;
+        border-color: #3a8dde;
+      }
+      body {
+        padding-bottom: 5.5rem;
+      }
+      @media (max-width: 768px) {
+        realscout-office-listings,
+        .rs-widget-shell { min-height: 520px; }
+        .rs-widget-shell::after { top: 0.65rem; right: 0.65rem; font-size: 0.68rem; }
+        .appt-sticky__copy { font-size: 0.875rem; }
+        .appt-sticky__actions { width: 100%; }
+        .appt-sticky__actions .btn { flex: 1 1 auto; text-align: center; }
+      }
     </style>
-
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -626,13 +770,6 @@
     </nav>
 
     <main id="main-content" role="main">
-<!-- GEO_CONTEXT_BEGIN -->
-        <section class="geo-context" aria-label="Skye Summit Master Plan service area">
-            <div class="container">
-                <h2 class="geo-context__title">Skye Summit Homes — local context</h2>
-                <p class="geo-context__text">Skye Summit Homes sit in a 505-acre <a href="https://www.olympiacompanies.com/" target="_blank" rel="noopener noreferrer">Olympia Companies</a> master plan beyond the 215 Beltway near <a href="https://www.blm.gov/programs/national-conservation-lands/nevada/red-rock-canyon" target="_blank" rel="noopener noreferrer">Red Rock Canyon</a> and <a href="https://en.wikipedia.org/wiki/Centennial_Hills,_Las_Vegas" target="_blank" rel="noopener noreferrer">Centennial Hills</a>. Dr. Jan Duffy provides Skye Summit realtor services—<a href="/skye-summit-realtor">buyer representation</a>, <a href="/skye-summit-interest-list">interest list</a>, and <a href="/new-construction-skye-summit">new construction</a> guidance. Call <a href="tel:+17029308222">(702) 930-8222</a>.</p>
-            </div>
-        </section>
 <section class="zip-map-hero" aria-labelledby="page-title">
             <div class="zip-map-hero-inner">
                 <p class="zip-map-hero-kicker">
@@ -666,18 +803,43 @@
             </div>
         </section>
         <!-- REALSCOUT_WIDGET_BEGIN -->
-        <section id="realscout-listings" class="realscout-listings-section" aria-labelledby="realscout-listings-title">
+        <section id="realscout-listings" class="realscout-listings-section realscout-listings-section--interactive" aria-labelledby="realscout-listings-title">
             <div class="container">
-                <h2 id="realscout-listings-title">Search homes available today</h2>
-                <p class="section-description">Need a home now? Browse active Las Vegas listings from Dr. Jan Duffy&rsquo;s office while you follow Skye Summit Master Plan updates.</p>
-                <realscout-office-listings
+                <p class="rs-kicker"><i class="fas fa-hand-pointer" aria-hidden="true"></i> Tap any home photo to open details</p>
+                <h2 id="realscout-listings-title">Homes you can tour now — click a photo</h2>
+                <p class="section-description rs-lead">Browse active Las Vegas office listings while you wait on Skye Summit Master Plan releases. <strong>Click any listing image</strong> to see the full home, then book a showing with Dr. Jan Duffy.</p>
+                
+                <div class="rs-appt-cta rs-appt-cta--top" role="group" aria-label="Book a showing or consultation">
+                    <a href="/contact" class="btn btn-primary btn-large rs-appt-cta__primary">Book a free showing appointment</a>
+                    <a href="tel:+17029308222" class="btn btn-secondary btn-large">Call (702) 930-8222</a>
+                    <a href="sms:+17029308222" class="btn btn-secondary btn-large">Text to book</a>
+                </div>
+                <div class="rs-widget-shell" id="rs-widget-shell">
+                    <realscout-office-listings
                     agent-encoded-id="QWdlbnQtMjI1MDUw"
                     sort-order="STATUS_AND_SIGNIFICANT_CHANGE"
                     listing-status="For Sale"
                     property-types="SFR,MF,TC"
                     price-min="500000"
                     price-max="1200000"></realscout-office-listings>
-                <p class="realscout-mls-note">Listing data courtesy of MLS. <a href="/mls-disclaimer">MLS listing data notice</a> · <a href="/contact">Questions? Contact Dr. Jan Duffy</a> · <a href="tel:+17029308222">(702) 930-8222</a></p>
+                </div>
+                <div class="rs-click-prompt" role="note">
+                    <p><i class="fas fa-images" aria-hidden="true"></i> <strong>Tip:</strong> Click the home photo that fits your search — we&rsquo;ll help you schedule a private tour or virtual walkthrough.</p>
+                </div>
+                
+                <div class="rs-appt-cta rs-appt-cta--bottom" role="group" aria-label="Book a showing or consultation">
+                    <a href="/contact" class="btn btn-primary btn-large rs-appt-cta__primary">Book a free showing appointment</a>
+                    <a href="tel:+17029308222" class="btn btn-secondary btn-large">Call (702) 930-8222</a>
+                    <a href="sms:+17029308222" class="btn btn-secondary btn-large">Text to book</a>
+                </div>
+                <p class="realscout-mls-note">Listing data courtesy of MLS. <a href="/mls-disclaimer">MLS listing data notice</a> · Prefer a curated shortlist? <a href="/contact">Request an appointment</a> · <a href="tel:+17029308222">(702) 930-8222</a></p>
+            </div>
+        </section>
+<!-- GEO_CONTEXT_BEGIN -->
+        <section class="geo-context" aria-label="Skye Summit Master Plan service area">
+            <div class="container">
+                <h2 class="geo-context__title">Skye Summit Homes — local context</h2>
+                <p class="geo-context__text">Skye Summit Homes sit in a 505-acre <a href="https://www.olympiacompanies.com/" target="_blank" rel="noopener noreferrer">Olympia Companies</a> master plan beyond the 215 Beltway near <a href="https://www.blm.gov/programs/national-conservation-lands/nevada/red-rock-canyon" target="_blank" rel="noopener noreferrer">Red Rock Canyon</a> and <a href="https://en.wikipedia.org/wiki/Centennial_Hills,_Las_Vegas" target="_blank" rel="noopener noreferrer">Centennial Hills</a>. Dr. Jan Duffy provides Skye Summit realtor services—<a href="/skye-summit-realtor">buyer representation</a>, <a href="/skye-summit-interest-list">interest list</a>, and <a href="/new-construction-skye-summit">new construction</a> guidance. Call <a href="tel:+17029308222">(702) 930-8222</a>.</p>
             </div>
         </section>
 <section class="zip-map-search-section">
@@ -950,18 +1112,6 @@
         ]
     }
     </script>
-
-    <script type="application/ld+json" data-geo-speakable>
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "speakable": {
-        "@type": "SpeakableSpecification",
-        "cssSelector": [".aeo-quick-answer__text"]
-      }
-    }
-    </script>
-    
 <script type="application/ld+json" data-hyperlocal-gbp-schema>
 {
   "@context": "https://schema.org",
@@ -1235,5 +1385,16 @@
 }
     </script>
 
+    <!-- APPOINTMENT_CTA_STICKY_BEGIN -->
+    <aside class="appt-sticky" role="complementary" aria-label="Book an appointment">
+        <div class="appt-sticky__inner">
+            <p class="appt-sticky__copy"><strong>Ready to tour?</strong> Book a free appointment with Dr. Jan Duffy.</p>
+            <div class="appt-sticky__actions">
+                <a href="/contact" class="btn btn-primary appt-sticky__book">Book appointment</a>
+                <a href="tel:+17029308222" class="btn btn-secondary appt-sticky__call">Call (702) 930-8222</a>
+                <a href="#realscout-listings" class="btn btn-secondary appt-sticky__browse">Browse homes</a>
+            </div>
+        </div>
+    </aside>
 </body>
 </html>
