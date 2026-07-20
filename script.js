@@ -624,10 +624,13 @@ function showReviewRequestModal(title, message, reviewUrl) {
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = CALENDLY_CSS;
+        link.media = 'print';
+        link.onload = function () { this.media = 'all'; };
         document.head.appendChild(link);
     }
 
     function ensureWidgetScript(done) {
+        injectCss();
         if (window.Calendly) {
             done();
             return;
@@ -680,12 +683,26 @@ function showReviewRequestModal(title, message, reviewUrl) {
         }
     });
 
-    injectCss();
-    ensureWidgetScript(function onCalendlyReady() {
-        if (document.readyState === 'complete') {
+    // Defer Calendly badge until idle so it does not compete with LCP
+    function scheduleBadge() {
+      function run() {
+        ensureWidgetScript(function onCalendlyReady() {
+          if (document.readyState === 'complete') {
             initBadge();
-        } else {
+          } else {
             window.addEventListener('load', initBadge);
-        }
-    });
+          }
+        });
+      }
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(run, { timeout: 6000 });
+      } else {
+        setTimeout(run, 3500);
+      }
+    }
+    if (document.readyState === 'complete') {
+      scheduleBadge();
+    } else {
+      window.addEventListener('load', scheduleBadge);
+    }
 })();

@@ -10,7 +10,8 @@ const path = require('path');
 const C = require('../lib/gbp-constants');
 
 const root = path.join(__dirname, '..');
-const PORTRAIT_SRC = '/images/brand/dr-jan-hero-portrait.png';
+const PORTRAIT_SRC = '/images/brand/dr-jan-hero-portrait.webp';
+const PORTRAIT_FALLBACK = '/images/brand/dr-jan-hero-portrait.png';
 const BEGIN = '<!-- HERO_AGENT_PORTRAIT_BEGIN -->';
 const END = '<!-- HERO_AGENT_PORTRAIT_END -->';
 
@@ -27,14 +28,15 @@ const SKIP_DIRS = new Set([
 const ALT = `${C.AGENT_NAME}, ${C.AGENT_TITLE} — Skye Summit Homes ${C.AGENT_ROLE}, ${C.CITY}, ${C.REGION}`;
 
 function portraitHtml(priority) {
+  // Never compete with LCP hero photo for fetchpriority
   const loading = priority ? 'eager' : 'lazy';
-  const fetchPriority = priority ? ' fetchpriority="high"' : '';
+  const alt = ALT.replace(/"/g, '&quot;');
   return `${BEGIN}
                 <figure class="hero-agent">
-                    <img class="hero-agent__img" src="${PORTRAIT_SRC}" alt="${ALT.replace(
-    /"/g,
-    '&quot;'
-  )}" width="120" height="120" decoding="async" loading="${loading}"${fetchPriority}>
+                    <picture>
+                      <source type="image/webp" srcset="${PORTRAIT_SRC}">
+                      <img class="hero-agent__img" src="${PORTRAIT_FALLBACK}" alt="${alt}" width="120" height="120" decoding="async" loading="${loading}">
+                    </picture>
                     <figcaption class="hero-agent__caption">${C.AGENT_NAME}, ${C.AGENT_TITLE}</figcaption>
                 </figure>
                 ${END}`;
@@ -94,6 +96,9 @@ const cssSnippet = `
 /* Dr. Jan brand portrait in hero content */
 .hero-agent{margin:0 auto 1rem;max-width:7.5rem;text-align:center;position:relative;z-index:2}
 .hero-agent__img{display:block;width:7.5rem;height:7.5rem;margin:0 auto;border-radius:50%;object-fit:cover;box-shadow:0 8px 28px rgba(0,0,0,.28)}
+.hero-agent picture{display:block;width:7.5rem;height:7.5rem;margin:0 auto}
+.hero-media picture{display:block;width:100%;height:100%}
+.hero-media picture .hero-media__img{width:100%;height:100%;object-fit:cover;object-position:35% center}
 .hero-agent__caption{margin-top:.5rem;font-size:.8rem;font-weight:600;letter-spacing:.02em;color:rgba(255,255,255,.92)}
 .hero.hero--home .hero-agent{margin-bottom:1.1rem}
 .service-hero .hero-agent,.loc-hero .hero-agent,.zip-map-hero .hero-agent,.search-hub-hero .hero-agent{margin-top:.25rem}

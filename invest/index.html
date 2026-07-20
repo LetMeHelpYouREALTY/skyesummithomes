@@ -59,10 +59,9 @@
     <meta name="twitter:image" content="https://www.skyesummithomes.com/images/hero/property-twilight.jpg">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     
-    <link rel="preload" href="styles.css?v=20260720h4" as="style">
+    <link rel="preload" href="styles.css?v=20260720psi1" as="style">
     <link rel="preload" href="script.js" as="script">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20260720h4">
+<link rel="stylesheet" href="styles.css?v=20260720psi1">
 <script type="application/ld+json" data-aeo-core-faq>
 {
   "@context": "https://schema.org",
@@ -152,12 +151,98 @@
   ]
 }
     </script>
+<!-- PAGE_HERO_SCHEMA_BEGIN -->
+    <script type="application/ld+json" data-hero-imageobject>
+{
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "@id": "https://www.skyesummithomes.com/images/hero/property-twilight.jpg#hero",
+  "contentUrl": "https://www.skyesummithomes.com/images/hero/property-twilight.jpg",
+  "url": "https://www.skyesummithomes.com/images/hero/property-twilight.jpg",
+  "name": "Skye Summit Investment Homes",
+  "caption": "Invest in northwest Las Vegas new construction",
+  "description": "Elevated twilight home representing long-term new-construction investment interest near Skye Summit.",
+  "width": "1600",
+  "height": "900",
+  "encodingFormat": "image/jpeg",
+  "creditText": "Dr. Jan Duffy / Skye Summit Homes",
+  "copyrightNotice": "© 2026 Dr. Jan Duffy, Berkshire Hathaway HomeServices Nevada Properties",
+  "creator": {
+    "@type": "RealEstateAgent",
+    "name": "Dr. Jan Duffy",
+    "url": "https://www.skyesummithomes.com"
+  },
+  "contentLocation": {
+    "@type": "Place",
+    "name": "Skye Summit Master Plan, Las Vegas, NV",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Las Vegas",
+      "addressRegion": "NV",
+      "postalCode": "89141",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 36.017598,
+      "longitude": -115.20417
+    }
+  },
+  "representativeOfPage": true
+}
+    </script>
+    <!-- PAGE_HERO_SCHEMA_END -->
 
     <link rel="dns-prefetch" href="https://em.realscout.com">
     <link rel="dns-prefetch" href="https://www.realscout.com">
-    <link rel="preconnect" href="https://em.realscout.com" crossorigin>
-    <link rel="preconnect" href="https://www.realscout.com" crossorigin>
-    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module"></script>
+    <script data-realscout-loader>
+      (function () {
+        var loaded = false;
+        var src = "https://em.realscout.com/widgets/realscout-web-components.umd.js";
+        function load() {
+          if (loaded) return;
+          loaded = true;
+          var link = document.createElement('link');
+          link.rel = 'preconnect';
+          link.href = "https://em.realscout.com";
+          link.crossOrigin = '';
+          document.head.appendChild(link);
+          var s = document.createElement('script');
+          s.src = src;
+          s.type = 'module';
+          document.head.appendChild(s);
+        }
+        function arm() {
+          var el =
+            document.getElementById('rs-widget-shell') ||
+            document.querySelector('realscout-office-listings');
+          if (el && 'IntersectionObserver' in window) {
+            var io = new IntersectionObserver(
+              function (entries) {
+                if (entries.some(function (e) { return e.isIntersecting; })) {
+                  io.disconnect();
+                  load();
+                }
+              },
+              { rootMargin: '600px 0px' }
+            );
+            io.observe(el);
+            setTimeout(load, 10000);
+            return;
+          }
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(load, { timeout: 4000 });
+          } else {
+            setTimeout(load, 2500);
+          }
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', arm);
+        } else {
+          arm();
+        }
+      })();
+    </script>
     <style data-realscout-styles>
       realscout-office-listings {
         --rs-listing-divider-color: rgb(101, 141, 172);
@@ -322,50 +407,12 @@
         .appt-sticky__actions .btn { flex: 1 1 auto; text-align: center; }
       }
     </style>
-    <!-- PAGE_HERO_SCHEMA_BEGIN -->
-    <script type="application/ld+json" data-hero-imageobject>
-{
-  "@context": "https://schema.org",
-  "@type": "ImageObject",
-  "@id": "https://www.skyesummithomes.com/images/hero/property-twilight.jpg#hero",
-  "contentUrl": "https://www.skyesummithomes.com/images/hero/property-twilight.jpg",
-  "url": "https://www.skyesummithomes.com/images/hero/property-twilight.jpg",
-  "name": "Skye Summit Investment Homes",
-  "caption": "Invest in northwest Las Vegas new construction",
-  "description": "Elevated twilight home representing long-term new-construction investment interest near Skye Summit.",
-  "width": "1600",
-  "height": "900",
-  "encodingFormat": "image/jpeg",
-  "creditText": "Dr. Jan Duffy / Skye Summit Homes",
-  "copyrightNotice": "© 2026 Dr. Jan Duffy, Berkshire Hathaway HomeServices Nevada Properties",
-  "creator": {
-    "@type": "RealEstateAgent",
-    "name": "Dr. Jan Duffy",
-    "url": "https://www.skyesummithomes.com"
-  },
-  "contentLocation": {
-    "@type": "Place",
-    "name": "Skye Summit Master Plan, Las Vegas, NV",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Las Vegas",
-      "addressRegion": "NV",
-      "postalCode": "89141",
-      "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 36.017598,
-      "longitude": -115.20417
-    }
-  },
-  "representativeOfPage": true
-}
-    </script>
-    <!-- PAGE_HERO_SCHEMA_END -->
 <!-- CRITICAL_HERO_CSS_BEGIN -->
-<style id="critical-hero-css">html,body{overflow-x:clip;max-width:100%} .header{left:0;right:0;width:100%;max-width:100%;box-sizing:border-box} .hero.hero--photo,.service-hero.hero--photo,.loc-hero.hero--photo,.zip-map-hero.hero--photo,.search-hub-hero.hero--photo{ position:relative!important; display:flex!important; flex-direction:column!important; align-items:center!important; justify-content:center!important; overflow:hidden!important; isolation:isolate; width:100%!important; max-width:none!important; margin-left:0!important; margin-right:0!important; box-sizing:border-box; background:#0a2540; } .hero-media,.hero-media__shade{ position:absolute!important; inset:0!important; width:100%!important; height:100%!important; margin:0!important; max-width:none!important; pointer-events:none; } .hero-media{z-index:0;overflow:hidden} .hero-media__shade{z-index:1} .hero-media__img{ display:block!important; width:100%!important; height:100%!important; max-width:none!important; object-fit:cover!important; object-position:35% center!important; } .hero.hero--photo .hero-content, .service-hero.hero--photo .container, .loc-hero.hero--photo .container, .zip-map-hero.hero--photo .container, .search-hub-hero.hero--photo .container, .zip-map-hero.hero--photo .zip-map-hero-inner{ position:relative!important; z-index:2!important; width:100%; max-width:min(36rem,100%); margin-left:auto; margin-right:auto; box-sizing:border-box; text-align:center; }</style>
+<style id="critical-hero-css">html,body{overflow-x:clip;max-width:100%} .header{left:0;right:0;width:100%;max-width:100%;box-sizing:border-box} .hero.hero--photo,.service-hero.hero--photo,.loc-hero.hero--photo,.zip-map-hero.hero--photo,.search-hub-hero.hero--photo{ position:relative!important; display:flex!important; flex-direction:column!important; align-items:center!important; justify-content:center!important; overflow:hidden!important; isolation:isolate; width:100%!important; max-width:none!important; margin-left:0!important; margin-right:0!important; box-sizing:border-box; background:#0a2540; } .hero-media,.hero-media__shade{ position:absolute!important; inset:0!important; width:100%!important; height:100%!important; margin:0!important; max-width:none!important; pointer-events:none; } .hero-media{z-index:0;overflow:hidden} .hero-media picture{display:block!important;width:100%!important;height:100%!important} .hero-media__shade{z-index:1} .hero-media__img{ display:block!important; width:100%!important; height:100%!important; max-width:none!important; object-fit:cover!important; object-position:35% center!important; } .hero.hero--photo .hero-content, .service-hero.hero--photo .container, .loc-hero.hero--photo .container, .zip-map-hero.hero--photo .container, .search-hub-hero.hero--photo .container, .zip-map-hero.hero--photo .zip-map-hero-inner{ position:relative!important; z-index:2!important; width:100%; max-width:min(36rem,100%); margin-left:auto; margin-right:auto; box-sizing:border-box; text-align:center; }</style>
 <!-- CRITICAL_HERO_CSS_END -->
+    <!-- Font Awesome: deferred -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"></noscript>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -404,7 +451,10 @@
 <div class="container">
                 <!-- HERO_AGENT_PORTRAIT_BEGIN -->
                 <figure class="hero-agent">
-                    <img class="hero-agent__img" src="/images/brand/dr-jan-hero-portrait.png" alt="Dr. Jan Duffy, REALTOR® — Skye Summit Homes Buyer's Representative, Las Vegas, NV" width="120" height="120" decoding="async" loading="lazy">
+                    <picture>
+                      <source type="image/webp" srcset="/images/brand/dr-jan-hero-portrait.webp">
+                      <img class="hero-agent__img" src="/images/brand/dr-jan-hero-portrait.png" alt="Dr. Jan Duffy, REALTOR® — Skye Summit Homes Buyer's Representative, Las Vegas, NV" width="120" height="120" decoding="async" loading="lazy">
+                    </picture>
                     <figcaption class="hero-agent__caption">Dr. Jan Duffy, REALTOR®</figcaption>
                 </figure>
                 <!-- HERO_AGENT_PORTRAIT_END -->

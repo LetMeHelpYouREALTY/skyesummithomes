@@ -18,7 +18,7 @@ const indexPath = path.join(root, 'index.html');
 const cssPath = path.join(root, 'styles.css');
 
 /** Bump when hero CSS changes so HTML picks up styles.css immediately. */
-const STYLES_CACHE_BUST = '20260720h4';
+const STYLES_CACHE_BUST = '20260720psi1';
 
 const CRITICAL_HERO_CSS = `
 html,body{overflow-x:clip;max-width:100%}
@@ -48,6 +48,7 @@ html,body{overflow-x:clip;max-width:100%}
   pointer-events:none;
 }
 .hero-media{z-index:0;overflow:hidden}
+.hero-media picture{display:block!important;width:100%!important;height:100%!important}
 .hero-media__shade{z-index:1}
 .hero-media__img{
   display:block!important;
@@ -79,7 +80,10 @@ let html = fs.readFileSync(indexPath, 'utf8');
 const leanHeroInner = `            <div class="hero-content">
                 <!-- HERO_AGENT_PORTRAIT_BEGIN -->
                 <figure class="hero-agent">
-                    <img class="hero-agent__img" src="/images/brand/dr-jan-hero-portrait.png" alt="Dr. Jan Duffy, REALTOR® — Skye Summit Homes Buyer's Representative, Las Vegas, NV" width="120" height="120" decoding="async" loading="eager" fetchpriority="high">
+                    <picture>
+                      <source type="image/webp" srcset="/images/brand/dr-jan-hero-portrait.webp">
+                      <img class="hero-agent__img" src="/images/brand/dr-jan-hero-portrait.png" alt="Dr. Jan Duffy, REALTOR® — Skye Summit Homes Buyer's Representative, Las Vegas, NV" width="120" height="120" decoding="async" loading="eager">
+                    </picture>
                     <figcaption class="hero-agent__caption">Dr. Jan Duffy, REALTOR®</figcaption>
                 </figure>
                 <!-- HERO_AGENT_PORTRAIT_END -->

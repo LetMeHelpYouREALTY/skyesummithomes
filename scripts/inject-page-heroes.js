@@ -63,20 +63,63 @@ function stripBlocks(html) {
       '\n'
     )
     .replace(
+      /\s*<picture>\s*(?:<source[^>]*>\s*)*<img[^>]*class="[^"]*hero-media__img[^"]*"[^>]*>\s*<\/picture>\s*/gi,
+      '\n'
+    )
+    .replace(
       /\s*<img[^>]*class="[^"]*hero-media__img[^"]*"[^>]*>\s*/gi,
       '\n'
     )
     .replace(/\s*<div class="hero-overlay"[^>]*>\s*<\/div>\s*/gi, '\n');
 }
 
+function heroDiskPath(webPath) {
+  return path.join(root, String(webPath).replace(/^\//, ''));
+}
+
 function mediaHtml(hero, { priority }) {
   const loading = priority ? 'eager' : 'lazy';
   const fetchPriority = priority ? ' fetchpriority="high"' : '';
+  const alt = escapeAttr(hero.alt);
+  const base = String(hero.src).replace(/\.(jpe?g|png)$/i, '');
+  const webpFull = `${base}.webp`;
+  const webp960 = `${base}-960.webp`;
+  const jpg960 = `${base}-960.jpg`;
+  const hasWebpFull = fs.existsSync(heroDiskPath(webpFull));
+  const hasWebp960 = fs.existsSync(heroDiskPath(webp960));
+  const hasJpg960 = fs.existsSync(heroDiskPath(jpg960));
+
+  let imgBlock;
+  if (hasWebpFull || hasWebp960) {
+    const webpSrcset = [
+      hasWebp960 ? `${webp960} 960w` : null,
+      hasWebpFull ? `${webpFull} 1600w` : null,
+    ]
+      .filter(Boolean)
+      .join(', ');
+    const jpgSrcset = [
+      hasJpg960 ? `${jpg960} 960w` : null,
+      `${hero.src} 1600w`,
+    ]
+      .filter(Boolean)
+      .join(', ');
+    imgBlock = `<picture>
+                  ${
+                    webpSrcset
+                      ? `<source type="image/webp" srcset="${webpSrcset}" sizes="100vw">`
+                      : ''
+                  }
+                  <img class="hero-media__img" src="${
+                    hasJpg960 ? jpg960 : hero.src
+                  }" srcset="${jpgSrcset}" sizes="100vw" alt="${alt}" width="1600" height="900" decoding="async" loading="${loading}"${fetchPriority}>
+                </picture>`;
+  } else {
+    imgBlock = `<img class="hero-media__img" src="${hero.src}" alt="${alt}" width="1600" height="900" decoding="async" loading="${loading}"${fetchPriority}>`;
+  }
+
   return `${MEDIA_BEGIN}
             <figure class="hero-media" data-geo-place="Skye Summit Master Plan, Las Vegas, NV">
-                <img class="hero-media__img" src="${hero.src}" alt="${escapeAttr(
-    hero.alt
-  )}" width="1600" height="900" decoding="async" loading="${loading}"${fetchPriority}>
+                ${imgBlock}
                 <figcaption class="hero-media__caption visually-hidden">${escapeHtml(
                   hero.caption
                 )}</figcaption>
@@ -215,16 +258,27 @@ function processFile(filePath) {
   html = ensureMaxImagePreview(html);
   html = setOgImage(html, hero);
 
-  // Homepage LCP preload
+  // Homepage LCP preload — prefer mobile WebP when available
   if (isHome) {
     html = html.replace(
-      /\s*<link rel="preload" href="\/images\/[^"]+" as="image"[^>]*>\s*/gi,
+      /\s*<link rel="preload"[^>]*as="image"[^>]*>\s*/gi,
       '\n'
     );
+    const base = String(hero.src).replace(/\.(jpe?g|png)$/i, '');
+    const webp960 = `${base}-960.webp`;
+    const webpFull = `${base}.webp`;
+    const preloadHref = fs.existsSync(heroDiskPath(webp960))
+      ? webp960
+      : fs.existsSync(heroDiskPath(webpFull))
+        ? webpFull
+        : hero.src;
+    const typeAttr = /\.webp$/i.test(preloadHref)
+      ? ' type="image/webp"'
+      : '';
     html = html.replace(
       /<link rel="canonical"[^>]*>/i,
       (m) =>
-        `${m}\n    <link rel="preload" href="${hero.src}" as="image" fetchpriority="high">`
+        `${m}\n    <link rel="preload" href="${preloadHref}" as="image"${typeAttr} fetchpriority="high">`
     );
   }
 

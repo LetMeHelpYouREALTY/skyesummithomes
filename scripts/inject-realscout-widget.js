@@ -115,9 +115,54 @@ function headEmbedHtml() {
   return `
     <link rel="dns-prefetch" href="${R.EMBED_ORIGIN}">
     <link rel="dns-prefetch" href="${R.API_ORIGIN}">
-    <link rel="preconnect" href="${R.EMBED_ORIGIN}" crossorigin>
-    <link rel="preconnect" href="${R.API_ORIGIN}" crossorigin>
-    <script src="${R.SCRIPT_URL}" type="module"></script>
+    <script data-realscout-loader>
+      (function () {
+        var loaded = false;
+        var src = ${JSON.stringify(R.SCRIPT_URL)};
+        function load() {
+          if (loaded) return;
+          loaded = true;
+          var link = document.createElement('link');
+          link.rel = 'preconnect';
+          link.href = ${JSON.stringify(R.EMBED_ORIGIN)};
+          link.crossOrigin = '';
+          document.head.appendChild(link);
+          var s = document.createElement('script');
+          s.src = src;
+          s.type = 'module';
+          document.head.appendChild(s);
+        }
+        function arm() {
+          var el =
+            document.getElementById('rs-widget-shell') ||
+            document.querySelector('realscout-office-listings');
+          if (el && 'IntersectionObserver' in window) {
+            var io = new IntersectionObserver(
+              function (entries) {
+                if (entries.some(function (e) { return e.isIntersecting; })) {
+                  io.disconnect();
+                  load();
+                }
+              },
+              { rootMargin: '600px 0px' }
+            );
+            io.observe(el);
+            setTimeout(load, 10000);
+            return;
+          }
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(load, { timeout: 4000 });
+          } else {
+            setTimeout(load, 2500);
+          }
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', arm);
+        } else {
+          arm();
+        }
+      })();
+    </script>
     <style data-realscout-styles>
       realscout-office-listings {
         --rs-listing-divider-color: rgb(101, 141, 172);
@@ -329,16 +374,33 @@ function stripRealscout(html) {
 }
 
 function injectHeadEmbed(html) {
-  if (
-    /<script[^>]*realscout-web-components\.umd\.js[^>]*><\/script>/i.test(html) &&
-    /data-realscout-styles/i.test(html)
-  ) {
-    return html;
+  let next = html;
+  // Remove prior RealScout head embeds so we always ship the deferred loader
+  next = next
+    .replace(/\s*<script[^>]*data-realscout-loader[^>]*>[\s\S]*?<\/script>\s*/gi, '\n')
+    .replace(/\s*<script[^>]*realscout-web-components\.umd\.js[^>]*><\/script>\s*/gi, '\n')
+    .replace(/\s*<style data-realscout-styles>[\s\S]*?<\/style>\s*/gi, '\n')
+    .replace(
+      /\s*<link rel="dns-prefetch" href="https:\/\/em\.realscout\.com">\s*/gi,
+      '\n'
+    )
+    .replace(
+      /\s*<link rel="dns-prefetch" href="https:\/\/www\.realscout\.com">\s*/gi,
+      '\n'
+    )
+    .replace(
+      /\s*<link rel="preconnect" href="https:\/\/em\.realscout\.com"[^>]*>\s*/gi,
+      '\n'
+    )
+    .replace(
+      /\s*<link rel="preconnect" href="https:\/\/www\.realscout\.com"[^>]*>\s*/gi,
+      '\n'
+    );
+
+  if (/<\/head>/i.test(next)) {
+    return next.replace(/<\/head>/i, `${headEmbedHtml()}\n</head>`);
   }
-  if (/<\/head>/i.test(html)) {
-    return html.replace(/<\/head>/i, `${headEmbedHtml()}\n</head>`);
-  }
-  return html;
+  return next;
 }
 
 /** Always place widget immediately after hero / service-hero (before AEO/geo). */
