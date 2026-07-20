@@ -41,6 +41,10 @@ REDIRECT_URLS=(
   "http://skyesummithomes.com/"
   "https://skyesummithomes.com/"
   "https://skyesummithomes.com/?s=test"
+  "https://skyesummithomes.com/invest"
+  "https://skyesummithomes.com/invest/"
+  "https://www.skyesummithomes.com/las-vegas-zip-code-map/"
+  "https://skyesummithomes.com/las-vegas-zip-code-map/"
 )
 
 for url in "${REDIRECT_URLS[@]}"; do
@@ -48,6 +52,9 @@ for url in "${REDIRECT_URLS[@]}"; do
   status=$(echo "$headers" | awk '/^HTTP/{print $2; exit}')
   location=$(echo "$headers" | awk -F': ' 'tolower($1)=="location"{print $2; exit}' | tr -d '\r')
   printf "%s | %s | %s\n" "$url" "${status:-?}" "${location:-—}"
+  # Follow chain — must land on www HTTPS without slash, <=2 hops
+  final=$(curl -sI -L --max-redirs 5 -o /dev/null -w '%{url_effective}|%{http_code}|%{num_redirects}' "$url")
+  printf "  follow → %s\n" "$final"
 done
 
 echo

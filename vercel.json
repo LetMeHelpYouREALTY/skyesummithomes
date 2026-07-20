@@ -42,8 +42,23 @@
       "permanent": true
     },
     {
+      "source": "/las-vegas-zip-code-map/",
+      "destination": "https://www.skyesummithomes.com/las-vegas-zip-code-map",
+      "permanent": true
+    },
+    {
+      "source": "/invest/",
+      "destination": "https://www.skyesummithomes.com/invest",
+      "permanent": true
+    },
+    {
+      "source": "/:path+/",
+      "destination": "https://www.skyesummithomes.com/:path+",
+      "permanent": true
+    },
+    {
       "source": "/:path((?!google)[^/]+).html",
-      "destination": "/:path",
+      "destination": "https://www.skyesummithomes.com/:path",
       "permanent": true
     },
     {

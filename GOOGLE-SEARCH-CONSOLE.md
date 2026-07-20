@@ -46,6 +46,22 @@ These are **expected not to be indexed**. Canonical indexable URL is always `htt
 
 Do **not** request indexing for apex/http URLs. After deploy, click **Validate fix** in GSC for this report.
 
+### “Redirect error” examples (Jul 2026)
+
+| GSC example | Intended final URL | Fix |
+|-------------|-------------------|-----|
+| `https://skyesummithomes.com/invest` | `https://www.skyesummithomes.com/invest` | Apex → www absolute 308 (1 hop) |
+| `https://www.skyesummithomes.com/las-vegas-zip-code-map/` | `https://www.skyesummithomes.com/las-vegas-zip-code-map` | Trailing slash → absolute www non-slash 308 |
+
+These must **not** be indexed. After deploy, confirm:
+
+```bash
+curl -sI https://skyesummithomes.com/invest | grep -iE 'HTTP|location'
+curl -sI https://www.skyesummithomes.com/las-vegas-zip-code-map/ | grep -iE 'HTTP|location'
+```
+
+Expected: `308` with absolute `https://www.skyesummithomes.com/...` (no trailing slash). Then **Validate fix** in GSC.
+
 ## What is already in the repo
 
 | Item | Location / URL |

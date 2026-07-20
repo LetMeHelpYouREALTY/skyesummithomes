@@ -26,13 +26,20 @@ const APEX_REDIRECT = `<script ${MARKER}>
         var host = location.hostname;
         var path = location.pathname;
         var params = new URLSearchParams(location.search);
+        var www = 'https://www.skyesummithomes.com';
         // Legacy site-search query param → clean /search hub
         if (params.has('s') && (path === '/' || path === '/search' || path === '/search/')) {
-          location.replace('https://www.skyesummithomes.com/search');
+          location.replace(www + '/search');
+          return;
+        }
+        // Strip trailing slash (except homepage) — matches trailingSlash: false
+        if (path.length > 1 && path.charAt(path.length - 1) === '/') {
+          path = path.slice(0, -1);
+          location.replace(www + path + location.search + location.hash);
           return;
         }
         if (host === 'skyesummithomes.com') {
-          location.replace('https://www.skyesummithomes.com' + path + location.search + location.hash);
+          location.replace(www + path + location.search + location.hash);
         }
       })();
     </script>`;
