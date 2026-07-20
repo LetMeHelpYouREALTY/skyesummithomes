@@ -3,6 +3,10 @@
  * Fixes overcrowded homepage hero for desktop + mobile:
  * brand + portrait + one headline + one line + CTAs in first viewport.
  * Moves service cards / secondary links / stats below the hero.
+ *
+ * Also hardens photo-hero CSS against stale stylesheet cache:
+ * critical inline CSS + styles.css?v= cache-bust so absolute media
+ * never falls back to a flex side-by-side (image left / copy right).
  */
 'use strict';
 
@@ -12,6 +16,63 @@ const path = require('path');
 const root = path.join(__dirname, '..');
 const indexPath = path.join(root, 'index.html');
 const cssPath = path.join(root, 'styles.css');
+
+/** Bump when hero CSS changes so HTML picks up styles.css immediately. */
+const STYLES_CACHE_BUST = '20260720h4';
+
+const CRITICAL_HERO_CSS = `
+html,body{overflow-x:clip;max-width:100%}
+.header{left:0;right:0;width:100%;max-width:100%;box-sizing:border-box}
+.hero.hero--photo,.service-hero.hero--photo,.loc-hero.hero--photo,.zip-map-hero.hero--photo,.search-hub-hero.hero--photo{
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+  isolation:isolate;
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  box-sizing:border-box;
+  background:#0a2540;
+}
+.hero-media,.hero-media__shade{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  max-width:none!important;
+  pointer-events:none;
+}
+.hero-media{z-index:0;overflow:hidden}
+.hero-media__shade{z-index:1}
+.hero-media__img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:cover!important;
+  object-position:35% center!important;
+}
+.hero.hero--photo .hero-content,
+.service-hero.hero--photo .container,
+.loc-hero.hero--photo .container,
+.zip-map-hero.hero--photo .container,
+.search-hub-hero.hero--photo .container,
+.zip-map-hero.hero--photo .zip-map-hero-inner{
+  position:relative!important;
+  z-index:2!important;
+  width:100%;
+  max-width:min(36rem,100%);
+  margin-left:auto;
+  margin-right:auto;
+  box-sizing:border-box;
+  text-align:center;
+}
+`.replace(/\s+/g, ' ').trim();
 
 let html = fs.readFileSync(indexPath, 'utf8');
 
@@ -119,39 +180,163 @@ html = html.replace(
   `$1${servicesBelow}\n        $2`
 );
 
+// Harden sticky appointment bar against horizontal overflow
+html = html.replace(
+  /\.appt-sticky\s*\{[\s\S]*?@media \(max-width: 768px\) \{[\s\S]*?\.appt-sticky__actions \.btn \{[^}]+\}\s*\}/,
+  `.appt-sticky {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1200;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        background: rgba(10, 37, 64, 0.96);
+        color: #fff;
+        box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.18);
+        padding: 0.65rem 0.75rem;
+      }
+      .appt-sticky__inner {
+        max-width: min(1100px, 100%);
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem 0.75rem;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+      }
+      .appt-sticky__copy {
+        margin: 0;
+        font-size: 0.95rem;
+        flex: 1 1 14rem;
+        min-width: 0;
+      }
+      .appt-sticky__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        max-width: 100%;
+        justify-content: flex-end;
+      }
+      .appt-sticky .btn {
+        white-space: normal;
+        text-align: center;
+        padding: 0.55rem 0.85rem;
+        font-size: 0.9rem;
+        box-sizing: border-box;
+      }
+      .appt-sticky__book {
+        background: #3a8dde;
+        border-color: #3a8dde;
+      }
+      body {
+        padding-bottom: 5.5rem;
+        overflow-x: clip;
+      }
+      @media (max-width: 768px) {
+        realscout-office-listings,
+        .rs-widget-shell { min-height: 520px; }
+        .rs-widget-shell::after { top: 0.65rem; right: 0.65rem; font-size: 0.68rem; }
+        .appt-sticky__copy { font-size: 0.8125rem; flex-basis: 100%; }
+        .appt-sticky__actions { width: 100%; justify-content: stretch; }
+        .appt-sticky__actions .btn { flex: 1 1 auto; text-align: center; }
+      }`
+);
+
 fs.writeFileSync(indexPath, html);
 
 const layoutCss = `
 /* HERO_LAYOUT_FIX */
-/* Constrain photo heroes to site width — not ultra-wide edge-to-edge */
+/* Full-bleed photo heroes — image covers the section; copy stays centered on top */
+html,body{overflow-x:clip}
 .hero.hero--photo,
 .service-hero.hero--photo,
 .loc-hero.hero--photo,
 .zip-map-hero.hero--photo,
 .search-hub-hero.hero--photo{
-  width:100%;
-  max-width:1120px;
-  margin-left:auto;
-  margin-right:auto;
-  box-sizing:border-box;
-}
-.hero.hero--home.hero--photo{
-  min-height:min(70vh,560px);
+  position:relative;
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  padding:5.75rem 1.5rem 2.5rem;
-  margin-top:80px;
+  width:100%;
+  max-width:none;
+  margin-left:0;
+  margin-right:0;
+  box-sizing:border-box;
   overflow:hidden;
-  border-radius:0 0 12px 12px;
+  isolation:isolate;
+  background:#0a2540;
+}
+.hero.hero--photo .hero-media,
+.service-hero.hero--photo .hero-media,
+.loc-hero.hero--photo .hero-media,
+.zip-map-hero.hero--photo .hero-media,
+.search-hub-hero.hero--photo .hero-media,
+.hero.hero--photo .hero-media__shade,
+.service-hero.hero--photo .hero-media__shade,
+.loc-hero.hero--photo .hero-media__shade,
+.zip-map-hero.hero--photo .hero-media__shade,
+.search-hub-hero.hero--photo .hero-media__shade{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  margin:0;
+  max-width:none;
+  pointer-events:none;
+}
+.hero.hero--photo .hero-media{z-index:0;overflow:hidden}
+.hero.hero--photo .hero-media__shade,
+.service-hero .hero-media__shade,
+.loc-hero .hero-media__shade,
+.zip-map-hero .hero-media__shade,
+.search-hub-hero .hero-media__shade{
+  z-index:1;
+  background:linear-gradient(180deg,rgba(4,21,38,.55) 0%,rgba(10,37,64,.35) 40%,rgba(10,37,64,.62) 100%);
+}
+.hero.hero--photo .hero-media__img,
+.service-hero.hero--photo .hero-media__img,
+.loc-hero.hero--photo .hero-media__img,
+.zip-map-hero.hero--photo .hero-media__img,
+.search-hub-hero.hero--photo .hero-media__img{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:none;
+  object-fit:cover;
+  object-position:35% center;
+}
+.header{
+  left:0;
+  right:0;
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+}
+.properties-grid,
+.blog-posts,
+.demographics-grid,
+.blog-grid{
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));
+}
+.hero.hero--home.hero--photo{
+  min-height:min(72vh,620px);
+  padding:5.75rem 1.25rem 2.75rem;
+  margin-top:80px;
+  border-radius:0;
 }
 .hero.hero--home .hero-content{
-  max-width:36rem;
+  position:relative;
+  z-index:2;
+  max-width:min(36rem,100%);
   width:100%;
   margin:0 auto;
   padding:1rem .75rem 1.25rem;
   text-align:center;
-  z-index:2;
+  box-sizing:border-box;
 }
 .hero-brand{
   font-size:clamp(1.6rem,4.5vw,2.4rem);
@@ -201,13 +386,6 @@ const layoutCss = `
   border:3px solid rgba(255,255,255,.85);
 }
 .hero.hero--home .hero-agent__caption{font-size:.75rem}
-.hero.hero--photo .hero-media__shade,
-.service-hero .hero-media__shade,
-.loc-hero .hero-media__shade,
-.zip-map-hero .hero-media__shade,
-.search-hub-hero .hero-media__shade{
-  background:linear-gradient(180deg,rgba(4,21,38,.55) 0%,rgba(10,37,64,.35) 40%,rgba(10,37,64,.62) 100%);
-}
 .home-quick-links{
   padding:2.5rem 0 2.75rem;
   background:#fff;
@@ -272,15 +450,10 @@ const layoutCss = `
 .loc-hero.hero--photo,
 .zip-map-hero.hero--photo,
 .search-hub-hero.hero--photo{
-  min-height:min(42vh,360px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:5.5rem 1.5rem 2.25rem;
-  position:relative;
-  overflow:hidden;
+  min-height:min(46vh,400px);
+  padding:5.5rem 1.25rem 2.25rem;
   margin-top:80px;
-  border-radius:0 0 12px 12px;
+  border-radius:0;
 }
 .service-hero.hero--photo .container,
 .loc-hero.hero--photo .container,
@@ -289,10 +462,11 @@ const layoutCss = `
 .zip-map-hero.hero--photo .zip-map-hero-inner{
   position:relative;
   z-index:2;
-  max-width:36rem;
+  max-width:min(36rem,100%);
   width:100%;
   margin:0 auto;
   text-align:center;
+  box-sizing:border-box;
 }
 .service-hero.hero--photo h1,
 .loc-hero.hero--photo h1,
@@ -313,24 +487,7 @@ const layoutCss = `
   height:4.5rem;
   border:2px solid rgba(255,255,255,.85);
 }
-@media (max-width:1200px){
-  .hero.hero--photo,
-  .service-hero.hero--photo,
-  .loc-hero.hero--photo,
-  .zip-map-hero.hero--photo,
-  .search-hub-hero.hero--photo{
-    max-width:calc(100% - 2rem);
-  }
-}
 @media (max-width:768px){
-  .hero.hero--photo,
-  .service-hero.hero--photo,
-  .loc-hero.hero--photo,
-  .zip-map-hero.hero--photo,
-  .search-hub-hero.hero--photo{
-    max-width:100%;
-    border-radius:0;
-  }
   .hero.hero--home.hero--photo{
     min-height:auto;
     padding:5.25rem .9rem 2rem;
@@ -371,6 +528,11 @@ css = css.replace(
   ),
   ''
 );
+// Strip orphaned prior width-cap blocks that may have been minified without markers
+css = css.replace(
+  /\.hero\.hero--photo,\.loc-hero\.hero--photo,\.search-hub-hero\.hero--photo,\.service-hero\.hero--photo,\.zip-map-hero\.hero--photo\{width:100%;max-width:1120px;margin-left:auto;margin-right:auto;box-sizing:border-box\}[\s\S]*?@media \(max-width:768px\)\{\.hero\.hero--photo,\.loc-hero\.hero--photo,\.search-hub-hero\.hero--photo,\.service-hero\.hero--photo,\.zip-map-hero\.hero--photo\{max-width:100%;border-radius:0\}[\s\S]*?\.loc-hero\.hero--photo,\.search-hub-hero\.hero--photo,\.service-hero\.hero--photo,\.zip-map-hero\.hero--photo\{min-height:auto;padding:5rem 1rem 1\.75rem\}\}/g,
+  ''
+);
 const orphan = css.indexOf(
   '.hero.hero--home.hero--photo{min-height:min(88vh'
 );
@@ -378,6 +540,54 @@ if (orphan !== -1) css = css.slice(0, orphan);
 css = css.trimEnd() + '\n' + layoutCss;
 fs.writeFileSync(cssPath, css);
 
+function walkHtmlFiles(dir, out = []) {
+  for (const name of fs.readdirSync(dir)) {
+    if (
+      name === 'node_modules' ||
+      name === '.git' ||
+      name === '.vercel' ||
+      name === 'dist'
+    ) {
+      continue;
+    }
+    const full = path.join(dir, name);
+    const st = fs.statSync(full);
+    if (st.isDirectory()) walkHtmlFiles(full, out);
+    else if (name.endsWith('.html')) out.push(full);
+  }
+  return out;
+}
+
+const criticalBlock = `<!-- CRITICAL_HERO_CSS_BEGIN -->
+<style id="critical-hero-css">${CRITICAL_HERO_CSS}</style>
+<!-- CRITICAL_HERO_CSS_END -->
+`;
+
+let htmlUpdated = 0;
+for (const file of walkHtmlFiles(root)) {
+  let page = fs.readFileSync(file, 'utf8');
+  const before = page;
+
+  page = page.replace(
+    /<!-- CRITICAL_HERO_CSS_BEGIN -->[\s\S]*?<!-- CRITICAL_HERO_CSS_END -->\s*/i,
+    ''
+  );
+
+  if (/<\/head>/i.test(page)) {
+    page = page.replace(/<\/head>/i, `${criticalBlock}</head>`);
+  }
+
+  page = page.replace(
+    /(href=["'])(\/?styles\.css)(?:\?[^"']*)?(["'])/gi,
+    `$1$2?v=${STYLES_CACHE_BUST}$3`
+  );
+
+  if (page !== before) {
+    fs.writeFileSync(file, page);
+    htmlUpdated += 1;
+  }
+}
+
 console.log(
-  'fix-hero-layout: lean homepage hero + quick-links section + responsive CSS'
+  `fix-hero-layout: lean homepage hero + full-bleed photo heroes + critical CSS + cache-bust v=${STYLES_CACHE_BUST} (${htmlUpdated} html files)`
 );
