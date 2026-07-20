@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <script data-www-primary-redirect>
-      if (location.hostname === 'skyesummithomes.com') {
-        location.replace('https://www.skyesummithomes.com' + location.pathname + location.search + location.hash);
-      }
+      (function () {
+        var host = location.hostname;
+        var path = location.pathname;
+        var params = new URLSearchParams(location.search);
+        var www = 'https://www.skyesummithomes.com';
+        // Legacy site-search query param → clean /search hub
+        if (params.has('s') && (path === '/' || path === '/search' || path === '/search/')) {
+          location.replace(www + '/search');
+          return;
+        }
+        // Strip trailing slash (except homepage) — matches trailingSlash: false
+        if (path.length > 1 && path.charAt(path.length - 1) === '/') {
+          path = path.slice(0, -1);
+          location.replace(www + path + location.search + location.hash);
+          return;
+        }
+        if (host === 'skyesummithomes.com') {
+          location.replace(www + path + location.search + location.hash);
+        }
+      })();
     </script>
     <meta name="google-site-verification" content="wKOftY7ctL98xgE1EW2r-2pYqOXyN109r4ZLLiRwQsI">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

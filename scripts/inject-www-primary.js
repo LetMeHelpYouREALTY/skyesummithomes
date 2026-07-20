@@ -65,7 +65,15 @@ function listHtmlFiles(dir, out = []) {
 
 function injectApexRedirect(html) {
   let next = html.replace(LEGACY_APEX_RE, '');
-  if (new RegExp(MARKER, 'i').test(next)) return next;
+
+  // Replace existing marked script so redirect logic stays current
+  const markedRe = new RegExp(
+    `<script[^>]*${MARKER}[^>]*>[\\s\\S]*?<\\/script>\\s*`,
+    'i'
+  );
+  if (markedRe.test(next)) {
+    return next.replace(markedRe, `${APEX_REDIRECT}\n    `);
+  }
 
   const charsetRe = /(<meta\s+charset=["'][^"']+["']\s*\/?>)/i;
   if (charsetRe.test(next)) {
