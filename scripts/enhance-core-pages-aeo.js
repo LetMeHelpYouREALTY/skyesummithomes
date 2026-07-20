@@ -7,21 +7,54 @@
 const fs = require('fs');
 const path = require('path');
 const C = require('../lib/gbp-constants');
+const { PAGE_SEO } = require('../lib/hyperlocal-seo');
 
 const root = path.join(__dirname, '..');
 const MARKER = 'AEO_CORE_BEGIN';
 const enrichmentPath = path.join(root, 'lib/parallel-seo-enrichment.json');
 
+function mergeHyperlocalSeoAnswers(pages) {
+  const merged = { ...pages };
+  for (const [fileName, seo] of Object.entries(PAGE_SEO)) {
+    if (!seo.quickAnswer) continue;
+    if (merged[fileName]) {
+      merged[fileName] = {
+        ...merged[fileName],
+        quickAnswer: seo.quickAnswer,
+      };
+    } else {
+      merged[fileName] = {
+        quickAnswer: seo.quickAnswer,
+        faqs: [
+          {
+            q: 'Who is the Skye Summit buyer\'s representative?',
+            a: 'Dr. Jan Duffy, REALTOR® (license S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties. Call <a href="tel:+17029308222">(702) 930-8222</a>.',
+          },
+          {
+            q: 'What is the Skye Summit Master Plan?',
+            a: 'A 505-acre Olympia Companies community in northwest Las Vegas beyond the 215 Beltway, planned for about 3,500 homes. See <a href="/skye-summit-master-plan">master plan</a>.',
+          },
+        ],
+      };
+    }
+  }
+  return merged;
+}
+
 function mergeParallelEnrichment(pages) {
-  if (!fs.existsSync(enrichmentPath)) return pages;
+  let merged = mergeHyperlocalSeoAnswers(pages);
+  if (!fs.existsSync(enrichmentPath)) return merged;
   try {
     const data = JSON.parse(fs.readFileSync(enrichmentPath, 'utf8'));
-    const merged = { ...pages };
     for (const [fileName, overlay] of Object.entries(data.corePages || {})) {
       if (!merged[fileName]) continue;
       merged[fileName] = {
         ...merged[fileName],
-        quickAnswer: overlay.quickAnswer || merged[fileName].quickAnswer,
+        // Prefer research-backed PAGE_SEO answers when present
+        quickAnswer:
+          PAGE_SEO[fileName]?.quickAnswer ||
+          overlay.quickAnswer ||
+          merged[fileName].quickAnswer,
         faqs: overlay.faqs?.length ? overlay.faqs : merged[fileName].faqs,
       };
     }
@@ -33,7 +66,7 @@ function mergeParallelEnrichment(pages) {
     return merged;
   } catch (e) {
     console.warn('enhance-core-pages-aeo: parallel enrichment load failed', e.message);
-    return pages;
+    return merged;
   }
 }
 

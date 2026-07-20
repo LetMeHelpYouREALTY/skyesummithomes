@@ -38,18 +38,23 @@ function listHtmlFiles(dir, out = []) {
 }
 
 function loadEntities() {
-  if (!fs.existsSync(enrichmentPath)) return C.GEO_CONTEXT_ENTITIES;
+  const defaults = C.GEO_CONTEXT_ENTITIES;
+  if (!fs.existsSync(enrichmentPath)) return defaults;
   try {
     const data = JSON.parse(fs.readFileSync(enrichmentPath, 'utf8'));
     const list = [...(data.localEntities || []), ...(data.geoKeywords || [])];
     const filtered = list
       .map((s) => String(s).trim())
-      .filter((s) => /skye summit master plan|olympia|vertice|215 beltway/i.test(s));
-    if (filtered.length >= 2) return filtered.slice(0, 4);
+      .filter((s) =>
+        /skye summit|olympia|vertice|215 beltway|red rock|centennial/i.test(s)
+      );
+    if (filtered.length >= 2) {
+      return [...new Set([...defaults, ...filtered])].slice(0, 8);
+    }
   } catch {
     /* fall through */
   }
-  return C.GEO_CONTEXT_ENTITIES;
+  return defaults;
 }
 
 function geoBlock() {

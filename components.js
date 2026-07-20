@@ -75,22 +75,25 @@ function generateFooter() {
                         </div>
                     </div>
                     <div class="footer-section">
-                        <h4>Services</h4>
+                        <h4>Skye Summit Realtor Services</h4>
                         <ul>
-                            <li><a href="/sell">Sell Your Skye Summit Home</a></li>
-                            <li><a href="/buy">Buy in Skye Summit</a></li>
-                            <li><a href="/valuation">Free Home Valuation</a></li>
-                            <li><a href="/invest">Investment Strategy</a></li>
-                            <li><a href="/relocate">Relocation Services</a></li>
+                            <li><a href="/skye-summit-realtor">Skye Summit REALTOR®</a></li>
+                            <li><a href="/buy">Buyer Representation</a></li>
+                            <li><a href="/new-construction-skye-summit">New Construction</a></li>
+                            <li><a href="/skye-summit-interest-list">Interest List</a></li>
+                            <li><a href="/sell">Sell Near Skye Summit</a></li>
+                            <li><a href="/valuation">Valuation Consult</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>Resources</h4>
+                        <h4>Skye Summit Guides</h4>
                         <ul>
-                            <li><a href="/community">Skye Summit Community</a></li>
+                            <li><a href="/skye-summit-master-plan">Master Plan Pillar</a></li>
+                            <li><a href="/kb-home-vertice-skye-summit">KB Home Vertice</a></li>
+                            <li><a href="/skye-summit-faq">FAQ</a></li>
+                            <li><a href="/community">Community</a></li>
                             <li><a href="/about">About Dr. Jan</a></li>
-                            <li><a href="/blog">Insider Blog</a></li>
-                            <li><a href="/contact">Contact & Consultation</a></li>
+                            <li><a href="/contact">Contact</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">

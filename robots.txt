@@ -4,6 +4,9 @@ Allow: /
 # Sitemap (submit this URL in Google Search Console)
 Sitemap: https://www.skyesummithomes.com/sitemap.xml
 
+# AI / AEO crawler guide
+# https://www.skyesummithomes.com/llms.txt
+
 # API routes are not public pages
 Disallow: /api/
 

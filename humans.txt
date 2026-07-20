@@ -1,0 +1,13 @@
+/* TEAM */
+Agent: Dr. Jan Duffy, REALTOR®
+Contact: DrJanSells@SkyeSummitHomes.com
+Phone: (702) 930-8222
+Location: Las Vegas, Nevada, USA
+License: S.0197614.LLC
+Brokerage: Berkshire Hathaway HomeServices Nevada Properties
+Focus: Skye Summit Homes buyer representation & realtor services
+
+/* SITE */
+Standards: HTML5, CSS3, Schema.org JSON-LD
+Components: RealScout listings, Google Business Profile NAP parity
+Last research: Parallel deep research — Skye Summit hyperlocal SEO/GEO/AEO (2026)
