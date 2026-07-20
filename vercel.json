@@ -20,28 +20,6 @@
       "permanent": true
     },
     {
-      "source": "/",
-      "has": [
-        {
-          "type": "query",
-          "key": "s"
-        }
-      ],
-      "destination": "https://www.skyesummithomes.com/search",
-      "permanent": true
-    },
-    {
-      "source": "/search",
-      "has": [
-        {
-          "type": "query",
-          "key": "s"
-        }
-      ],
-      "destination": "https://www.skyesummithomes.com/search",
-      "permanent": true
-    },
-    {
       "source": "/las-vegas-zip-code-map/",
       "destination": "https://www.skyesummithomes.com/las-vegas-zip-code-map",
       "permanent": true

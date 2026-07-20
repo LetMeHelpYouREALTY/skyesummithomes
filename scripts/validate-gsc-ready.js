@@ -264,13 +264,35 @@ if (searchActionHits === 0) {
   ok('no JSON-LD SearchAction / ?s= templates');
 }
 
+// Legacy ?s= must be handled by Edge Middleware (vercel.json preserves query
+// and previously looped /search?s= → /search?s=).
+const middlewarePath = path.join(root, 'middleware.js');
+if (!fs.existsSync(middlewarePath)) {
+  fail('middleware.js missing (required to strip legacy ?s= query)');
+} else {
+  const mw = fs.readFileSync(middlewarePath, 'utf8');
+  if (!/searchParams\.has\(\s*['"]s['"]\s*\)/.test(mw)) {
+    fail('middleware.js must redirect requests that include ?s=');
+  } else if (!/www\.skyesummithomes\.com\/search/.test(mw)) {
+    fail('middleware.js must redirect ?s= URLs to www /search');
+  } else {
+    ok('middleware.js strips legacy ?s= to clean /search');
+  }
+}
+
 const vercelPath = path.join(root, 'vercel.json');
 if (fs.existsSync(vercelPath)) {
   const vercel = fs.readFileSync(vercelPath, 'utf8');
-  if (!/"key":\s*"s"/i.test(vercel)) {
-    fail('vercel.json missing permanent redirect for legacy ?s= query');
+  // Guard against reintroducing the preserve-query loop on /search
+  if (
+    /"source":\s*"\/search"[\s\S]*?"key":\s*"s"/i.test(vercel) ||
+    /"key":\s*"s"[\s\S]*?"destination":\s*"[^"]*\/search"/i.test(vercel)
+  ) {
+    fail(
+      'vercel.json must not redirect ?s= via redirects (preserves query → 308 loop); use middleware.js'
+    );
   } else {
-    ok('vercel.json redirects legacy ?s= query to /search');
+    ok('vercel.json has no looping ?s= redirects');
   }
 }
 

@@ -42,9 +42,24 @@ These are **expected not to be indexed**. Canonical indexable URL is always `htt
 | `https://skyesummithomes.com/` | Apex → www (308) | Correct — mark **Validate fix** |
 | `http://skyesummithomes.com/` | HTTP → HTTPS → www | Correct — mark **Validate fix** |
 | `http://www.skyesummithomes.com/` | HTTP → HTTPS www | Correct — mark **Validate fix** |
-| `https://skyesummithomes.com/?s={search_term_string}` | Legacy SearchAction template crawl | Fixed: SearchAction removed; `?s=` now 308 → `/search` |
+| `https://skyesummithomes.com/?s={search_term_string}` | Legacy SearchAction template crawl | Fixed: SearchAction removed; Edge Middleware 308 → clean `/search` |
 
 Do **not** request indexing for apex/http URLs. After deploy, click **Validate fix** in GSC for this report.
+
+### “Alternate page with proper canonical” (Jul 2026)
+
+| GSC example | Why Google skipped indexing | Fix |
+|-------------|----------------------------|-----|
+| `https://www.skyesummithomes.com/?s={search_term_string}` | Old SearchAction template; page pointed at homepage canonical | SearchAction removed; `middleware.js` 308 → `https://www.skyesummithomes.com/search` (query stripped — no loop) |
+
+Expected after deploy:
+
+```bash
+curl -sI 'https://www.skyesummithomes.com/?s={search_term_string}' | grep -iE 'HTTP|location'
+curl -sI 'https://www.skyesummithomes.com/search?s=test' | grep -iE 'HTTP|location'
+```
+
+Both should be a **single** `308` to `https://www.skyesummithomes.com/search` (no `?s=` on the Location). Then **Validate fix** in GSC. This URL should not be indexed.
 
 ### “Redirect error” examples (Jul 2026)
 
@@ -149,7 +164,7 @@ After adding pages, **resubmit** `https://www.skyesummithomes.com/sitemap.xml` i
 | “Alternate page with proper canonical” on non-www | `GSC-404-FIX.md` — fix apex 301 |
 | **“Page with redirect”** (http/apex homepage URLs) | See below |
 | **Not found (404)** on apex paths (`/invest`, etc.) | `GSC-404-FIX.md` — validate after apex → www redirect |
-| **Alternate page with proper canonical** (apex `/?s=`) | `GSC-404-FIX.md` — fixed SearchAction + apex redirect |
+| **Alternate page with proper canonical** (`/?s={search_term_string}`) | See section above — SearchAction removed; `middleware.js` 308 → clean `/search` |
 | **Product snippets** — missing offers/review/rating | See below |
 | Cloudflare / DNS | `CLOUDFLARE-DNS-SETUP.md`, `CLOUDFLARE-QUICK-ACTION.md` |
 
