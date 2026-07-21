@@ -18,7 +18,7 @@ const indexPath = path.join(root, 'index.html');
 const cssPath = path.join(root, 'styles.css');
 
 /** Bump when hero CSS changes so HTML picks up styles.css immediately. */
-const STYLES_CACHE_BUST = '20260720psi1';
+const STYLES_CACHE_BUST = '20260721about1';
 
 const CRITICAL_HERO_CSS = `
 html,body{overflow-x:clip;max-width:100%}
@@ -56,6 +56,9 @@ html,body{overflow-x:clip;max-width:100%}
   height:100%!important;
   max-width:none!important;
   object-fit:cover!important;
+  object-position:center!important;
+}
+.home-hero .hero-media__img,.hero.hero--home .hero-media__img{
   object-position:35% center!important;
 }
 .hero.hero--photo .hero-content,
@@ -311,6 +314,10 @@ html,body{overflow-x:clip}
   height:100%;
   max-width:none;
   object-fit:cover;
+  object-position:center;
+}
+.home-hero .hero-media__img,
+.hero.hero--home .hero-media__img{
   object-position:35% center;
 }
 .header{

@@ -91,7 +91,8 @@ css =
   `
 /* MOBILE_PSI_IMAGES */
 .hero-media picture{display:block;width:100%;height:100%}
-.hero-media picture .hero-media__img{display:block;width:100%;height:100%;object-fit:cover;object-position:35% center}
+.hero-media picture .hero-media__img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.home-hero .hero-media picture .hero-media__img,.hero.hero--home .hero-media picture .hero-media__img{object-position:35% center}
 .hero-agent picture{display:block;width:100%;height:100%}
 /* MOBILE_PSI_IMAGES_END */
 `;
