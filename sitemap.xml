@@ -1,245 +1,450 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
     <url>
         <loc>https://www.skyesummithomes.com/</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/sunset-home.jpg</image:loc>
+            <image:title>Skye Summit Homes Las Vegas sunset hero</image:title>
+            <image:caption>Skye Summit Master Plan — desert contemporary homes near Red Rock Canyon</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/about</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-about-advisor.jpg</image:loc>
+            <image:title>About Dr. Jan Duffy</image:title>
+            <image:caption>Dr. Jan Duffy — Skye Summit REALTOR®</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/community</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-community-lifestyle.jpg</image:loc>
+            <image:title>Skye Summit Community Aerial</image:title>
+            <image:caption>Skye Summit community living near Red Rock Canyon</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/skye-summit-master-plan</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.95</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/master-plan-aerial.jpg</image:loc>
+            <image:title>Skye Summit Master Plan Hub</image:title>
+            <image:caption>Olympia Companies Skye Summit Master Plan</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/skye-summit-interest-list</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-interest-list.jpg</image:loc>
+            <image:title>Skye Summit Interest List</image:title>
+            <image:caption>Skye Summit interest list</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/kb-home-vertice-skye-summit</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-kb-vertice.jpg</image:loc>
+            <image:title>KB Home Vertice Skye Summit</image:title>
+            <image:caption>KB Home Vertice at Skye Summit</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/olympia-companies-skye-summit</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.82</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-olympia-community.jpg</image:loc>
+            <image:title>Olympia Companies Skye Summit</image:title>
+            <image:caption>Olympia Companies at Skye Summit</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/skye-summit-timeline</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.82</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-timeline-2027.jpg</image:loc>
+            <image:title>Skye Summit Timeline</image:title>
+            <image:caption>Skye Summit timeline — Fall 2027</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/woodside-homes-skye-summit</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.82</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-woodside-homes.jpg</image:loc>
+            <image:title>Woodside Homes Skye Summit</image:title>
+            <image:caption>Woodside Homes at Skye Summit</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/skye-summit-realtor</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-realtor-consult.jpg</image:loc>
+            <image:title>Skye Summit REALTOR</image:title>
+            <image:caption>Your Skye Summit REALTOR®</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/skye-summit-faq</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-faq-red-rock.jpg</image:loc>
+            <image:title>Skye Summit FAQ</image:title>
+            <image:caption>Skye Summit FAQ — local answers</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/skye-summit-home-prices</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.82</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-home-prices.jpg</image:loc>
+            <image:title>Skye Summit Home Prices</image:title>
+            <image:caption>Skye Summit home prices</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/skye-summit-first-time-buyer</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.82</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-first-time-buyer.jpg</image:loc>
+            <image:title>Skye Summit First-Time Buyer</image:title>
+            <image:caption>First-time buyers at Skye Summit</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/new-construction-skye-summit</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.82</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/new-construction.jpg</image:loc>
+            <image:title>New Construction Skye Summit</image:title>
+            <image:caption>Skye Summit new construction guide</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/living-in-skye-summit</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.82</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-living-trails.jpg</image:loc>
+            <image:title>Living in Skye Summit</image:title>
+            <image:caption>Living in Skye Summit</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/skye-summit-hoa</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.82</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-hoa-amenities.jpg</image:loc>
+            <image:title>Skye Summit HOA</image:title>
+            <image:caption>Skye Summit HOA guide</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/skye-summit-schools</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.82</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-schools-campus-unique.jpg</image:loc>
+            <image:title>Skye Summit Schools</image:title>
+            <image:caption>Schools near Skye Summit</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/skye-summit-vs-summerlin</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.82</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-vs-summerlin.jpg</image:loc>
+            <image:title>Skye Summit vs Summerlin</image:title>
+            <image:caption>Skye Summit vs Summerlin</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/northwest-las-vegas-real-estate</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.82</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-northwest-valley.jpg</image:loc>
+            <image:title>Northwest Las Vegas Real Estate</image:title>
+            <image:caption>Northwest Las Vegas real estate</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/centennial-hills-real-estate</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.82</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-centennial-hills.jpg</image:loc>
+            <image:title>Centennial Hills Real Estate</image:title>
+            <image:caption>Centennial Hills real estate</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/las-vegas-zip-code-map</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.85</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-community-lifestyle.jpg</image:loc>
+            <image:title>Skye Summit Community Aerial</image:title>
+            <image:caption>Skye Summit community living near Red Rock Canyon</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/search</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-community-lifestyle.jpg</image:loc>
+            <image:title>Skye Summit Community Aerial</image:title>
+            <image:caption>Skye Summit community living near Red Rock Canyon</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/sell</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/sell-home.jpg</image:loc>
+            <image:title>Sell Your Home Skye Summit Las Vegas</image:title>
+            <image:caption>Sell with Skye Summit market expertise</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/buy</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-buy-skye-summit.jpg</image:loc>
+            <image:title>Buy Skye Summit Homes Las Vegas</image:title>
+            <image:caption>Buy in Skye Summit — new construction buyer representation</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/valuation</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/valuation-home.jpg</image:loc>
+            <image:title>Skye Summit Home Valuation</image:title>
+            <image:caption>Free Skye Summit home valuation</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/invest</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/property-twilight.jpg</image:loc>
+            <image:title>Skye Summit Investment Homes</image:title>
+            <image:caption>Invest in northwest Las Vegas new construction</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/relocate</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/relocation.jpg</image:loc>
+            <image:title>Relocate to Skye Summit Las Vegas</image:title>
+            <image:caption>Relocate to Skye Summit &amp; northwest Las Vegas</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/contact</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-contact-consult.jpg</image:loc>
+            <image:title>Contact Dr. Jan Duffy Skye Summit</image:title>
+            <image:caption>Book a Skye Summit buyer appointment</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/office-location</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.85</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-office-southern-highlands.jpg</image:loc>
+            <image:title>Skye Summit Homes Office Location</image:title>
+            <image:caption>Southern Highlands office — map &amp; directions</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/blog</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-blog-market.jpg</image:loc>
+            <image:title>Skye Summit Blog</image:title>
+            <image:caption>Skye Summit Homes blog</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/homes-for-sale-skye-summit</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-homes-for-sale.jpg</image:loc>
+            <image:title>Homes for Sale Skye Summit</image:title>
+            <image:caption>Skye Summit homes for sale</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/privacy</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/office-consult.jpg</image:loc>
+            <image:title>Privacy Policy</image:title>
+            <image:caption>Privacy policy</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/terms</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/office-consult.jpg</image:loc>
+            <image:title>Terms of Use</image:title>
+            <image:caption>Terms of use</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
     <url>
         <loc>https://www.skyesummithomes.com/mls-disclaimer</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/property-two-story.jpg</image:loc>
+            <image:title>MLS Disclaimer</image:title>
+            <image:caption>MLS listing data notice</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
     </url>
 
 </urlset>

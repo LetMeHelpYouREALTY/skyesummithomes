@@ -8,6 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const C = require('../lib/gbp-constants');
 const { GUIDE_SLUGS } = require('../lib/guide-nav');
+const { heroForFile } = require('../lib/hero-images');
 
 const root = path.join(__dirname, '..');
 const today = new Date().toISOString().slice(0, 10);
@@ -68,17 +69,40 @@ const ROUTES = [
   { loc: '/mls-disclaimer', priority: '0.5', changefreq: 'yearly' },
 ];
 
-const urls = ROUTES.map(
-  (r) => `    <url>
+const urls = ROUTES.map((r) => {
+  const htmlPath =
+    r.loc === '/'
+      ? 'index.html'
+      : `${r.loc.slice(1)}.html`;
+  const hero = heroForFile(htmlPath);
+  const imageLoc = hero?.src?.startsWith('http')
+    ? hero.src
+    : `${C.SITE}${hero.src}`;
+  return `    <url>
         <loc>${C.SITE}${r.loc === '/' ? '/' : r.loc}</loc>
         <lastmod>${lastmodForRoute(r.loc)}</lastmod>
         <changefreq>${r.changefreq}</changefreq>
         <priority>${r.priority}</priority>
-    </url>`
-).join('\n\n');
+        <image:image>
+            <image:loc>${imageLoc}</image:loc>
+            <image:title>${escapeXml(hero.name || C.GBP_BUSINESS_NAME)}</image:title>
+            <image:caption>${escapeXml(hero.caption || hero.alt)}</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
+    </url>`;
+}).join('\n\n');
+
+function escapeXml(s) {
+  return String(s || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">

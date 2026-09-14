@@ -10,12 +10,12 @@
 - [ ] Enter verification code when received
 
 ### **Basic Information**
-- [ ] Business name: "Dr. Jan Duffy, REALTOR® - Skye Summit Specialist"
+- [ ] Business name: "Skye Summit | Homes by Dr. Jan Duffy"
 - [ ] Address: 11411 Southern Highlands Pkwy #300, Las Vegas, NV 89141
 - [ ] Phone: (702) 930-8222
 - [ ] Email: DrJanSells@SkyeSummitHomes.com
-- [ ] Website: https://findahomeinlasvegas.com
-- [ ] Business hours (Monday-Friday 9AM-5PM, Saturday 10AM-4PM, Sunday by appointment)
+- [ ] Website: https://www.skyesummithomes.com
+- [ ] Business hours (Sunday–Saturday 9:00 AM – 6:00 PM — matches site GBP constants)
 
 ### **Categories**
 - [ ] Primary: Real Estate Agent
