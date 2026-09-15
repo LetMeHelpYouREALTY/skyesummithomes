@@ -10,7 +10,7 @@ const path = require('path');
 const C = require('../lib/gbp-constants');
 const { IDS } = require('../lib/schema-graph');
 const { guideFooterListHtml, guideCtaLinksHtml } = require('../lib/guide-nav');
-const { PATHS } = require('../lib/site-images');
+const { heroForFile, absoluteUrl } = require('../lib/hero-images');
 
 const root = path.join(__dirname, '..');
 const SITE = C.SITE;
@@ -455,10 +455,10 @@ const GUIDES = [
       'Schools serving Skye Summit and northwest Las Vegas: Clark County School District overview, charter and private options, and how to verify assignments by address.',
     h1: 'Schools Near Skye Summit, Las Vegas',
     heroSubtitle:
-      'Planning for families relocating to northwest Las Vegas—district basics, verification steps, and local resources.',
+      'Planning for buyers relocating to northwest Las Vegas—district basics, verification steps, and local resources.',
     breadcrumbName: 'Skye Summit Schools',
     quickAnswer:
-      'Skye Summit addresses are typically zoned in Clark County public schools; exact elementary, middle, and high schools depend on street address—verify with the school district before you write an offer. Dr. Jan Duffy helps relocating families confirm assignments.',
+      'Skye Summit addresses are typically zoned in Clark County public schools; exact elementary, middle, and high schools depend on street address—verify with the school district before you write an offer. Dr. Jan Duffy helps relocating buyers confirm assignments.',
     faqs: [
       {
         q: 'What school district is Skye Summit in?',
@@ -470,7 +470,7 @@ const GUIDES = [
       },
       {
         q: 'Are there charter or private schools near Skye Summit?',
-        a: 'Northwest Las Vegas offers charter programs and private schools within a reasonable drive of Centennial Hills and Skye Summit. Many families tour multiple options before choosing a home location.',
+        a: 'Northwest Las Vegas offers charter programs and private schools within a reasonable drive of Centennial Hills and Skye Summit. Many buyers tour multiple options before choosing a home location.',
       },
       {
         q: 'Do new construction buyers choose schools before closing?',
@@ -483,7 +483,7 @@ const GUIDES = [
                 <h2>School planning checklist</h2>
                 <ul class="process-steps" style="max-width:720px;margin:0 auto;">
                     <li>Confirm elementary, middle, and high school assignments for the exact listing address.</li>
-                    <li>Ask about capacity, magnet programs, and bus routes if relevant to your family.</li>
+                    <li>Ask about capacity, magnet programs, and bus routes if you need district transportation.</li>
                     <li>Visit campuses when possible—especially for relocations from out of state.</li>
                     <li>Factor commute from Skye Summit to school drop-off into your daily routine.</li>
                 </ul>
@@ -492,8 +492,8 @@ const GUIDES = [
         </section>
         <section class="demographics-section">
             <div class="container">
-                <h2>Why families choose Skye Summit</h2>
-                <p class="lead-text">Elevated northwest living, newer housing stock, parks and trails, and proximity to Centennial Hills shopping and medical services make Skye Summit attractive for households balancing schools, outdoor time, and commute flexibility.</p>
+                <h2>Why buyers choose Skye Summit</h2>
+                <p class="lead-text">Elevated northwest living, newer housing stock, parks and trails, and proximity to Centennial Hills shopping and medical services make Skye Summit attractive for buyers balancing school commute times, outdoor access, and new-construction timelines.</p>
                 <p><a href="/community">Skye Summit community guide</a> · <a href="/living-in-skye-summit">Living in Skye Summit</a> · <a href="/skye-summit-faq">FAQ</a></p>
             </div>
         </section>`,
@@ -524,7 +524,7 @@ const GUIDES = [
       },
       {
         q: 'Who is Skye Summit best for?',
-        a: 'Buyers who want newer homes, mountain views, trails, and gated-community feel—families, professionals, retirees, and investors comparing northwest Las Vegas submarkets.',
+        a: 'Buyers who want newer homes, mountain views, trails, and a gated-community feel—primary-home buyers, relocators, and investors comparing northwest Las Vegas submarkets.',
       },
       {
         q: 'How does Skye Summit compare to Summerlin?',
@@ -912,7 +912,7 @@ function faqHtml(faqs) {
 
 function renderPage(guide) {
   const canonical = `${SITE}/${guide.slug}`;
-  const ogImage = `${SITE}${PATHS.COMMUNITY}`;
+  const ogImage = absoluteUrl(heroForFile(`${guide.slug}.html`).src);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -936,6 +936,7 @@ function renderPage(guide) {
     <meta property="twitter:url" content="${canonical}">
     <meta property="twitter:title" content="${escapeHtml(guide.title)}">
     <meta property="twitter:description" content="${escapeHtml(guide.description)}">
+    <meta name="twitter:image" content="${ogImage}">
     <title>${escapeHtml(guide.title)}</title>
     <link rel="canonical" href="${canonical}">
     <link rel="preload" href="/styles.css" as="style">

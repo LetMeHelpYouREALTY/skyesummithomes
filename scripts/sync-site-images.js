@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 /**
- * Sets page-specific og:image / twitter:image to verified home photos.
+ * Sets page-specific og:image / twitter:image from the per-page hero registry.
+ * Git /images/hero/* is the origin; Cloudflare CDN can wrap the same paths.
  */
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
-const { PATHS, PAGE_OG, url } = require('../lib/site-images');
+const { heroForFile, absoluteUrl } = require('../lib/hero-images');
 
 const root = path.join(__dirname, '..');
 
@@ -19,8 +20,6 @@ const SKIP_DIRS = new Set([
   'cloudflare',
   'attached_assets',
 ]);
-
-const DEFAULT_OG = url(PATHS.COMMUNITY);
 
 function listHtmlFiles(dir, out = []) {
   for (const name of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -40,10 +39,7 @@ function listHtmlFiles(dir, out = []) {
 
 function ogPathForFile(filePath) {
   const rel = path.relative(root, filePath).replace(/\\/g, '/');
-  if (PAGE_OG[rel]) return PAGE_OG[rel];
-  const base = path.basename(filePath);
-  if (PAGE_OG[base]) return PAGE_OG[base];
-  return PATHS.COMMUNITY;
+  return heroForFile(rel).src;
 }
 
 function setMetaContent(html, attr, key, value) {
@@ -64,21 +60,31 @@ function setMetaContent(html, attr, key, value) {
   return html;
 }
 
+function ensureTwitterImage(html, imageUrl) {
+  if (/<meta[^>]+(?:name|property)=["']twitter:image["']/i.test(html)) {
+    return setMetaContent(html, 'name', 'twitter:image', imageUrl);
+  }
+  if (/<meta[^>]+property=["']og:image["']/i.test(html)) {
+    return html.replace(
+      /(<meta[^>]+property=["']og:image["'][^>]*>)/i,
+      `$1\n    <meta name="twitter:image" content="${imageUrl}">`
+    );
+  }
+  return html;
+}
+
 let updated = 0;
 for (const filePath of listHtmlFiles(root)) {
   const imagePath = ogPathForFile(filePath);
-  const imageUrl = url(imagePath);
+  const imageUrl = absoluteUrl(imagePath);
   let html = fs.readFileSync(filePath, 'utf8');
-  const next = setMetaContent(
-    setMetaContent(html, 'property', 'og:image', imageUrl),
-    'name',
-    'twitter:image',
-    imageUrl
-  );
+  let next = setMetaContent(html, 'property', 'og:image', imageUrl);
+  next = setMetaContent(next, 'property', 'twitter:image', imageUrl);
+  next = ensureTwitterImage(next, imageUrl);
   if (next !== html) {
     fs.writeFileSync(filePath, next);
     updated += 1;
   }
 }
 
-console.log(`sync-site-images: updated ${updated} HTML file(s); default OG ${DEFAULT_OG}`);
+console.log(`sync-site-images: updated ${updated} HTML file(s) from heroForFile()`);

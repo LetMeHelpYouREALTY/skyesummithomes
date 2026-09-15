@@ -14,6 +14,7 @@ const {
   absoluteUrl,
   imageObjectJsonLd,
 } = require('../lib/hero-images');
+const { cdnUrl } = require('../lib/image-cdn');
 
 const root = path.join(__dirname, '..');
 
@@ -92,14 +93,14 @@ function mediaHtml(hero, { priority }) {
   let imgBlock;
   if (hasWebpFull || hasWebp960) {
     const webpSrcset = [
-      hasWebp960 ? `${webp960} 960w` : null,
-      hasWebpFull ? `${webpFull} 1600w` : null,
+      hasWebp960 ? `${cdnUrl(webp960, { width: 960 })} 960w` : null,
+      hasWebpFull ? `${cdnUrl(webpFull, { width: 1600 })} 1600w` : null,
     ]
       .filter(Boolean)
       .join(', ');
     const jpgSrcset = [
-      hasJpg960 ? `${jpg960} 960w` : null,
-      `${hero.src} 1600w`,
+      hasJpg960 ? `${cdnUrl(jpg960, { width: 960 })} 960w` : null,
+      `${cdnUrl(hero.src, { width: 1600 })} 1600w`,
     ]
       .filter(Boolean)
       .join(', ');
@@ -109,12 +110,17 @@ function mediaHtml(hero, { priority }) {
                       ? `<source type="image/webp" srcset="${webpSrcset}" sizes="100vw">`
                       : ''
                   }
-                  <img class="hero-media__img" src="${
-                    hasJpg960 ? jpg960 : hero.src
-                  }" srcset="${jpgSrcset}" sizes="100vw" alt="${alt}" width="1600" height="900" decoding="async" loading="${loading}"${fetchPriority}>
+                  <img class="hero-media__img" src="${cdnUrl(
+                    hasJpg960 ? jpg960 : hero.src,
+                    { width: hasJpg960 ? 960 : 1600 }
+                  )}" srcset="${jpgSrcset}" sizes="100vw" alt="${alt}" width="${
+      hero.width || '1600'
+    }" height="${hero.height || '900'}" decoding="async" loading="${loading}"${fetchPriority}>
                 </picture>`;
   } else {
-    imgBlock = `<img class="hero-media__img" src="${hero.src}" alt="${alt}" width="1600" height="900" decoding="async" loading="${loading}"${fetchPriority}>`;
+    imgBlock = `<img class="hero-media__img" src="${cdnUrl(hero.src)}" alt="${alt}" width="${
+      hero.width || '1600'
+    }" height="${hero.height || '900'}" decoding="async" loading="${loading}"${fetchPriority}>`;
   }
 
   return `${MEDIA_BEGIN}
@@ -192,21 +198,23 @@ function setOgImage(html, hero) {
       );
     }
   }
+  const w = hero.width || '1600';
+  const h = hero.height || '900';
   // Discover-friendly dimensions
   if (!/property=["']og:image:width["']/i.test(next)) {
     next = next.replace(
       /(<meta\s+property=["']og:image["'][^>]*>)/i,
-      `$1\n    <meta property="og:image:width" content="1600">\n    <meta property="og:image:height" content="900">`
+      `$1\n    <meta property="og:image:width" content="${w}">\n    <meta property="og:image:height" content="${h}">`
     );
   } else {
     next = next
       .replace(
         /(<meta\s+property=["']og:image:width["']\s+content=")[^"]*(")/i,
-        '$11600$2'
+        `$1${w}$2`
       )
       .replace(
         /(<meta\s+property=["']og:image:height["']\s+content=")[^"]*(")/i,
-        '$1900$2'
+        `$1${h}$2`
       );
   }
   return next;

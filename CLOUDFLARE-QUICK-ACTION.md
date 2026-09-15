@@ -76,6 +76,19 @@ Go to **Rules → Page Rules** in Cloudflare:
    - Visit: https://www.ssllabs.com/ssltest/analyze.html?d=www.skyesummithomes.com
    - Should get A or A+ rating
 
+### 5. Image CDN (`images.skyesummithomes.com`) — optional, orange-cloud OK
+
+Keep **www** and apex on **DNS only** (Vercel). The image hostname is a separate Cloudflare Worker and **can** be proxied.
+
+- [ ] Add DNS CNAME: `images` → the Worker route (or `skyesummithomes-images.<account>.workers.dev`)
+- [ ] Proxy status: **Proxied** (orange cloud)
+- [ ] Deploy `cloudflare/skyesummithomes-images` (`npx wrangler deploy`)
+- [ ] Enable Image Resizing / Transformations on the zone
+- [ ] Set Vercel env `CLOUDFLARE_IMAGES_ENABLED=1` and `CLOUDFLARE_IMAGES_HOST=https://images.skyesummithomes.com`
+- [ ] Optional upload to Cloudflare Images: `CLOUDFLARE_API_TOKEN` + `npm run images:cloudflare`
+
+Git `/images/` on Vercel remains the origin backup. Until the env flag is set, HTML uses those git paths.
+
 ---
 
 **Estimated Time**: 15-20 minutes  
