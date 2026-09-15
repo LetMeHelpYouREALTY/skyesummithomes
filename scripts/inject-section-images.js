@@ -64,6 +64,30 @@ function escapeHtml(s) {
     .replace(/>/g, '&gt;');
 }
 
+function headingText(inner) {
+  return String(inner || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function shouldSkipH2(attrs, inner) {
+  const blob = `${attrs} ${inner}`;
+  if (
+    /hero-title|page-title|nav-|footer-|aeo-quick-answer|aeo-core-|geo-context|sr-only|realscout-listings|visually-hidden/i.test(
+      blob
+    )
+  ) {
+    return true;
+  }
+  const text = headingText(inner);
+  if (/^in plain terms$/i.test(text)) return true;
+  if (/homes you can tour now/i.test(text)) return true;
+  if (/local context$/i.test(text)) return true;
+  if (/^map$/i.test(text)) return true;
+  return false;
+}
+
 function pictureHtml(visual, { width, height, eager }) {
   const src = cdnUrl(visual.src, { width });
   const base = String(visual.src).replace(/\.(jpe?g|png)$/i, '');
@@ -118,23 +142,24 @@ function stripInjected(html) {
     .replace(new RegExp(`${FEATURE_BEGIN}[\\s\\S]*?${FEATURE_END}`, 'gi'), '');
 }
 
-function injectH2(html) {
+function injectH2(html, unmatched) {
   return html.replace(/<h2\b([^>]*)>([\s\S]*?)<\/h2>/gi, (full, attrs, inner) => {
-    if (/hero-title|page-title|nav-|footer-|aeo-quick-answer|aeo-core-/i.test(attrs + inner)) {
+    if (shouldSkipH2(attrs, inner)) return full;
+    const visual = visualForH2(inner);
+    if (!visual) {
+      unmatched.add(headingText(inner));
       return full;
     }
-    const visual = visualForH2(inner);
-    if (!visual) return full;
     return `${full}${h2Figure(visual)}`;
   });
 }
 
-function injectH3FeaturesSafer(html) {
+function injectFeatureBlocks(html) {
   return html.replace(
     /<div class="feature"[^>]*>[\s\S]*?<\/div>/gi,
     (block) => {
       if (block.includes(FEATURE_BEGIN)) return block;
-      const h3 = block.match(/<h3>([\s\S]*?)<\/h3>/i);
+      const h3 = block.match(/<h3\b[^>]*>([\s\S]*?)<\/h3>/i);
       if (!h3) return block;
       const visual = visualForH3(h3[1]);
       if (!visual) return block;
@@ -146,7 +171,22 @@ function injectH3FeaturesSafer(html) {
   );
 }
 
-function processFile(filePath) {
+function injectServiceCards(html) {
+  return html.replace(
+    /<a\b([^>]*class="[^"]*service-card(?!--)[^"]*"[^>]*)>([\s\S]*?)<\/a>/gi,
+    (full, attrs, inner) => {
+      if (/service-card-small|service-card-title/.test(attrs)) return full;
+      if (inner.includes(FEATURE_BEGIN)) return full;
+      const h3 = inner.match(/<h3\b[^>]*>([\s\S]*?)<\/h3>/i);
+      if (!h3) return full;
+      const visual = visualForH3(h3[1]);
+      if (!visual) return full;
+      return `<a${attrs}>\n                    ${h3Figure(visual)}\n${inner}</a>`;
+    }
+  );
+}
+
+function processFile(filePath, unmatched) {
   const rel = path.relative(root, filePath).replace(/\\/g, '/');
   if (
     SKIP_FILES.has(path.basename(filePath)) ||
@@ -156,15 +196,22 @@ function processFile(filePath) {
   }
   let html = fs.readFileSync(filePath, 'utf8');
   html = stripInjected(html);
-  const next = injectH3FeaturesSafer(injectH2(html));
+  const next = injectServiceCards(injectFeatureBlocks(injectH2(html, unmatched)));
   if (next === html) return false;
   fs.writeFileSync(filePath, next);
   return true;
 }
 
+const unmatched = new Set();
 let updated = 0;
 for (const filePath of listHtmlFiles(root)) {
-  if (processFile(filePath)) updated += 1;
+  if (processFile(filePath, unmatched)) updated += 1;
 }
 
-console.log(`inject-section-images: updated ${updated} HTML file(s); cdn ${cdnUrl('/images/hero/sunset-home.jpg')}`);
+const leftover = [...unmatched].sort();
+console.log(
+  `inject-section-images: updated ${updated} HTML file(s); cdn ${cdnUrl('/images/hero/sunset-home.jpg')}`
+);
+if (leftover.length) {
+  console.log(`inject-section-images: unmatched H2 (${leftover.length}): ${leftover.join(' | ')}`);
+}

@@ -437,6 +437,8 @@ html,body{overflow-x:clip}
 .home-quick-links .service-card i{font-size:1.75rem;margin-bottom:.5rem}
 .home-quick-links .service-card-title{font-size:1rem;margin-bottom:.35rem}
 .home-quick-links .service-card p{font-size:.85rem}
+.service-card .feature-visual{width:100%;margin:0 0 .75rem;border-radius:8px;overflow:hidden}
+.service-card .feature-visual .section-visual__img,.service-card .feature-visual img{width:100%;aspect-ratio:16/10;object-fit:cover;height:auto;display:block}
 .home-quick-links .hero-service-links-secondary{
   display:flex;
   flex-wrap:wrap;
