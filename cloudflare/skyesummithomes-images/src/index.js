@@ -1,5 +1,8 @@
 /**
- * Image CDN for skyesummithomes.com.
+ * Optional Worker image CDN for files not yet uploaded to hosted Images.
+ *
+ * Primary delivery is hosted Images (imagedelivery.net + named variants).
+ * This Worker is BYO-origin transforms — only when CLOUDFLARE_IMAGES_ENABLED=1.
  *
  * Hostname: images.skyesummithomes.com (Cloudflare proxied — OK; this is not the Vercel apex/www).
  * Origin backup: git files on https://www.skyesummithomes.com/images/...

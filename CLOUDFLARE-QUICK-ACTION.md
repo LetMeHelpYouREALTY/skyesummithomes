@@ -80,18 +80,19 @@ Go to **Rules → Page Rules** in Cloudflare:
 
 Keep **www** and apex on **DNS only** (Vercel). Do **not** orange-cloud the site.
 
-Hosted Images delivery (account hash is public):
+Hosted Images (not zone transformations / Polish on www):
 
-`https://imagedelivery.net/byE6BTe9lNqo21V57n4aPQ/<image_id>/public`
+`https://imagedelivery.net/byE6BTe9lNqo21V57n4aPQ/<image_id>/<variant>`
 
-Docs: [Serve uploaded images](https://developers.cloudflare.com/images/optimization/hosted-images/serve-uploaded-images/) · [Upload via custom path](https://developers.cloudflare.com/images/storage/upload-images/upload-custom-path/)
+Docs: [Overview](https://developers.cloudflare.com/images/) · [Serve uploaded images](https://developers.cloudflare.com/images/optimization/hosted-images/serve-uploaded-images/) · [Predefined variants](https://developers.cloudflare.com/images/optimization/hosted-images/create-variants/) · [Upload via custom path](https://developers.cloudflare.com/images/storage/upload-images/upload-custom-path/)
+
+Named variants created by `npm run images:cloudflare`: `public` (original), `hero` (1600), `section` (1280), `card` (900), `w960` (960), `avatar` (240² cover), `og` (1200×630 cover). Cloudflare picks AVIF/WebP from the browser `Accept` header.
 
 - [ ] Cloudflare dashboard → **Images & Stream → Hosted images**
 - [ ] Create an API token with **Images Write**
 - [ ] Run: `CLOUDFLARE_API_TOKEN=... npm run images:cloudflare`
-  (imports each git file from `https://www.skyesummithomes.com/images/...` with a stable custom ID)
+  (uploads git files with a stable custom ID, creates variants, enables flexible variants)
 - [ ] Rebuild so HTML uses `imagedelivery.net` URLs (`npm run images:inject` or `npm run build`)
-- [ ] Optional: enable **Flexible variants** on the Delivery tab for `w=960` srcset
 - [ ] Optional Worker `images.skyesummithomes.com` for files not yet uploaded (`CLOUDFLARE_IMAGES_ENABLED=1`) — orange-cloud that hostname only
 
 Git `/images/` on Vercel remains the origin backup. Until images are uploaded, HTML keeps those git paths.

@@ -7,6 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const { HOME_GALLERY, GALLERY_DISCLAIMER } = require('../lib/site-images');
+const { cdnUrl, isHosted, hostedSrcset } = require('../lib/image-cdn');
 
 const root = path.join(__dirname, '..');
 const MARKER = 'HOME_GALLERY_BEGIN';
@@ -21,13 +22,17 @@ const TARGETS = new Set([
 ]);
 
 function galleryHtml() {
-  const items = HOME_GALLERY.map(
-    (item) => `
+  const items = HOME_GALLERY.map((item) => {
+    const src = cdnUrl(item.src, { width: 960 });
+    const extras = isHosted(item.src)
+      ? ` srcset="${hostedSrcset(item.src, [960])}" sizes="(max-width: 768px) 100vw, 33vw"`
+      : '';
+    return `
                     <figure class="home-gallery__item">
-                        <img src="${item.src}" alt="${item.alt}" width="640" height="427" loading="lazy" decoding="async">
+                        <img src="${src}"${extras} alt="${item.alt}" width="640" height="427" loading="lazy" decoding="async">
                         <figcaption>${item.caption}</figcaption>
-                    </figure>`
-  ).join('');
+                    </figure>`;
+  }).join('');
 
   return `
                 <!-- ${MARKER} -->

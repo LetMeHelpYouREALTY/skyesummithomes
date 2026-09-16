@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const C = require('../lib/gbp-constants');
+const { cdnUrl, isHosted } = require('../lib/image-cdn');
 
 const root = path.join(__dirname, '..');
 const PORTRAIT_SRC = '/images/brand/dr-jan-hero-portrait.webp';
@@ -31,12 +32,15 @@ function portraitHtml(priority) {
   // Never compete with LCP hero photo for fetchpriority
   const loading = priority ? 'eager' : 'lazy';
   const alt = ALT.replace(/"/g, '&quot;');
-  return `${BEGIN}
-                <figure class="hero-agent">
-                    <picture>
+  const img = isHosted(PORTRAIT_FALLBACK)
+    ? `<img class="hero-agent__img" src="${cdnUrl(PORTRAIT_FALLBACK, { variant: 'avatar' })}" alt="${alt}" width="120" height="120" decoding="async" loading="${loading}">`
+    : `<picture>
                       <source type="image/webp" srcset="${PORTRAIT_SRC}">
                       <img class="hero-agent__img" src="${PORTRAIT_FALLBACK}" alt="${alt}" width="120" height="120" decoding="async" loading="${loading}">
-                    </picture>
+                    </picture>`;
+  return `${BEGIN}
+                <figure class="hero-agent">
+                    ${img}
                     <figcaption class="hero-agent__caption">${C.AGENT_NAME}, ${C.AGENT_TITLE}</figcaption>
                 </figure>
                 ${END}`;

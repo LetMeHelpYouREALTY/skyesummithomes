@@ -14,7 +14,7 @@ const {
   absoluteUrl,
   imageObjectJsonLd,
 } = require('../lib/hero-images');
-const { cdnUrl, isHosted } = require('../lib/image-cdn');
+const { cdnUrl, isHosted, hostedSrcset } = require('../lib/image-cdn');
 
 const root = path.join(__dirname, '..');
 
@@ -87,7 +87,9 @@ function mediaHtml(hero, { priority }) {
 
   let imgBlock;
   if (isHosted(hero.src)) {
-    imgBlock = `<img class="hero-media__img" src="${cdnUrl(hero.src)}" alt="${alt}" width="${width}" height="${height}" decoding="async" loading="${loading}"${fetchPriority}>`;
+    const src = cdnUrl(hero.src, { width: 1600 });
+    const srcset = hostedSrcset(hero.src, [960, 1600]);
+    imgBlock = `<img class="hero-media__img" src="${src}" srcset="${srcset}" sizes="100vw" alt="${alt}" width="${width}" height="${height}" decoding="async" loading="${loading}"${fetchPriority}>`;
   } else {
   const base = String(hero.src).replace(/\.(jpe?g|png)$/i, '');
   const webpFull = `${base}.webp`;

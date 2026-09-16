@@ -8,7 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const { visualForH2, visualForH3 } = require('../lib/section-images');
-const { cdnUrl, isHosted } = require('../lib/image-cdn');
+const { cdnUrl, isHosted, hostedSrcset } = require('../lib/image-cdn');
 
 const root = path.join(__dirname, '..');
 
@@ -92,7 +92,16 @@ function pictureHtml(visual, { width, height, eager }) {
   const loading = eager ? 'eager' : 'lazy';
   const alt = escapeAttr(visual.alt);
   if (isHosted(visual.src)) {
-    return `<img class="section-visual__img" src="${cdnUrl(visual.src)}" alt="${alt}" width="${width}" height="${height}" loading="${loading}" decoding="async">`;
+    const src = cdnUrl(visual.src, { width });
+    const srcset = hostedSrcset(
+      visual.src,
+      Number(width) <= 900 ? [width] : [960, width]
+    );
+    const sizes =
+      Number(width) <= 900
+        ? '(max-width: 768px) 100vw, 420px'
+        : '(max-width: 768px) 100vw, 920px';
+    return `<img class="section-visual__img" src="${src}" srcset="${srcset}" sizes="${sizes}" alt="${alt}" width="${width}" height="${height}" loading="${loading}" decoding="async">`;
   }
   const src = cdnUrl(visual.src, { width });
   const base = String(visual.src).replace(/\.(jpe?g|png)$/i, '');

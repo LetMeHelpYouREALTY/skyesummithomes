@@ -8,21 +8,23 @@
 const fs = require('fs');
 const path = require('path');
 const { heroForFile } = require('../lib/hero-images');
+const { cdnUrl } = require('../lib/image-cdn');
 
 const root = path.join(__dirname, '..');
 const indexPath = path.join(root, 'index.html');
 const cssPath = path.join(root, 'styles.css');
 
 const homeHero = heroForFile('index.html');
-const PRELOAD = `<link rel="preload" href="${homeHero.src}" as="image" fetchpriority="high">`;
+const preloadHref = cdnUrl(homeHero.src, { width: 1600 });
+const PRELOAD = `<link rel="preload" href="${preloadHref}" as="image" fetchpriority="high">`;
 
 if (fs.existsSync(indexPath)) {
   let html = fs.readFileSync(indexPath, 'utf8');
   html = html.replace(
-    /\s*<link rel="preload" href="\/images\/[^"]+" as="image"[^>]*>\s*/gi,
+    /\s*<link rel="preload" href="(?:\/images\/[^"]+|https:\/\/imagedelivery\.net\/[^"]+)" as="image"[^>]*>\s*/gi,
     '\n'
   );
-  if (!html.includes(`href="${homeHero.src}"`)) {
+  if (!html.includes(`href="${preloadHref}"`)) {
     html = html.replace(
       /<link rel="canonical"[^>]*>/i,
       (m) => `${m}\n    ${PRELOAD}`
