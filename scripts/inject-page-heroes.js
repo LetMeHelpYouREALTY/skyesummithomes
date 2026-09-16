@@ -14,7 +14,7 @@ const {
   absoluteUrl,
   imageObjectJsonLd,
 } = require('../lib/hero-images');
-const { cdnUrl } = require('../lib/image-cdn');
+const { cdnUrl, isHosted } = require('../lib/image-cdn');
 
 const root = path.join(__dirname, '..');
 
@@ -82,6 +82,13 @@ function mediaHtml(hero, { priority }) {
   const loading = priority ? 'eager' : 'lazy';
   const fetchPriority = priority ? ' fetchpriority="high"' : '';
   const alt = escapeAttr(hero.alt);
+  const width = hero.width || '1600';
+  const height = hero.height || '900';
+
+  let imgBlock;
+  if (isHosted(hero.src)) {
+    imgBlock = `<img class="hero-media__img" src="${cdnUrl(hero.src)}" alt="${alt}" width="${width}" height="${height}" decoding="async" loading="${loading}"${fetchPriority}>`;
+  } else {
   const base = String(hero.src).replace(/\.(jpe?g|png)$/i, '');
   const webpFull = `${base}.webp`;
   const webp960 = `${base}-960.webp`;
@@ -90,7 +97,6 @@ function mediaHtml(hero, { priority }) {
   const hasWebp960 = fs.existsSync(heroDiskPath(webp960));
   const hasJpg960 = fs.existsSync(heroDiskPath(jpg960));
 
-  let imgBlock;
   if (hasWebpFull || hasWebp960) {
     const webpSrcset = [
       hasWebp960 ? `${cdnUrl(webp960, { width: 960 })} 960w` : null,
@@ -118,9 +124,8 @@ function mediaHtml(hero, { priority }) {
     }" height="${hero.height || '900'}" decoding="async" loading="${loading}"${fetchPriority}>
                 </picture>`;
   } else {
-    imgBlock = `<img class="hero-media__img" src="${cdnUrl(hero.src)}" alt="${alt}" width="${
-      hero.width || '1600'
-    }" height="${hero.height || '900'}" decoding="async" loading="${loading}"${fetchPriority}>`;
+    imgBlock = `<img class="hero-media__img" src="${cdnUrl(hero.src)}" alt="${alt}" width="${width}" height="${height}" decoding="async" loading="${loading}"${fetchPriority}>`;
+  }
   }
 
   return `${MEDIA_BEGIN}
