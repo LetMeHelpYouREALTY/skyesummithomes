@@ -1,33 +1,40 @@
 #!/usr/bin/env node
 /**
- * Upload git-backed images to Cloudflare Images (optional).
- * Requires CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID.
- * Writes lib/cloudflare-image-ids.json so HTML can use imagedelivery.net.
+ * Upload git-backed images to Cloudflare hosted Images.
  *
- * Docs: https://developers.cloudflare.com/images/upload-images/
+ * Docs:
+ * - Upload API: POST /accounts/{account_id}/images/v1
+ * - Custom IDs: https://developers.cloudflare.com/images/storage/upload-images/upload-custom-path/
+ * - Delivery: https://imagedelivery.net/<ACCOUNT_HASH>/<IMAGE_ID>/public
+ *
+ * Requires CLOUDFLARE_API_TOKEN (Images Write). Git /images/ stays the origin backup.
+ * Prefers URL import from the live Vercel origin so Cloudflare fetches the git file.
  */
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
+const {
+  ACCOUNT_ID,
+  ACCOUNT_HASH,
+  customIdFromGitPath,
+  deliveryUrl,
+} = require('../lib/cloudflare-images');
 
 const root = path.join(__dirname, '..');
 const token = process.env.CLOUDFLARE_API_TOKEN;
-const accountId = process.env.CLOUDFLARE_ACCOUNT_ID || '2cc579c1ec9e426ed585e933ebf4753b';
+const accountId = process.env.CLOUDFLARE_ACCOUNT_ID || ACCOUNT_ID;
 const mapPath = path.join(root, 'lib/cloudflare-image-ids.json');
-
-if (!token) {
-  console.log(
-    'sync-cloudflare-images: CLOUDFLARE_API_TOKEN unset — keeping git /images/ as origin. Worker on images.skyesummithomes.com can still resize those files.'
-  );
-  process.exit(0);
-}
+const GIT_ORIGIN = 'https://www.skyesummithomes.com';
 
 const IMAGE_DIRS = [
   path.join(root, 'images/hero'),
   path.join(root, 'images/sections'),
   path.join(root, 'images/features'),
+  path.join(root, 'images/property'),
+  path.join(root, 'images/brand'),
+  path.join(root, 'images/agents'),
 ];
 
 function listImages() {
@@ -40,33 +47,55 @@ function listImages() {
       out.push(path.join(dir, name));
     }
   }
-  return out;
-}
-
-function customId(absPath) {
-  const rel = path.relative(root, absPath).replace(/\\/g, '/');
-  return rel.replace(/^images\//, '').replace(/\.(jpe?g|png|webp)$/i, '').replace(/[^a-zA-Z0-9._-]/g, '-');
+  return out.sort();
 }
 
 function webPath(absPath) {
   return `/${path.relative(root, absPath).replace(/\\/g, '/')}`;
 }
 
-let map = {};
-if (fs.existsSync(mapPath)) {
+function loadMap() {
+  if (!fs.existsSync(mapPath)) return {};
   try {
-    map = JSON.parse(fs.readFileSync(mapPath, 'utf8'));
+    return JSON.parse(fs.readFileSync(mapPath, 'utf8'));
   } catch {
-    map = {};
+    return {};
   }
 }
 
+function saveMap(map) {
+  fs.writeFileSync(mapPath, `${JSON.stringify(map, null, 2)}\n`);
+}
+
 const files = listImages();
+console.log(
+  `sync-cloudflare-images: ${files.length} git originals; delivery https://imagedelivery.net/${ACCOUNT_HASH}/<id>/public`
+);
+
+if (!token) {
+  console.log(
+    'CLOUDFLARE_API_TOKEN unset — not uploading. Git /images/ remains the public origin backup.\n' +
+      'Create a token with Images Write, then: CLOUDFLARE_API_TOKEN=... npm run images:cloudflare'
+  );
+  process.exit(0);
+}
+
+let map = loadMap();
 let uploaded = 0;
+let existed = 0;
+let failed = 0;
+
 for (const file of files) {
-  const id = customId(file);
   const key = webPath(file);
+  const id = customIdFromGitPath(key);
+  const sourceUrl = `${GIT_ORIGIN}${key}`;
   const endpoint = `https://api.cloudflare.com/client/v4/accounts/${accountId}/images/v1`;
+
+  if (map[key] === id) {
+    existed += 1;
+    continue;
+  }
+
   try {
     const raw = execFileSync(
       'curl',
@@ -78,9 +107,11 @@ for (const file of files) {
         '-H',
         `Authorization: Bearer ${token}`,
         '-F',
-        `file=@${file}`,
+        `url=${sourceUrl}`,
         '-F',
         `id=${id}`,
+        '-F',
+        'requireSignedURLs=false',
       ],
       { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 }
     );
@@ -88,20 +119,25 @@ for (const file of files) {
     if (json.success && json.result && json.result.id) {
       map[key] = json.result.id;
       uploaded += 1;
-      console.log(`uploaded ${key} → ${json.result.id}`);
-    } else {
-      const already = JSON.stringify(json.errors || json).includes('already exists');
-      if (already) {
-        map[key] = id;
-        console.log(`exists ${key} → ${id}`);
-      } else {
-        console.warn(`skip ${key}: ${raw.slice(0, 240)}`);
-      }
+      console.log(`uploaded ${key} → ${deliveryUrl(json.result.id)}`);
+      continue;
     }
+    const errText = JSON.stringify(json.errors || json);
+    if (/already exists|duplicate/i.test(errText)) {
+      map[key] = id;
+      existed += 1;
+      console.log(`exists ${key} → ${deliveryUrl(id)}`);
+      continue;
+    }
+    failed += 1;
+    console.warn(`skip ${key}: ${errText.slice(0, 280)}`);
   } catch (err) {
+    failed += 1;
     console.warn(`error ${key}: ${err.message}`);
   }
 }
 
-fs.writeFileSync(mapPath, JSON.stringify(map, null, 2) + '\n');
-console.log(`sync-cloudflare-images: ${uploaded} uploaded, map ${Object.keys(map).length} ids`);
+saveMap(map);
+console.log(
+  `sync-cloudflare-images: uploaded ${uploaded}, existed ${existed}, failed ${failed}, map ${Object.keys(map).length} ids`
+);

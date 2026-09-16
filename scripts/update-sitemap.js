@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const C = require('../lib/gbp-constants');
 const { GUIDE_SLUGS } = require('../lib/guide-nav');
-const { heroForFile } = require('../lib/hero-images');
+const { heroForFile, absoluteUrl } = require('../lib/hero-images');
 
 const root = path.join(__dirname, '..');
 const today = new Date().toISOString().slice(0, 10);
@@ -75,9 +75,7 @@ const urls = ROUTES.map((r) => {
       ? 'index.html'
       : `${r.loc.slice(1)}.html`;
   const hero = heroForFile(htmlPath);
-  const imageLoc = hero?.src?.startsWith('http')
-    ? hero.src
-    : `${C.SITE}${hero.src}`;
+  const imageLoc = absoluteUrl(hero.src);
   return `    <url>
         <loc>${C.SITE}${r.loc === '/' ? '/' : r.loc}</loc>
         <lastmod>${lastmodForRoute(r.loc)}</lastmod>

@@ -76,18 +76,25 @@ Go to **Rules → Page Rules** in Cloudflare:
    - Visit: https://www.ssllabs.com/ssltest/analyze.html?d=www.skyesummithomes.com
    - Should get A or A+ rating
 
-### 5. Image CDN (`images.skyesummithomes.com`) — optional, orange-cloud OK
+### 5. Cloudflare Images (hosted) — primary storage; git is backup
 
-Keep **www** and apex on **DNS only** (Vercel). The image hostname is a separate Cloudflare Worker and **can** be proxied.
+Keep **www** and apex on **DNS only** (Vercel). Do **not** orange-cloud the site.
 
-- [ ] Add DNS CNAME: `images` → the Worker route (or `skyesummithomes-images.<account>.workers.dev`)
-- [ ] Proxy status: **Proxied** (orange cloud)
-- [ ] Deploy `cloudflare/skyesummithomes-images` (`npx wrangler deploy`)
-- [ ] Enable Image Resizing / Transformations on the zone
-- [ ] Set Vercel env `CLOUDFLARE_IMAGES_ENABLED=1` and `CLOUDFLARE_IMAGES_HOST=https://images.skyesummithomes.com`
-- [ ] Optional upload to Cloudflare Images: `CLOUDFLARE_API_TOKEN` + `npm run images:cloudflare`
+Hosted Images delivery (account hash is public):
 
-Git `/images/` on Vercel remains the origin backup. Until the env flag is set, HTML uses those git paths.
+`https://imagedelivery.net/byE6BTe9lNqo21V57n4aPQ/<image_id>/public`
+
+Docs: [Serve uploaded images](https://developers.cloudflare.com/images/optimization/hosted-images/serve-uploaded-images/) · [Upload via custom path](https://developers.cloudflare.com/images/storage/upload-images/upload-custom-path/)
+
+- [ ] Cloudflare dashboard → **Images & Stream → Hosted images**
+- [ ] Create an API token with **Images Write**
+- [ ] Run: `CLOUDFLARE_API_TOKEN=... npm run images:cloudflare`
+  (imports each git file from `https://www.skyesummithomes.com/images/...` with a stable custom ID)
+- [ ] Rebuild so HTML uses `imagedelivery.net` URLs (`npm run images:inject` or `npm run build`)
+- [ ] Optional: enable **Flexible variants** on the Delivery tab for `w=960` srcset
+- [ ] Optional Worker `images.skyesummithomes.com` for files not yet uploaded (`CLOUDFLARE_IMAGES_ENABLED=1`) — orange-cloud that hostname only
+
+Git `/images/` on Vercel remains the origin backup. Until images are uploaded, HTML keeps those git paths.
 
 ---
 

@@ -8,7 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const { visualForH2, visualForH3 } = require('../lib/section-images');
-const { cdnUrl } = require('../lib/image-cdn');
+const { cdnUrl, isHosted } = require('../lib/image-cdn');
 
 const root = path.join(__dirname, '..');
 
@@ -89,6 +89,11 @@ function shouldSkipH2(attrs, inner) {
 }
 
 function pictureHtml(visual, { width, height, eager }) {
+  const loading = eager ? 'eager' : 'lazy';
+  const alt = escapeAttr(visual.alt);
+  if (isHosted(visual.src)) {
+    return `<img class="section-visual__img" src="${cdnUrl(visual.src)}" alt="${alt}" width="${width}" height="${height}" loading="${loading}" decoding="async">`;
+  }
   const src = cdnUrl(visual.src, { width });
   const base = String(visual.src).replace(/\.(jpe?g|png)$/i, '');
   const webp = `${base}.webp`;
@@ -97,8 +102,6 @@ function pictureHtml(visual, { width, height, eager }) {
   const hasWebp = fs.existsSync(path.join(root, webp.replace(/^\//, '')));
   const hasWebp960 = fs.existsSync(path.join(root, webp960.replace(/^\//, '')));
   const hasJpg960 = fs.existsSync(path.join(root, jpg960.replace(/^\//, '')));
-  const loading = eager ? 'eager' : 'lazy';
-  const alt = escapeAttr(visual.alt);
   const webpSrcset = [
     hasWebp960 ? `${cdnUrl(webp960, { width: 960 })} 960w` : null,
     hasWebp ? `${cdnUrl(webp, { width })} 1280w` : null,
