@@ -24,7 +24,6 @@ jobs:
       VERCEL_PROJECT_ID: prj_x5YkBzbd8OFKPbnKslImQEbaYuUT
       CLOUDFLARE_ACCOUNT_ID: 2cc579c1ec9e426ed585e933ebf4753b
       CLOUDFLARE_IMAGES_ACCOUNT_HASH: byE6BTe9lNqo21V57n4aPQ
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -40,6 +39,8 @@ jobs:
         run: npm run images:assert
 
       - name: Upload git originals to Cloudflare hosted Images
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
             echo "::warning::CLOUDFLARE_API_TOKEN secret is empty. Add an Images Write token at repo Settings → Secrets. HTML will keep git /images/ paths."
@@ -65,6 +66,7 @@ jobs:
       - name: Build Vercel output (respects vercel.json framework null)
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          CLOUDFLARE_IMAGES_SKIP: '1'
         run: |
           if [ -z "$VERCEL_TOKEN" ]; then
             echo "::error::Add VERCEL_TOKEN to GitHub repo secrets (LetMeHelpYouREALTY/skyesummithomes)."

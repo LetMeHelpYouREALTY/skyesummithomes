@@ -100,6 +100,11 @@ console.log(
   `sync-cloudflare-images: ${files.length} git originals; delivery https://imagedelivery.net/${ACCOUNT_HASH}/<id>/<variant>`
 );
 
+if (process.env.CLOUDFLARE_IMAGES_SKIP === '1') {
+  console.log('CLOUDFLARE_IMAGES_SKIP=1 — not uploading this pass');
+  process.exit(0);
+}
+
 if (!token) {
   console.log(
     'CLOUDFLARE_API_TOKEN unset — not uploading. Git /images/ remains the public origin backup.\n' +
@@ -110,6 +115,26 @@ if (!token) {
 
 function alreadyThere(err) {
   return /already exists|duplicate|variant already/i.test(err);
+}
+
+function isAuthError(err) {
+  return /authentication error|unauthorized|invalid token|malformed|code":10000/i.test(
+    String(err || '')
+  );
+}
+
+function probeToken() {
+  const json = curlJson([...authArgs(token), `${API}/images/v1?page=1&per_page=10`]);
+  if (json.success) return true;
+  const err = errorText(json);
+  console.warn(
+    `CLOUDFLARE_API_TOKEN rejected by Images API (${err.slice(0, 180)}). Git /images/ remains the origin backup.`
+  );
+  return false;
+}
+
+if (!probeToken()) {
+  process.exit(process.env.CLOUDFLARE_IMAGES_REQUIRED === '1' ? 1 : 0);
 }
 
 function ensureVariants() {
@@ -303,6 +328,10 @@ for (const file of files) {
   }
   failed += 1;
   console.warn(`skip ${key}: ${errText.slice(0, 280)}`);
+  if (isAuthError(errText)) {
+    console.warn('auth failed; stopping remaining uploads');
+    break;
+  }
 }
 
 saveMap(map);
@@ -310,6 +339,6 @@ console.log(
   `sync-cloudflare-images: uploaded ${uploaded}, existed ${existed}, failed ${failed}, map ${Object.keys(map).length} ids`
 );
 if (failed && uploaded === 0 && existed === 0) {
-  console.error('sync-cloudflare-images: every upload failed');
-  process.exit(1);
+  console.warn('sync-cloudflare-images: no images uploaded; HTML will keep git /images/ paths');
+  if (process.env.CLOUDFLARE_IMAGES_REQUIRED === '1') process.exit(1);
 }
