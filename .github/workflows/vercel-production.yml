@@ -13,12 +13,18 @@ concurrency:
   group: vercel-production-skyesummithomes
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: team_EIbjFXaDDtGMTweb5Hvo3CG3
       VERCEL_PROJECT_ID: prj_x5YkBzbd8OFKPbnKslImQEbaYuUT
+      CLOUDFLARE_ACCOUNT_ID: 2cc579c1ec9e426ed585e933ebf4753b
+      CLOUDFLARE_IMAGES_ACCOUNT_HASH: byE6BTe9lNqo21V57n4aPQ
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -30,8 +36,28 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Assert Cloudflare Images URL construction
+        run: npm run images:assert
+
+      - name: Upload git originals to Cloudflare hosted Images
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::warning::CLOUDFLARE_API_TOKEN secret is empty. Add an Images Write token at repo Settings → Secrets. HTML will keep git /images/ paths."
+          else
+            echo "CLOUDFLARE_API_TOKEN present (${#CLOUDFLARE_API_TOKEN} chars); uploading to hosted Images"
+          fi
+          npm run images:cloudflare
+
       - name: Build static site
         run: npm run build
+
+      - name: Confirm hosted Images in HTML
+        run: |
+          if grep -q 'imagedelivery.net/byE6BTe9lNqo21V57n4aPQ/' index.html; then
+            echo "Hosted Images URLs present in index.html"
+          else
+            echo "::warning::index.html still uses git image paths (token missing or upload failed)."
+          fi
 
       - name: Validate Google Search Console readiness
         run: npm run validate:gsc
@@ -50,3 +76,20 @@ jobs:
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: npx vercel@54 deploy --prebuilt --prod --yes --token="$VERCEL_TOKEN"
+
+      - name: Persist Cloudflare Images ID map
+        if: github.ref == 'refs/heads/main'
+        run: |
+          if ! grep -q '"/images/' lib/cloudflare-image-ids.json 2>/dev/null; then
+            echo "No hosted image IDs to persist"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add lib/cloudflare-image-ids.json
+          if git diff --cached --quiet; then
+            echo "Image ID map unchanged"
+            exit 0
+          fi
+          git commit -m "Persist Cloudflare Images ID map [skip ci]"
+          git push origin HEAD:main

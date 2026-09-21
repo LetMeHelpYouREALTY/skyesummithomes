@@ -309,3 +309,7 @@ saveMap(map);
 console.log(
   `sync-cloudflare-images: uploaded ${uploaded}, existed ${existed}, failed ${failed}, map ${Object.keys(map).length} ids`
 );
+if (failed && uploaded === 0 && existed === 0) {
+  console.error('sync-cloudflare-images: every upload failed');
+  process.exit(1);
+}
