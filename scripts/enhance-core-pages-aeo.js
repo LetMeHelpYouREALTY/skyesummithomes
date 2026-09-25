@@ -163,7 +163,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'relocate.html': {
     quickAnswer:
-      'Relocating for the Skye Summit Master Plan? Dr. Jan Duffy offers virtual consults, early-access updates, builder briefings, and buyer representation for out-of-state purchasers. Office hours Sun–Sat 9 AM–6 PM—(702) 930-8222.',
+      'Relocating for the Skye Summit Master Plan? Dr. Jan Duffy offers virtual consults, early-access updates, builder briefings, and buyer representation for out-of-state purchasers. Office hours Sun–Sat 8 AM–8 PM—(702) 930-8222.',
     faqs: [
       {
         q: 'Can I buy in Skye Summit before moving to Las Vegas?',
@@ -217,7 +217,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'contact.html': {
     quickAnswer:
-      `Contact Dr. Jan Duffy at ${C.PHONE_DISPLAY}, ${C.EMAIL}, or ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL}. Office hours: Sun–Sat 9 AM–6 PM.`,
+      `Contact Dr. Jan Duffy at ${C.PHONE_DISPLAY}, ${C.EMAIL}, or ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL}. Office hours: Sun–Sat 8 AM–8 PM.`,
     faqs: [
       {
         q: 'What is the fastest way to reach Dr. Jan Duffy?',
@@ -259,7 +259,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'office-location.html': {
     quickAnswer:
-      `Dr. Jan Duffy's office is at ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL} (${C.LABEL_OFFICE_SAME_AS_GOOGLE}). Hours Sun–Sat 9 AM–6 PM—<a href="tel:${C.PHONE_TEL}">${C.PHONE_DISPLAY}</a>.`,
+      `Dr. Jan Duffy's office is at ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL} (${C.LABEL_OFFICE_SAME_AS_GOOGLE}). Hours Sun–Sat 8 AM–8 PM—<a href="tel:${C.PHONE_TEL}">${C.PHONE_DISPLAY}</a>.`,
     faqs: [
       {
         q: 'How do I get directions to the office?',

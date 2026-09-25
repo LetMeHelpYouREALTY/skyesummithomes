@@ -824,7 +824,7 @@ const GUIDES = [
       },
       {
         q: 'Where is Dr. Jan Duffy’s office?',
-        a: `<a href="/office-location">Office location map</a> — ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL}. Hours Sun–Sat 9 AM–6 PM.`,
+        a: `<a href="/office-location">Office location map</a> — ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL}. Hours Sun–Sat 8 AM–8 PM.`,
       },
     ],
     extraSections: `
