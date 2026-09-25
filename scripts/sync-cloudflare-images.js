@@ -55,7 +55,20 @@ function listImages() {
       out.push(path.join(dir, name));
     }
   }
-  return out.sort();
+  return out.sort().filter((abs) => {
+    if (!/\.webp$/i.test(abs)) return true;
+    const base = abs.replace(/\.webp$/i, '');
+    return !['.jpg', '.jpeg', '.png'].some((ext) => fs.existsSync(base + ext));
+  });
+}
+
+function aliasCompanionPaths(map, key, id) {
+  map[key] = id;
+  if (/\.webp$/i.test(key)) return;
+  const webp = key.replace(/\.(jpe?g|png)$/i, '.webp');
+  if (fs.existsSync(path.join(root, webp.replace(/^\//, '')))) {
+    map[webp] = id;
+  }
 }
 
 function webPath(absPath) {
@@ -259,6 +272,9 @@ for (const file of files) {
   const stat = fs.statSync(file);
 
   if (map[key] === id) {
+    const before = Object.keys(map).length;
+    aliasCompanionPaths(map, key, id);
+    if (Object.keys(map).length !== before) saveMap(map);
     existed += 1;
     continue;
   }
@@ -288,7 +304,7 @@ for (const file of files) {
   if (!json.success) {
     const err = errorText(json);
     if (alreadyThere(err)) {
-      map[key] = id;
+      aliasCompanionPaths(map, key, id);
       existed += 1;
       saveMap(map);
       console.log(`exists ${key} → ${deliveryUrl(id)}`);
@@ -311,7 +327,7 @@ for (const file of files) {
   }
 
   if (json.success && json.result && json.result.id) {
-    map[key] = json.result.id;
+    aliasCompanionPaths(map, key, json.result.id);
     uploaded += 1;
     saveMap(map);
     console.log(`uploaded ${key} → ${deliveryUrl(json.result.id, 'hero')}`);
@@ -320,7 +336,7 @@ for (const file of files) {
 
   const errText = errorText(json);
   if (alreadyThere(errText)) {
-    map[key] = id;
+    aliasCompanionPaths(map, key, id);
     existed += 1;
     saveMap(map);
     console.log(`exists ${key} → ${deliveryUrl(id)}`);

@@ -227,6 +227,25 @@ function setOgImage(html, hero) {
   return next;
 }
 
+function ensureCdnHints(html, gitPath) {
+  let next = html.replace(
+    /\s*<link rel="preconnect" href="https:\/\/imagedelivery\.net"[^>]*>\s*/gi,
+    '\n'
+  );
+  if (!isHosted(gitPath)) return next;
+  if (/<link rel="preconnect" href="https:\/\/imagedelivery\.net"/i.test(next)) {
+    return next;
+  }
+  if (/<link rel="canonical"/i.test(next)) {
+    return next.replace(
+      /<link rel="canonical"[^>]*>/i,
+      (m) =>
+        `${m}\n    <link rel="preconnect" href="https://imagedelivery.net" crossorigin>`
+    );
+  }
+  return next;
+}
+
 function injectIntoHeroSection(html, media, sectionRe) {
   if (!sectionRe.test(html)) return { html, ok: false };
   const next = html.replace(sectionRe, (openTag) => {
@@ -272,24 +291,29 @@ function processFile(filePath) {
 
   html = ensureMaxImagePreview(html);
   html = setOgImage(html, hero);
+  html = ensureCdnHints(html, hero.src);
 
-  // Homepage LCP preload — prefer mobile WebP when available
+  // Homepage LCP preload — hosted Images when mapped, else git WebP
   if (isHome) {
     html = html.replace(
       /\s*<link rel="preload"[^>]*as="image"[^>]*>\s*/gi,
       '\n'
     );
-    const base = String(hero.src).replace(/\.(jpe?g|png)$/i, '');
-    const webp960 = `${base}-960.webp`;
-    const webpFull = `${base}.webp`;
-    const preloadHref = fs.existsSync(heroDiskPath(webp960))
-      ? webp960
-      : fs.existsSync(heroDiskPath(webpFull))
-        ? webpFull
-        : hero.src;
-    const typeAttr = /\.webp$/i.test(preloadHref)
-      ? ' type="image/webp"'
-      : '';
+    let preloadHref;
+    let typeAttr = '';
+    if (isHosted(hero.src)) {
+      preloadHref = cdnUrl(hero.src, { width: 1600 });
+    } else {
+      const base = String(hero.src).replace(/\.(jpe?g|png)$/i, '');
+      const webp960 = `${base}-960.webp`;
+      const webpFull = `${base}.webp`;
+      preloadHref = fs.existsSync(heroDiskPath(webp960))
+        ? webp960
+        : fs.existsSync(heroDiskPath(webpFull))
+          ? webpFull
+          : hero.src;
+      typeAttr = /\.webp$/i.test(preloadHref) ? ' type="image/webp"' : '';
+    }
     html = html.replace(
       /<link rel="canonical"[^>]*>/i,
       (m) =>

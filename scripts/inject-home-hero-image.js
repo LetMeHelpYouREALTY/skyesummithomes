@@ -8,7 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const { heroForFile } = require('../lib/hero-images');
-const { cdnUrl } = require('../lib/image-cdn');
+const { cdnUrl, isHosted } = require('../lib/image-cdn');
 
 const root = path.join(__dirname, '..');
 const indexPath = path.join(root, 'index.html');
@@ -24,10 +24,17 @@ if (fs.existsSync(indexPath)) {
     /\s*<link rel="preload" href="(?:\/images\/[^"]+|https:\/\/imagedelivery\.net\/[^"]+)" as="image"[^>]*>\s*/gi,
     '\n'
   );
+  html = html.replace(
+    /\s*<link rel="preconnect" href="https:\/\/imagedelivery\.net"[^>]*>\s*/gi,
+    '\n'
+  );
+  const hints = isHosted(homeHero.src)
+    ? `<link rel="preconnect" href="https://imagedelivery.net" crossorigin>\n    `
+    : '';
   if (!html.includes(`href="${preloadHref}"`)) {
     html = html.replace(
       /<link rel="canonical"[^>]*>/i,
-      (m) => `${m}\n    ${PRELOAD}`
+      (m) => `${m}\n    ${hints}${PRELOAD}`
     );
   }
   fs.writeFileSync(indexPath, html);

@@ -25,9 +25,9 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: 2cc579c1ec9e426ed585e933ebf4753b
       CLOUDFLARE_IMAGES_ACCOUNT_HASH: byE6BTe9lNqo21V57n4aPQ
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '22'
           cache: npm
@@ -50,6 +50,8 @@ jobs:
           npm run images:cloudflare
 
       - name: Build static site
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npm run build
 
       - name: Confirm hosted Images in HTML

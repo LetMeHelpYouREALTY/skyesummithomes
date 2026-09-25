@@ -92,7 +92,7 @@ Named variants created by `npm run images:cloudflare`: `public` (original), `her
 - [ ] Create an API token with **Images Write**
 - [ ] Store it as GitHub repo secret `CLOUDFLARE_API_TOKEN` (production GHA uploads on every `main` deploy)
 - [ ] Optional local: `CLOUDFLARE_API_TOKEN=... npm run images:cloudflare`
-  (uploads git files with a stable custom ID, creates variants, enables flexible variants)
+  (uploads git JPEG/PNG originals with a stable custom ID — companion WebP is skipped because Images transcodes AVIF/WebP — creates variants, enables flexible variants)
 - [ ] Rebuild so HTML uses `imagedelivery.net` URLs (`npm run images:inject` or `npm run build`)
 - [ ] Optional Worker `images.skyesummithomes.com` for files not yet uploaded (`CLOUDFLARE_IMAGES_ENABLED=1`) — orange-cloud that hostname only
 

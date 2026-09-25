@@ -51,6 +51,10 @@ try {
     hosted.hostedSrcset('/images/hero/sunset-home.jpg', [960, 1600]),
     'https://imagedelivery.net/byE6BTe9lNqo21V57n4aPQ/hero-sunset-home/w960 960w, https://imagedelivery.net/byE6BTe9lNqo21V57n4aPQ/hero-sunset-home/hero 1600w'
   );
+  assert.strictEqual(
+    hosted.cdnUrl('/images/hero/sunset-home.webp', { width: 1600 }),
+    'https://imagedelivery.net/byE6BTe9lNqo21V57n4aPQ/hero-sunset-home/hero'
+  );
 } finally {
   fs.writeFileSync(mapPath, orig);
 }
