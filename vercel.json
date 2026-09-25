@@ -232,6 +232,10 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
+        },
+        {
+          "key": "Link",
+          "value": "<https://imagedelivery.net>; rel=dns-prefetch"
         }
       ]
     },

@@ -15,6 +15,7 @@ const {
   imageObjectJsonLd,
 } = require('../lib/hero-images');
 const { cdnUrl, isHosted, hostedSrcset } = require('../lib/image-cdn');
+const { ensureImageDeliveryHints } = require('../lib/cdn-hints');
 
 const root = path.join(__dirname, '..');
 
@@ -228,22 +229,7 @@ function setOgImage(html, hero) {
 }
 
 function ensureCdnHints(html, gitPath) {
-  let next = html.replace(
-    /\s*<link rel="preconnect" href="https:\/\/imagedelivery\.net"[^>]*>\s*/gi,
-    '\n'
-  );
-  if (!isHosted(gitPath)) return next;
-  if (/<link rel="preconnect" href="https:\/\/imagedelivery\.net"/i.test(next)) {
-    return next;
-  }
-  if (/<link rel="canonical"/i.test(next)) {
-    return next.replace(
-      /<link rel="canonical"[^>]*>/i,
-      (m) =>
-        `${m}\n    <link rel="preconnect" href="https://imagedelivery.net" crossorigin>`
-    );
-  }
-  return next;
+  return ensureImageDeliveryHints(html, { preconnect: isHosted(gitPath) });
 }
 
 function injectIntoHeroSection(html, media, sectionRe) {

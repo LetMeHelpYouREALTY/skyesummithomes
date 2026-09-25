@@ -63,7 +63,7 @@ function actionButtons(large = false) {
                     <a href="tel:${C.PHONE_TEL}" class="btn btn-primary${size}"><i class="fas fa-phone" aria-hidden="true"></i> Call ${C.PHONE_DISPLAY}</a>
                     <a href="${C.SMS_URL}" class="btn btn-secondary${size}"><i class="fas fa-comment-sms" aria-hidden="true"></i> Text</a>
                     <a href="${C.MAPS_DIRECTIONS}" class="btn btn-secondary${size}" target="_blank" rel="noopener"><i class="fas fa-directions" aria-hidden="true"></i> Directions</a>
-                    <a href="${C.GBP_URL}" class="btn btn-secondary${size}" target="_blank" rel="noopener"><i class="fab fa-google" aria-hidden="true"></i> Google</a>
+                    <a href="${C.GBP_URL}" class="btn btn-secondary${size}" target="_blank" rel="noopener"><i class="fab fa-google" aria-hidden="true"></i> ${C.LABEL_VIEW_ON_GOOGLE}</a>
                 </div>`;
 }
 
@@ -195,6 +195,23 @@ function injectSchema(html) {
   return html;
 }
 
+function applyReviewCtaLabels(html) {
+  return html
+    .replace(
+      /(<i class="fab fa-google"[^>]*><\/i>)\s*Google(<\/a>)/g,
+      `$1 ${C.LABEL_VIEW_ON_GOOGLE}$2`
+    )
+    .replace(/>\s*View on Google\s*</g, `> ${C.LABEL_VIEW_ON_GOOGLE}<`)
+    .replace(
+      /aria-label="View on Google"/g,
+      `aria-label="${C.LABEL_VIEW_ON_GOOGLE}"`
+    )
+    .replace(
+      /aria-label="View Dr\. Jan Duffy's Google Business Profile"/g,
+      `aria-label="${C.LABEL_VIEW_ON_GOOGLE}"`
+    );
+}
+
 let updated = 0;
 const files = listHtmlFiles(root);
 
@@ -202,9 +219,11 @@ for (const filePath of files) {
   const base = path.basename(filePath);
   if (SKIP_FILES.has(base)) continue;
 
-  let html = stripHyperlocal(fs.readFileSync(filePath, 'utf8'));
-
-  const next = injectSchema(injectSection(html, base));
+  let html = fs.readFileSync(filePath, 'utf8');
+  const next =
+    process.env.GBP_LABELS_ONLY === '1'
+      ? applyReviewCtaLabels(html)
+      : applyReviewCtaLabels(injectSchema(injectSection(stripHyperlocal(html), base)));
   if (next !== html) {
     fs.writeFileSync(filePath, next);
     updated += 1;

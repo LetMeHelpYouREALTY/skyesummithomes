@@ -100,8 +100,8 @@ function generateFooter() {
                         <h4>Google Business Profile</h4>
                         <div class="gmb-info">
                             <p><i class="fas fa-star" aria-hidden="true"></i> <strong>4.9/5</strong> (127 reviews)</p>
-                            <a href="https://share.google/yoVmGzrpTUtHrvsnL" target="_blank" rel="noopener" class="gmb-link" aria-label="View Dr. Jan Duffy's Google Business Profile">
-                                <i class="fab fa-google" aria-hidden="true"></i> View on Google
+                            <a href="https://share.google/yoVmGzrpTUtHrvsnL" target="_blank" rel="noopener" class="gmb-link" aria-label="View Google Reviews">
+                                <i class="fab fa-google" aria-hidden="true"></i> View Google Reviews
                             </a>
                             <a href="https://share.google/yoVmGzrpTUtHrvsnL&action=write_review" target="_blank" rel="noopener" class="review-link" aria-label="Write a review for Dr. Jan Duffy on Google">
                                 <i class="fas fa-edit" aria-hidden="true"></i> Write a Review

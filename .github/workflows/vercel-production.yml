@@ -24,6 +24,7 @@ jobs:
       VERCEL_PROJECT_ID: prj_x5YkBzbd8OFKPbnKslImQEbaYuUT
       CLOUDFLARE_ACCOUNT_ID: 2cc579c1ec9e426ed585e933ebf4753b
       CLOUDFLARE_IMAGES_ACCOUNT_HASH: byE6BTe9lNqo21V57n4aPQ
+      GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
     steps:
       - uses: actions/checkout@v5
 
@@ -52,7 +53,13 @@ jobs:
       - name: Build static site
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: npm run build
+        run: |
+          if [ -z "$GOOGLE_MAPS_API_KEY" ]; then
+            echo "::warning::GOOGLE_MAPS_API_KEY secret is empty. Zip map stays a placeholder until the Maps JavaScript API key is added at repo Settings → Secrets."
+          else
+            echo "GOOGLE_MAPS_API_KEY present (${#GOOGLE_MAPS_API_KEY} chars); zip map will embed the key"
+          fi
+          npm run build
 
       - name: Confirm hosted Images in HTML
         run: |
@@ -69,6 +76,7 @@ jobs:
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           CLOUDFLARE_IMAGES_SKIP: '1'
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         run: |
           if [ -z "$VERCEL_TOKEN" ]; then
             echo "::error::Add VERCEL_TOKEN to GitHub repo secrets (LetMeHelpYouREALTY/skyesummithomes)."

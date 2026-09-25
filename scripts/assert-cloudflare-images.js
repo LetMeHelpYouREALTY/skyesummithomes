@@ -61,6 +61,38 @@ try {
 
 const map = JSON.parse(orig);
 const mapped = Object.keys(map).length;
+
+const hints = require('../lib/cdn-hints');
+assert.strictEqual(
+  hints.imageDeliveryHintTags(),
+  '<link rel="dns-prefetch" href="https://imagedelivery.net">'
+);
+assert.ok(
+  hints
+    .imageDeliveryHintTags({ preconnect: true })
+    .includes('rel="preconnect" href="https://imagedelivery.net"')
+);
+const hinted = hints.ensureImageDeliveryHints(
+  '<link rel="canonical" href="https://www.skyesummithomes.com/">',
+  { preconnect: false }
+);
+assert.ok(hinted.includes('dns-prefetch'));
+assert.ok(
+  hints.mapsHintTags().includes('https://maps.googleapis.com')
+);
+assert.strictEqual(
+  hints.hasHostedImageDeliveryUrl(
+    '<link rel="dns-prefetch" href="https://imagedelivery.net">'
+  ),
+  false
+);
+assert.strictEqual(
+  hints.hasHostedImageDeliveryUrl(
+    'https://imagedelivery.net/byE6BTe9lNqo21V57n4aPQ/hero-sunset-home/hero'
+  ),
+  true
+);
+
 console.log(
   `assert-cloudflare-images: ok (map ${mapped} ids; hosted HTML after CLOUDFLARE_API_TOKEN upload)`
 );

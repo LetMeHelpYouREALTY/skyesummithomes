@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 /**
  * Embeds GOOGLE_MAPS_API_KEY into las-vegas-zip-code-map/index.html at build time.
- * - On Vercel (VERCEL=1), runs automatically so the key is not committed to git.
- * - Locally: set FORCE_MAPS_INJECT=1 and use .env or env var to test the map.
+ * Runs whenever the env var is set (GitHub Actions secret or Vercel env), or on
+ * Vercel (VERCEL=1), or with FORCE_MAPS_INJECT=1 locally. Does not commit the key.
  */
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
+const { ensureMapsHints } = require('../lib/cdn-hints');
 
 const root = path.join(__dirname, '..');
 const htmlPath = path.join(root, 'las-vegas-zip-code-map', 'index.html');
@@ -39,19 +40,18 @@ function escapeAttr(s) {
   return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
+loadDotEnv();
+
 const onVercel = process.env.VERCEL === '1';
 const forceLocal = process.env.FORCE_MAPS_INJECT === '1';
+const key = (process.env.GOOGLE_MAPS_API_KEY || '').trim();
 
-if (!onVercel && !forceLocal) {
+if (!key && !onVercel && !forceLocal) {
   console.log(
-    'inject-google-maps-key: skipped (set GOOGLE_MAPS_API_KEY on Vercel, or FORCE_MAPS_INJECT=1 locally with .env)'
+    'inject-google-maps-key: skipped (set GOOGLE_MAPS_API_KEY, or FORCE_MAPS_INJECT=1 locally with .env)'
   );
   process.exit(0);
 }
-
-loadDotEnv();
-
-const key = (process.env.GOOGLE_MAPS_API_KEY || '').trim();
 
 if (!fs.existsSync(htmlPath)) {
   console.error('inject-google-maps-key: missing', htmlPath);
@@ -74,6 +74,7 @@ const replacement = key
   : `<meta name="google-maps-api-key" content="">`;
 
 html = html.replace(metaRe, replacement);
+html = ensureMapsHints(html, { preconnect: Boolean(key) });
 fs.writeFileSync(htmlPath, html);
 
 if (key) {
