@@ -24,6 +24,7 @@
     "@vercel/node": "^3.0.0"
   },
   "devDependencies": {
+    "@types/google.maps": "^3.58.1",
     "@types/node": "^20.0.0",
     "clean-css": "^5.3.3"
   }

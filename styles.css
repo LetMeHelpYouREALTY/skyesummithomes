@@ -3,30 +3,6 @@
 
 
 
-/* AMENITY_MAP_BEGIN */
-.amenity-map-section{padding:3rem 0;background:#f7f9fc}
-.amenity-map-section__lead{max-width:42rem;margin:0 auto 1.5rem;text-align:center;color:#4a5568}
-.amenity-map-section__more{text-align:center;margin-top:1.25rem}
-.amenity-map-widget__filters{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:1rem}
-.amenity-map-chip{border:1px solid #cbd5e1;background:#fff;color:#0a2540;border-radius:999px;padding:.45rem .85rem;font-size:.85rem;font-weight:600;cursor:pointer}
-.amenity-map-chip.is-active,.amenity-map-chip:focus-visible{outline:2px solid #3a8dde;outline-offset:2px;background:#0a2540;color:#fff;border-color:#0a2540}
-.amenity-map-widget__layout{display:grid;grid-template-columns:1fr;gap:1.25rem}
-@media (min-width:900px){.amenity-map-widget__layout{grid-template-columns:1.35fr 1fr}}
-.amenity-map-widget__map-wrap{border-radius:12px;overflow:hidden;border:1px solid #e2e8f0;background:#e2e8f0;min-height:420px}
-.amenity-map-widget__map,.amenity-map-fallback iframe{width:100%;min-height:420px;border:0;display:block}
-.amenity-map-widget__sidebar{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1rem 1.1rem}
-.amenity-map-static__list{margin:0;padding-left:1.1rem;font-size:.92rem;line-height:1.45}
-.amenity-map-static__note{color:#64748b;font-size:.85rem}
-.amenity-map-widget__status{font-size:.85rem;color:#64748b;margin-top:.75rem}
-.amenity-copy{padding:2rem 0;border-top:1px solid #e2e8f0}
-.amenity-copy .container{max-width:42rem}
-.amenity-copy__disclaimer{font-size:.9rem;color:#64748b}
-.amenity-breadcrumb{padding:1rem 0 0;font-size:.9rem}
-/* AMENITY_MAP_END */
-
-
-
-
 /* HERO_LAYOUT_FIX */
 /* Full-bleed photo heroes — image covers the section; copy stays centered on top */
 html,body{overflow-x:clip}
