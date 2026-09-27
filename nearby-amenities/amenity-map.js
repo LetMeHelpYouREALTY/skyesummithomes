@@ -265,8 +265,8 @@
     if (!results.length) {
       renderCuratedList(wrap, cfg, category.id, 'Map results unavailable — ');
       if (status) {
-        status.textContent +=
-          ' Showing featured ' + category.label.toLowerCase() + ' places from our guide.';
+        status.textContent =
+          'Showing featured ' + category.label.toLowerCase() + ' places from our guide.';
       }
       return;
     }
@@ -315,9 +315,10 @@
 
     var markers = [];
     var infoWindow = new google.maps.InfoWindow();
+    var map = null;
     var authDuringUse = function () {
       mapDiv.setAttribute('hidden', 'hidden');
-      if (map) {
+      if (map && google.maps.event) {
         google.maps.event.clearInstanceListeners(map);
       }
       markers.forEach(function (m) {
@@ -329,7 +330,7 @@
     window.addEventListener('gmaps:auth-failure', authDuringUse);
     wrap.__amenityAuthListener = authDuringUse;
 
-    var map = new google.maps.Map(mapDiv, {
+    map = new google.maps.Map(mapDiv, {
       center: { lat: cfg.community.lat, lng: cfg.community.lng },
       zoom: cfg.community.zoom || 13,
       mapTypeControl: true,
