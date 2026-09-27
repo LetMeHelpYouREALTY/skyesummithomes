@@ -72,7 +72,11 @@ function stripBlocks(html) {
       /\s*<img[^>]*class="[^"]*hero-media__img[^"]*"[^>]*>\s*/gi,
       '\n'
     )
-    .replace(/\s*<div class="hero-overlay"[^>]*>\s*<\/div>\s*/gi, '\n');
+    .replace(/\s*<div class="hero-overlay"[^>]*>\s*<\/div>\s*/gi, '\n')
+    .replace(
+      /\s*<script[^>]*type=["']application\/ld\+json["'][^>]*data-hero-imageobject[^>]*>[\s\S]*?<\/script>\s*/gi,
+      '\n'
+    );
 }
 
 function heroDiskPath(webPath) {
