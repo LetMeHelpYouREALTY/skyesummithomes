@@ -743,8 +743,13 @@
                 phone: formData.get('phone'),
                 serviceInterest: formData.get('service-interest'),
                 timeline: formData.get('timeline'),
-                message: formData.get('message')
+                message: formData.get('message'),
+                formKind: 'contact',
+                formName: 'Contact Form',
+                sourceUrl: window.location.href
             };
+
+            const submitErrorHtml = 'Sorry, something went wrong sending your message. Please call or text Dr. Jan Duffy at <a href="tel:+17029308222">(702) 930-8222</a>.';
             
             try {
                 const response = await fetch('/api/followupboss', {
@@ -757,7 +762,7 @@
                 
                 const result = await response.json();
                 
-                if (result.success) {
+                if (response.ok && result.success) {
                     // Show success message
                     messageDiv.className = 'form-message success';
                     messageDiv.textContent = result.message || 'Thank you! Your consultation request has been submitted. Dr. Jan will contact you within 2 hours.';
@@ -769,16 +774,14 @@
                         messageDiv.style.display = 'none';
                     }, 5000);
                 } else {
-                    // Show error message
                     messageDiv.className = 'form-message error';
-                    messageDiv.innerHTML = result.error || 'There was an error submitting your request. Please call <a href="tel:+17029308222">(702) 930-8222</a> directly.';
+                    messageDiv.innerHTML = result.error || submitErrorHtml;
                     messageDiv.style.display = 'block';
                 }
             } catch (error) {
                 console.error('Form submission error:', error);
-                // Show error message
                 messageDiv.className = 'form-message error';
-                messageDiv.innerHTML = 'There was an error submitting your request. Please call <a href="tel:+17029308222">(702) 930-8222</a> directly.';
+                messageDiv.innerHTML = submitErrorHtml;
                 messageDiv.style.display = 'block';
             } finally {
                 // Re-enable button

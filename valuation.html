@@ -772,6 +772,8 @@
             const form = this;
             const submitButton = form.querySelector('button[type="submit"]');
             const originalButtonText = submitButton.textContent;
+            const messageNodes = form.querySelectorAll('.form-message');
+            const messageDiv = messageNodes[messageNodes.length - 1];
             
             // Hide previous messages
             messageDiv.style.display = 'none';
@@ -801,8 +803,13 @@
                 features: features,
                 notes: formData.get('notes'),
                 timeline: formData.get('timeline'),
-                serviceInterest: 'Valuation Request'
+                serviceInterest: 'Valuation Request',
+                formKind: 'valuation',
+                formName: 'Home Valuation Form',
+                sourceUrl: window.location.href
             };
+
+            const submitErrorHtml = 'Sorry, something went wrong sending your message. Please call or text Dr. Jan Duffy at <a href="tel:+17029308222">(702) 930-8222</a>.';
             
             try {
                 const response = await fetch('/api/followupboss', {
@@ -815,7 +822,7 @@
                 
                 const result = await response.json();
                 
-                if (result.success) {
+                if (response.ok && result.success) {
                     // Show success message
                     messageDiv.className = 'form-message success';
                     messageDiv.innerHTML = '<i class="fas fa-check-circle"></i> ' + (result.message || 'Thank you! Your valuation request has been submitted. Dr. Jan will contact you within 24 hours.');
@@ -825,17 +832,15 @@
                     // Scroll to message
                     messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 } else {
-                    // Show error message
                     messageDiv.className = 'form-message error';
-                    messageDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + (result.error || 'There was an error submitting your request. Please call <a href="tel:+17029308222">(702) 930-8222</a> directly.');
+                    messageDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + (result.error || submitErrorHtml);
                     messageDiv.style.display = 'flex';
                     messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
             } catch (error) {
                 console.error('Form submission error:', error);
-                // Show error message
                 messageDiv.className = 'form-message error';
-                messageDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> There was an error submitting your request. Please call <a href="tel:+17029308222">(702) 930-8222</a> directly.';
+                messageDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + submitErrorHtml;
                 messageDiv.style.display = 'flex';
                 messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             } finally {
