@@ -46,6 +46,8 @@ const ROUTES = [
     priority:
       slug === 'skye-summit-master-plan'
         ? '0.95'
+        : slug === 'nearby-amenities'
+          ? '0.88'
         : slug.includes('interest-list') || slug.includes('kb-home')
           ? '0.9'
           : slug.includes('faq') || slug.includes('realtor')

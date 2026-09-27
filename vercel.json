@@ -215,6 +215,10 @@
     {
       "source": "/woodside-homes-skye-summit",
       "destination": "/woodside-homes-skye-summit/index.html"
+    },
+    {
+      "source": "/nearby-amenities",
+      "destination": "/nearby-amenities/index.html"
     }
   ],
   "headers": [
