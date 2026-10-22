@@ -960,6 +960,7 @@ ${webPageSchema(guide, canonical)}
     <script type="application/ld+json" data-guide-faq>
 ${faqJsonLd(guide.faqs)}
     </script>
+    <script src="/ads-conversions.js" defer></script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
