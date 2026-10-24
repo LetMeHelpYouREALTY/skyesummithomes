@@ -148,16 +148,12 @@ const servicesBelow = `
                 </div>
                 <div class="hero-stats" role="list">
                     <div class="stat" role="listitem">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Years experience</span>
+                        <span class="stat-number">Since 1983</span>
+                        <span class="stat-label">In real estate</span>
                     </div>
                     <div class="stat" role="listitem">
                         <span class="stat-number">Fall 2027</span>
                         <span class="stat-label">Master plan launch</span>
-                    </div>
-                    <div class="stat stat--license" role="listitem">
-                        <span class="stat-number">S.0197614.LLC</span>
-                        <span class="stat-label">Nevada license</span>
                     </div>
                 </div>
             </div>

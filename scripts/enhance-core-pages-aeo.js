@@ -28,7 +28,7 @@ function mergeHyperlocalSeoAnswers(pages) {
         faqs: [
           {
             q: 'Who is the Skye Summit buyer\'s representative?',
-            a: 'Dr. Jan Duffy, REALTOR® (license S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties. Call <a href="tel:+17029308222">(702) 930-8222</a>.',
+            a: 'Dr. Jan Duffy, REALTOR®, in real estate since 1983. Call <a href="tel:+17029308222">(702) 930-8222</a>.',
           },
           {
             q: 'What is the Skye Summit Master Plan?',
@@ -73,15 +73,15 @@ function mergeParallelEnrichment(pages) {
 const CORE_PAGES = mergeParallelEnrichment({
   'about.html': {
     quickAnswer:
-      'Dr. Jan Duffy is a Las Vegas REALTOR® (license S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties—the buyer\'s representative for the Skye Summit Master Plan (505 acres, coming Fall 2027). Call (702) 930-8222 or visit the office at 11411 Southern Highlands Pkwy #300, Las Vegas.',
+      'Dr. Jan Duffy is a Las Vegas REALTOR®, in real estate since 1983—the buyer\'s representative for the Skye Summit Master Plan (505 acres, coming Fall 2027). Call (702) 930-8222 or visit the office at 11411 Southern Highlands Pkwy #300, Las Vegas.',
     faqs: [
       {
         q: 'Who is Dr. Jan Duffy?',
         a: 'Dr. Jan Duffy is a Nevada REALTOR® and buyer\'s representative for the Skye Summit Master Plan—early-access updates, builder coordination, and new-construction buyer representation.',
       },
       {
-        q: 'What brokerage is Dr. Jan Duffy with?',
-        a: 'Berkshire Hathaway HomeServices Nevada Properties. License S.0197614.LLC.',
+        q: 'How long has Dr. Jan Duffy been in real estate?',
+        a: 'Dr. Jan Duffy has been in real estate since 1983.',
       },
       {
         q: 'How do I verify the office address?',
@@ -163,7 +163,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'relocate.html': {
     quickAnswer:
-      'Relocating for the Skye Summit Master Plan? Dr. Jan Duffy offers virtual consults, early-access updates, builder briefings, and buyer representation for out-of-state purchasers. Office hours Sun–Sat 8 AM–8 PM—(702) 930-8222.',
+      'Relocating for the Skye Summit Master Plan? Dr. Jan Duffy offers virtual consults, early-access updates, builder briefings, and buyer representation for out-of-state purchasers. Office hours daily 8:00 AM–8:00 PM—(702) 930-8222.',
     faqs: [
       {
         q: 'Can I buy in Skye Summit before moving to Las Vegas?',
@@ -217,7 +217,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'contact.html': {
     quickAnswer:
-      `Contact Dr. Jan Duffy at ${C.PHONE_DISPLAY}, ${C.EMAIL}, or ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL}. Office hours: Sun–Sat 8 AM–8 PM.`,
+      `Contact Dr. Jan Duffy at ${C.PHONE_DISPLAY}, ${C.EMAIL}, or ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL}. Office hours: daily 8:00 AM–8:00 PM.`,
     faqs: [
       {
         q: 'What is the fastest way to reach Dr. Jan Duffy?',
@@ -231,11 +231,11 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'index.html': {
     quickAnswer:
-      'Dr. Jan Duffy is a Berkshire Hathaway HomeServices REALTOR® and buyer\'s representative for the Skye Summit Master Plan—a 505-acre Olympia Companies community coming Fall 2027. Join the interest list for early-access updates—(702) 930-8222.',
+      'Dr. Jan Duffy is a REALTOR® and buyer\'s representative for the Skye Summit Master Plan—a 505-acre Olympia Companies community coming Fall 2027. Join the interest list for early-access updates—(702) 930-8222.',
     faqs: [
       {
         q: 'Who lists Skye Summit homes on this site?',
-        a: 'Dr. Jan Duffy, Nevada license S.0197614.LLC, is the buyer\'s representative for the Skye Summit Master Plan since 2009.',
+        a: 'Dr. Jan Duffy, REALTOR® in real estate since 1983, is the buyer\'s representative for the Skye Summit Master Plan.',
       },
       {
         q: 'Where is the Skye Summit Master Plan?',
@@ -259,7 +259,7 @@ const CORE_PAGES = mergeParallelEnrichment({
   },
   'office-location.html': {
     quickAnswer:
-      `Dr. Jan Duffy's office is at ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL} (${C.LABEL_OFFICE_SAME_AS_GOOGLE}). Hours Sun–Sat 8 AM–8 PM—<a href="tel:${C.PHONE_TEL}">${C.PHONE_DISPLAY}</a>.`,
+      `Dr. Jan Duffy's office is at ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL} (${C.LABEL_OFFICE_SAME_AS_GOOGLE}). Hours daily 8:00 AM–8:00 PM—<a href="tel:${C.PHONE_TEL}">${C.PHONE_DISPLAY}</a>.`,
     faqs: [
       {
         q: 'How do I get directions to the office?',

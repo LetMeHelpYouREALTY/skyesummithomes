@@ -62,7 +62,7 @@ const GUIDES = [
       },
       {
         q: 'Where is the Skye Summit Master Plan located?',
-        a: 'Northwest Las Vegas, just beyond the 215 Beltway. Meetings with Dr. Jan Duffy happen at the Berkshire Hathaway Southern Highlands office (89141).',
+        a: 'Northwest Las Vegas, just beyond the 215 Beltway. Meetings with Dr. Jan Duffy happen at the Southern Highlands office (89141).',
       },
       {
         q: 'When will Skye Summit Master Plan homes be available?',
@@ -70,7 +70,7 @@ const GUIDES = [
       },
       {
         q: 'Who is the buyer\'s representative for Skye Summit Master Plan?',
-        a: 'Dr. Jan Duffy, REALTOR® (License S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties. <a href="/contact">Join the interest list</a>.',
+        a: 'Dr. Jan Duffy, REALTOR®, in real estate since 1983. <a href="/contact">Join the interest list</a>.',
       },
     ],
     extraSections: `
@@ -296,17 +296,17 @@ const GUIDES = [
     slug: 'skye-summit-realtor',
     title: 'Skye Summit REALTOR® | Dr. Jan Duffy | Master Plan Buyer Rep',
     description:
-      'Dr. Jan Duffy is the buyer\'s representative for the Skye Summit Master Plan—early-access updates, builder coordination, and new-construction buyer representation. Berkshire Hathaway HomeServices Nevada Properties. (702) 930-8222.',
+      'Dr. Jan Duffy is the buyer\'s representative for the Skye Summit Master Plan—early-access updates, builder coordination, and new-construction buyer representation. (702) 930-8222.',
     h1: 'Skye Summit REALTOR®: Dr. Jan Duffy',
     heroSubtitle:
       'Buyer\'s representative for the Skye Summit Master Plan—505 acres coming Fall 2027.',
     breadcrumbName: 'Skye Summit REALTOR®',
     quickAnswer:
-      'Dr. Jan Duffy is the Skye Summit Master Plan buyer\'s representative (Nevada license S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties—early-access updates, builder coordination, and new-construction buyer representation. Call (702) 930-8222.',
+      'Dr. Jan Duffy is the Skye Summit Master Plan buyer\'s representative—early-access updates, builder coordination, and new-construction buyer representation. Call (702) 930-8222.',
     faqs: [
       {
         q: 'Who is the Skye Summit REALTOR®?',
-        a: 'Dr. Jan Duffy, REALTOR® (License S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties, is the buyer\'s representative for the Skye Summit Master Plan.',
+        a: 'Dr. Jan Duffy, REALTOR®, is the buyer\'s representative for the Skye Summit Master Plan.',
       },
       {
         q: 'What help do buyers get in Skye Summit?',
@@ -657,7 +657,7 @@ const GUIDES = [
       },
       {
         q: 'Who should I call for Centennial Hills / Skye Summit representation?',
-        a: 'Dr. Jan Duffy, REALTOR® with Berkshire Hathaway HomeServices Nevada Properties. License S.0197614.LLC — <a href="tel:+17029308222">(702) 930-8222</a>.',
+        a: 'Dr. Jan Duffy, REALTOR®, in real estate since 1983 — <a href="tel:+17029308222">(702) 930-8222</a>.',
       },
     ],
     extraSections: `
@@ -824,7 +824,7 @@ const GUIDES = [
       },
       {
         q: 'Where is Dr. Jan Duffy’s office?',
-        a: `<a href="/office-location">Office location map</a> — ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL}. Hours Sun–Sat 8 AM–8 PM.`,
+        a: `<a href="/office-location">Office location map</a> — ${C.STREET}, ${C.CITY}, ${C.REGION} ${C.POSTAL}. Hours daily 8:00 AM–8:00 PM.`,
       },
     ],
     extraSections: `
@@ -1029,7 +1029,7 @@ ${guide.extraSections}
                     <a href="tel:+17029308222" class="btn btn-secondary btn-large">Call (702) 930-8222</a>
                     <a href="#realscout-listings" class="btn btn-secondary btn-large">Click a home photo</a>
                 </div>
-                <p class="cta-note">Dr. Jan Duffy, REALTOR® · License S.0197614.LLC · Berkshire Hathaway HomeServices Nevada Properties</p>
+                <p class="cta-note">Dr. Jan Duffy, REALTOR® · In real estate since 1983</p>
                 <p class="cta-note cta-note--guides" style="margin-top:0.75rem;">
                     ${guideCtaLinksHtml()}
                 </p>
@@ -1071,13 +1071,13 @@ ${guideFooterListHtml()}
                 <div class="footer-section">
                     <h4>${C.LABEL_GOOGLE_SECTION}</h4>
                     <div class="gmb-info">
-                        <p><i class="fas fa-star" aria-hidden="true"></i> <strong>${C.RATING}/5</strong> (${C.REVIEW_COUNT} reviews)</p>
                         <a href="${C.GBP_URL}" target="_blank" rel="noopener" class="gmb-link"><i class="fab fa-google" aria-hidden="true"></i> ${C.LABEL_VIEW_ON_GOOGLE}</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Dr. Jan Duffy, REALTOR® S.0197614.LLC. All rights reserved.</p>
+                <p>&copy; 2026 Dr. Jan Duffy, REALTOR®. All rights reserved.</p>
+                <p>Berkshire Hathaway HomeServices Nevada Properties since September 2008 · License S.0197614.LLC</p>
                 <div class="footer-legal">
                     <a href="/privacy">Privacy Policy</a>
                     <a href="/terms">Terms of Use</a>

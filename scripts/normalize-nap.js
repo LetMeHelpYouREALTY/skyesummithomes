@@ -54,7 +54,7 @@ const OLD_GBP_DESCRIPTIONS = [
 
 const OLD_HYPERLOCAL_LEADS = [
   "Skye Summit | Homes by Dr. Jan Duffy shares the Berkshire Hathaway HomeServices office below. Dr. Jan Duffy, REALTOR®, is your buyer's representative for Skye Summit and northwest Las Vegas purchases.",
-  'Dr. Jan Duffy, licensed Nevada Realtor since 2009, specializes in northwest Las Vegas luxury real estate. Expert in Skye Summit homes, Summerlin properties, and Henderson communities. Office: 11411 Southern Highlands Pkwy #300, Las Vegas, NV 89141.',
+  'Dr. Jan Duffy, in real estate since 1983, specializes in northwest Las Vegas luxury real estate. Expert in Skye Summit homes, Summerlin properties, and Henderson communities. Office: 11411 Southern Highlands Pkwy #300, Las Vegas, NV 89141.',
 ];
 
 const REPLACEMENTS = [
@@ -159,7 +159,7 @@ const REPLACEMENTS = [
   ],
   [
     'Serving clients since 2009',
-    `Licensed since ${C.OPENING_DATE_DISPLAY}`,
+    'In real estate since 1983',
   ],
   [
     'Centennial Hills real estate',

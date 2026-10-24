@@ -116,10 +116,9 @@ function fullBlock() {
                     </div>
                     <div class="hyperlocal-card hyperlocal-nap">
                         <h3><i class="fas fa-building" aria-hidden="true"></i> ${C.LABEL_CONTACT_CARD}</h3>
-                        <p class="hyperlocal-name"><strong>${C.GBP_BUSINESS_NAME}</strong><br>${C.AGENT_NAME}, ${C.AGENT_TITLE} · ${C.AGENT_ROLE}<br>${C.BROKERAGE}</p>
+                        <p class="hyperlocal-name"><strong>${C.GBP_BUSINESS_NAME}</strong><br>${C.AGENT_NAME}, ${C.AGENT_TITLE} · ${C.AGENT_ROLE}</p>
                         <p><a href="tel:${C.PHONE_TEL}">${C.PHONE_DISPLAY}</a> · <a href="${C.SMS_URL}">Text</a><br><a href="mailto:${C.EMAIL}">${C.EMAIL}</a></p>
                         <p><a href="${C.MAPS_DIRECTIONS}" target="_blank" rel="noopener">${C.STREET}<br>${C.CITY}, ${C.REGION} ${C.POSTAL}</a></p>
-                        <p class="hyperlocal-license">Nevada license ${C.LICENSE} · Licensed since ${C.OPENING_DATE_DISPLAY}</p>
                         <p><a href="${C.SOCIAL_FACEBOOK}" target="_blank" rel="noopener">Facebook</a> · <a href="${C.SOCIAL_LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a></p>
                         <ul class="hyperlocal-accessibility">${accessibilityHtml}</ul>
                     </div>
@@ -130,9 +129,6 @@ function fullBlock() {
                     <div class="hyperlocal-hours">
                         <h3>Business hours</h3>
                         <ul>${hoursHtml}</ul>
-                        <h4>Special hours</h4>
-                        <ul>${holidayHtml}</ul>
-                        <p class="hyperlocal-rating"><i class="fas fa-star" aria-hidden="true"></i> <strong>${C.RATING}/5</strong> (${C.REVIEW_COUNT} Google reviews)</p>
                     </div>
                     <div class="gbp-map-embed">
                         <iframe title="Dr. Jan Duffy office — ${C.STREET}, ${C.CITY}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="600" height="280" src="${C.MAP_EMBED}"></iframe>
