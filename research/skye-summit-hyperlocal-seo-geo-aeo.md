@@ -259,7 +259,7 @@ For each: intent · primary keyword · secondary/LSI keywords · entities to lin
 
 - **Intent:** trust.
 - **Schema:** `Person`, `RealEstateAgent`, `Organization` (BHHS Nevada Properties), `ProfilePage`, `BreadcrumbList`, `FAQPage` (credentials, languages, service area).
-- **AEO answer:** "Dr. Jan Duffy is a Nevada REALTOR® (License S.0197614.LLC) at Berkshire Hathaway HomeServices Nevada Properties, specializing as a buyer's representative for the Skye Summit master plan in northwest Las Vegas. She is Top 1% Las Vegas production with 500+ families served since 2009."
+- **AEO answer:** "Dr. Jan Duffy is a Nevada REALTOR® (License S.0197614.LLC) at Berkshire Hathaway HomeServices Nevada Properties, specializing as a buyer's representative for the Skye Summit master plan in northwest Las Vegas. She is has led a team with 500+ team sales since 2009."
 - **Title:** `Dr. Jan Duffy — Skye Summit Buyer's Agent | Berkshire Hathaway Nevada`
 - **H1:** `Dr. Jan Duffy, REALTOR® — Skye Summit Buyer's Representative`
 - **E-E-A-T:** awards, transaction counts (verified), continuing-ed, NAR Code of Ethics pledge, languages spoken, brokerage affiliation date, press links.
@@ -619,7 +619,7 @@ About: Dr. Jan Duffy · Berkshire Hathaway Nevada · Privacy · Fair Housing · 
                                            H1:    Buying a Home in Skye Summit
 
 /skye-summit-sell/                         Title: Sell a Home in Skye Summit | Listing Agent | Dr. Jan Duffy
-                                           Meta:  List your Skye Summit home with a Top 1% Las Vegas REALTOR®. CMA in 24 hours, custom plan in 48.
+                                           Meta:  List your Skye Summit home with a Las Vegas REALTOR®. CMA in 24 hours, custom plan in 48.
                                            H1:    Selling a Home in Skye Summit
 
 /skye-summit-invest/                       Title: Skye Summit Investment Property | ROI & Rent Outlook | NW Las Vegas

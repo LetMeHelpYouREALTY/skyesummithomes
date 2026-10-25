@@ -21,7 +21,7 @@ Complete 10-page service-focused hyperlocal website for Dr. Jan Duffy, REALTOR®
 - 2 secondary service links (Investment, Relocation)
 - Services overview grid
 - RealScout listings widget
-- Trust signals (30+ years, 500+ families, license #)
+- Trust signals (Licensed since 2008, 500+ team sales, license #)
 - CTA: "Schedule Free 15-Min Consultation"
 
 **SEO**: 
@@ -35,7 +35,7 @@ Complete 10-page service-focused hyperlocal website for Dr. Jan Duffy, REALTOR®
 
 **Key Features**:
 - Why focus on Skye Summit (since 2009)
-- Credentials: 30+ years, 500+ families, $127M+ sales
+- Credentials: Licensed since 2008, 500+ team sales, $127M+ in Dr. Duffy Group career sales
 - License #S.0197614.LLC
 - Philosophy: Data-driven, personalized, full protection
 - Testimonials with specific results
