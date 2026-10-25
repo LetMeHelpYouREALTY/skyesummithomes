@@ -148,7 +148,7 @@ const servicesBelow = `
                 </div>
                 <div class="hero-stats" role="list">
                     <div class="stat" role="listitem">
-                        <span class="stat-number">Since 1983</span>
+                        <span class="stat-number">Licensed Since 2008</span>
                         <span class="stat-label">In real estate</span>
                     </div>
                     <div class="stat" role="listitem">

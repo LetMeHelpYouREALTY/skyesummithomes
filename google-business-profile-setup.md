@@ -46,7 +46,7 @@ Sunday: By Appointment
 
 ### 3. **Business Description**
 ```
-Skye Summit Las Vegas real estate specialist with 30+ years of experience. Expert guidance for new construction homes and elevated community properties. Specializing in Skye Summit, the newest jewel in northwest Las Vegas at 3,200 feet elevation. Dr. Jan Duffy, REALTOR® with Berkshire Hathaway HomeServices Nevada Properties.
+Skye Summit Las Vegas real estate specialist with 18 years of experience. Expert guidance for new construction homes and elevated community properties. Specializing in Skye Summit, the newest jewel in northwest Las Vegas at 3,200 feet elevation. Dr. Jan Duffy, REALTOR® with Berkshire Hathaway HomeServices Nevada Properties.
 ```
 
 ### 4. **Services Section**

@@ -44,7 +44,7 @@ search/
    - `WebPage` with `author` → `RealEstateAgent` (or `LocalBusiness` if that matches the site’s single graph strategy).
    - `author.worksFor` → **`Organization`** (brokerage name), not nested `RealEstateAgent`.
    - `Map` with `mapType` `https://schema.org/VenueMap` and `about` → City/State.
-5. **Content integrity**: do not invent review counts, “500+ families,” or unverified sales stats. Align “years experience” with the rest of the site (e.g. 15+ vs 30+).
+5. **Content integrity**: do not invent review counts, “500+ team sales,” or unverified sales stats. Align “years experience” with the rest of the site (e.g. 15+ vs 30+).
 
 ## Google Maps
 

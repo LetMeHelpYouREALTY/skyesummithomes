@@ -34,7 +34,7 @@
 ### **Business Description**
 - [ ] Write compelling 750-character description
 - [ ] Include "Skye Summit" keyword 3-4 times
-- [ ] Mention 30+ years experience
+- [ ] Mention 18 years experience
 - [ ] Highlight new construction expertise
 - [ ] Include Berkshire Hathaway affiliation
 
