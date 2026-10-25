@@ -11,7 +11,16 @@ const path = require('path');
 const { ensureMapsHints } = require('../lib/cdn-hints');
 
 const root = path.join(__dirname, '..');
-const htmlPath = path.join(root, 'las-vegas-zip-code-map', 'index.html');
+const MAPS_HTML_FILES = [
+  path.join(root, 'las-vegas-zip-code-map', 'index.html'),
+  path.join(root, 'nearby-amenities', 'index.html'),
+  path.join(root, 'nearby-amenities.html'),
+  path.join(root, 'index.html'),
+  path.join(root, 'community', 'index.html'),
+  path.join(root, 'living-in-skye-summit', 'index.html'),
+  path.join(root, 'homes-for-sale-skye-summit', 'index.html'),
+  path.join(root, 'search', 'index.html'),
+];
 
 function loadDotEnv() {
   const envPath = path.join(root, '.env');
@@ -53,36 +62,33 @@ if (!key && !onVercel && !forceLocal) {
   process.exit(0);
 }
 
-if (!fs.existsSync(htmlPath)) {
-  console.error('inject-google-maps-key: missing', htmlPath);
-  process.exit(1);
-}
-
-let html = fs.readFileSync(htmlPath, 'utf8');
-
-const metaRe = /<meta\s+name="google-maps-api-key"\s+content="[^"]*"\s*>/i;
-
-if (!metaRe.test(html)) {
-  console.error(
-    'inject-google-maps-key: could not find <meta name="google-maps-api-key">'
-  );
-  process.exit(1);
-}
-
+const metaRe = /<meta\s+name="google-maps-api-key"\s+content="[^"]*"\s*\/?>/i;
 const replacement = key
   ? `<meta name="google-maps-api-key" content="${escapeAttr(key)}">`
   : `<meta name="google-maps-api-key" content="">`;
 
-html = html.replace(metaRe, replacement);
-html = ensureMapsHints(html, { preconnect: Boolean(key) });
-fs.writeFileSync(htmlPath, html);
+let updated = 0;
+for (const htmlPath of MAPS_HTML_FILES) {
+  if (!fs.existsSync(htmlPath)) continue;
+  let html = fs.readFileSync(htmlPath, 'utf8');
+  if (!metaRe.test(html)) continue;
+  html = html.replace(metaRe, replacement);
+  html = ensureMapsHints(html, { preconnect: Boolean(key) });
+  fs.writeFileSync(htmlPath, html);
+  updated += 1;
+}
+
+if (updated === 0) {
+  console.error('inject-google-maps-key: no files contained google-maps-api-key meta');
+  process.exit(1);
+}
 
 if (key) {
   console.log(
-    'inject-google-maps-key: embedded Google Maps API key (Maps JavaScript API; restrict key by HTTP referrer to this site).'
+    `inject-google-maps-key: embedded key in ${updated} file(s) (enable Maps JavaScript API + Places API; restrict by HTTP referrer).`
   );
 } else {
   console.log(
-    'inject-google-maps-key: GOOGLE_MAPS_API_KEY empty; meta left blank (placeholder map).'
+    `inject-google-maps-key: GOOGLE_MAPS_API_KEY empty; cleared meta in ${updated} file(s).`
   );
 }
