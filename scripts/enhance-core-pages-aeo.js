@@ -28,7 +28,7 @@ function mergeHyperlocalSeoAnswers(pages) {
         faqs: [
           {
             q: 'Who is the Skye Summit buyer\'s representative?',
-            a: 'Dr. Jan Duffy, REALTOR®, in real estate since 1983. Call <a href="tel:+17029308222">(702) 930-8222</a>.',
+            a: 'Dr. Jan Duffy, REALTOR®, licensed since 2008 · 35 years in Las Vegas. Call <a href="tel:+17029308222">(702) 930-8222</a>.',
           },
           {
             q: 'What is the Skye Summit Master Plan?',
@@ -73,7 +73,7 @@ function mergeParallelEnrichment(pages) {
 const CORE_PAGES = mergeParallelEnrichment({
   'about.html': {
     quickAnswer:
-      'Dr. Jan Duffy is a Las Vegas REALTOR®, in real estate since 1983—the buyer\'s representative for the Skye Summit Master Plan (505 acres, coming Fall 2027). Call (702) 930-8222 or visit the office at 11411 Southern Highlands Pkwy #300, Las Vegas.',
+      'Dr. Jan Duffy is a Las Vegas REALTOR®, licensed since 2008 · 35 years in Las Vegas—the buyer\'s representative for the Skye Summit Master Plan (505 acres, coming Fall 2027). Call (702) 930-8222 or visit the office at 11411 Southern Highlands Pkwy #300, Las Vegas.',
     faqs: [
       {
         q: 'Who is Dr. Jan Duffy?',
@@ -81,7 +81,7 @@ const CORE_PAGES = mergeParallelEnrichment({
       },
       {
         q: 'How long has Dr. Jan Duffy been in real estate?',
-        a: 'Dr. Jan Duffy has been in real estate since 1983.',
+        a: 'Dr. Jan Duffy has been licensed since 2008 · 35 years in Las Vegas.',
       },
       {
         q: 'How do I verify the office address?',
@@ -235,7 +235,7 @@ const CORE_PAGES = mergeParallelEnrichment({
     faqs: [
       {
         q: 'Who lists Skye Summit homes on this site?',
-        a: 'Dr. Jan Duffy, REALTOR® in real estate since 1983, is the buyer\'s representative for the Skye Summit Master Plan.',
+        a: 'Dr. Jan Duffy, REALTOR® licensed since 2008 · 35 years in Las Vegas, is the buyer\'s representative for the Skye Summit Master Plan.',
       },
       {
         q: 'Where is the Skye Summit Master Plan?',
