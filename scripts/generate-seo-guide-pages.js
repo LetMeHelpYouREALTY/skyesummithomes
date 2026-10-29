@@ -70,7 +70,7 @@ const GUIDES = [
       },
       {
         q: 'Who is the buyer\'s representative for Skye Summit Master Plan?',
-        a: 'Dr. Jan Duffy, REALTOR®, in real estate since 1983. <a href="/contact">Join the interest list</a>.',
+        a: 'Dr. Jan Duffy, REALTOR®, licensed since 2008 · 35 years in Las Vegas. <a href="/contact">Join the interest list</a>.',
       },
     ],
     extraSections: `
@@ -657,7 +657,7 @@ const GUIDES = [
       },
       {
         q: 'Who should I call for Centennial Hills / Skye Summit representation?',
-        a: 'Dr. Jan Duffy, REALTOR®, in real estate since 1983 — <a href="tel:+17029308222">(702) 930-8222</a>.',
+        a: 'Dr. Jan Duffy, REALTOR®, licensed since 2008 · 35 years in Las Vegas — <a href="tel:+17029308222">(702) 930-8222</a>.',
       },
     ],
     extraSections: `
@@ -1029,7 +1029,7 @@ ${guide.extraSections}
                     <a href="tel:+17029308222" class="btn btn-secondary btn-large">Call (702) 930-8222</a>
                     <a href="#realscout-listings" class="btn btn-secondary btn-large">Click a home photo</a>
                 </div>
-                <p class="cta-note">Dr. Jan Duffy, REALTOR® · In real estate since 1983</p>
+                <p class="cta-note">Dr. Jan Duffy, REALTOR® · Licensed since 2008 · 35 years in Las Vegas</p>
                 <p class="cta-note cta-note--guides" style="margin-top:0.75rem;">
                     ${guideCtaLinksHtml()}
                 </p>
