@@ -21,7 +21,8 @@
   ],
   "author": "Skye Summit Real Estate",
   "dependencies": {
-    "@vercel/node": "^3.0.0"
+    "@vercel/node": "^3.0.0",
+    "@vercel/speed-insights": "^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
