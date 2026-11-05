@@ -201,6 +201,19 @@
     </url>
 
     <url>
+        <loc>https://www.skyesummithomes.com/nearby-amenities</loc>
+        <lastmod>2026-09-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.88</priority>
+        <image:image>
+            <image:loc>https://www.skyesummithomes.com/images/hero/hero-community-lifestyle.jpg</image:loc>
+            <image:title>Skye Summit Community Aerial</image:title>
+            <image:caption>Skye Summit community living near Red Rock Canyon</image:caption>
+            <image:geo_location>Las Vegas, NV</image:geo_location>
+        </image:image>
+    </url>
+
+    <url>
         <loc>https://www.skyesummithomes.com/skye-summit-hoa</loc>
         <lastmod>2026-09-27</lastmod>
         <changefreq>monthly</changefreq>
